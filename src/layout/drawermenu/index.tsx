@@ -25,7 +25,7 @@ interface Props {
   styleProps: StyleProps;
 }
 
-const DrawerMenu = ({open, className, menu, styleProps}: Props) => {
+const SBDrawerMenu = ({open, className, menu, styleProps}: Props) => {
   return (
     <Nav width={styleProps.menuWidth}>
       <MuiDrawer
@@ -47,4 +47,4 @@ const DrawerMenu = ({open, className, menu, styleProps}: Props) => {
   );
 };
 
-export default DrawerMenu;
+export default SBDrawerMenu;

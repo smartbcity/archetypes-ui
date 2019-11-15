@@ -2,8 +2,8 @@ import React from "react";
 import {makeStyles, Paper, Theme} from "@material-ui/core";
 import createStyles from "@material-ui/core/styles/createStyles";
 import clsx from "clsx";
-import AppBar from "../appbar";
-import DrawerMenu from "../drawermenu";
+import SBAppBar from "../appbar";
+import SBDrawerMenu from "../drawermenu";
 import {StyleProps} from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
 
@@ -58,13 +58,13 @@ interface Props {
   styleProps: StyleProps;
 }
 
-const SbApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Props) => {
+const SBApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Props) => {
   const classes = useStyles(styleProps);
   const [open, setOpen] = React.useState<boolean>(isOpen);
 
   return (
     <React.Fragment>
-      <AppBar
+      <SBAppBar
         className={classes.appbar}
         logo={logo}
         drawerOpen={open}
@@ -73,7 +73,7 @@ const SbApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Pro
         actions={actions}
         profile={profile}
       />
-      <DrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} />
+      <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} />
       <main
         className={clsx(classes.main, {
           [classes.mainShift]: !open
@@ -86,4 +86,4 @@ const SbApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Pro
   );
 };
 
-export default SbApp;
+export default SBApp;

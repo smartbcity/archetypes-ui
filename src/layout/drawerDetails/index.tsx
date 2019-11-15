@@ -27,7 +27,7 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
   })
 );
 
-const DrawerDetails = ({onClose, children, styleProps}: Props) => {
+const SBDrawerDetails = ({onClose, children, styleProps}: Props) => {
   const classes = useStyles(styleProps);
   return (
     <Drawer
@@ -41,4 +41,4 @@ const DrawerDetails = ({onClose, children, styleProps}: Props) => {
   );
 };
 
-export default DrawerDetails;
+export default SBDrawerDetails;

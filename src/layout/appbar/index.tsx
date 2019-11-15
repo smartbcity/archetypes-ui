@@ -43,7 +43,7 @@ interface Props {
   actions?: React.ReactNode;
 }
 
-const AppBar = ({onDrawerOpen, logo, className, profile, actions}: Props) => {
+const SBAppBar = ({onDrawerOpen, logo, className, profile, actions}: Props) => {
   const classes = useStyles();
   return (
     <MuiAppBar className={className} square={true}>
@@ -72,4 +72,4 @@ const AppBar = ({onDrawerOpen, logo, className, profile, actions}: Props) => {
     </MuiAppBar>
   );
 };
-export default AppBar;
+export default SBAppBar;
