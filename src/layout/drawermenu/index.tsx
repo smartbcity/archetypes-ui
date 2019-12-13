@@ -6,11 +6,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import {MenuItem} from "./menu";
-import {StyleProps} from "../StyleProps";
+import StyleProps from "../StyleProps";
 
 // TODO style only on desktop size
 const Nav = styled.nav<WidthProps>`
-  width: ${props => props.width };
+  width: ${props => props.width};
   flex-shrink: 0;
 `;
 

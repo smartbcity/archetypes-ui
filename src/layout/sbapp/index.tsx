@@ -4,7 +4,7 @@ import createStyles from "@material-ui/core/styles/createStyles";
 import clsx from "clsx";
 import SBAppBar from "../appbar";
 import SBDrawerMenu from "../drawermenu";
-import {StyleProps} from "../StyleProps";
+import StyleProps from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
 
 const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
@@ -35,8 +35,10 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
       }),
-      marginLeft: props.menuWidth,
       marginTop: props.appBarHeight
+    }),
+    mainMargin: props => ({
+      marginLeft: props.menuWidth
     }),
     mainShift: {
       transition: theme.transitions.create("margin", {
@@ -61,7 +63,7 @@ interface Props {
 const SBApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Props) => {
   const classes = useStyles(styleProps);
   const [open, setOpen] = React.useState<boolean>(isOpen);
-
+  const openClasses = clsx(classes.main, {[classes.mainMargin]: open, [classes.mainShift]: !open});
   return (
     <React.Fragment>
       <SBAppBar
@@ -74,10 +76,7 @@ const SBApp = ({children, profile, menu, isOpen, actions, logo, styleProps}: Pro
         profile={profile}
       />
       <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} />
-      <main
-        className={clsx(classes.main, {
-          [classes.mainShift]: !open
-        })}>
+      <main className={openClasses}>
         <Paper square className={classes.content} elevation={0}>
           {children}
         </Paper>
