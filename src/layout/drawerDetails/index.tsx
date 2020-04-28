@@ -3,8 +3,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import createStyles from "@material-ui/core/styles/createStyles";
 import {Drawer, Theme} from "@material-ui/core";
 import StyleProps from "../StyleProps";
-import styled from "styled-components";
-import {WidthProps} from "../drawermenu";
 
 interface Props {
     onClose: () => void;

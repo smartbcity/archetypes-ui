@@ -3,7 +3,7 @@ import {makeStyles, Theme, createStyles} from "@material-ui/core/styles";
 import Stepper, {StepperProps} from "@material-ui/core/Stepper";
 import Step, {StepProps} from "@material-ui/core/Step";
 import StepLabel, {StepLabelProps} from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
+import Button, {ButtonProps} from "@material-ui/core/Button";
 import {Paper, PaperProps} from "@material-ui/core";
 import clsx from 'clsx';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface OnNextHandles {
-    onNext(): void;
+    onNext(): boolean;
 }
 
 export interface StepDetails {
@@ -40,7 +40,19 @@ export interface StepDetails {
     component: React.ReactNode;
 }
 
-export interface Props {
+export interface SBStepperLabel {
+    next: string;
+    back: string;
+    finish: string;
+}
+
+const englishLabel = {
+    next: 'Next',
+    back: 'Back',
+    finish: 'Finish'
+} as SBStepperLabel;
+
+export interface SBStepperProps {
     activeStep: number;
     getSteps: (stepRef: React.RefObject<OnNextHandles>) => StepDetails[];
     gotoStep: (stepNumber: number) => void;
@@ -48,18 +60,25 @@ export interface Props {
     className?: string;
     PaperProps?: Partial<PaperProps>;
     StepperProps?: Partial<StepperProps>;
+    StepperButtonProps?: Partial<ButtonProps>;
     StepProps?: Partial<StepProps>;
     StepLabelProps?: Partial<StepLabelProps>;
+    label?: SBStepperLabel
 }
 
-const SBStepper = ({activeStep, gotoStep, onFinish, getSteps, className, PaperProps, StepperProps, StepProps, StepLabelProps}: Props) => {
+const SBStepper = (props: SBStepperProps) => {
+    const {activeStep, gotoStep, onFinish, getSteps, className, PaperProps, StepperProps, StepProps, StepLabelProps, StepperButtonProps, label = englishLabel} = props;
     const classes = useStyles();
     const stepRef = useRef<OnNextHandles>(null);
     const steps = getSteps(stepRef);
-
     const handleNext = () => {
-        stepRef.current && stepRef.current.onNext();
-        gotoStep(activeStep + 1);
+        const isOk = stepRef.current && stepRef.current.onNext();
+        isOk && gotoStep(activeStep + 1);
+    };
+
+    const handleTerminate = () => {
+        const isOk = stepRef.current && stepRef.current.onNext();
+        isOk && onFinish();
     };
 
     const getStepContent = (stepIndex: number, steps: StepDetails[]) => {
@@ -70,6 +89,11 @@ const SBStepper = ({activeStep, gotoStep, onFinish, getSteps, className, PaperPr
 
     const handleBack = () => {
         gotoStep(activeStep - 1);
+    };
+
+    const activeButtonProps: Partial<ButtonProps> = {
+        ...StepperButtonProps,
+        variant: "contained",
     };
     return (
         <Paper className={clsx("sb-stepper", className)} {...PaperProps}>
@@ -87,14 +111,16 @@ const SBStepper = ({activeStep, gotoStep, onFinish, getSteps, className, PaperPr
                     <Button
                         disabled={activeStep === 0}
                         onClick={handleBack}
-                        className={classes.backButton}>
-                        Back
+                        className={classes.backButton}
+                    >
+                        {label.back}
                     </Button>
                     {activeStep === steps.length - 1 ? (
-                        <Button variant="contained" color="primary" onClick={() => onFinish()}>Finish</Button>
+                        <Button {...activeButtonProps}
+                                onClick={handleTerminate}>{label.finish}</Button>
                     ) : (
-                        <Button variant="contained" color="primary" onClick={handleNext}>
-                            Next
+                        <Button {...activeButtonProps}  onClick={handleNext}>
+                            {label.next}
                         </Button>
                     )}
                 </div>

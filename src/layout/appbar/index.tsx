@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   className?: string;
-  title: string;
+  title?: string;
   drawerOpen: boolean;
   logo: string;
   onDrawerOpen: () => void;
@@ -43,7 +43,7 @@ interface Props {
   actions?: React.ReactNode;
 }
 
-const SBAppBar = ({onDrawerOpen, logo, className, profile, actions}: Props) => {
+const SBAppBar = ({onDrawerOpen, logo, title, className, profile, actions}: Props) => {
   const classes = useStyles();
   return (
     <MuiAppBar className={className} square={true}>
@@ -61,7 +61,7 @@ const SBAppBar = ({onDrawerOpen, logo, className, profile, actions}: Props) => {
               <ListItemText>
                 <img src={logo} alt="Logo" />
               </ListItemText>
-              <ListItemText primary="Mobilite.eco" />
+              {title && <ListItemText primary={title} />}
             </ListItem>
           </List>
         </DrawerSpacer>
