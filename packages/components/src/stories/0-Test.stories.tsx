@@ -18,7 +18,7 @@ export const ButtonTS = () => {
     const defaultValue = 'yellow';
     const groupId = 'GROUP-ID1';
     const value = select(label, options, defaultValue, groupId);
-    return <Button2 disabled={false} onClick={action('clicked')} color={value}></Button2>
+    return <Button2 disabled={false} onClick={action('clicked')} color={value as color}></Button2>
 } 
 
 ButtonTS.story = {
