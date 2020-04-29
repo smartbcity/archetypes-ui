@@ -51,3 +51,6 @@ npx -p @storybook/cli sb init
 
 yarn storybook
 ```
+
+## Addons
+https://storybook.js.org/addons/

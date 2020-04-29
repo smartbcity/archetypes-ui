@@ -28,7 +28,10 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-notes": "^5.3.18",
+    "@storybook/addon-viewport": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
@@ -59,5 +62,12 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@material-ui/core": "^4.9.12",
+    "@storybook/addon-info": "^5.3.18",
+    "add": "^2.0.6",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3"
+  }
 }

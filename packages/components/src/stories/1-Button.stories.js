@@ -16,3 +16,9 @@ export const Emoji = () => (
     </span>
   </Button>
 );
+
+Emoji.story = {
+  parameters: {
+    notes: 'A small component',
+  },
+};
