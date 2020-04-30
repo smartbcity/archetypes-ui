@@ -59,14 +59,23 @@ interface Props {
     isOpen: boolean;
     title?: string;
     styleProps: StyleProps;
+    showAppBar: boolean;
 }
 
-const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProps}: Props) => {
+const defaultProps = {
+    showAppBar: true
+}
+
+const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProps, showAppBar}: Props) => {
+ 
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
     const openClasses = clsx(classes.main, {[classes.mainMargin]: open, [classes.mainShift]: !open});
     return (
         <React.Fragment>
+            {
+            showAppBar &&
+            <>
             <SBAppBar
                 className={classes.appbar}
                 logo={logo}
@@ -77,6 +86,8 @@ const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProp
                 profile={profile}
             />
             <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps}/>
+            </>
+            }
             <main className={openClasses}>
                 <Paper square className={classes.content} elevation={0}>
                     {children}
@@ -85,5 +96,7 @@ const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProp
         </React.Fragment>
     );
 };
+
+SBApp.defaultProps = defaultProps
 
 export default SBApp;
