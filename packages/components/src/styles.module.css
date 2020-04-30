@@ -1,5 +1,8 @@
 /* add css module styles here (optional) */
-
+body {
+  margin:0;
+  padding:0;
+}
 .test {
   margin: 2em;
   padding: 0.5em;

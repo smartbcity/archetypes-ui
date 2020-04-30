@@ -1,25 +1,12 @@
 import React from 'react';
 import {Card, CardHeader, Typography, CardContent, CardActions} from '@material-ui/core';
 import { createStyles, makeStyles} from '@material-ui/core/styles';
-import logo from '../assets/impactcity-logo-2.png';
+import defaultLogo from '../assets/impactcity-logo-2.png';
+import documentLogo from '../assets/docstampt-badge.png';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    container: {
-        display:"flex",
-        flexWrap:"wrap",
-        justifyContent:"center",
-        alignItems:"center",
-        position:'fixed',
-        width:"100vw",
-        height:"100vh"
-    },
-    popUp: {
-        background:'rgb(0, 0, 0,0.50)'
-    },
     card: {
-        width:"95%",
-        maxWidth:"600px",
         borderRadius:"10px"
     },
     header: {
@@ -44,8 +31,13 @@ const useStyles = makeStyles(() =>
         justifyContent:"center",
         paddingTop:"30px"
     },
+    contentVertical: {
+        flexDirection:"column"
+    },
     footer: {
-        minHeight:"50px"
+        minHeight:"50px",
+        display:"flex",
+        justifyContent:"center"
     },
     logoContainer: {
         display:"flex",
@@ -56,8 +48,8 @@ const useStyles = makeStyles(() =>
         zIndex:0
     },
     logoBorder: {
-        width:"140px",
-        height:"140px",
+        width:"136px",
+        height:"136px",
         borderRadius:"50%",
         background:"white"
     },
@@ -65,7 +57,15 @@ const useStyles = makeStyles(() =>
         height:"130px",
         width:"130px",
         position:"relative",
-        marginLeft:"14px",
+        marginLeft:"12px",
+        opacity:"50%"
+    },
+    documentLogo: {
+        height:"115px",
+        width:"115px",
+        position:"relative",
+        marginLeft:"11.5px",
+        marginTop:"12px",
         opacity:"50%"
     },
     logoWithHeader: {
@@ -82,15 +82,29 @@ const useStyles = makeStyles(() =>
         marginRight:"20px",
         position:"relative"
     },
+    dividerVertical: {
+        width:"80%",
+        height:"1px",
+        marginTop:"20px",
+        marginBottom:"20px"
+    },
     dividerBar: {
         background:"#ECBE3F",
-        width:"100%",
+        width:"0.5px",
         height:"140px",
         position:'absolute',
         bottom:'0px'
     },
+    dividerBarVertical: {
+        width:"80%",
+        height:"0.5px",
+        right:'0px'
+    },
     dividerBarWithoutText: {
         height:"160px",
+    },
+    dividerBarVerticalWithoutText: {
+        width:"100%",
     },
     dividerText: {
         textAlign:"center",
@@ -98,34 +112,42 @@ const useStyles = makeStyles(() =>
         transform:'translate(-50%,-50%)',
         left:"50%",
         lineHeight:"13px"
+    },
+    dividerTextVertical: {
+        left:"5%",
     }
   }),
 );
 
+export type Direction = "horizontal"| "vertical";
+
+export type logoType = "default" | "document";
+
 export interface CardProps {
-    popUp?:boolean;
     header?:string;
     children?: React.ReactNode | React.ReactNode[];
     dividerText?: string
+    dividerDirection?: Direction;
+    logo?: logoType;
+    className?: string;
+    footer?: React.ReactNode;
 }
 
 const CustomCard = (props: CardProps) => {
-    const {popUp = false, header, children, dividerText} = props;
+    const {header, children, dividerText, dividerDirection = "horizontal", logo = "default", className, footer} = props;
     const classes = useStyles();
-    console.log(children instanceof Array)
     return (
-        <div className={`${classes.container} ${popUp && classes.popUp}`}>
-            <Card className={classes.card}>
+        <Card className={`${classes.card} ${!!className && className}`}>
             <CardHeader 
                 className={classes.header}
                 classes= {{content: classes.headerContainer}}
                 subheader={!!header && <Typography className={classes.headerContent} variant="body2" color="textSecondary" component="p">{header}</Typography>}
             />
-            <CardContent className={classes.content} >
-                <div className={classes.logoContainer}><div className={classes.logoBorder}><img src={logo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`} alt="impact city logo"/></div></div>
+            <CardContent className={`${classes.content} ${dividerDirection === "vertical" && classes.contentVertical}`} >
+                <div className={classes.logoContainer}><div className={classes.logoBorder}>{logo === "document" ? <img src={documentLogo} className={`${classes.documentLogo} ${!!header && classes.logoWithHeader}`}alt="Document logo"/> :  <img src={defaultLogo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`} alt="impact city logo"/>}</div></div>
                 {children instanceof Array ? children.map((child, index) => index !== children.length -1 ? (<><div key={index} className={classes.contentContainer}>
                     {child}
-                </div> <div key={index} className={classes.divider}>{!!dividerText && <Typography className={classes.dividerText} variant="body1" color="textSecondary" component="p">{dividerText}</Typography>}<div className={`${classes.dividerBar} ${!dividerText && classes.dividerBarWithoutText}`}></div></div></>) :
+                </div> <div key={index+children.length} className={`${classes.divider} ${dividerDirection === "vertical" && classes.dividerVertical}`}>{!!dividerText && <Typography className={`${classes.dividerText} ${dividerDirection === "vertical" && classes.dividerTextVertical}`} variant="body1" color="textSecondary" component="p">{dividerText}</Typography>}<div className={`${classes.dividerBar} ${!dividerText ? dividerDirection === "vertical" ? classes.dividerBarVerticalWithoutText : classes.dividerBarWithoutText : null} ${dividerDirection === "vertical" && classes.dividerBarVertical}`}></div></div></>) :
                 (<div key={index} className={classes.contentContainer}>
                     {child}
                 </div>)) : 
@@ -134,9 +156,9 @@ const CustomCard = (props: CardProps) => {
                 </div>}
             </CardContent>
             <CardActions className={classes.footer}>
+                {footer}
             </CardActions>
-            </Card>
-        </div>
+        </Card>
     )
 }
 
