@@ -1,6 +1,6 @@
 module.exports = {
   stories: [
-    '../src/**/*.stories.tsx'
+    '../src/**/*.stories.(tsx)'
   ],
   addons: [
     '@storybook/preset-create-react-app',
@@ -10,6 +10,7 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
     '@storybook/addon-storysource',
+    '@storybook/addon-docs'
   ],
   webpackFinal: async config => {
     config.module.rules.push({

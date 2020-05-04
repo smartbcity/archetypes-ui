@@ -1,10 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Button2, { color } from '../ButtonTest';
+import Button2, { color } from '../../ButtonTest';
 import { withKnobs, select} from "@storybook/addon-knobs";
 
 export default {
-    title: 'Test',
+    title: 'Demo components/Test',
     decorators: [withKnobs]
 };
 
