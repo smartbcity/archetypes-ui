@@ -1,0 +1,26 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import {Color} from "./examples/Color";
+import {ButtonTS} from "./Button.stories.tsx";
+import ButtonBU from "../../ButtonTest";
+
+<Meta title="Documentation|Button" />
+
+<Story id="components-button--button-ts"/>
+
+# Button
+A basic button component. Supports a minimal level of customization. You can
+build your own custom button using `TouchableOpacity` or `TouchableHighlight`.
+
+### color
+
+Customize the background color of the button.
+
+<ButtonTS/>
+
+<Preview withSource='tsx' >
+    <ButtonBU />
+</Preview>
+
+<Color />
+<ButtonBU />
+

@@ -3,6 +3,7 @@ import Card, { Direction} from '../../Card';
 import {withKnobs, text, select, number} from "@storybook/addon-knobs";
 import {Typography} from '@material-ui/core';
 import { createStyles, makeStyles} from '@material-ui/core/styles';
+// @ts-ignore
 import { Title, Subtitle, Description, Primary, Props, Stories } from '@storybook/addon-docs/blocks';
 
 
@@ -55,8 +56,8 @@ export const card = () => {
   const children: React.ReactNode[] = [];
   for (var i = 0; i < nbOfChildren; i++){
     children.push(<Typography className={classes.text} key={i} variant="body2" color="textSecondary" component="p">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </Typography>)
   }
 
@@ -72,25 +73,25 @@ export const card = () => {
 
   const logo = select("logo",{Default: 'default',Document: 'document'}, 'default');
 
-  return (<Card 
-          className={classes.card} 
-          header={header} 
-          dividerText={dividerText} 
-          dividerDirection={dividerDirection as Direction} 
-          footer={footer} 
+  return (<Card
+          className={classes.card}
+          header={header}
+          dividerText={dividerText}
+          dividerDirection={dividerDirection as Direction}
+          footer={footer}
           logo={logo}>
             {children}
           </Card>)
-} 
+}
 
 export const cardSimplified = () => {
   const classes = useStyles();
 
-  return (<Card 
+  return (<Card
           className={classes.card} >
             <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </Typography>
           </Card>)
-} 
+}

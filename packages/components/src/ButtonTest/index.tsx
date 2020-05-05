@@ -25,18 +25,19 @@ const useStyles = makeStyles(() =>
 
 export type color = "blue" | "red" | "yellow";
 
-export interface buttonProps {
+export interface ButtonProps {
     disabled?: boolean;
     onClick: () => void;
     color?: color;
+    label?: string
 }
 
-const ButtonTS = (props: buttonProps) => {
-    const {disabled = false, onClick, color = "yellow"} = props;
+const ButtonTS = (props: ButtonProps) => {
+    const {disabled = false, onClick, color = "yellow", label = "Je suis un test"} = props;
     const classes = useStyles();
     return (
         <Button className={`${classes.Button} ${color === "blue" ? classes.blue : color === "red" ? classes.red : classes.yellow}`} disabled={disabled} onClick={onClick}>
-            Je suis un test
+          {label}
         </Button>
     )
 }
