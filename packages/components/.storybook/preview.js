@@ -6,4 +6,18 @@ addParameters({
     container: DocsContainer,
     page: DocsPage,
   },
+  options: {
+    storySort: (a, b) => {
+      console.log("a:", a)
+      console.log("b:", b)
+      if (a[0].includes('Components')) {
+        if (a[0].includes('Overview')) {
+          return -1;
+        }
+
+        return 0;
+      }
+      return 1;
+    }
+  },
 });
