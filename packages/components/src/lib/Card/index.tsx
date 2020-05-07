@@ -89,7 +89,7 @@ const useStyles = makeStyles(() =>
         marginBottom:"20px"
     },
     dividerBar: {
-        background:"#ECBE3F",
+        background:"#fec519",
         width:"0.5px",
         height:"140px",
         position:'absolute',
@@ -126,22 +126,23 @@ export type logoType = "default" | "document";
 export interface CardProps {
     header?:string;
     children?: React.ReactNode | React.ReactNode[];
-    dividerText?: string
+    dividerText?: string;
     dividerDirection?: Direction;
     logo?: logoType;
     className?: string;
     footer?: React.ReactNode;
+    style?: React.CSSProperties; 
 }
 
 const CustomCard = (props: CardProps) => {
-    const {header, children, dividerText, dividerDirection = "horizontal", logo = "default", className, footer} = props;
+    const {header, children, dividerText, dividerDirection = "horizontal", logo = "default", className, footer, style} = props;
     const classes = useStyles();
     return (
-        <Card className={`${classes.card} ${!!className && className}`}>
+        <Card className={`${classes.card} ${!!className && className}`} style={style}>
             <CardHeader 
                 className={classes.header}
                 classes= {{content: classes.headerContainer}}
-                subheader={!!header && <Typography className={classes.headerContent} variant="body2" color="textSecondary" component="p">{header}</Typography>}
+                subheader={!!header && <Typography className={classes.headerContent} variant="h6" color="textSecondary" component="p">{header}</Typography>}
             />
             <CardContent className={`${classes.content} ${dividerDirection === "vertical" && classes.contentVertical}`} >
                 <div className={classes.logoContainer}><div className={classes.logoBorder}>{logo === "document" ? <img src={documentLogo} className={`${classes.documentLogo} ${!!header && classes.logoWithHeader}`}alt="Document logo"/> :  <img src={defaultLogo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`} alt="impact city logo"/>}</div></div>
