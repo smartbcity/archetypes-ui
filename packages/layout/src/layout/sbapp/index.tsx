@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {makeStyles, Paper, Theme} from "@material-ui/core";
 import createStyles from "@material-ui/core/styles/createStyles";
 import clsx from "clsx";
@@ -67,7 +67,7 @@ const defaultProps = {
 }
 
 const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProps, showAppBar}: Props) => {
- 
+
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
     const openClasses = clsx(classes.main, {[classes.mainMargin]: open, [classes.mainShift]: !open});
@@ -75,18 +75,18 @@ const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProp
         <React.Fragment>
             {
             showAppBar &&
-            <>
-            <SBAppBar
-                className={classes.appbar}
-                logo={logo}
-                drawerOpen={open}
-                onDrawerOpen={() => setOpen(!open)}
-                title={title}
-                actions={actions}
-                profile={profile}
-            />
-            <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps}/>
-            </>
+            <Fragment>
+              <SBAppBar
+                  className={classes.appbar}
+                  logo={logo}
+                  drawerOpen={open}
+                  onDrawerOpen={() => setOpen(!open)}
+                  title={title}
+                  actions={actions}
+                  profile={profile}
+              />
+              <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps}/>
+            </Fragment>
             }
             <main className={openClasses}>
                 <Paper square className={classes.content} elevation={0}>
