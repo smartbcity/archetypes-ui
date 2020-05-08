@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Card as MuiCard} from '@material-ui/core';
 import {CardHeader, Typography, CardContent, CardActions} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
@@ -154,7 +154,7 @@ const Card = (props: CardProps) => {
             <img src={defaultLogo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`}
                  alt="impact city logo"/>}</div>
         </div>
-        {children instanceof Array ? children.map((child, index) => index !== children.length - 1 ? (<div>
+        {children instanceof Array ? children.map((child, index) => index !== children.length - 1 ? (<Fragment>
             <div key={index} className={classes.contentContainer}>
               {child}
             </div>
@@ -166,7 +166,7 @@ const Card = (props: CardProps) => {
               <div
                 className={`${classes.dividerBar} ${!dividerText ? dividerDirection === "vertical" ? classes.dividerBarVerticalWithoutText : classes.dividerBarWithoutText : null} ${dividerDirection === "vertical" && classes.dividerBarVertical}`}></div>
             </div>
-          </div>) :
+          </Fragment>) :
           (<div key={index} className={classes.contentContainer}>
             {child}
           </div>)) :
