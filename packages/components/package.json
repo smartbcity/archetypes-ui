@@ -2,6 +2,7 @@
   "name": "@smartb/r2-react-components",
   "version": "0.0.1",
   "description": "React components library",
+  "private": false,
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
