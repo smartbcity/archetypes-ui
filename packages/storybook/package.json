@@ -1,5 +1,5 @@
 {
-  "name": "storybook",
+  "name": "@smartb/r2-storybook",
   "description": "Storybook documentation",
   "version": "0.0.3",
   "author": "Adrien",
@@ -38,13 +38,17 @@
     "@storybook/addon-viewport": "next",
     "@storybook/addons": "next",
     "@storybook/preset-create-react-app": "^2.1.1",
-    "@storybook/react": "next"
+    "@storybook/react": "next",
+    "react-scripts": "^3.4.1",
+    "ts-loader": "^7.0.1"
   },
   "dependencies": {
     "@smartb/r2-react-components": "^0.0.3",
-    "@smartb/r2-react-layout": "^0.0.3"
+    "@smartb/r2-react-layout": "^0.0.3",
+    "react-docgen-typescript-loader": "^3.7.2"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb"
 }
