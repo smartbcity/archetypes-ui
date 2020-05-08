@@ -1,10 +1,9 @@
 import React from 'react';
-import Card, {Direction} from '../../Card';
+import Card, {Direction} from '../../lib/Card';
 import {withKnobs, text, select, number} from "@storybook/addon-knobs";
 import {Typography} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Title, Subtitle, Description, Primary, Props} from '@storybook/addon-docs/blocks';
-import ButtonTS from "../../ButtonTest";
 
 
 const useStyles = makeStyles(() =>
@@ -20,33 +19,8 @@ const useStyles = makeStyles(() =>
 );
 
 export default {
-  title: 'Demo components/Card',
-  decorators: [withKnobs],
-  parameters: {
-    docs: {
-
-      page: () => (
-        <>
-          <Title>Custom Demo Card</Title>
-          <Subtitle>With full parameters</Subtitle>
-          <Description>Description</Description>
-          <Primary/>
-          <Props
-            components={{
-              'card': Card,
-              'cardSimplified': Card
-            }}
-          />
-          <ButtonTS onClick={() => {
-          }}/>
-          {/*<Stories title="Stories title">*/}
-          {/*  <ButtonTS onClick={() => {*/}
-          {/*  }} color={"blue"}/>*/}
-          {/*</Stories>*/}
-        </>
-      ),
-    },
-  }
+  title: 'Components|Card',
+  decorators: [withKnobs]
 };
 
 
@@ -100,3 +74,55 @@ export const cardSimplified = () => {
     </Typography>
   </Card>)
 }
+
+// card.story = {
+//   parameters: {
+//     docs: {
+//       page: () => (
+//         <>
+//           <Title>Custom Demo Card</Title>
+//           <Subtitle>With full parameters</Subtitle>
+//           <Description>Description</Description>
+//           <Primary/>
+//           <Props
+//             components={{
+//               'card': Card,
+//               'cardSimplified': Card
+//             }}
+//           />
+//           <ButtonTS onClick={() => {
+//           }}/>
+//           {/*<Stories title="Stories title">*/}
+//           {/*  <ButtonTS onClick={() => {*/}
+//           {/*  }} color={"blue"}/>*/}
+//           {/*</Stories>*/}
+//         </>
+//       ),
+//     },
+//   }
+// };
+
+// cardSimplified.story = {
+//   parameters: {
+//     docs: {
+//       page: () => (
+//         <>
+//           <Title>sdfsqdf</Title>
+//           <Subtitle>qsdfqsf</Subtitle>
+//           <Description>qsdfqsd</Description>
+//           <Primary/>
+//           <Props
+//             components={{
+//               'card': Card,
+//               'cardSimplified': Card
+//             }}
+//           />
+//           {/*<Stories title="Stories title">*/}
+//           {/*  <ButtonTS onClick={() => {*/}
+//           {/*  }} color={"blue"}/>*/}
+//           {/*</Stories>*/}
+//         </>
+//       ),
+//     },
+//   }
+// };
