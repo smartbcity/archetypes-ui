@@ -15,3 +15,13 @@ declare module '*.svg' {
   export default svgUrl;
   export { svgComponent as ReactComponent }
 }
+
+declare module "*.png" {
+  const value: any;
+  export = value;
+}
+
+declare module "*.jpg" {
+  const value: any;
+  export = value;
+}
