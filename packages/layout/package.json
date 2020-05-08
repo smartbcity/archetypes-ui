@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "layout components",
   "author": "Adrien",
-  "license": "MIT",
   "repository": "Adrien/layout",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
