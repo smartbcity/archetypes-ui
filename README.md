@@ -70,8 +70,8 @@ vim package.json
 
 
 cd packages
-npm install -g create-react-library
 create-react-library components
+npm install -g create-react-library
 
 cd r2-react-components
 rm -fr .git
@@ -79,6 +79,13 @@ npx -p @storybook/cli sb init
 
 
 yarn storybook
+```
+
+## Create new package
+
+```
+cd packages
+create-react-library COMPONENT_NAME
 ```
 
 ## Addons

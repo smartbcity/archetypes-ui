@@ -1,12 +1,12 @@
 {
-  "name": "@smartb/r2-react-components",
+  "name": "@smartb/r2-react-layour",
+  "description": "React layout components library",
   "version": "0.0.1",
-  "description": "React components library",
-  "license": "MIT",
+  "author": "Adrien",
+  "repository": "Adrien/layout",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
-  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=10"
   },
@@ -18,17 +18,20 @@
     "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
   },
+  "dependencies": {
+    "@material-ui/core": "^4.9.12",
+    "@types/styled-components": "^4.1.3"
+  },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "@material-ui/core": "^4.9.12"
-  }
+  ]
 }

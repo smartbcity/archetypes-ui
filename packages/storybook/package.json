@@ -1,0 +1,48 @@
+{
+  "name": "storybook",
+  "description": "Storybook documentation",
+  "version": "0.0.1",
+  "author": "Adrien",
+  "license": "",
+  "repository": "Adrien/storybook",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "prepublish": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "@smartb/r2-react-components": "^1.0.0",
+    "@storybook/addon-actions": "next",
+    "@storybook/addon-backgrounds": "next",
+    "@storybook/addon-docs": "next",
+    "@storybook/addon-info": "next",
+    "@storybook/addon-knobs": "next",
+    "@storybook/addon-links": "next",
+    "@storybook/addon-notes": "next",
+    "@storybook/addon-storysource": "next",
+    "@storybook/addon-viewport": "next",
+    "@storybook/addons": "next",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "next"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {}
+}
