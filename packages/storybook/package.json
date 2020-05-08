@@ -27,7 +27,6 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "@smartb/r2-react-components": "^1.0.0",
     "@storybook/addon-actions": "next",
     "@storybook/addon-backgrounds": "next",
     "@storybook/addon-docs": "next",
@@ -40,6 +39,11 @@
     "@storybook/addons": "next",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "next"
+  },
+  "dependencies": {
+
+    "@smartb/r2-react-components": "^0.0.1",
+    "@smartb/r2-react-layout": "^0.0.1"
   },
   "files": [
     "dist"
