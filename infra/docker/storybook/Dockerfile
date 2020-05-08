@@ -7,6 +7,7 @@ COPY . ./
 
 RUN yarn install
 ENV PATH /app/node_modules/.bin:$PATH
+RUN  yarn workspaces run build
 RUN  yarn workspace @smartb/r2-storybook build-storybook
 
 FROM nginx:1.17.0-alpine

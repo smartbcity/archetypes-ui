@@ -2707,7 +2707,7 @@
     react "^16.8.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-docs@next":
+"@storybook/addon-docs@^6.0.0-beta.4":
   version "6.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-6.0.0-beta.4.tgz#0bcf77358bf3f480b39e61b18be81df40a4ab7a6"
   integrity sha512-j+JvvlsDC3WI7TkMipIaq0qJOd9RvuG9MSCQ+F0ZoqD1ULaJvzKVO6i1qkbESWsx7KhagzfptHkev4dBxWni2w==
