@@ -1,7 +1,7 @@
 {
   "name": "@smartb/r2-react-layout",
   "description": "React layout components library",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "author": "Adrien",
   "repository": "Adrien/layout",

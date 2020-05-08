@@ -1,7 +1,7 @@
 {
   "name": "storybook",
   "description": "Storybook documentation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Adrien",
   "license": "",
   "repository": "Adrien/storybook",
@@ -41,8 +41,8 @@
     "@storybook/react": "next"
   },
   "dependencies": {
-    "@smartb/r2-react-components": "^0.0.2",
-    "@smartb/r2-react-layout": "^0.0.2"
+    "@smartb/r2-react-components": "^0.0.3",
+    "@smartb/r2-react-layout": "^0.0.3"
   },
   "files": [
     "dist"
