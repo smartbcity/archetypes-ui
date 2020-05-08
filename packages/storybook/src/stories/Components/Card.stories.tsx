@@ -1,10 +1,8 @@
 import React from 'react';
-import Card, {Direction} from '../../lib/Card';
 import {withKnobs, text, select, number} from "@storybook/addon-knobs";
 import {Typography} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
-import {Title, Subtitle, Description, Primary, Props} from '@storybook/addon-docs/blocks';
-
+import {Card, CardDirection} from "@smartb/r2-react-components";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -55,7 +53,7 @@ export const card = () => {
     className={classes.card}
     header={header}
     dividerText={dividerText}
-    dividerDirection={dividerDirection as Direction}
+    dividerDirection={dividerDirection as CardDirection}
     footer={footer}
     logo={logo}>
     {children}

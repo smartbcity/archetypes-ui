@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../lib/Button';
-import {withKnobs, text, select, boolean} from "@storybook/addon-knobs";
+import {withKnobs, text, boolean} from "@storybook/addon-knobs";
+import {Button} from "@smartb/r2-react-components";
 
 export default {
     title: 'Components|Button',
@@ -8,11 +8,11 @@ export default {
 };
 
 export const button = () => {
-  
+
     const children = text("children", "Click Me");
     const disabled = boolean("disabled", false);
     const hoverEffect = boolean("hoverEffect", true)
-  
+
     return (
     <Button
     disabled={disabled}
@@ -23,4 +23,3 @@ export const button = () => {
     </Button>)
   }
 
-  

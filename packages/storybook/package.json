@@ -1,12 +1,13 @@
 {
-  "name": "@smartb/r2-react-components",
+  "name": "storybook",
   "version": "1.0.0",
-  "description": "React components Library",
-  "license": "MIT",
+  "description": "Storybook documentation",
+  "author": "Adrien",
+  "license": "",
+  "repository": "Adrien/storybook",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
@@ -18,18 +19,32 @@
     "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "test:watch": "react-scripts test --env=jsdom",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "@smartb/r2-react-components": "^1.0.0",
+    "@storybook/addon-actions": "next",
+    "@storybook/addon-backgrounds": "next",
+    "@storybook/addon-docs": "next",
+    "@storybook/addon-info": "next",
+    "@storybook/addon-knobs": "next",
+    "@storybook/addon-links": "next",
+    "@storybook/addon-notes": "next",
+    "@storybook/addon-storysource": "next",
+    "@storybook/addon-viewport": "next",
+    "@storybook/addons": "next",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "next",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.27",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
@@ -42,22 +57,15 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.8",
+    "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-is": "^16.13.1",
     "react-scripts": "^3.4.1"
   },
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "@material-ui/core": "^4.9.12",
-    "add": "^2.0.6",
-    "react-docgen-typescript-loader": "^3.7.2",
-    "ts-loader": "^7.0.1",
-    "typescript": "^3.8.3"
-  }
+  "dependencies": {}
 }
