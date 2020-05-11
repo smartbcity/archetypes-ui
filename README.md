@@ -1,9 +1,14 @@
+## Build 
+
+```
+yarn workspaces run build
+```
 
 ## Run
 
  * Components library
 ```
-yarn workspace @smartb/r2-react-components storybook
+yarn workspace @smartb/r2-storybook storybook
 ```
 
 ## Proto

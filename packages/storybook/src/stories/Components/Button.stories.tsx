@@ -1,6 +1,6 @@
 import React from 'react';
 import {withKnobs, text, boolean} from "@storybook/addon-knobs";
-import {Button} from "@smartb/r2-react-components";
+import Button from "@smartb/r2-react-components/src/Button";
 
 export default {
     title: 'Components|Button',

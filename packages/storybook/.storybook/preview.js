@@ -8,8 +8,6 @@ addParameters({
   },
   options: {
     storySort: (a, b) => {
-      console.log("a:", a)
-      console.log("b:", b)
       if (a[0].includes('Components')) {
         if (a[0].includes('Overview')) {
           return -1;
@@ -18,6 +16,6 @@ addParameters({
         return 0;
       }
       return 1;
-    }
+    },
   },
 });

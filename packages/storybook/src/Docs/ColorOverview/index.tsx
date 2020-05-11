@@ -38,6 +38,9 @@ const useStyles = makeStyles(() =>
     image:{
         maxWidth:"500px",
         maxHeight:"200px"
+    },
+    text: {
+        color:"black"
     }
   }),
 );
@@ -63,7 +66,7 @@ const Color = (props: ColorProps) => {
             <div className={classes.container}>
                 {colors.map((color, index) => (
                 <div className={classes.card} key={index} style={{background: color}}>
-                    <Typography variant="h5" gutterBottom>
+                    <Typography className={classes.text} variant="h5" gutterBottom>
                         {color}
                     </Typography>
                 </div>
