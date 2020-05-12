@@ -1,12 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, RefForwardingComponent, useImperativeHandle} from 'react';
 import {withKnobs, text} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
 import {SBStepper, SBStepperProps, StepDetails, OnNextHandles} from "@smartb/r2-react-layout";
-import Button from "@smartb/r2-react-components/src/Button";
 
 export default {
     title: 'Layout|Stepper',
     decorators: [withKnobs]
+};
+
+const steps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {
+  return  [
+  {
+    id: 0,
+    label: `Step 0`,
+    component: <BasicStepForward ref={stepRef} id={0}/>
+  },
+  {
+  id: 1,
+  label: `Step 1`,
+  component: <BasicStepForward ref={stepRef} id={1}/>
+  },
+  {
+  id: 2,
+  label: `Step 2`,
+  component: <BasicStepForward ref={stepRef} id={2}/>
+  },{
+  id: 3,
+  label: `Step 3`,
+  component: <BasicStepForward ref={stepRef} id={3}/>
+  }]
 };
 
 export const Stepper = () => {
@@ -14,32 +36,29 @@ export const Stepper = () => {
     const title = text('title', "SmartB Stepper" );
     const stepperProps: SBStepperProps = {
         activeStep: step,
-        getSteps: (stepRef: React.RefObject<OnNextHandles>) => {
-            return  [
-            {
-              id: 0,
-              label: `Step 0`,
-              component: <Button >go to 1</Button>
-            },
-            {
-            id: 1,
-            label: `Step 1`,
-            component: <p>Step 1</p>
-            },
-            {
-            id: 2,
-            label: `Step 2`,
-            component: <p>Step 2</p>
-            },{
-            id: 3,
-            label: `Step 3`,
-            component: <p>Step 3</p>
-            }] as StepDetails[]
-        },
+        getSteps: steps,
         gotoStep: (newStep: number) => setStep(newStep),
-        onFinish: action('finished')
+        onFinish: action('finished'),
       };
     return (
-    <SBStepper stepperProps={stepperProps} stepperLabel={title} />
+    <SBStepper {...stepperProps}  />
     );
 }
+
+interface Props {
+  id: number;
+}
+
+const BasicStep: RefForwardingComponent<OnNextHandles, Props> = (props: Props, ref) => {
+  const {id} = props;
+  useImperativeHandle(ref, () => ({
+    onNext(): boolean {
+      return true;
+    }
+  }));
+return (<p>Step {id}</p>)
+}
+
+const BasicStepForward = React.forwardRef(BasicStep);
+
+  
