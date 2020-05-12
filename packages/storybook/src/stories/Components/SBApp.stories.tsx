@@ -2,7 +2,8 @@ import React from 'react';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import {withKnobs, text} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
-import {MenuItem, SBApp, SBProfile, SimpleMenuItem, StyleProps} from "@smartb/r2-react-layout";
+import {MenuItem, SBApp, SimpleMenuItem, StyleProps, ProfileProps} from "@smartb/r2-react-layout";
+import { Typography } from '@material-ui/core';
 
 export default {
     title: 'Layout|App',
@@ -23,8 +24,21 @@ export const App = () => {
         label: "logout"
       }
     ];
+
+    const actions: SimpleMenuItem[] = [
+      {
+        key: "Company",
+        goto: action('clicked on Company'),
+        label: "Company"
+      },
+      {
+        key: "Dark Mode",
+        goto: action('clicked on Dark Mode'),
+        label: "Dark Mode"
+      }
+    ];
   
-    const profile = <SBProfile menu={profileMenu} />;
+    const profileProps: ProfileProps = {menu:profileMenu, actions:actions};
     const menu: MenuItem[] = [
       {
         key: "dashboard",
@@ -58,8 +72,10 @@ export const App = () => {
         styleProps={styleProps}
         title={title} 
         logo={defaultLogo} 
-        profile={profile}
+        profileProps={profileProps}
         menu={menu}
         isOpen={showMenu}
+        navBarContent={<Typography>Navbar content</Typography>}
+        drawerContent={<Typography>Drawer content</Typography>}
          />);
 }

@@ -1,14 +1,10 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import {Menu, MenuItem} from "@material-ui/core";
+import {Menu, MenuItem, Button} from "@material-ui/core";
 import {AccountCircle} from "@material-ui/icons";
-import {SimpleMenuItem} from "../drawermenu/menu";
+import { ProfileProps } from "./profile";
 
-interface Props {
-  menu: SimpleMenuItem[];
-}
-
-export const SBProfile = ({menu}: Props) => {
+export const SBProfile = ({menu, actions}: ProfileProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -21,6 +17,11 @@ export const SBProfile = ({menu}: Props) => {
 
   return (
     <div>
+      {actions && window.innerWidth > 600 && actions.map((action) => (
+        <Button onClick={action.goto} key={action.key} style={{color: "#fff"}}>
+          {action.label}
+        </Button>
+      ))}
       <IconButton
         aria-controls="menu-appbar"
         aria-haspopup="true"
@@ -42,6 +43,11 @@ export const SBProfile = ({menu}: Props) => {
         }}
         open={open}
         onClose={handleClose}>
+        {actions && window.innerWidth <= 600 && actions.map((action) => (
+          <MenuItem onClick={action.goto} key={action.key}>
+            {action.label}
+          </MenuItem>
+        ))}
         {menu.map(it => (
           <MenuItem key={it.key} onClick={it.goto}>
             {it.label}

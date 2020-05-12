@@ -1,5 +1,5 @@
 import React, {useState, RefForwardingComponent, useImperativeHandle} from 'react';
-import {withKnobs, text} from "@storybook/addon-knobs";
+import {withKnobs} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
 import {SBStepper, SBStepperProps, StepDetails, OnNextHandles} from "@smartb/r2-react-layout";
 
@@ -33,7 +33,6 @@ const steps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {
 
 export const Stepper = () => {
     const [step, setStep] = useState(0);
-    const title = text('title', "SmartB Stepper" );
     const stepperProps: SBStepperProps = {
         activeStep: step,
         getSteps: steps,
