@@ -2,10 +2,11 @@ import React, {useState, RefForwardingComponent, useImperativeHandle} from 'reac
 import {withKnobs} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
 import {SBStepper, SBStepperProps, StepDetails, OnNextHandles} from "@smartb/r2-react-layout";
+import { withA11y } from '@storybook/addon-a11y';
 
 export default {
     title: 'Layout|Stepper',
-    decorators: [withKnobs]
+    decorators: [withKnobs, withA11y]
 };
 
 const steps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {

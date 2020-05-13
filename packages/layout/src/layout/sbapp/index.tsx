@@ -65,7 +65,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
 interface Props {
     profileProps: ProfileProps;
     navBarContent?:React.ReactNode;
-    menu: MenuItem[];
+    menu?: MenuItem[];
     children?: React.ReactNode;
     logo: string;
     isOpen: boolean;

@@ -55,7 +55,7 @@ const useStyles = makeStyles(() =>
       top:"2%",
       transform: 'translate(-50%,-50%)',
       left: "50%",
-      lineHeight: "13px"
+      lineHeight: "15px"
     },
     dividerTextVertical: {
       left: "5%",
@@ -72,10 +72,11 @@ interface DividerProps {
     dividerDirection?: Direction;
     className?:string;
     style?: React.CSSProperties;
+    dividerStyle?: React.CSSProperties;
 }
 
 const Divider = (props: DividerProps) => {
-    const {children, dividerText, dividerDirection = "horizontal", className, style} = props
+    const {children, dividerText, dividerDirection = "horizontal", className, style, dividerStyle} = props
     const classes = useStyles();
     return (
         <div  className={`${classes.container} ${dividerDirection === "vertical" && classes.containerVertical} ${className}`} style={style}>
@@ -84,7 +85,7 @@ const Divider = (props: DividerProps) => {
               {child}
             </div>
             <div key={index + children.length}
-                 className={`${classes.divider} ${dividerDirection === "vertical" && classes.dividerVertical}`}>{!!dividerText &&
+                 className={`${classes.divider} ${dividerDirection === "vertical" && classes.dividerVertical}`} style={dividerStyle}>{!!dividerText &&
             <Typography
               className={`${classes.dividerText} ${dividerDirection === "vertical" && classes.dividerTextVertical}`}
               variant="body1" color="textSecondary" component="p">{dividerText}</Typography>}

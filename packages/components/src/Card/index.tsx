@@ -8,7 +8,7 @@ import documentLogo from '../assets/docstampt-badge.png';
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      borderRadius: "10px"
+      borderRadius: "10px",
     },
     header: {
       minHeight: "100px",

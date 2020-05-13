@@ -4,10 +4,11 @@ import {withKnobs, text} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
 import {MenuItem, SBApp, SimpleMenuItem, StyleProps, ProfileProps} from "@smartb/r2-react-layout";
 import { Typography } from '@material-ui/core';
+import { withA11y } from '@storybook/addon-a11y';
 
 export default {
     title: 'Layout|App',
-    decorators: [withKnobs]
+    decorators: [withKnobs, withA11y]
   };
 
 export const App = () => {
