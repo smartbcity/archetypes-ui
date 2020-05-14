@@ -4,13 +4,14 @@ import { createStyles, makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles(() =>
   createStyles({
     button: {
-        background: "#edba27",
+        backgroundColor: "#edba27",
         padding:"10px 30px",
         clipPath: "polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)",
+        WebkitClipPath: "polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)",
         border:"none",
         cursor:"pointer",
         transition:"0.2s",
-        borderRadius:"3px",
+        borderRadius:"1px",
         fontSize:"1rem",
         "&:focus": {
             outline:"none"
@@ -18,7 +19,8 @@ const useStyles = makeStyles(() =>
     },
     hover:  {
         "&:hover" : {
-            clipPath: "polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)"
+            clipPath: "polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)",
+            WebkitClipPath: "polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)",
         }
     }, 
     disabled: {

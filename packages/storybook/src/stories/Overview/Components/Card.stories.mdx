@@ -1,7 +1,7 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {Card, CardDirection} from "@smartb/r2-react-components";
+import {Card, DividerDirection, LayoutDivider, Button} from "@smartb/r2-react-components";
 import {Typography} from '@material-ui/core';
-import {Button} from "@smartb/r2-react-components";
+import PropsTable from '../../../Docs/PropsTable';
 
 <Meta title="Overview|Components/Card" />
 
@@ -9,7 +9,7 @@ import {Button} from "@smartb/r2-react-components";
 
 
 <Card style={{position:"relative", width:"500px", margin:"20px auto"}}>
-    <Typography variant="body2" color="textSecondary" component="p">
+    <Typography variant="body2" color="textSecondary" component="p" align="center">
       The SmartB Card
     </Typography>
 </Card>
@@ -17,16 +17,15 @@ import {Button} from "@smartb/r2-react-components";
 
 ## Props
 
-| Name      | Type | Default Value | Required | Description|
-| :----:    |:----:|  :----:       |   :----: |   :----:   |
-|header|`string`||no|The text that will be displayed in the header of the card|
-|children|`React.ReactNode or React.ReactNode[]`||no|The content that will be displayed in the body of the card. If it's an array the body will be divided by the multiples contents.|
-|dividerText|`string`||no|The text that will be disabled with the divider|
-|dividerDirection|`"horizontal" or "vertical"`|`"horizontal"`|no|The direction of the divider|
-|logo|`"default" or "document"`|`"default"`|no|Choose the logo in the background|
-|footer|`React.ReactNode"`||no|The content that will be displayed in the footer|
-|className|`string`||no|Add the className to the button and override the default properties|
-|style|`React.CSSProperties`||no|Add the style to the button and override the default properties|
+<PropsTable 
+rows={[
+    {name:"header",type:"string",defaultValue:"",required:false,description:"The text that will be displayed in the header of the card"},
+    {name:"children",type:"React.ReactNode",defaultValue:"",required:false,description:"The content that will be displayed in the body of the card"},
+    {name:"logo",type:"'default' | 'document'",defaultValue:"'default'",required:false,description:"Choose the logo in the background"},
+    {name:"footer",type:"React.ReactNode",defaultValue:"",required:false,description:"The content that will be displayed in the footer"},
+    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the card and override the default properties"},
+    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the card and override the default properties"},
+]} />
 
 ## Examples
 
@@ -36,45 +35,49 @@ import {Button} from "@smartb/r2-react-components";
     header="Connection"
     style={{position:"relative", width:"500px", margin:"20px auto"}}
     footer={<Button style={{margin:"20px auto", position:"relative"}} disabled={true}>Continu</Button>}
-    >
-        <>
-            <Typography variant="body2" color="textSecondary" component="p">
-                connect with your identity wallet
-            </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p">
-                connect with the mobile application
-            </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
-        </>
+    >   
+        <LayoutDivider style={{width:"100%", height:"100%"}}>
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with your identity wallet
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with the mobile application
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+        </LayoutDivider>
     </Card>
 </Preview>
 
-### Complete optionnal Card
+### Logo Document
 
 <Preview>
     <Card
     header="Connection"
     style={{position:"relative", width:"500px", margin:"20px auto"}}
-    dividerText="Or"
-    dividerDirection="vertical"
     logo="document"
     footer={<Button style={{margin:"20px auto", position:"relative"}} disabled={true}>Continu</Button>}
     >
-        <>
-            <Typography variant="body2" color="textSecondary" component="p">
-                connect with your identity wallet
-            </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p">
-                connect with the mobile application
-            </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
-        </>
+        <LayoutDivider 
+        style={{width:"100%", height:"100%"}}
+        dividerText="Or">
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with your identity wallet
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with the mobile application
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+        </LayoutDivider>
     </Card>
 </Preview>
 
@@ -84,11 +87,9 @@ import {Button} from "@smartb/r2-react-components";
     <Card
     style={{position:"relative", width:"500px", margin:"20px auto"}}
     >
-        <>
-            <Typography variant="body2" color="textSecondary" component="p">
-                connect with the mobile application
-            </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
-        </>
+        <Typography variant="body2" color="textSecondary" component="p" align="center">
+            connect with the mobile application
+        </Typography>
+        <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
     </Card>
 </Preview>

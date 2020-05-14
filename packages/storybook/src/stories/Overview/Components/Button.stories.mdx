@@ -1,24 +1,26 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
 import {Button} from "@smartb/r2-react-components";
+import PropsTable from '../../../Docs/PropsTable';
 
 <Meta title="Overview|Components/Button" />
 
 # SmartB Button
 
 
-<Button style={{margin:"20px auto", width:"auto", display:"block", position:"relative"}}>Click me</Button>
+<Button style={{margin:"20px auto", width:"auto", display:"block"}}>Click me</Button>
 
 
 ## Props
 
-| Name      | Type | Default Value | Required | Description|
-| :----:    |:----:|  :----:       |   :----: |   :----:   |
-|children|`React.ReactNode`||no|The react children props|
-|onClick|`(event: React.ChangeEvent<{}>) => void`||no||
-|disabled|`boolean`|`false`|no|If true the button will be disabled|
-|hoverEffect|`boolean`|`true`|no|If false the hoverEffect will be disabled|
-|className|`string`||no|Add the className to the button and override the default properties|
-|style|`React.CSSProperties`||no|Add the style to the button and override the default properties|
+<PropsTable 
+rows={[
+    {name:"children",type:"React.ReactNode",defaultValue:"",required:false,description:"The react children props"},
+    {name:"onClick",type:"(event: React.ChangeEvent<{}>) => void",defaultValue:"",required:false,description:""},
+    {name:"disabled",type:"boolean",defaultValue:"false",required:false,description:"If true the button will be disabled"},
+    {name:"hoverEffect",type:"boolean",defaultValue:"false",required:false,description:"If false the hoverEffect will be disabled"},
+    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the button and override the default properties"},
+    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the button and override the default properties"},
+]} />
 
 ## Examples
 <Preview>

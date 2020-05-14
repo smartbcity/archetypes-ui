@@ -6,6 +6,8 @@ import SBAppBar from "../appbar";
 import SBDrawerMenu from "../drawermenu";
 import StyleProps from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
+import { ProfileProps } from "../profile/profile";
+import SBProfile from "../profile";
 
 const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
     createStyles({
@@ -46,27 +48,38 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
                 duration: theme.transitions.duration.enteringScreen
             }),
             marginLeft: 0
+        },
+        hidder: {
+            opacity:"0.5",
+            position:"absolute",
+            height:"100%",
+            width:"100%",
+            backgroundColor:"black",
+            top:"0",
+            left:"0",
+            zIndex:1
         }
     })
 );
 
 interface Props {
-    profile: React.ReactNode;
-    actions?: React.ReactNode;
-    menu: MenuItem[];
+    profileProps: ProfileProps;
+    navBarContent?:React.ReactNode;
+    menu?: MenuItem[];
     children?: React.ReactNode;
     logo: string;
     isOpen: boolean;
     title?: string;
     styleProps: StyleProps;
     showAppBar: boolean;
+    drawerContent?:React.ReactNode;
 }
 
 const defaultProps = {
     showAppBar: true
 }
 
-const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProps, showAppBar}: Props) => {
+const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isOpen, title, logo, styleProps, showAppBar}: Props) => {
 
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
@@ -76,19 +89,22 @@ const SBApp = ({children, profile, menu, isOpen, actions, title, logo, styleProp
             {
             showAppBar &&
             <Fragment>
-              <SBAppBar
-                  className={classes.appbar}
-                  logo={logo}
-                  drawerOpen={open}
-                  onDrawerOpen={() => setOpen(!open)}
-                  title={title}
-                  actions={actions}
-                  profile={profile}
-              />
-              <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps}/>
+                <SBAppBar
+                    className={classes.appbar}
+                    logo={logo}
+                    drawerOpen={open}
+                    onDrawerOpen={() => setOpen(!open)}
+                    title={title}
+                    profile={window.innerWidth > 400 && <SBProfile {...profileProps} />}
+                    content={window.innerWidth > 600 && navBarContent}
+                />
+                <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} profileProps={window.innerWidth <= 400 ? profileProps : undefined} navBarContent={window.innerWidth <= 600 && navBarContent}>
+                    {drawerContent}
+                </SBDrawerMenu>
             </Fragment>
             }
             <main className={openClasses}>
+                <div className={classes.hidder} style={{display: window.innerWidth < 768 && open ? "block" : "none"}} onClick={() => setOpen(!open)}/>
                 <Paper square className={classes.content} elevation={0}>
                     {children}
                 </Paper>

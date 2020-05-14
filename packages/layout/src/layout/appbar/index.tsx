@@ -39,10 +39,10 @@ interface Props {
   logo: string;
   onDrawerOpen: () => void;
   profile: React.ReactNode;
-  actions?: React.ReactNode;
+  content?:React.ReactNode;
 }
 
-const SBAppBar = ({onDrawerOpen, logo, title, className, profile, actions}: Props) => {
+const SBAppBar = ({onDrawerOpen, logo, title, className, profile, content}: Props) => {
   const classes = useStyles();
   return (
     <MuiAppBar className={className} square={true}>
@@ -65,7 +65,7 @@ const SBAppBar = ({onDrawerOpen, logo, title, className, profile, actions}: Prop
           </List>
         </DrawerSpacer>
         <div className={classes.grow} />
-        {actions}
+        {content}
         {profile}
       </Toolbar>
     </MuiAppBar>

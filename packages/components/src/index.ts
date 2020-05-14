@@ -1,8 +1,12 @@
-import Card, {Direction as CardDirection} from "./Card"
-import Button from "./Button"
+import Card from "./Card";
+import SmallCard from "./Card/SmallCard";
+import Button from "./Button";
+import LayoutDivider,{Direction as DividerDirection} from "./LayoutDivider";
 
 export {
   Card,
-  CardDirection,
+  SmallCard,
+  LayoutDivider,
+  DividerDirection,
   Button
 }
