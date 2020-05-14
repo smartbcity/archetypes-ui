@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {makeStyles, Paper, Theme} from "@material-ui/core";
 import createStyles from "@material-ui/core/styles/createStyles";
 import clsx from "clsx";
@@ -8,6 +8,8 @@ import StyleProps from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
 import { ProfileProps } from "../profile/profile";
 import SBProfile from "../profile";
+import useForceUpdate from 'use-force-update';
+import { useDebouncedCallback } from 'use-debounce';
 
 const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
     createStyles({
@@ -84,6 +86,27 @@ const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isO
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
     const openClasses = clsx(classes.main, {[classes.mainMargin]: open, [classes.mainShift]: !open});
+    const forceUpdate = useForceUpdate();
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+    const [handleResize] = useDebouncedCallback(
+        () => {
+            const min = Math.min.apply(Math, [window.innerWidth, innerWidth]);
+            const  max = Math.max.apply(Math, [window.innerWidth, innerWidth]);
+            if ((400 > min && 400 < max) || (600 > min && 600 < max)){
+                forceUpdate();
+            }
+            setInnerWidth(window.innerWidth);
+        },
+        500
+    );
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return (() => {
+            window.removeEventListener('resize', handleResize)
+        })
+    },[])
+
     return (
         <React.Fragment>
             {
