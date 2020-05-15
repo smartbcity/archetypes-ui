@@ -6,7 +6,11 @@ export interface SimpleMenuItem {
 
 export interface MenuItem {
   key: string;
-  goto: () => void;
+  goto?: () => void;
   label: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
+}
+
+export interface Menu extends MenuItem {
+  items?: Menu[];
 }
