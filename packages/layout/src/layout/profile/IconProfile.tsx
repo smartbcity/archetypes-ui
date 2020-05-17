@@ -1,7 +1,9 @@
 import React, { useState} from 'react';
 import {Menu as SBMenu} from '../drawermenu/menu';
-import { IconButton, Menu, MenuItem, Typography, ListItemIcon, AppBar, Tabs, Tab, Grid} from '@material-ui/core';
-import {createStyles, makeStyles, withStyles} from '@material-ui/core/styles';
+import { IconButton, Menu} from '@material-ui/core';
+import {createStyles, makeStyles} from '@material-ui/core/styles';
+import ItemsLayout, {Display} from '../ItemsLayout';
+import TabsMenu from '../TabsMenu';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -19,114 +21,23 @@ const useStyles = makeStyles(() =>
             outline: "0 !important"
         }
     },
-    appBAr:{
-        background:"transparent",
-        boxShadow:"none !important"
-    },
-    tab:{
-        color:"rgba(0, 0, 0, 0.87)",
-        minWidth:"100px",
-        maxWidth:"100px",
-        minHeight:"10px",
-        padding:"5px",
-    },
-    tabGrid: {
-        color:"rgba(0, 0, 0, 0.87)",
-        minHeight:"10px",
-        minWidth:"0",
-        padding:"5px"
-    },
-    gridContainer: {
-        maxWidth:"350px",
-        display:"inline-flex",
-        padding:"5px",
-        flexWrap:"wrap",
-        boxSizing:"initial"
-    },
-    gridItem: {
-        width: "110px",
-        display:"flex",
-        height:"95px",
-        margin:"3px",
-        padding:"5px",
-        flexWrap:"nowrap",
-        borderRadius:"3px",
-        cursor:"pointer",
-        "& h6" : {
-            maxWidth:"100px",
-            whiteSpace:"nowrap",
-            textOverflow: "ellipsis",
-            overflow:"hidden"
-        },
-        "&:hover h6" : {
-            textOverflow: "initial",
-            whiteSpace:"initial",
-        },
-        "&:hover" : {
-            height:"auto",
-            minHeight:"90px",
-            background: "#f5f5f5"
-        }
-    },
     menuOpened: {
         backgroundColor: 'rgba(0, 0, 0, 0.04)'
-    }, profile: {
-        boxShadow:"none",
-        "&:before" : {
-          height:"0px"
-        }
-      },
-      summary: {
-        minHeight:"0px",
-      },
-      content: {
-        margin:"10px 0px !important"
-      },
-      expanded: {
-        margin:"0 !important"
-      },
-      expandedSummary: {
-        minHeight:"0px !important",
-      },
-      exlist: {
-        width: "100%",
-        padding:"0"
-      },
-      details: {
-        padding: "0px 16px"
-      }
+    }
   })
 );
 
-const StyledTabs = withStyles(() => ({
-    root: {
-        minHeight: "20px",
-        borderBottom:"0.2px #8f8f8f solid",
-        overflow:"visible",
-        '& .MuiTabs-indicator': {
-            backgroundColor:"#4d4d4d",
-            height:"2px",
-            bottom:"-1px"
-        },
-        '& .MuiTabs-scroller': {
-            overflow:"visible !important"
-        }
-    },
-  }))(Tabs);
-
-export type Display = 'list' | 'grid';
 
 interface IconProfileProps {
     menu: SBMenu;
     style?: React.CSSProperties;
+    className?: string;
     display?:Display;
-    expandedShape?:boolean;
 }
 
 const IconProfile = (props:IconProfileProps) => {
-    const {menu, style, display = "list", expandedShape = false} = props;
+    const {menu, style, display = "list", className} = props;
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [value, setValue] = useState(0);
     const open = Boolean(anchorEl);
     const classes = useStyles();
 
@@ -137,15 +48,11 @@ const IconProfile = (props:IconProfileProps) => {
         setAnchorEl(null);
     };
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-        event.stopPropagation();
-        setValue(newValue);
-    };
-    if (!expandedShape) return (
+    return (
     <div>
       <IconButton
         style={style}
-        className={`${open && classes.menuOpened}`}
+        className={`${open && classes.menuOpened} ${className}`}
         aria-controls="menu-appbar"
         aria-haspopup="true"
         onClick={handleMenu}
@@ -168,85 +75,18 @@ const IconProfile = (props:IconProfileProps) => {
         keepMounted
         open={open}
         onClose={handleClose}>
-        {display === "list" ? 
-        menu.items && menu.items.length === 1 ? 
-            menu.items[0].items && menu.items[0].items.map(it => (
-              <MenuItem key={it.key} onClick={it.goto}>
-                <ListItemIcon>
-                    {it.icon}
-                </ListItemIcon>
-                <Typography variant="subtitle2">{it.label}</Typography>
-              </MenuItem>
-            ))
+        {menu.items && menu.items.length === 1 ? 
+            <ItemsLayout menu={menu.items[0]} display={display} />
             : 
             <div>
-                <AppBar className={classes.appBAr} position="static">
-                    <StyledTabs
-                    value={value}
-                    onChange={handleChange}
-                    variant="scrollable"
-                    scrollButtons="auto"
-                    >
-                    {menu.items && menu.items.map(it => (
-                        <Tab icon={it.icon} className={classes.tab} label={it.label}/>
-                    ))}
-                    </StyledTabs>
-                </AppBar>
-                <div style={{maxHeight:"400px", width:"100%", overflow:"auto"}}>
+                {menu.items && <TabsMenu variant={display === "list" ? "fixedWidth" : "fullWidth"} tabs={menu.items.map(it => { return {label:it.label, icon:it.icon}})}>
                     {menu.items && menu.items.map((section,index) => (
-                        <div style={{display: value !== index ? 'none' : 'block'}}>
-                            {section.items && section.items.map((it) =>(   
-                            <MenuItem key={it.key} onClick={it.goto}>
-                                <ListItemIcon>
-                                    {it.icon}
-                                </ListItemIcon>
-                                <Typography variant="subtitle2">{it.label}</Typography>
-                            </MenuItem>
-                            ))}
+                        <div key={index}>
+                            <ItemsLayout menu={section} display={display} style={display !== "list" ? {maxWidth:"375px", maxHeight:"410px"} : {maxHeight:"410px", overflow:"auto"}}/>
                         </div>
                     ))}
-                </div>
-            </div>
-
-        :  
-
-        menu.items && menu.items.length === 1 ? 
-            <Grid wrap="wrap" direction='row' container alignContent="flex-start" className={classes.gridContainer}>
-                {menu.items[0].items && menu.items[0].items.map(it => (
-                <Grid className={classes.gridItem} container onClick={it.goto} alignItems='center' direction='column' justify='space-around'>
-                        {it.icon}
-                    <Typography variant="subtitle2" align="center">{it.label}</Typography>
-                </Grid>
-                ))}
-            </Grid>
-            : 
-            <div>
-                <AppBar className={classes.appBAr} position="static">
-                    <StyledTabs
-                    value={value}
-                    onChange={handleChange}
-                    variant="fullWidth"
-                    >
-                    {menu.items && menu.items.map(it => (
-                        <Tab icon={it.icon} className={classes.tabGrid} label={it.label}/>
-                    ))}
-                    </StyledTabs>
-                </AppBar>
-                {menu.items && menu.items.map((section,index) => (
-                    <div style={{maxWidth:"375px", maxHeight:"410px", overflowY:"auto", overflowX:"hidden"}}>
-                        <Grid wrap="wrap" container direction='row' alignContent="flex-start" className={classes.gridContainer} style={{display: value !== index ? 'none' : 'flex'}}>
-                            {section.items && section.items.map((it) =>(
-                                <Grid className={classes.gridItem} container onClick={it.goto} alignItems='center' direction='column' justify='space-around'>
-                                        {it.icon}
-                                    <Typography variant="subtitle2" align="center">{it.label}</Typography>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </div>
-                ))}
-            </div>        
-        }
-
+                </TabsMenu>}
+            </div>}
       </Menu>
     </div>
     )
