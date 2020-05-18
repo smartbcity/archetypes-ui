@@ -1,0 +1,35 @@
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
+import {MenuItem, SBApp, SimpleMenuItem, StyleProps, ProfileProps} from "@smartb/r2-react-layout";
+import defaultLogo from '../../assets/impactcity-logo-2.png';
+import PropsTable from '../../../Docs/PropsTable';
+import { Typography } from '@material-ui/core';
+import {OneSectionMenuFull} from '../../../Docs/Variables/IconProfile.tsx';
+import { SBIconProfile} from "@smartb/r2-react-layout";
+
+<Meta title="Overview|Layout/IconProfile" />
+
+# SmartB App
+
+## Props
+
+
+## Examples
+
+### Display Grid
+<Preview>
+    <SBIconProfile 
+    style={{display:"block", margin:"auto"}}
+    menu={OneSectionMenuFull}
+    display="grid"
+    />
+</Preview>
+
+
+### Display List
+<Preview>
+    <SBIconProfile 
+    style={{display:"block", margin:"auto"}}
+    menu={OneSectionMenuFull}
+    display="list"
+    />
+</Preview>

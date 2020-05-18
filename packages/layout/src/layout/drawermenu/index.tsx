@@ -73,7 +73,7 @@ const SBDrawerMenu = ({open, className, menu, styleProps, children, profileProps
         <div>
           <List>
             {menu && menu.map(item => (
-              <ListItem button key={item.key} onClick={() => item.goto()}>
+              <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.label} />
               </ListItem>
