@@ -2,6 +2,7 @@ import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
 import {Card, DividerDirection, LayoutDivider, Button} from "@smartb/r2-react-components";
 import {Typography} from '@material-ui/core';
 import PropsTable from '../../../Docs/PropsTable';
+import {AccountCircle} from "@material-ui/icons";
 
 <Meta title="Overview|Components/Card" />
 
@@ -22,6 +23,7 @@ rows={[
     {name:"header",type:"string",defaultValue:"",required:false,description:"The text that will be displayed in the header of the card"},
     {name:"children",type:"React.ReactNode",defaultValue:"",required:false,description:"The content that will be displayed in the body of the card"},
     {name:"logo",type:"'default' | 'document'",defaultValue:"'default'",required:false,description:"Choose the logo in the background"},
+    {name:"customLogo",type:"React.ReactNode",defaultValue:"",required:false,description:"The logo that wil be displayed in the corner instead of the defaults logos"},
     {name:"footer",type:"React.ReactNode",defaultValue:"",required:false,description:"The content that will be displayed in the footer"},
     {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the card and override the default properties"},
     {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the card and override the default properties"},
@@ -60,6 +62,34 @@ rows={[
     header="Connection"
     style={{position:"relative", width:"500px", margin:"20px auto"}}
     logo="document"
+    footer={<Button style={{margin:"20px auto", position:"relative"}} disabled={true}>Continu</Button>}
+    >
+        <LayoutDivider 
+        style={{width:"100%", height:"100%"}}
+        dividerText="Or">
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with your identity wallet
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+            <>
+                <Typography variant="body2" color="textSecondary" component="p" align="center">
+                    connect with the mobile application
+                </Typography>
+                <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            </>
+        </LayoutDivider>
+    </Card>
+</Preview>
+
+### Custom Logo
+
+<Preview>
+    <Card
+    header="Connection"
+    style={{position:"relative", width:"500px", margin:"20px auto"}}
+    customLogo={<AccountCircle style={{height: "115px", width: "115px", position: "relative", marginLeft: "10px", marginTop: "22px", opacity: "15%"}}/>}
     footer={<Button style={{margin:"20px auto", position:"relative"}} disabled={true}>Continu</Button>}
     >
         <LayoutDivider 

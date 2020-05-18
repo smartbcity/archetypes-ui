@@ -79,10 +79,11 @@ export interface CardProps {
   className?: string;
   footer?: React.ReactNode;
   style?: React.CSSProperties;
+  customLogo?:React.ReactNode;
 }
 
 const Card = (props: CardProps) => {
-  const {header, children, logo = "default", className, footer, style} = props;
+  const {header, children, logo = "default", className, footer, style, customLogo} = props;
   const classes = useStyles();
   return (
     <MuiCard className={`${classes.card} ${!!className && className}`} style={style}>
@@ -94,7 +95,7 @@ const Card = (props: CardProps) => {
       />
       <CardContent className={classes.content}>
         <div className={classes.logoContainer}>
-          <div className={classes.logoBorder}>{logo === "document" ?
+          <div className={classes.logoBorder}>{!!customLogo ? customLogo : logo === "document" ?
             <img src={documentLogo} className={`${classes.documentLogo} ${!!header && classes.logoWithHeader}`}
                  alt="Document logo"/> :
             <img src={defaultLogo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`}

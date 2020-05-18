@@ -106,10 +106,11 @@ export interface CardProps {
     elevation?: number;
     customLogo?: React.ReactNode;
     logoSize?: LogoSize;
+    separator?: React.ReactNode | "none";
   }
 
 const SmallCard = (props:CardProps) => {
-    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium"} = props;
+    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator} = props;
     const classes = useStyles();
 
     const getHidderElevation = () => {
@@ -133,7 +134,10 @@ const SmallCard = (props:CardProps) => {
         {!!header &&
         <Box className={classes.headerContainer}>
           <Typography variant="h6" align="left" >{header}</Typography>
-          <div className={classes.dividerBAr}></div>
+          {!!separator ?
+            separator !== "none" && separator
+          : 
+          <div className={classes.dividerBAr}></div>}
         </Box>
         }
         <Box className={`${classes.bodyContainer} ${logo !== "none" && classes.withLogo} ${logoSize === "small" && logo !== "none" && classes.withSmallLogo}`}>
