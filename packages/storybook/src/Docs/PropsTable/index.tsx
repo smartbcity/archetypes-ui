@@ -43,10 +43,10 @@ const DocsTable = (props: TableProps) => {
                 <TableCell style={{border:"1px solid rgba(224, 224, 224, 1)"}} component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell style={{border:"1px solid rgba(224, 224, 224, 1)"}} align="left">{row.type}</TableCell>
+                <TableCell style={{borderRight:"1px solid rgba(224, 224, 224, 1)"}} align="left">{row.type}</TableCell>
                 <TableCell style={{border:"1px solid rgba(224, 224, 224, 1)"}} align="center">{row.defaultValue}</TableCell>
                 <TableCell style={{border:"1px solid rgba(224, 224, 224, 1)"}} align="center"><Checkbox checked={row.required} /></TableCell>
-                <TableCell style={{border:"1px solid rgba(224, 224, 224, 1)"}} align="left">{row.description}</TableCell>
+                <TableCell style={{borderLeft:"1px solid rgba(224, 224, 224, 1)"}} align="left">{row.description}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,12 +1,13 @@
-import {SBAppBar} from "./layout/appbar/AppBar";
-import {SBDrawerDetails} from "./layout/drawerDetails/DrawerDetails";
-import {SBDrawerMenu, MenuItem, SimpleMenuItem, Menu} from "./layout/drawermenu";
-import {SBProfile, SBIconProfile, ProfileProps} from "./layout/profile";
+import {SBAppBar} from "./layout/appbar";
+import {SBDrawerDetails} from "./layout/drawerDetails";
+import {Menu, MenuItem, SBDrawerMenu, SimpleMenuItem} from "./layout/drawermenu";
+import {ProfileProps, SBIconProfile, SBProfile} from "./layout/profile";
 import {SBApp} from "./layout/sbapp";
 import StyleProps from "./layout/StyleProps";
-import {SBStepper, OnNextHandles, StepDetails, SBStepperProps, SBStepperLabel} from "./layout/sbstepper";
+import {OnNextHandles, SBStepper, SBStepperLabel, SBStepperProps, StepDetails} from "./layout/sbstepper";
 import {TabsMenu as SBTabsMenu} from './layout/TabsMenu';
 import {ItemsLayout as SBItemsLayout} from './layout/ItemsLayout';
+import {PanelProfile as SBPanelProfile} from './layout/PanelProfile';
 
 export {
     SBAppBar,
@@ -26,5 +27,6 @@ export {
     ProfileProps,
     SBIconProfile,
     SBTabsMenu,
-    SBItemsLayout
+    SBItemsLayout,
+    SBPanelProfile
 }
