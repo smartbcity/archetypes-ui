@@ -60,10 +60,12 @@ const ItemsLayout = (props: ItemsLayout) => {
         <div className={className} style={style}>
         {menu.items && menu.items.map(it => (
             <MenuItem key={it.key} onClick={it.goto}>
-              <ListItemIcon>
-                  {it.icon}
-              </ListItemIcon>
-              <Typography variant="subtitle2">{it.label}</Typography>
+                {it.icon && 
+                <ListItemIcon>
+                    {it.icon}
+                </ListItemIcon>
+                }
+                <Typography variant="subtitle2">{it.label}</Typography>
             </MenuItem>
         ))}
         </div>   

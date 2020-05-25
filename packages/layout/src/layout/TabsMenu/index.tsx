@@ -70,6 +70,7 @@ const TabsMenu = (props: TabsMenuProps) => {
             <AppBar className={`${classes.appBar} ${className}`} style={style} position="static">
                 <StyledTabs
                 value={value}
+                style={variant === "fixedWidth" ? {width:`${children.length * 100}px`} : undefined}
                 onChange={handleChange}
                 variant={variant !== "fullWidth" ? "scrollable" : "fullWidth"}
                 scrollButtons="auto"
