@@ -1,15 +1,12 @@
-import SBAppBar from "./layout/appbar";
-import SBDrawerDetails from "./layout/drawerDetails";
-import SBDrawerMenu from "./layout/drawermenu";
-import {MenuItem, SimpleMenuItem, Menu} from "./layout/drawermenu/menu";
-import SBProfile from "./layout/profile"
-import SBIconProfile from "./layout/profile/IconProfile"
-import {ProfileProps} from "./layout/profile/profile"
-import SBApp from "./layout/sbapp";
+import {SBAppBar} from "./layout/appbar/AppBar";
+import {SBDrawerDetails} from "./layout/drawerDetails/DrawerDetails";
+import {SBDrawerMenu, MenuItem, SimpleMenuItem, Menu} from "./layout/drawermenu";
+import {SBProfile, SBIconProfile, ProfileProps} from "./layout/profile";
+import {SBApp} from "./layout/sbapp";
 import StyleProps from "./layout/StyleProps";
-import SBStepper, {OnNextHandles, StepDetails, SBStepperProps, SBStepperLabel} from "./layout/sbstepper";
-import SBTabsMenu from './layout/TabsMenu';
-import SBItemsLayout from './layout/ItemsLayout';
+import {SBStepper, OnNextHandles, StepDetails, SBStepperProps, SBStepperLabel} from "./layout/sbstepper";
+import {TabsMenu as SBTabsMenu} from './layout/TabsMenu';
+import {ItemsLayout as SBItemsLayout} from './layout/ItemsLayout';
 
 export {
     SBAppBar,

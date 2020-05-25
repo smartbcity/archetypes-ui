@@ -3,6 +3,7 @@ import {Paper, Typography, Box} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import documentLogo from '../assets/docstampt-badge.png';
+import { logoType } from '.';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -93,14 +94,12 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export type logoType = "none" | "default" | "document";
-
 export type LogoSize = "medium" | "small";
 
-export interface CardProps {
+export interface SmallCardProps {
     header?: string;
     children: React.ReactNode;
-    logo?: logoType;
+    logo?: logoType | "none";
     className?: string;
     style?: React.CSSProperties;
     elevation?: number;
@@ -109,7 +108,7 @@ export interface CardProps {
     separator?: React.ReactNode | "none";
   }
 
-const SmallCard = (props:CardProps) => {
+export const SmallCard = (props:SmallCardProps) => {
     const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator} = props;
     const classes = useStyles();
 
@@ -164,5 +163,3 @@ const SmallCard = (props:CardProps) => {
       </Paper>
     )
 }
-
-export default SmallCard;

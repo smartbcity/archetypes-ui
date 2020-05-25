@@ -66,7 +66,7 @@ export interface SBStepperProps {
     label?: SBStepperLabel
 }
 
-const SBStepper = (props: SBStepperProps) => {
+export const SBStepper = (props: SBStepperProps) => {
     const {activeStep, gotoStep, onFinish, getSteps, className, PaperProps, StepperProps, StepProps, StepLabelProps, StepperButtonProps, label = englishLabel} = props;
     const classes = useStyles();
     const stepRef = useRef<OnNextHandles>(null);
@@ -129,4 +129,3 @@ const SBStepper = (props: SBStepperProps) => {
     );
 };
 
-export default SBStepper;

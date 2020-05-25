@@ -52,7 +52,7 @@ interface ItemsLayout {
     style?: React.CSSProperties;
 }
 
-const ItemsLayout = (props: ItemsLayout) => {
+export const ItemsLayout = (props: ItemsLayout) => {
     const {menu, display = "list", className, style} = props;
     const classes = useStyles();
 
@@ -81,5 +81,3 @@ const ItemsLayout = (props: ItemsLayout) => {
         </div>
     )
 }
-
-export default ItemsLayout;

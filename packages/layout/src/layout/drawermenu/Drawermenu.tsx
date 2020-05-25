@@ -7,7 +7,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import {MenuItem} from "./menu";
 import StyleProps from "../StyleProps";
-import { ProfileProps } from "../profile/profile";
+import { ProfileProps } from "../profile";
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from "@material-ui/core";
 import { AccountCircle, ExpandMore } from "@material-ui/icons";
 import {createStyles, makeStyles} from '@material-ui/core/styles';
@@ -62,7 +62,7 @@ interface Props {
   navBarContent?:React.ReactNode;
 }
 
-const SBDrawerMenu = ({open, className, menu, styleProps, children, profileProps, navBarContent}: Props) => {
+export const SBDrawerMenu = ({open, className, menu, styleProps, children, profileProps, navBarContent}: Props) => {
   const classes = useStyles();
   return (
     <Nav width={styleProps.menuWidth}>
@@ -111,5 +111,3 @@ const SBDrawerMenu = ({open, className, menu, styleProps, children, profileProps
     </Nav>
   );
 };
-
-export default SBDrawerMenu;

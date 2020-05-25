@@ -2,12 +2,11 @@ import React, {Fragment, useEffect, useState} from "react";
 import {makeStyles, Paper, Theme} from "@material-ui/core";
 import createStyles from "@material-ui/core/styles/createStyles";
 import clsx from "clsx";
-import SBAppBar from "../appbar";
-import SBDrawerMenu from "../drawermenu";
+import {SBAppBar} from "../appbar/AppBar";
+import {SBDrawerMenu} from "../drawermenu/Drawermenu";
 import StyleProps from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
-import { ProfileProps } from "../profile/profile";
-import SBProfile from "../profile";
+import {SBProfile, ProfileProps} from "../profile";
 import useForceUpdate from 'use-force-update';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -81,7 +80,7 @@ const defaultProps = {
     showAppBar: true
 }
 
-const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isOpen, title, logo, styleProps, showAppBar}: Props) => {
+export const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isOpen, title, logo, styleProps, showAppBar}: Props) => {
 
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
@@ -136,6 +135,4 @@ const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isO
     );
 };
 
-SBApp.defaultProps = defaultProps
-
-export default SBApp;
+SBApp.defaultProps = defaultProps;
