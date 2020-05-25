@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import {Menu, MenuItem, Button} from "@material-ui/core";
 import {AccountCircle} from "@material-ui/icons";
-import { ProfileProps } from "./profile";
+import { ProfileProps } from "./ProfileProps";
 
 export const SBProfile = ({menu, actions}: ProfileProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -57,4 +57,3 @@ export const SBProfile = ({menu, actions}: ProfileProps) => {
     </div>
   );
 };
-export default SBProfile;

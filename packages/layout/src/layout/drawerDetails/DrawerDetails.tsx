@@ -25,7 +25,7 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
     })
 );
 
-const SBDrawerDetails = ({onClose, children, styleProps}: Props) => {
+export const SBDrawerDetails = ({onClose, children, styleProps}: Props) => {
     const classes = useStyles(styleProps);
     return (
         <Drawer
@@ -38,5 +38,3 @@ const SBDrawerDetails = ({onClose, children, styleProps}: Props) => {
         </Drawer>
     );
 };
-
-export default SBDrawerDetails;

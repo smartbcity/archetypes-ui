@@ -30,7 +30,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-interface ButtonProps {
+export interface ButtonProps {
     children?: React.ReactNode;
     onClick?: (event: React.ChangeEvent<{}>) => void;
     disabled?: boolean;
@@ -40,7 +40,7 @@ interface ButtonProps {
 }
 
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
     const {children, onClick, disabled = false, className, style, hoverEffect = true} = props;
     const classes = useStyles();
     return (
@@ -54,4 +54,3 @@ const Button = (props: ButtonProps) => {
     )
 }
 
-export default Button;

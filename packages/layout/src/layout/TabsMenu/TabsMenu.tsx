@@ -55,7 +55,7 @@ className?: string;
 variant?:Variant;
 }
 
-const TabsMenu = (props: TabsMenuProps) => {
+export const TabsMenu = (props: TabsMenuProps) => {
     const {tabs, children, style, className, variant = "fullWidth"} = props;
     const classes = useStyles();
     const [value, setValue] = useState(0);
@@ -87,5 +87,3 @@ const TabsMenu = (props: TabsMenuProps) => {
         </div>
     )
 }
-
-export default TabsMenu;

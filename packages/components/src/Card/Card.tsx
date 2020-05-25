@@ -4,6 +4,7 @@ import {CardHeader, Typography, CardContent, CardActions} from '@material-ui/cor
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import documentLogo from '../assets/docstampt-badge.png';
+import { logoType } from '.';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -70,8 +71,6 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export type logoType = "default" | "document";
-
 export interface CardProps {
   header?: string;
   children?: React.ReactNode;
@@ -82,7 +81,7 @@ export interface CardProps {
   customLogo?:React.ReactNode;
 }
 
-const Card = (props: CardProps) => {
+export const Card = (props: CardProps) => {
   const {header, children, logo = "default", className, footer, style, customLogo} = props;
   const classes = useStyles();
   return (
@@ -109,5 +108,3 @@ const Card = (props: CardProps) => {
     </MuiCard>
   )
 }
-
-export default Card;

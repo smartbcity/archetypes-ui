@@ -2,8 +2,8 @@ import React, { useState} from 'react';
 import {Menu as SBMenu} from '../drawermenu/menu';
 import { IconButton, Menu} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
-import ItemsLayout, {Display} from '../ItemsLayout';
-import TabsMenu from '../TabsMenu';
+import {ItemsLayout, Display} from '../ItemsLayout';
+import {TabsMenu} from '../TabsMenu';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -35,7 +35,7 @@ interface IconProfileProps {
     display?:Display;
 }
 
-const IconProfile = (props:IconProfileProps) => {
+export const SBIconProfile = (props:IconProfileProps) => {
     const {menu, style, display = "list", className} = props;
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -91,5 +91,3 @@ const IconProfile = (props:IconProfileProps) => {
     </div>
     )
 }
-
-export default IconProfile;
