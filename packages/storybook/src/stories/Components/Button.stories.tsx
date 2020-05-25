@@ -1,6 +1,6 @@
 import React from 'react';
 import {withKnobs, text, boolean} from "@storybook/addon-knobs";
-import Button from "@smartb/r2-react-components/src/Button";
+import {Button} from "@smartb/r2-react-components";
 import { withA11y } from '@storybook/addon-a11y';
 
 export default {
