@@ -10,6 +10,7 @@ import StyleProps from "./layout/StyleProps";
 import SBStepper, {OnNextHandles, StepDetails, SBStepperProps, SBStepperLabel} from "./layout/sbstepper";
 import SBTabsMenu from './layout/TabsMenu';
 import SBItemsLayout from './layout/ItemsLayout';
+import {PanelProfile as SBPanelProfile} from './layout/PanelProfile';
 
 export {
     SBAppBar,
@@ -29,5 +30,6 @@ export {
     ProfileProps,
     SBIconProfile,
     SBTabsMenu,
-    SBItemsLayout
+    SBItemsLayout,
+    SBPanelProfile
 }
