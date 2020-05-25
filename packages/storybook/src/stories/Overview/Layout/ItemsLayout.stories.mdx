@@ -1,16 +1,16 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
 import PropsTable from '../../../Docs/PropsTable';
 import {OneSectionMenuFull, MultipleSectionMenuFull, NoIconMultipleSectionMenuFull} from '../../../Docs/Variables/IconProfile.tsx';
-import { SBIconProfile} from "@smartb/r2-react-layout";
+import {SBItemsLayout} from "@smartb/r2-react-layout";
 
-<Meta title="Overview|Layout/IconProfile" />
+<Meta title="Overview|Layout/ItemsLayout" />
 
-# SmartB IconProfile
-<SBIconProfile 
-style={{display:"block", margin:"auto"}}
-menu={OneSectionMenuFull}
-display="grid"
-/>
+# SmartB items layout
+<SBItemsLayout
+    style={{display:"block", margin:"auto"}}
+    menu={OneSectionMenuFull.items[0]}
+    display="grid"
+    />
 
 ## Props
 <PropsTable 
@@ -26,9 +26,9 @@ rows={[
 
 ### Display Grid
 <Preview>
-    <SBIconProfile 
+    <SBItemsLayout
     style={{display:"block", margin:"auto"}}
-    menu={OneSectionMenuFull}
+    menu={OneSectionMenuFull.items[0]}
     display="grid"
     />
 </Preview>
@@ -36,46 +36,9 @@ rows={[
 
 ### Display List
 <Preview>
-    <SBIconProfile 
+    <SBItemsLayout 
     style={{display:"block", margin:"auto"}}
-    menu={OneSectionMenuFull}
-    display="list"
-    />
-</Preview>
-
-
-### With section gird
-<Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={MultipleSectionMenuFull}
-    display="grid"
-    />
-</Preview>
-
-### With section list
-<Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={MultipleSectionMenuFull}
-    display="list"
-    />
-</Preview>
-
-### Without icons gird
-<Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={NoIconMultipleSectionMenuFull}
-    display="grid"
-    />
-</Preview>
-
-### Without icons list
-<Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={NoIconMultipleSectionMenuFull}
+    menu={OneSectionMenuFull.items[0]}
     display="list"
     />
 </Preview>
