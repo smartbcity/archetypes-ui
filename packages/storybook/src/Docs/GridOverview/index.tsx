@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles} from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
-import {SmallCard as SBSmallCard} from "@smartb/r2-react-components";
+import {SmallCardWithContent as SBSmallCard} from "@smartb/r2-react-components";
 
 const useStyles = makeStyles(() =>
   createStyles({

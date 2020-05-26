@@ -1,9 +1,9 @@
 import React from 'react';
-import {Paper, Typography, Box} from '@material-ui/core';
+import {Paper} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import documentLogo from '../assets/docstampt-badge.png';
-import { logoType } from '.';
+import { logoType } from '../Card';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -61,35 +61,6 @@ const useStyles = makeStyles(() =>
     },
     hidder5: {
       boxShadow: "0 3px 21px 0 rgba(0, 0, 0, 0.18) inset",
-    },
-    headerContainer: {
-      width:"calc(90% - 10px)",
-      padding :"10px",
-      paddingLeft:"10%",
-      position:"relative"
-    },
-    dividerBAr: {
-      background: "#fec519",
-      height: "2px",
-      width: "30%",
-      position: 'absolute',
-      bottom: '0px',
-      left:"10%"
-    },
-    bodyContainer: {
-      minHeight:"50px",
-      width:"calc(100% - 30px)",
-      padding :"15px",
-    }, 
-    withLogo: {
-      paddingBottom:'30px',
-      paddingRight:"30px",
-      width:"calc(100% - 45px)",
-    },
-    withSmallLogo: {
-      paddingBottom:'20px',
-      paddingRight:"20px",
-      width:"calc(100% - 35px)",
     }
   }),
 );
@@ -97,7 +68,6 @@ const useStyles = makeStyles(() =>
 export type LogoSize = "medium" | "small";
 
 export interface SmallCardProps {
-    header?: string;
     children: React.ReactNode;
     logo?: logoType | "none";
     className?: string;
@@ -105,11 +75,10 @@ export interface SmallCardProps {
     elevation?: number;
     customLogo?: React.ReactNode;
     logoSize?: LogoSize;
-    separator?: React.ReactNode | "none";
   }
 
 export const SmallCard = (props:SmallCardProps) => {
-    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator} = props;
+    const {children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium"} = props;
     const classes = useStyles();
 
     const getHidderElevation = () => {
@@ -130,18 +99,7 @@ export const SmallCard = (props:SmallCardProps) => {
     }
     return (
       <Paper className={`${classes.card} ${className}`} style={style} elevation={elevation}>
-        {!!header &&
-        <Box className={classes.headerContainer}>
-          <Typography variant="h6" align="left" >{header}</Typography>
-          {!!separator ?
-            separator !== "none" && separator
-          : 
-          <div className={classes.dividerBAr}></div>}
-        </Box>
-        }
-        <Box className={`${classes.bodyContainer} ${logo !== "none" && classes.withLogo} ${logoSize === "small" && logo !== "none" && classes.withSmallLogo}`}>
-          {children}
-        </Box>
+        {children}
         {logo !== "none" &&
         <div>
           <div className={`${classes.hidder} ${getHidderElevation()} ${logoSize == "small" && classes.HidderSmall}`}>

@@ -14,6 +14,8 @@ const useStyles = makeStyles(() =>
         maxWidth:"100px",
         minHeight:"10px",
         padding:"5px",
+        overflow:"hidden",
+        whiteSpace:"nowrap"
     },
     tabFW: {
         color:"rgba(0, 0, 0, 0.87)",

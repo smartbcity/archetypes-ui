@@ -69,7 +69,7 @@ export const PanelProfile = (props:PanelProfileProps) => {
                 :
                 menu.items && menu.items.map((item) => {
                     return item.items ? (
-                        <PanelProfile menu={item}/>
+                        <PanelProfile key={item.key} menu={item}/>
                     )
                     : (
                         <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
