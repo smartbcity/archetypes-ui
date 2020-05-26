@@ -1,5 +1,5 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {SmallCard} from "@smartb/r2-react-components";
+import {SmallCardWithContent} from "@smartb/r2-react-components";
 import {Typography} from '@material-ui/core';
 import PropsTable from '../../../Docs/PropsTable';
 import {AccountCircle} from "@material-ui/icons";
@@ -9,11 +9,11 @@ import {AccountCircle} from "@material-ui/icons";
 # SmartB Card
 
 
-<SmallCard style={{position:"relative", width:"300px",height:"150px", margin:"20px auto"}} header="The SmartB SmallCard">
+<SmallCardWithContent style={{position:"relative", width:"300px",height:"150px", margin:"20px auto"}} header="The SmartB SmallCard">
     <Typography variant="body2" color="textSecondary" component="p" align="center">
         Lorem ipsum
     </Typography>
-</SmallCard>
+</SmallCardWithContent>
 
 
 ## Props
@@ -35,79 +35,79 @@ rows={[
 
 ### all 5 elevation types 
 <Preview>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 1">
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 1">
         <Typography variant="body2" color="textSecondary" component="p" align="center" elevation={1}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 2" elevation={2}>
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 2" elevation={2}>
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 3" elevation={3}>
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 3" elevation={3}>
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 4" elevation={4}>
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 4" elevation={4}>
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 5" elevation={5}>
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="elevation 5" elevation={5}>
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
+    </SmallCardWithContent>
 </Preview>
 
 ### All different logos
 
 <Preview>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="Default logo">
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="Default logo">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="Document logo" logo="document">
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="Document logo" logo="document">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="small logo" logoSize="small">
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="small logo" logoSize="small">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="whithout logo" logo="none">
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="whithout logo" logo="none">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="custom logo" logoSize="small" customLogo={<AccountCircle style={{width:"40px", height:"40px"}}/>}>
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="custom logo" logoSize="small" customLogo={<AccountCircle style={{width:"40px", height:"40px"}}/>}>
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
+    </SmallCardWithContent>
 </Preview>
 
 ### Header options
 
 <Preview>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} logo="none">
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} logo="none">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Card whithout header
         </Typography>
-    </SmallCard>
-    <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="Card whithout seperator" separator="none" logo="none">
+    </SmallCardWithContent>
+    <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="Card whithout seperator" separator="none" logo="none">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
-     <SmallCard style={{position:"relative", width:"300px", margin:"20px"}} header="Card whith a custom seperator" separator={<div style={{background:"aqua",height: "1px",width: "60%", position: 'absolute', left:"20%"}}></div>} logo="none">
+    </SmallCardWithContent>
+     <SmallCardWithContent style={{position:"relative", width:"300px", margin:"20px"}} header="Card whith a custom seperator" separator={<div style={{background:"aqua",height: "1px",width: "60%", position: 'absolute', left:"20%"}}></div>} logo="none">
         <Typography variant="body2" color="textSecondary" component="p" align="center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-    </SmallCard>
+    </SmallCardWithContent>
 </Preview>
