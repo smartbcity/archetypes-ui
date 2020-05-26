@@ -23,7 +23,9 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
             "& .MuiDrawer-paper": {
                 top: `${props.appBarHeight}px`,
                 width: `${props.menuWidth}px`,
-                background: "white"
+                background: "white",
+                height:`calc(100% - ${props.appBarHeight}px)`,
+                overflowX:"hidden"
             }
         }),
         content: {
