@@ -28,7 +28,7 @@ const useStyles = makeStyles(() =>
 );
 
 
-interface IconProfileProps {
+export interface IconProfileProps {
     menu: SBMenu;
     style?: React.CSSProperties;
     className?: string;
@@ -82,7 +82,7 @@ export const SBIconProfile = (props:IconProfileProps) => {
                 {menu.items && <TabsMenu variant={display === "list" ? "fixedWidth" : "fullWidth"} tabs={menu.items.map(it => { return {label:it.label, icon:it.icon}})}>
                     {menu.items && menu.items.map((section,index) => (
                         <div key={index}>
-                            <ItemsLayout menu={section} display={display} style={display !== "list" ? {maxWidth:"375px", maxHeight:"410px"} : {maxHeight:"410px", overflow:"auto"}}/>
+                            <ItemsLayout menu={section} display={display} style={display !== "list" ? {maxWidth:"375px", maxHeight:"410px", minWidth: section.items && section.items.length >= 3 ? "358px" : "0"} : {maxHeight:"410px", overflow:"auto"}}/>
                         </div>
                     ))}
                 </TabsMenu>}

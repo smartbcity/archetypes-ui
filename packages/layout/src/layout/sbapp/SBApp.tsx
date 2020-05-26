@@ -6,7 +6,7 @@ import {SBAppBar} from "../appbar/AppBar";
 import {SBDrawerMenu} from "../drawermenu/Drawermenu";
 import StyleProps from "../StyleProps";
 import {MenuItem} from "../drawermenu/menu";
-import {SBProfile, ProfileProps} from "../profile";
+import {SBIconProfile, IconProfileProps} from "../profile";
 import useForceUpdate from 'use-force-update';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -64,7 +64,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
 );
 
 interface Props {
-    profileProps: ProfileProps;
+    profilesProps: IconProfileProps[];
     navBarContent?:React.ReactNode;
     menu?: MenuItem[];
     children?: React.ReactNode;
@@ -80,7 +80,7 @@ const defaultProps = {
     showAppBar: true
 }
 
-export const SBApp = ({children, profileProps, navBarContent, drawerContent,  menu, isOpen, title, logo, styleProps, showAppBar}: Props) => {
+export const SBApp = ({children, profilesProps, navBarContent, drawerContent,  menu, isOpen, title, logo, styleProps, showAppBar}: Props) => {
 
     const classes = useStyles(styleProps);
     const [open, setOpen] = React.useState<boolean>(isOpen);
@@ -117,10 +117,10 @@ export const SBApp = ({children, profileProps, navBarContent, drawerContent,  me
                     drawerOpen={open}
                     onDrawerOpen={() => setOpen(!open)}
                     title={title}
-                    profile={window.innerWidth > 400 && <SBProfile {...profileProps} />}
+                    profiles={window.innerWidth > 400 && profilesProps.map((profileProps, index) => (<SBIconProfile key={index} {...profileProps} />))}
                     content={window.innerWidth > 600 && navBarContent}
                 />
-                <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} profileProps={window.innerWidth <= 400 ? profileProps : undefined} navBarContent={window.innerWidth <= 600 && navBarContent}>
+                <SBDrawerMenu open={open} className={classes.drawer} menu={menu} styleProps={styleProps} profilesProps={window.innerWidth <= 400 ? profilesProps : undefined} navBarContent={window.innerWidth <= 600 && navBarContent}>
                     {drawerContent}
                 </SBDrawerMenu>
             </Fragment>

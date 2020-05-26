@@ -7,12 +7,15 @@ import { ExpansionPanel, ExpansionPanelSummary, ListItemIcon, ListItemText, Expa
 const useStyles = makeStyles(() =>
   createStyles({
     profile: {
+      boxShadow:"none !important",
+      background:"transparent",
       "&:before" : {
         height:"0px"
       }
     },
     summary: {
       minHeight:"0px",
+      padding:"0 10px"
     },
     content: {
       margin:"10px 0px !important"
@@ -25,11 +28,14 @@ const useStyles = makeStyles(() =>
     },
     list: {
       width: "100%",
-      padding:"0",
-      paddingBottom:"16px"
+      padding:"0"
     },
     details: {
-      padding: "0px 16px"
+      padding: "0",
+      background:"#f5f5f5"
+    },
+    icon: {
+      alignItems:"center"
     }
   }),
 );
@@ -60,22 +66,26 @@ export const PanelProfile = (props:PanelProfileProps) => {
                 {menu.items && menu.items.length <= 1 ? 
                 menu.items[0].items && menu.items[0].items.map(item => (
                     <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
-                        <ListItemIcon>
+                        {item.icon &&
+                          <ListItemIcon classes={{root:classes.icon}}>
                             {item.icon}
-                        </ListItemIcon>
+                          </ListItemIcon>
+                        }
                         <ListItemText primary={item.label} />
                     </ListItem> 
                 ))
                 :
                 menu.items && menu.items.map((item) => {
                     return item.items ? (
-                        <PanelProfile menu={item}/>
+                        <PanelProfile key={item.key} menu={item}/>
                     )
                     : (
                         <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
-                            <ListItemIcon>
+                            {item.icon &&
+                              <ListItemIcon classes={{root:classes.icon}}>
                                 {item.icon}
-                            </ListItemIcon>
+                              </ListItemIcon>
+                            }
                             <ListItemText primary={item.label} />
                         </ListItem> 
                     )
