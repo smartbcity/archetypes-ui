@@ -90,6 +90,16 @@ const useStyles = makeStyles(() =>
       paddingBottom:'20px',
       paddingRight:"20px",
       width:"calc(100% - 35px)",
+    },
+    withFooter: {
+      paddingBottom:'15px',
+      paddingRight:"15px",
+      width:"calc(100% - 30px)"
+    },
+    text: {
+      paddingBottom:"10px",
+      paddingLeft:"10%",
+      paddingRight:"35px",
     }
   }),
 );
@@ -106,10 +116,11 @@ export interface SmallCardProps {
     customLogo?: React.ReactNode;
     logoSize?: LogoSize;
     separator?: React.ReactNode | "none";
+    footer?:string;
   }
 
 export const SmallCard = (props:SmallCardProps) => {
-    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator} = props;
+    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator, footer} = props;
     const classes = useStyles();
 
     const getHidderElevation = () => {
@@ -138,8 +149,8 @@ export const SmallCard = (props:SmallCardProps) => {
           : 
           <div className={classes.dividerBAr}></div>}
         </Box>
-        }
-        <Box className={`${classes.bodyContainer} ${logo !== "none" && classes.withLogo} ${logoSize === "small" && logo !== "none" && classes.withSmallLogo}`}>
+        } 
+        <Box justifyContent="center" display="flex" className={`${classes.bodyContainer} ${logo !== "none" && classes.withLogo} ${logoSize === "small" && logo !== "none" && classes.withSmallLogo} ${!!footer && classes.withFooter}`}>
           {children}
         </Box>
         {logo !== "none" &&
@@ -159,6 +170,9 @@ export const SmallCard = (props:SmallCardProps) => {
             </Paper>
           } 
         </div>
+        }
+        { footer &&
+          <Typography className={classes.text} variant="body1" align="left">{footer}</Typography>          
         }
       </Paper>
     )
