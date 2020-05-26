@@ -7,40 +7,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import {MenuItem} from "./menu";
 import StyleProps from "../StyleProps";
-import { ProfileProps } from "../profile";
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from "@material-ui/core";
-import { AccountCircle, ExpandMore } from "@material-ui/icons";
-import {createStyles, makeStyles} from '@material-ui/core/styles';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    profile: {
-      boxShadow:"none",
-      "&:before" : {
-        height:"0px"
-      }
-    },
-    summary: {
-      minHeight:"0px",
-    },
-    content: {
-      margin:"10px 0px !important"
-    },
-    expanded: {
-      margin:"0 !important"
-    },
-    expandedSummary: {
-      minHeight:"0px !important",
-    },
-    list: {
-      width: "100%",
-      padding:"0"
-    },
-    details: {
-      padding: "0px 16px"
-    }
-  }),
-);
+import {IconProfileProps} from "../profile";
+import { PanelProfile } from "../PanelProfile";
 
 // TODO style only on desktop size
 const Nav = styled.nav<WidthProps>`
@@ -58,12 +26,11 @@ interface Props {
   menu?: MenuItem[];
   styleProps: StyleProps;
   children?:React.ReactNode;
-  profileProps?:ProfileProps;
+  profilesProps?:IconProfileProps[];
   navBarContent?:React.ReactNode;
 }
 
-export const SBDrawerMenu = ({open, className, menu, styleProps, children, profileProps, navBarContent}: Props) => {
-  const classes = useStyles();
+export const SBDrawerMenu = ({open, className, menu, styleProps, children, profilesProps, navBarContent}: Props) => {
   return (
     <Nav width={styleProps.menuWidth}>
       <MuiDrawer
@@ -82,31 +49,9 @@ export const SBDrawerMenu = ({open, className, menu, styleProps, children, profi
         </div>
         {children}
         {navBarContent}
-        {profileProps && 
-        <ExpansionPanel className={classes.profile} classes={{expanded: classes.expanded}} >
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMore />}
-            className={classes.summary}
-            classes={{expanded: classes.expandedSummary, content: classes.content}}
-          >
-            <ListItemIcon><AccountCircle style={{width:"30px", height:"30px"}} /></ListItemIcon>
-            <ListItemText primary="Profile" />
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.details}>
-          <List className={classes.list}>
-            {profileProps.actions && profileProps.actions.map(action => (
-              <ListItem button key={action.key} onClick={() => action.goto()}>
-                <ListItemText primary={action.label} />
-              </ListItem>
-            ))}
-            {profileProps.menu.map(item => (
-              <ListItem button key={item.key} onClick={() => item.goto()}>
-                <ListItemText primary={item.label} />
-              </ListItem>
-            ))}
-          </List>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>}
+        {profilesProps && profilesProps.map(profileProps => (
+          <PanelProfile menu={profileProps.menu} key={profileProps.menu.key}/>
+        ))}
       </MuiDrawer>
     </Nav>
   );

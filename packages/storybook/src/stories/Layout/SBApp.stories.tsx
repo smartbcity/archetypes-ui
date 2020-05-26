@@ -2,9 +2,11 @@ import React from 'react';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import {withKnobs, text} from "@storybook/addon-knobs";
 import { action } from '@storybook/addon-actions';
-import {MenuItem, SBApp, SimpleMenuItem, StyleProps, ProfileProps} from "@smartb/r2-react-layout";
-import { Typography } from '@material-ui/core';
+import {MenuItem, SBApp, Menu, StyleProps, IconProfileProps} from "@smartb/r2-react-layout";
+import { Typography, Button } from '@material-ui/core';
 import { withA11y } from '@storybook/addon-a11y';
+import {MultipleSectionMenuFull} from '../../Docs/Variables/IconProfile';
+import {Settings} from "@material-ui/icons";
 
 export default {
     title: 'Layout|App',
@@ -13,33 +15,28 @@ export default {
 
 export const App = () => {
     const title = text('title', 'Smartb');
-    const profileMenu: SimpleMenuItem[] = [
-      {
-        key: "preference",
+    const profileMenu: Menu = {
+        key: "Settings",
         goto: action('clicked on preference'),
-        label: "preferences"
-      },
-      {
-        key: "logout",
-        goto: action('clicked on logout'),
-        label: "logout"
-      }
-    ];
-
-    const actions: SimpleMenuItem[] = [
-      {
-        key: "Company",
-        goto: action('clicked on Company'),
-        label: "Company"
-      },
-      {
-        key: "Dark Mode",
-        goto: action('clicked on Dark Mode'),
-        label: "Dark Mode"
-      }
-    ];
+        label: "Settings",
+        icon:<Settings />,
+        items: [{
+          key: "preference",
+          goto: action('clicked on preference'),
+          label: "preferences",
+          items: [{
+            key: "preference",
+            goto: action('clicked on preference'),
+            label: "preferences"
+          },{
+            key: "logout",
+            goto: action('clicked on logout'),
+            label: "logout"
+          }]
+        }]};
   
-    const profileProps: ProfileProps = {menu:profileMenu, actions:actions};
+    const profileProps1: IconProfileProps = {menu:MultipleSectionMenuFull, display:"grid"};
+    const profileProps2: IconProfileProps = {menu:profileMenu, display:"list"};
     const menu: MenuItem[] = [
       {
         key: "dashboard",
@@ -73,10 +70,10 @@ export const App = () => {
         styleProps={styleProps}
         title={title} 
         logo={defaultLogo} 
-        profileProps={profileProps}
+        profilesProps={[profileProps1,profileProps2]}
         menu={menu}
         isOpen={showMenu}
-        navBarContent={<Typography>Navbar content</Typography>}
+        navBarContent={<div><Button onClick={action('clicked on Company')}>Company</Button><Button onClick={action('clicked on Dark mode')}>Dark mode</Button></div>}
         drawerContent={<Typography>Drawer content</Typography>}
          />);
 }

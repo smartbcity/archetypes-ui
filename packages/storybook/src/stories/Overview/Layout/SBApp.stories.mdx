@@ -4,7 +4,7 @@ import defaultLogo from '../../assets/impactcity-logo-2.png';
 import PropsTable from '../../../Docs/PropsTable';
 import { Typography } from '@material-ui/core';
 
-<Meta title="Overview|Layout/SBApp" />
+<Meta title="Overview|Layout/App" />
 
 # SmartB App
 
@@ -12,7 +12,7 @@ import { Typography } from '@material-ui/core';
 
 <PropsTable 
 rows={[
-    {name:"profileProps",type:"{menu: SimpleMenuItem[], actions?: SimpleMenuItem[]}",defaultValue:"",required:true,description:"menu contains the actions of the profile menu, actions contains the action out of the profile menu in large screen bu in the profile menu on small screen"},
+    {name:"profilesProps",type:"Menu[]",defaultValue:"",required:true,description:"An array that contains every profile menu taht will be displayed on the navBar"},
     {name:"navBarContent",type:"React.ReactNode",defaultValue:"",required:false,description:"The content that will be displayed in the navBAr at the left of the profile"},
     {name:"menu",type:"MenuItem[]",defaultValue:"",required:false,description:"The list of the actions that will be displayed in the drawer menu"},
     {name:"children",type:"React.ReactNode",defaultValue:"",required:false,description:"The application that has to be surrounded by the navbar and the drawer"},
