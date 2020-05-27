@@ -11,7 +11,7 @@ export default {
 export const PopUp = () => {
     const [value, setValue] = useState('Basile');
     const label = text("label", "Prénom");
-    const erroMessage = text("erroMessage", "ce n'est pas bon");
+    const errorMessage = text("errorMessage", "ce n'est pas bon");
     const isValid = boolean("isValid",true);
     const type = text("type", "text");
     const disabled = boolean("disabled",false);
@@ -20,7 +20,7 @@ export const PopUp = () => {
     <MeTestField
     defaultValue={value}
     label={label}
-    erroMessage={erroMessage}
+    errorMessage={errorMessage}
     isValid={isValid}
     type={type}
     disabled={disabled}

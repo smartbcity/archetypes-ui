@@ -15,11 +15,11 @@ export const PopUp = () => {
     const open = boolean("open", true);
     const buttons: Action[] = [{
         label:"annuler",
-        handler:(e) => action('clicked on annuler'),
+        handler:action('clicked on annuler'),
         variant:"outlined"
     },{
         label:"continuer",
-        handler:(e) => action('clicked on continuer'),
+        handler:action('clicked on continuer'),
         variant:"outlined"
     }]
     return (

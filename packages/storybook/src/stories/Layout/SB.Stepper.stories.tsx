@@ -5,7 +5,7 @@ import {SBStepper, SBStepperProps, StepDetails, OnNextHandles} from "@smartb/r2-
 import { withA11y } from '@storybook/addon-a11y';
 
 export default {
-    title: 'Layout|Stepper',
+    title: 'Layout|SB/Stepper',
     decorators: [withKnobs, withA11y]
 };
 

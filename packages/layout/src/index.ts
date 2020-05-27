@@ -8,6 +8,7 @@ import {OnNextHandles, SBStepper, SBStepperLabel, SBStepperProps, StepDetails} f
 import {TabsMenu as SBTabsMenu} from './layout/TabsMenu';
 import {ItemsLayout as SBItemsLayout} from './layout/ItemsLayout';
 import {PanelProfile as SBPanelProfile} from './layout/PanelProfile';
+import {MeStepper} from './layout/MeStepper';
 
 export {
     SBAppBar,
@@ -29,5 +30,6 @@ export {
     SBIconProfile,
     SBTabsMenu,
     SBItemsLayout,
-    SBPanelProfile
+    SBPanelProfile,
+    MeStepper
 }

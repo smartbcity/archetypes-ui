@@ -17,7 +17,7 @@ export const Select = () => {
         value: "value1",
         label:"item1"
     },{
-        lalue: "value2",
+        value: "value2",
         label:"item2"
     }]
     return (
@@ -27,6 +27,6 @@ export const Select = () => {
     value={value}
     disabled={disabled}
     items={items}
-    onChange={(event) => console.log(event.target.value)}
+    onChange={(event) => setValue(event.target.value)}
     />)
 }
