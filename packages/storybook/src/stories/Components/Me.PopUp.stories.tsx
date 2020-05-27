@@ -27,5 +27,6 @@ export const PopUp = () => {
     open={open}
     title={title}
     actions={buttons}
+    onClose={() => {}}
     >{children}</MePopUp>)
 }
