@@ -9,7 +9,7 @@ import {MultipleSectionMenuFull} from '../../Docs/Variables/IconProfile';
 import {Settings} from "@material-ui/icons";
 
 export default {
-    title: 'Layout|App',
+    title: 'Layout|SB/App',
     decorators: [withKnobs, withA11y]
   };
 

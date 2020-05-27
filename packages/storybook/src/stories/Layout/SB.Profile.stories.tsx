@@ -5,7 +5,7 @@ import { SBProfile, SimpleMenuItem} from "@smartb/r2-react-layout";
 import { withA11y } from '@storybook/addon-a11y';
 
 export default {
-    title: 'Layout|Profile',
+    title: 'Layout|SB/Profile',
     decorators: [withKnobs, withA11y]
   };
 
