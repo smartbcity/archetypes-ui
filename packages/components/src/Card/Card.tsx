@@ -1,110 +1,89 @@
 import React from 'react';
-import {Card as MuiCard} from '@material-ui/core';
-import {CardHeader, Typography, CardContent, CardActions} from '@material-ui/core';
+import {Typography, Box} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
-import defaultLogo from '../assets/impactcity-logo-2.png';
-import documentLogo from '../assets/docstampt-badge.png';
-import { logoType } from '.';
+import { logoType } from '../Panel';
+import { Box as SBBox } from '../Box';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    card: {
-      borderRadius: "10px",
-    },
-    header: {
-      minHeight: "100px",
-    },
     headerContainer: {
-      display: 'flex',
-      justifyContent: "center",
+      width:"calc(90% - 10px)",
+      padding :"10px",
+      paddingLeft:"10%",
+      position:"relative"
     },
-    headerContent: {
-      width: "70%",
-      textAlign: "center",
-      display: 'block',
-      zIndex: 1
+    dividerBAr: {
+      background: "#fec519",
+      height: "2px",
+      width: "30%",
+      position: 'absolute',
+      bottom: '0px',
+      left:"10%"
     },
-    content: {
-      backgroundColor: "#e0e0e0",
-      minHeight: '100px',
-      position: "relative",
-      justifyContent: "center",
-      paddingTop: "40px"
+    bodyContainer: {
+      minHeight:"50px",
+      width:"calc(100% - 30px)",
+      padding :"15px",
+    }, 
+    withLogo: {
+      paddingBottom:'30px',
+      paddingRight:"30px",
+      width:"calc(100% - 45px)",
     },
-    footer: {
-      minHeight: "50px",
-      display: "flex",
-      justifyContent: "center"
+    withSmallLogo: {
+      paddingBottom:'20px',
+      paddingRight:"20px",
+      width:"calc(100% - 35px)",
     },
-    logoContainer: {
-      display: "flex",
-      justifyContent: "center",
-      width: "calc(100% - 32px)",
-      position: "absolute",
-      top: "-110px",
-      zIndex: 0
+    withFooter: {
+      paddingBottom:'15px',
+      paddingRight:"15px",
+      width:"calc(100% - 30px)"
     },
-    logoBorder: {
-      width: "136px",
-      height: "136px",
-      borderRadius: "50%",
-      background: "white"
-    },
-    logo: {
-      height: "130px",
-      width: "130px",
-      position: "relative",
-      marginLeft: "12px",
-      opacity: "50%"
-    },
-    documentLogo: {
-      height: "115px",
-      width: "115px",
-      position: "relative",
-      marginLeft: "11.5px",
-      marginTop: "12px",
-      opacity: "50%"
-    },
-    logoWithHeader: {
-      opacity: "15%"
+    text: {
+      paddingBottom:"10px",
+      paddingLeft:"10%",
+      paddingRight:"35px",
     }
   }),
 );
 
-export interface CardProps {
-  header?: string;
-  children?: React.ReactNode;
-  logo?: logoType;
-  className?: string;
-  footer?: React.ReactNode;
-  style?: React.CSSProperties;
-  customLogo?:React.ReactNode;
-}
+export type LogoSize = "medium" | "small";
 
-export const Card = (props: CardProps) => {
-  const {header, children, logo = "default", className, footer, style, customLogo} = props;
-  const classes = useStyles();
-  return (
-    <MuiCard className={`${classes.card} ${!!className && className}`} style={style}>
-      <CardHeader
-        className={classes.header}
-        classes={{content: classes.headerContainer}}
-        subheader={!!header && <Typography className={classes.headerContent} variant="h6" color="textSecondary"
-                                           component="p">{header}</Typography>}
-      />
-      <CardContent className={classes.content}>
-        <div className={classes.logoContainer}>
-          <div className={classes.logoBorder}>{!!customLogo ? customLogo : logo === "document" ?
-            <img src={documentLogo} className={`${classes.documentLogo} ${!!header && classes.logoWithHeader}`}
-                 alt="Document logo"/> :
-            <img src={defaultLogo} className={`${classes.logo} ${!!header && classes.logoWithHeader}`}
-                 alt="impact city logo"/>}</div>
-        </div>
-        {children}
-      </CardContent>
-      <CardActions className={classes.footer}>
-        {footer}
-      </CardActions>
-    </MuiCard>
-  )
+export interface CardProps {
+    header?: string;
+    children: React.ReactNode;
+    logo?: logoType | "none";
+    className?: string;
+    style?: React.CSSProperties;
+    elevation?: number;
+    customLogo?: React.ReactNode;
+    logoSize?: LogoSize;
+    separator?: React.ReactNode | "none";
+    footer?:string;
+  }
+
+export const Card = (props:CardProps) => {
+    const {header, children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium", separator, footer} = props;
+    const classes = useStyles();
+
+    return (
+      <SBBox className={className} style={style} elevation={elevation} customLogo={customLogo} logoSize={logoSize} logo={logo}>
+        {!!header &&
+        <Box className={classes.headerContainer}>
+          <Typography variant="h6" align="left" >{header}</Typography>
+          {!!separator ?
+            separator !== "none" && separator
+          : 
+          <div className={classes.dividerBAr}></div>}
+        </Box>
+        } 
+        <Box className={`${classes.bodyContainer} ${logo !== "none" && classes.withLogo} ${logoSize === "small" && logo !== "none" && classes.withSmallLogo} ${!!footer && classes.withFooter}`}>
+          {children}
+        </Box>
+        { footer &&
+          <Typography className={classes.text} variant="body1" align="left">{footer}</Typography>          
+        }
+      </SBBox>
+    )
 }

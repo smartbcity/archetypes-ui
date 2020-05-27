@@ -1,3 +1,1 @@
-export * from './Card';
-
-export type logoType = "default" | "document";
+export * from "./Card";

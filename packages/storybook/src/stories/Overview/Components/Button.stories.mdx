@@ -1,5 +1,5 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {Button} from "@smartb/r2-react-components";
+import {SBButton} from "@smartb/r2-react-components";
 import PropsTable from '../../../Docs/PropsTable';
 
 <Meta title="Overview|Components/Button" />
@@ -7,7 +7,7 @@ import PropsTable from '../../../Docs/PropsTable';
 # SmartB Button
 
 
-<Button style={{margin:"20px auto", width:"auto", display:"block"}}>Click me</Button>
+<SBButton style={{margin:"20px auto", width:"auto", display:"block"}}>Click me</SBButton>
 
 
 ## Props
@@ -24,7 +24,7 @@ rows={[
 
 ## Examples
 <Preview>
-    <Button>Normal</Button>
-    <Button hoverEffect={false}>Without hoverEffect</Button>
-    <Button disabled={true}>Disabled</Button>
+    <SBButton>Normal</SBButton>
+    <SBButton hoverEffect={false}>Without hoverEffect</SBButton>
+    <SBButton disabled={true}>Disabled</SBButton>
 </Preview>

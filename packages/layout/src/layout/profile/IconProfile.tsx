@@ -23,6 +23,19 @@ const useStyles = makeStyles(() =>
     },
     menuOpened: {
         backgroundColor: 'rgba(0, 0, 0, 0.04)'
+    },
+    gridItemsLayoutMinWidth: {
+        maxWidth:"375px", 
+        maxHeight:"410px", 
+        minWidth:"358px"
+    },
+    gridItemsLayout: {
+        maxWidth:"375px", 
+        maxHeight:"410px"
+    },
+    listItemsLayout: {
+        maxHeight:"410px", 
+        overflow:"auto"
     }
   })
 );
@@ -82,7 +95,7 @@ export const SBIconProfile = (props:IconProfileProps) => {
                 {menu.items && <TabsMenu variant={display === "list" ? "fixedWidth" : "fullWidth"} tabs={menu.items.map(it => { return {label:it.label, icon:it.icon}})}>
                     {menu.items && menu.items.map((section,index) => (
                         <div key={index}>
-                            <ItemsLayout menu={section} display={display} style={display !== "list" ? {maxWidth:"375px", maxHeight:"410px", minWidth: section.items && section.items.length >= 3 ? "358px" : "0"} : {maxHeight:"410px", overflow:"auto"}}/>
+                            <ItemsLayout menu={section} display={display} className={display !== "list" ? section.items && section.items.length >= 3 ? classes.gridItemsLayoutMinWidth : classes.gridItemsLayout : classes.listItemsLayout} />
                         </div>
                     ))}
                 </TabsMenu>}

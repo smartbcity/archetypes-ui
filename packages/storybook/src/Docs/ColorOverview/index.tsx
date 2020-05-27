@@ -56,7 +56,7 @@ const Color = (props: ColorProps) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            {!!children|| !!image &&
+            {!!children || !!image &&
             <div className={classes.header}>
                 {children}
                 {!!image &&

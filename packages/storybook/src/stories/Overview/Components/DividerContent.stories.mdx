@@ -1,21 +1,21 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {LayoutDivider, Button} from "@smartb/r2-react-components";
+import {SBDividerContent, SBButton} from "@smartb/r2-react-components";
 import {Typography} from '@material-ui/core';
 import PropsTable from '../../../Docs/PropsTable';
 
-<Meta title="Overview|Components/LayoutDivider" />
+<Meta title="Overview|Components/DividerContent" />
 
-# SmartB Layout Divider
+# SmartB Divider Content
 
 
-<LayoutDivider style={{position:"relative", width:"500px", margin:"20px auto"}}>
+<SBDividerContent style={{position:"relative", width:"500px", margin:"20px auto"}}>
     <Typography variant="body2" color="textSecondary" component="p" align="center">
       The SmartB Layout
     </Typography>
     <Typography variant="body2" color="textSecondary" component="p" align="center">
       Divider
     </Typography>
-</LayoutDivider>
+</SBDividerContent>
 
 
 ## Props
@@ -34,64 +34,64 @@ rows={[
 
 ### Default Division
 <Preview>
-    <LayoutDivider>
+    <SBDividerContent>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with your identity wallet
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with the mobile application
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
-    </LayoutDivider>
-    <LayoutDivider dividerText="Or">
+    </SBDividerContent>
+    <SBDividerContent dividerText="Or">
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with your identity wallet
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with the mobile application
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
-    </LayoutDivider>
+    </SBDividerContent>
 </Preview>
 
 ### vertical Division
 <Preview>
-    <LayoutDivider dividerDirection="vertical">
+    <SBDividerContent dividerDirection="vertical">
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with your identity wallet
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with the mobile application
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
-    </LayoutDivider>
-    <LayoutDivider dividerDirection="vertical" dividerText="And">
+    </SBDividerContent>
+    <SBDividerContent dividerDirection="vertical" dividerText="And">
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with your identity wallet
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with the mobile application
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
-    </LayoutDivider>
+    </SBDividerContent>
 </Preview>

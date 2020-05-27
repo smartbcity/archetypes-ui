@@ -11,12 +11,12 @@ export const MultipleSectionMenu: Menu = {
       {
         key: "section 1",
         label: "section 1",
-        icon:<img style={{width:"30px", height:"30px", margin:"0"}}src={defaultLogo}></img>,
+        icon:<img style={{width:"30px", height:"30px", margin:"0"}} src={defaultLogo}></img>,
         items:[
           {
             key: "dashboard 1",
             label: "dashboard 1",
-            icon:<img style={{width:"60px", height:"60px"}}src={defaultLogo}></img>
+            icon:<img style={{width:"60px", height:"60px"}} src={defaultLogo}></img>
           },
           {
             key: "activities 1",

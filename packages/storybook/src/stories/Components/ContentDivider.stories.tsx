@@ -1,32 +1,32 @@
 import React from 'react';
 import {withKnobs, text, select} from "@storybook/addon-knobs";
-import {LayoutDivider as SBLayoutDvivider, Button} from "@smartb/r2-react-components";
+import {SBDividerContent, SBButton} from "@smartb/r2-react-components";
 import { withA11y } from '@storybook/addon-a11y';
 import { Typography } from '@material-ui/core';
 
 export default {
-    title: 'Components|LayoutDivider',
+    title: 'Components|DividerContent',
     decorators: [withKnobs, withA11y]
 };
 
-export const LayoutDivider = () => {
+export const DividerContent = () => {
 
     const dividerText = text("dividerText", "Or");
     const dividerDirection = select("dividerDirection", {horizontal: 'horizontal', vertical: 'vertical'}, 'horizontal');
 
     return (
-        <SBLayoutDvivider dividerText={dividerText} dividerDirection={dividerDirection} style={{width:"300px"}}>
+        <SBDividerContent dividerText={dividerText} dividerDirection={dividerDirection} style={{width:"300px"}}>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with your identity wallet
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
         <>
             <Typography variant="body2" color="textSecondary" component="p" align="center">
                 connect with the mobile application
             </Typography>
-            <Button style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</Button>
+            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
         </>
-    </SBLayoutDvivider>)
+    </SBDividerContent>)
   }
