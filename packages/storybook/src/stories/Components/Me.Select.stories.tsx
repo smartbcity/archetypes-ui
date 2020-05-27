@@ -27,6 +27,6 @@ export const Select = () => {
     value={value}
     disabled={disabled}
     items={items}
-    onChange={(event) => setValue(event.target.value)}
+    onChange={(event) => setValue(event.target.value as string)}
     />)
 }
