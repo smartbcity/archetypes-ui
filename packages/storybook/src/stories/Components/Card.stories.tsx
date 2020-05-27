@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import example from '../assets/smartB.JPG';
 
 export default {
-    title: 'Components|Card',
+    title: 'Components|SB/Card',
     decorators: [withKnobs, withA11y]
 };
 

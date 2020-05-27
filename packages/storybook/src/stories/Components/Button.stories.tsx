@@ -4,7 +4,7 @@ import {SBButton} from "@smartb/r2-react-components";
 import { withA11y } from '@storybook/addon-a11y';
 
 export default {
-    title: 'Components|Button',
+    title: 'Components|SB/Button',
     decorators: [withKnobs, withA11y]
 };
 
