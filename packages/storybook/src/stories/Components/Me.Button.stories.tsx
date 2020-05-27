@@ -20,6 +20,7 @@ export const Button = () => {
     style={{margin:"20px auto", display:"block", position:"relative"}}
     variant={variant}
     label={children}
+    onClick={() => {}}
     />)
 }
 

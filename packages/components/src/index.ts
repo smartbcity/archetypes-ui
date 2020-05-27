@@ -4,6 +4,7 @@ import {Box as SBBox} from "./Box";
 import {SBButton} from "./SBButton";
 import {DividerContent as SBDividerContent, Direction as DividerDirection} from "./DividerContent";
 import {MeButton} from './MeButton';
+import {MePopUp, Action} from './MePopUp';
 
 export {
   SBPanel,
@@ -12,5 +13,7 @@ export {
   SBDividerContent,
   DividerDirection,
   SBButton,
-  MeButton
+  MeButton,
+  MePopUp,
+  Action
 }
