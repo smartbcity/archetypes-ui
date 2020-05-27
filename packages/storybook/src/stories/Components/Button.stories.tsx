@@ -1,6 +1,6 @@
 import React from 'react';
 import {withKnobs, text, boolean} from "@storybook/addon-knobs";
-import {Button} from "@smartb/r2-react-components";
+import {SBButton} from "@smartb/r2-react-components";
 import { withA11y } from '@storybook/addon-a11y';
 
 export default {
@@ -8,19 +8,19 @@ export default {
     decorators: [withKnobs, withA11y]
 };
 
-export const button = () => {
+export const Button = () => {
 
     const children = text("children", "Click Me");
     const disabled = boolean("disabled", false);
     const hoverEffect = boolean("hoverEffect", true)
 
     return (
-    <Button
+    <SBButton
     disabled={disabled}
     hoverEffect={hoverEffect}
     style={{margin:"20px auto", display:"block", position:"relative"}}
     >
         {children}
-    </Button>)
+    </SBButton>)
   }
 
