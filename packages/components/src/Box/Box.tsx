@@ -3,7 +3,7 @@ import {Paper} from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import defaultLogo from '../assets/impactcity-logo-2.png';
 import documentLogo from '../assets/docstampt-badge.png';
-import { logoType } from '../Card';
+import { logoType } from '../Panel';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -61,13 +61,41 @@ const useStyles = makeStyles(() =>
     },
     hidder5: {
       boxShadow: "0 3px 21px 0 rgba(0, 0, 0, 0.18) inset",
+    },
+    documentLogoSmall: {
+      width:"40px",
+      height:"40px"
+    },
+    documentLogoMedium: {
+      width:"70px",
+      height:"70px"
+    },
+    ImpactCityLogoSmall: {
+      width:"51px",
+      height:"51px",
+      marginTop: "-9.5px", 
+      marginLeft: "-0.2px"
+    },
+    ImpactCityLogoMedium: {
+      width:"81px",
+      height:"81px",
+      marginTop: "-9.5px", 
+      marginLeft: "-0.2px"
+    },
+    ImpactCityLogoContainerSmall: {
+      bottom: "-7px", 
+      right: "-6px"
+    },
+    ImpactCityLogoContainerMedium: {
+      bottom: "-26.5px", 
+      right: "-26px"
     }
   }),
 );
 
 export type LogoSize = "medium" | "small";
 
-export interface SmallCardProps {
+export interface BoxProps {
     children: React.ReactNode;
     logo?: logoType | "none";
     className?: string;
@@ -77,7 +105,7 @@ export interface SmallCardProps {
     logoSize?: LogoSize;
   }
 
-export const SmallCard = (props:SmallCardProps) => {
+export const Box = (props:BoxProps) => {
     const {children, logo = "default", className, style, elevation = 1, customLogo, logoSize = "medium"} = props;
     const classes = useStyles();
 
@@ -110,10 +138,10 @@ export const SmallCard = (props:SmallCardProps) => {
             </Paper>
           : logo === "document" ?
             <Paper className={`${classes.logo} ${logoSize == "small" && classes.logoSmall}`} elevation={elevation}>
-              <img src={documentLogo} alt="A smartb logo" style={{width: logoSize == "small" ? "40px" : "70px", height: logoSize == "small" ? "40px" : "70px"}}/>
+              <img src={documentLogo} alt="A smartb logo" className={logoSize == "small" ? classes.documentLogoSmall : classes.documentLogoMedium}/>
             </Paper>:
-            <Paper className={`${classes.logo} ${logoSize == "small" && classes.logoSmall}`} elevation={elevation} style={{bottom:logoSize == "small" ? "-7px" : "-26.5px", right:logoSize == "small" ? "-6px" : "-26px"}}>
-              <img src={defaultLogo} alt="A smartb logo" style={{width: logoSize == "small" ? "51px" : "81px", height: logoSize == "small" ? "51px" : "81px", marginTop: "-9.5px", marginLeft: "-0.2px"}}/>
+            <Paper className={`${classes.logo} ${logoSize == "small" && classes.logoSmall} ${logoSize == "small" ? classes.ImpactCityLogoContainerSmall : classes.ImpactCityLogoContainerMedium}`} elevation={elevation}>
+              <img src={defaultLogo} alt="A smartb logo" className={logoSize == "small" ? classes.ImpactCityLogoSmall : classes.ImpactCityLogoMedium}/>
             </Paper>
           } 
         </div>

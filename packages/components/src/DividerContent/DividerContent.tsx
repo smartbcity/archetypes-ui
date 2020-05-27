@@ -66,7 +66,7 @@ const useStyles = makeStyles(() =>
 
 export type Direction = "horizontal" | "vertical";
 
-export interface DividerProps {
+export interface DividerContentProps {
     children: React.ReactNode | React.ReactNode[];
     dividerText?: string;
     dividerDirection?: Direction;
@@ -75,7 +75,7 @@ export interface DividerProps {
     dividerStyle?: React.CSSProperties;
 }
 
-export const LayoutDivider = (props: DividerProps) => {
+export const DividerContent = (props: DividerContentProps) => {
     const {children, dividerText, dividerDirection = "horizontal", className, style, dividerStyle} = props
     const classes = useStyles();
     return (

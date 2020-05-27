@@ -1,14 +1,14 @@
-import { Card} from "./Card";
-import {SmallCardWithContent} from "./SmallCard/SmallCardWithContent";
-import {SmallCard} from "./SmallCard";
-import {Button} from "./Button";
-import {LayoutDivider, Direction as DividerDirection} from "./LayoutDivider";
+import {Panel as SBPanel} from "./Panel";
+import {Card as SBCard} from "./Card";
+import {Box as SBBox} from "./Box";
+import {Button as SBButton} from "./Button";
+import {DividerContent as SBDividerContent, Direction as DividerDirection} from "./DividerContent";
 
 export {
-  Card,
-  SmallCard,
-  SmallCardWithContent,
-  LayoutDivider,
+  SBPanel,
+  SBBox,
+  SBCard,
+  SBDividerContent,
   DividerDirection,
-  Button
+  SBButton
 }
