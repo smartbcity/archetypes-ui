@@ -3,6 +3,9 @@ STORYBOOK_NAME	   	 	:= smartbcity/r2-storybook
 STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
 STORYBOOK_LATEST		:= ${REST_MOBI_NAME}:latest
 
+test:
+	@echo 'No test yet'
+
 package: package-storybook
 
 push: push-storybook
