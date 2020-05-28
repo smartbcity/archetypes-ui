@@ -33,18 +33,10 @@ variables:
 .verify:
   stage: verify
   before_script:
-    - cp $gradleproperties ./gradle.properties
     - CONTAINER_NAME=$(docker ps --format '{{.Names}}' --filter name=$HOSTNAME*)
-    - echo $CONTAINER_NAME
     - docker network connect bclannet-it $CONTAINER_NAME
   script:
     - make test
-  artifacts:
-    paths:
-      - ./**/build/test-results/test/TEST-*.xml
-    reports:
-      junit:
-        - ./**/build/test-results/test/TEST-*.xml
 
 .package:
   stage: package
@@ -53,12 +45,6 @@ variables:
   script:
     - export VERSION_BUILD=$(cat version.build)
     - make package -e VERSION=${VERSION_BUILD}
-  artifacts:
-    paths:
-      - ./**/build
-    reports:
-      junit:
-        - ./**/build/test-results/test/TEST-*.xml
 
 .push:
   stage: push
