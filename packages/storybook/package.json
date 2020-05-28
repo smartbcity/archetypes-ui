@@ -3,7 +3,7 @@
   "repository": "https://gitlab.smartb.city/app/archetypes-ui.git",
   "author": "Adrien Poupard <adrien@smartb.city>",
   "license": "Apache-2.0",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Storybook documentation",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -45,8 +45,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.13",
-    "@smartb/archetypes-ui-components": "^0.0.1",
-    "@smartb/archetypes-ui-layout": "^0.0.1",
+    "@smartb/archetypes-ui-components": "^0.0.2",
+    "@smartb/archetypes-ui-layout": "^0.0.2",
     "react-docgen-typescript-loader": "^3.7.2"
   },
   "files": [
