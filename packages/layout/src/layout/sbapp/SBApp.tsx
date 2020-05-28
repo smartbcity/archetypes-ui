@@ -111,10 +111,16 @@ export const SBApp = ({
     setInnerWidth(window.innerWidth)
   }, 500)
 
+  const urlChanged = () => {
+    if (window.innerWidth < 768) setOpen(false)
+  }
+
   useEffect(() => {
     window.addEventListener('resize', handleResize)
+    window.addEventListener('popstate', urlChanged)
     return () => {
       window.removeEventListener('resize', handleResize)
+      window.removeEventListener('popstate', urlChanged)
     }
   }, [])
 
