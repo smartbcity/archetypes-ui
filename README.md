@@ -1,4 +1,4 @@
-## Build 
+## Build
 
 ```
 yarn workspaces run build
@@ -6,7 +6,8 @@ yarn workspaces run build
 
 ## Run
 
- * Components library
+- Components library
+
 ```
 yarn workspace @smartb/r2-storybook storybook
 ```
@@ -15,14 +16,13 @@ yarn workspace @smartb/r2-storybook storybook
 
 https://share.proto.io/80VK5K/
 
+## Example
 
+- Use Both CSF and Docs
 
-## Example 
-
-  * Use Both CSF and Docs
 ```
 Source: https://github.com/appnexus/lucid
-Demo: https://appnexus.github.io/lucid/?path=/docs/* => 
+Demo: https://appnexus.github.io/lucid/?path=/docs/* =>
 ```
 
 ```
@@ -31,32 +31,42 @@ Demo: https://necolas.github.io/react-native-web/docs/?path=/docs/components-but
 ```
 
 ```
-Source: https://github.com/jask-oss/reaviz 
+Source: https://github.com/jask-oss/reaviz
 Demo: https://reaviz.io/?path=/docs/docs-intro--page
 ```
-  
- * Pages Organization
+
+- Pages Organization
+
 ```
 Source: https://github.com/wix/wix-style-react
 Demo: https://wix-style-react.now.sh/?path=/story/introduction-cheatsheet--components-cheatsheet
 ```
- 
- * Pages Style
- ```
+
+- Pages Style
+
+```
 Source: https://github.com/thorjarhun/react-storybook-todolist
 Demo: https://thorjarhun.github.io/react-storybook-todolist/
 ```
 
- * Nice Design
+- Nice Design
+
 ```
-Source: https://github.com/inrupt/solid-react-components  
-Demo: https://design.inrupt.com/atomic-core/?cat=Organisms#Navigation => 
+Source: https://github.com/inrupt/solid-react-components
+Demo: https://design.inrupt.com/atomic-core/?cat=Organisms#Navigation =>
 ```
 
+## Version
+
+```
+lerna version 0.0.1 --no-git-tag-version
+```
 
 ## Init Project
+
 Based on:
 https://dev.to/shnydercom/monorepos-lerna-typescript-cra-and-storybook-combined-4hli
+
 ```
 git init r2-react
 cd r2-react
@@ -94,4 +104,5 @@ create-react-library COMPONENT_NAME
 ```
 
 ## Addons
+
 https://storybook.js.org/addons/

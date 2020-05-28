@@ -1,97 +1,221 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {SBDividerContent, SBButton} from "@smartb/r2-react-components";
-import {Typography} from '@material-ui/core';
-import PropsTable from '../../../Docs/PropsTable';
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import { SBDividerContent, SBButton } from '@smartb/archetypes-ui-components'
+import { Typography } from '@material-ui/core'
+import PropsTable from '../../../Docs/PropsTable'
 
-<Meta title="Overview|Components/SB/DividerContent" />
+<Meta title='Overview|Components/SB/DividerContent' />
 
 # SmartB Divider Content
 
-
-<SBDividerContent style={{position:"relative", width:"500px", margin:"20px auto"}}>
-    <Typography variant="body2" color="textSecondary" component="p" align="center">
-      The SmartB Layout
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p" align="center">
-      Divider
-    </Typography>
+<SBDividerContent
+  style={{ position: 'relative', width: '500px', margin: '20px auto' }}
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    The SmartB Layout
+  </Typography>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Divider
+  </Typography>
 </SBDividerContent>
-
 
 ## Props
 
-<PropsTable 
-rows={[
-    {name:"children",type:"React.ReactNode[]",defaultValue:"",required:true,description:"An array of content that will be divided"},
-    {name:"dividerText",type:"string",defaultValue:"",required:false,description:"The text of the divider"},
-    {name:"dividerDirection",type:"'horizontal' | 'vertical'",defaultValue:"'horizontal'",required:false,description:"The direction of the division"},
-    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the container and override the default properties"},
-    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the container and override the default properties"},
-    {name:"dividerStyle",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the divider and override the default properties"},
-]} />
+<PropsTable
+  rows={[
+    {
+      name: 'children',
+      type: 'React.ReactNode[]',
+      defaultValue: '',
+      required: true,
+      description: 'An array of content that will be divided'
+    },
+    {
+      name: 'dividerText',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The text of the divider'
+    },
+    {
+      name: 'dividerDirection',
+      type: "'horizontal' | 'vertical'",
+      defaultValue: "'horizontal'",
+      required: false,
+      description: 'The direction of the division'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the className to the container and override the default properties'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the style to the container and override the default properties'
+    },
+    {
+      name: 'dividerStyle',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the style to the divider and override the default properties'
+    }
+  ]}
+/>
 
 ## Examples
 
 ### Default Division
+
 <Preview>
-    <SBDividerContent>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with your identity wallet
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with the mobile application
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-    </SBDividerContent>
-    <SBDividerContent dividerText="Or">
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with your identity wallet
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with the mobile application
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-    </SBDividerContent>
+  <SBDividerContent>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with your identity wallet
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with the mobile application
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+  </SBDividerContent>
+  <SBDividerContent dividerText='Or'>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with your identity wallet
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with the mobile application
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+  </SBDividerContent>
 </Preview>
 
 ### vertical Division
+
 <Preview>
-    <SBDividerContent dividerDirection="vertical">
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with your identity wallet
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with the mobile application
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-    </SBDividerContent>
-    <SBDividerContent dividerDirection="vertical" dividerText="And">
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with your identity wallet
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-        <>
-            <Typography variant="body2" color="textSecondary" component="p" align="center">
-                connect with the mobile application
-            </Typography>
-            <SBButton style={{margin:"20px auto", display:"block", position:"relative"}}>Yes</SBButton>
-        </>
-    </SBDividerContent>
+  <SBDividerContent dividerDirection='vertical'>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with your identity wallet
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with the mobile application
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+  </SBDividerContent>
+  <SBDividerContent dividerDirection='vertical' dividerText='And'>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with your identity wallet
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+    <>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with the mobile application
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </>
+  </SBDividerContent>
 </Preview>

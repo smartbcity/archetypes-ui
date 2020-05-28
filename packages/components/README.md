@@ -1,13 +1,13 @@
-# @smartb/r2-react-components
+# @smartb/archetypes-ui-components
 
 > React components Library
 
-[![NPM](https://img.shields.io/npm/v/@smartb/r2-react-components.svg)](https://www.npmjs.com/package/@smartb/r2-react-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@smartb/archetypes-ui-components.svg)](https://www.npmjs.com/package/@smartb/archetypes-ui-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save @smartb/r2-react-components
+npm install --save @smartb/archetypes-ui-components
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save @smartb/r2-react-components
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from '@smartb/r2-react-components'
-import '@smartb/r2-react-components/dist/index.css'
+import MyComponent from '@smartb/archetypes-ui-components'
+import '@smartb/archetypes-ui-components/dist/index.css'
 
 class Example extends Component {
   render() {
