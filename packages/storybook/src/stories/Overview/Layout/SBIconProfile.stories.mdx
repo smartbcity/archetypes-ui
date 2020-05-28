@@ -1,81 +1,118 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import PropsTable from '../../../Docs/PropsTable';
-import {OneSectionMenuFull, MultipleSectionMenuFull, NoIconMultipleSectionMenuFull} from '../../../Docs/Variables/IconProfile.tsx';
-import { SBIconProfile} from "@smartb/r2-react-layout";
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import PropsTable from '../../../Docs/PropsTable'
+import {
+  OneSectionMenuFull,
+  MultipleSectionMenuFull,
+  NoIconMultipleSectionMenuFull
+} from '../../../Docs/Variables/IconProfile.tsx'
+import { SBIconProfile } from '@smartb/archetypes-ui-layout'
 
-<Meta title="Overview|Layout/IconProfile" />
+<Meta title='Overview|Layout/IconProfile' />
 
 # SmartB IconProfile
-<SBIconProfile 
-style={{display:"block", margin:"auto"}}
-menu={OneSectionMenuFull}
-display="grid"
+
+<SBIconProfile
+  style={{ display: 'block', margin: 'auto' }}
+  menu={OneSectionMenuFull}
+  display='grid'
 />
 
 ## Props
-<PropsTable 
-rows={[
-    {name:"menu",type:"Menu[]",defaultValue:"",required:true,description:"menu contains all the items that will be displayed in the profile"},
-    {name:"display",type:"'list' | 'grid'",defaultValue:"'list'",required:false,description:"The organization of the items"},
-    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the button and override the default properties"},
-    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the button and override the default properties"},
-]} />
 
+<PropsTable
+  rows={[
+    {
+      name: 'menu',
+      type: 'Menu[]',
+      defaultValue: '',
+      required: true,
+      description:
+        'menu contains all the items that will be displayed in the profile'
+    },
+    {
+      name: 'display',
+      type: "'list' | 'grid'",
+      defaultValue: "'list'",
+      required: false,
+      description: 'The organization of the items'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the className to the button and override the default properties'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the style to the button and override the default properties'
+    }
+  ]}
+/>
 
 ## Examples
 
 ### Display Grid
-<Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={OneSectionMenuFull}
-    display="grid"
-    />
-</Preview>
 
+<Preview>
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
+    menu={OneSectionMenuFull}
+    display='grid'
+  />
+</Preview>
 
 ### Display List
+
 <Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={OneSectionMenuFull}
-    display="list"
-    />
+    display='list'
+  />
 </Preview>
 
-
 ### With section gird
+
 <Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={MultipleSectionMenuFull}
-    display="grid"
-    />
+    display='grid'
+  />
 </Preview>
 
 ### With section list
+
 <Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={MultipleSectionMenuFull}
-    display="list"
-    />
+    display='list'
+  />
 </Preview>
 
 ### Without icons gird
+
 <Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={NoIconMultipleSectionMenuFull}
-    display="grid"
-    />
+    display='grid'
+  />
 </Preview>
 
 ### Without icons list
+
 <Preview>
-    <SBIconProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBIconProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={NoIconMultipleSectionMenuFull}
-    display="list"
-    />
+    display='list'
+  />
 </Preview>

@@ -1,30 +1,70 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import {SBButton} from "@smartb/r2-react-components";
-import PropsTable from '../../../Docs/PropsTable';
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import { SBButton } from '@smartb/archetypes-ui-components'
+import PropsTable from '../../../Docs/PropsTable'
 
-<Meta title="Overview|Components/SB/Button" />
+<Meta title='Overview|Components/SB/Button' />
 
 # SmartB Button
 
-
-<SBButton style={{margin:"20px auto", width:"auto", display:"block"}}>Click me</SBButton>
-
+<SBButton style={{ margin: '20px auto', width: 'auto', display: 'block' }}>
+  Click me
+</SBButton>
 
 ## Props
 
-<PropsTable 
-rows={[
-    {name:"children",type:"React.ReactNode",defaultValue:"",required:false,description:"The react children props"},
-    {name:"onClick",type:"(event: React.ChangeEvent<{}>) => void",defaultValue:"",required:false,description:""},
-    {name:"disabled",type:"boolean",defaultValue:"false",required:false,description:"If true the button will be disabled"},
-    {name:"hoverEffect",type:"boolean",defaultValue:"false",required:false,description:"If false the hoverEffect will be disabled"},
-    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the button and override the default properties"},
-    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the button and override the default properties"},
-]} />
+<PropsTable
+  rows={[
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description: 'The react children props'
+    },
+    {
+      name: 'onClick',
+      type: '(event: React.ChangeEvent<{}>) => void',
+      defaultValue: '',
+      required: false,
+      description: ''
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: false,
+      description: 'If true the button will be disabled'
+    },
+    {
+      name: 'hoverEffect',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: false,
+      description: 'If false the hoverEffect will be disabled'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the className to the button and override the default properties'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the style to the button and override the default properties'
+    }
+  ]}
+/>
 
 ## Examples
+
 <Preview>
-    <SBButton>Normal</SBButton>
-    <SBButton hoverEffect={false}>Without hoverEffect</SBButton>
-    <SBButton disabled={true}>Disabled</SBButton>
+  <SBButton>Normal</SBButton>
+  <SBButton hoverEffect={false}>Without hoverEffect</SBButton>
+  <SBButton disabled={true}>Disabled</SBButton>
 </Preview>

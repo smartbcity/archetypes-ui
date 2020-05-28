@@ -1,39 +1,67 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks';
-import { SBPanelProfile} from "@smartb/r2-react-layout";
-import PropsTable from '../../../Docs/PropsTable';
-import {OneSectionMenu,MultipleSectionMenu} from '../../../Docs/Variables/IconProfile.tsx';
+import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import { SBPanelProfile } from '@smartb/archetypes-ui-layout'
+import PropsTable from '../../../Docs/PropsTable'
+import {
+  OneSectionMenu,
+  MultipleSectionMenu
+} from '../../../Docs/Variables/IconProfile.tsx'
 
-<Meta title="Overview|Layout/PanelProfile" />
+<Meta title='Overview|Layout/PanelProfile' />
 
 # SmartB PanelProfile
-<SBPanelProfile 
-    style={{display:"block", margin:"auto"}}
-    menu={OneSectionMenu}
+
+<SBPanelProfile
+  style={{ display: 'block', margin: 'auto' }}
+  menu={OneSectionMenu}
 />
 
 ## Props
 
-<PropsTable 
-rows={[
-    {name:"menu",type:"Menu",defaultValue:"",required:true,description:"menu contains all the items taht will be displayed in the panel"},
-    {name:"className",type:"string",defaultValue:"",required:false,description:"Add the className to the panel and override the default properties"},
-    {name:"style",type:"React.CSSProperties",defaultValue:"",required:false,description:"Add the style to the panel and override the default properties"},
-]} />
+<PropsTable
+  rows={[
+    {
+      name: 'menu',
+      type: 'Menu',
+      defaultValue: '',
+      required: true,
+      description:
+        'menu contains all the items taht will be displayed in the panel'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the className to the panel and override the default properties'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description:
+        'Add the style to the panel and override the default properties'
+    }
+  ]}
+/>
 
 ## Examples
 
 ### with sections
+
 <Preview>
-    <SBPanelProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBPanelProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={MultipleSectionMenu}
-    />
+  />
 </Preview>
 
 ### without sections
+
 <Preview>
-    <SBPanelProfile 
-    style={{display:"block", margin:"auto"}}
+  <SBPanelProfile
+    style={{ display: 'block', margin: 'auto' }}
     menu={OneSectionMenu}
-    />
+  />
 </Preview>
