@@ -6,11 +6,23 @@ STORYBOOK_LATEST		:= ${REST_MOBI_NAME}:latest
 test:
 	@echo 'No test yet'
 
-package: package-storybook
+package: package-libs package-storybook
 
-push: push-storybook
+push: push-storybook push-libs
 
 push-latest: push-storybook
+
+package-libs:
+	@yarn install
+	@yarn workspaces run build
+
+push-libs:
+	@lerna publish from-git
+
+push-latest-libs:
+	@docker tag ${STORYBOOK_IMG} ${STORYBOOK_LATEST}
+	@docker push ${STORYBOOK_LATEST}
+
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
