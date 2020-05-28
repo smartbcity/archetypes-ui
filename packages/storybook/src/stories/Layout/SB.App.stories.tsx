@@ -12,7 +12,12 @@ import {
 import { Typography, Button } from '@material-ui/core'
 import { withA11y } from '@storybook/addon-a11y'
 import { MultipleSectionMenuFull } from '../../Docs/Variables/IconProfile'
-import { Settings } from '@material-ui/icons'
+import {
+  AccountCircle,
+  Settings,
+  Description,
+  ExitToApp
+} from '@material-ui/icons'
 
 export default {
   title: 'Layout|SB/App',
@@ -47,11 +52,45 @@ export const App = () => {
     ]
   }
 
+  const profileMenu2: Menu = {
+    label: 'profile',
+    key: 'profile',
+    icon: <AccountCircle />,
+    items: [
+      {
+        key: 'section 1',
+        label: 'section 1',
+        icon: <AccountCircle />,
+        items: [
+          {
+            key: 'preference',
+            label: 'preference',
+            icon: <Settings />
+          },
+          {
+            key: 'statement',
+            label: 'statement',
+            icon: <Description />
+          },
+          {
+            key: 'logout',
+            label: 'logout',
+            icon: <ExitToApp />
+          }
+        ]
+      }
+    ]
+  }
+
   const profileProps1: IconProfileProps = {
     menu: MultipleSectionMenuFull,
     display: 'grid'
   }
   const profileProps2: IconProfileProps = { menu: profileMenu, display: 'list' }
+  const profileProps3: IconProfileProps = {
+    menu: profileMenu2,
+    display: 'list'
+  }
   const menu: MenuItem[] = [
     {
       key: 'dashboard',
@@ -92,7 +131,7 @@ export const App = () => {
       styleProps={styleProps}
       title={title}
       logo={defaultLogo}
-      profilesProps={[profileProps1, profileProps2]}
+      profilesProps={[profileProps1, profileProps2, profileProps3]}
       menu={menu}
       isOpen={showMenu}
       navBarContent={
