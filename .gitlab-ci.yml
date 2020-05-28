@@ -40,8 +40,6 @@ variables:
 
 .package:
   stage: package
-  before_script:
-    - cp $gradleproperties ./gradle.properties
   script:
     - export VERSION_BUILD=$(cat version.build)
     - make package -e VERSION=${VERSION_BUILD}
