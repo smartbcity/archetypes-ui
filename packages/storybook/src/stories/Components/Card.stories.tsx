@@ -6,13 +6,14 @@ import {
   text,
   boolean
 } from '@storybook/addon-knobs'
-import { SBCard } from '@smartb/archetypes-ui-components'
+import { SBCard, ThemeContextProvider } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
 import example from '../assets/smartB.JPG'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
-  title: 'Components|SB/Card',
+  title: 'Components|Card',
   decorators: [withKnobs, withA11y]
 }
 
@@ -36,26 +37,28 @@ export const Card = () => {
   const elevation = number('elevation', 1)
   const image = boolean('image', false)
   return (
-    <SBCard
-      header={header}
-      logo={logo}
-      style={{ width: '350px' }}
-      elevation={elevation}
-      logoSize={logoSize}
-      footer={footer}
-    >
-      {image ? (
-        <img src={example} style={{ width: '300px' }} alt='example' />
-      ) : (
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          {children}
-        </Typography>
-      )}
-    </SBCard>
+    <ThemeContextProvider theme={myTheme}>
+      <SBCard
+        header={header}
+        logo={logo}
+        style={{ width: '350px' }}
+        elevation={elevation}
+        logoSize={logoSize}
+        footer={footer}
+      >
+        {image ? (
+          <img src={example} style={{ width: '300px' }} alt='example' />
+        ) : (
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            {children}
+          </Typography>
+        )}
+      </SBCard>
+    </ThemeContextProvider>
   )
 }

@@ -15,7 +15,7 @@ const GridOverview = () => {
   const classes = useStyles()
   return (
     <Grid container spacing={0} className={classes.root}>
-      <Grid item xs={3} spacing={0}>
+      <Grid item xs={3}>
         <SBCard
           style={{ height: '95%', width: '90%' }}
           logo='none'
@@ -27,7 +27,7 @@ const GridOverview = () => {
           </Typography>
         </SBCard>
       </Grid>
-      <Grid container xs={9} spacing={0}>
+      <Grid item xs={9}>
         <Grid item xs={6}>
           <SBCard
             style={{ height: '90%', width: '90%' }}

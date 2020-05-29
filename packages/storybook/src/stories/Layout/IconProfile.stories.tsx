@@ -11,7 +11,7 @@ import {
 } from '../../Docs/Variables/IconProfile'
 
 export default {
-  title: 'Layout|SB/IconProfile',
+  title: 'Layout|IconProfile',
   decorators: [withKnobs, withA11y]
 }
 

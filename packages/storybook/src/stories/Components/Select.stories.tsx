@@ -4,7 +4,7 @@ import { MeSelect, MeSelectItem } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 
 export default {
-  title: 'Components|Me/Select',
+  title: 'Components|Select',
   decorators: [withKnobs, withA11y]
 }
 

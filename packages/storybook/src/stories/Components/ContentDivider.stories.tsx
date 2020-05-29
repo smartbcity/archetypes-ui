@@ -5,7 +5,7 @@ import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
 
 export default {
-  title: 'Components|SB/DividerContent',
+  title: 'Components|DividerContent',
   decorators: [withKnobs, withA11y]
 }
 

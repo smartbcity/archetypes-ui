@@ -18,7 +18,7 @@ const useStyles = makeStyles(() =>
 )
 
 export default {
-  title: 'Components|SB/Panel',
+  title: 'Components|Panel',
   decorators: [withKnobs, withA11y]
 }
 

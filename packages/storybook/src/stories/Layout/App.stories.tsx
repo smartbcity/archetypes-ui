@@ -20,7 +20,7 @@ import {
 } from '@material-ui/icons'
 
 export default {
-  title: 'Layout|SB/App',
+  title: 'Layout|App',
   decorators: [withKnobs, withA11y]
 }
 

@@ -4,7 +4,7 @@ import { MeTestField } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 
 export default {
-  title: 'Components|Me/TestField',
+  title: 'Components|TestField',
   decorators: [withKnobs, withA11y]
 }
 
