@@ -1,4 +1,4 @@
-image: smartbcity/gitlab-ci-jdk8:latest
+image: smartbcity/gitlab-ci-jdk8:1.2.0
 
 stages:
   - build
@@ -8,13 +8,13 @@ stages:
   - push
 
 variables:
-  BRANCH_VERSION: "-experimental"
-  MASTER_VERSION: "-next"
+  BRANCH_VERSION: "experimental"
+  MASTER_VERSION: "next"
   PROFILES_ACTIVE: "gitlab"
 
 .version-tag:
   stage: version
-  image: smartbcity/gitlab-ci-semantic-versioning:master
+  image: smartbcity/gitlab-ci-semantic-versioning:1.2.0
   script:
     - make -f /opt/city.smartb/semantic-versioning/Makefile -e BRANCH_NAME=$CI_COMMIT_REF_NAME next_version >> version.build
   artifacts:
@@ -23,9 +23,9 @@ variables:
 
 .version-next-tag:
   stage: version
-  image: smartbcity/gitlab-ci-semantic-versioning:master
+  image: smartbcity/gitlab-ci-semantic-versioning:1.2.0
   script:
-    - make -f /opt/city.smartb/semantic-versioning/Makefile -e BRANCH_NAME=$CI_COMMIT_REF_NAME next_tag_version >> version.build
+    - make -f /opt/city.smartb/semantic-versioning/Makefile next_version >> version.build
   artifacts:
     paths:
       - version*
@@ -39,6 +39,7 @@ variables:
     - make test
 
 .package:
+  image: smartbcity/gitlab-ci-yarn:1.2.0
   stage: package
   script:
     - export VERSION_BUILD=$(cat version.build)
@@ -69,7 +70,7 @@ version-branch:
   <<: *onlyBranch
   extends: .version-next-tag
   after_script:
-    - echo $(cat version.build)$BRANCH_VERSION > version.build
+    - echo $BRANCH_VERSION > version.build
     - echo "//////////////////////////////"
     - echo "Version is "+ $(cat version.build)
     - echo "//////////////////////////////"
@@ -94,7 +95,7 @@ version-master:
   <<: *onlyMaster
   extends: .version-next-tag
   after_script:
-    - echo $(cat version.build)$MASTER_VERSION > version.build
+    - echo $MASTER_VERSION > version.build
     - echo "//////////////////////////////"
     - echo "Version is "+ $(cat version.build)
     - echo "//////////////////////////////"
