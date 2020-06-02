@@ -18,9 +18,11 @@ import {
   Description,
   ExitToApp
 } from '@material-ui/icons'
+import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
-  title: 'Layout|SB/App',
+  title: 'Layout|App',
   decorators: [withKnobs, withA11y]
 }
 
@@ -127,20 +129,22 @@ export const App = () => {
     menuWidth: 210
   }
   return (
-    <SBApp
-      styleProps={styleProps}
-      title={title}
-      logo={defaultLogo}
-      profilesProps={[profileProps1, profileProps2, profileProps3]}
-      menu={menu}
-      isOpen={showMenu}
-      navBarContent={
-        <div>
-          <Button onClick={action('clicked on Company')}>Company</Button>
-          <Button onClick={action('clicked on Dark mode')}>Dark mode</Button>
-        </div>
-      }
-      drawerContent={<Typography>Drawer content</Typography>}
-    />
+    <ThemeContextProvider theme={myTheme}>
+      <SBApp
+        styleProps={styleProps}
+        title={title}
+        logo={defaultLogo}
+        profilesProps={[profileProps1, profileProps2, profileProps3]}
+        menu={menu}
+        isOpen={showMenu}
+        navBarContent={
+          <div>
+            <Button onClick={action('clicked on Company')}>Company</Button>
+            <Button onClick={action('clicked on Dark mode')}>Dark mode</Button>
+          </div>
+        }
+        drawerContent={<Typography>Drawer content</Typography>}
+      />
+    </ThemeContextProvider>
   )
 }

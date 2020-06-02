@@ -1,20 +1,22 @@
 import React, {
-  useState,
   RefForwardingComponent,
+  useState,
   useImperativeHandle
 } from 'react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
 import {
-  SBStepper,
+  Stepper as SBStepper,
   SBStepperProps,
   StepDetails,
   OnNextHandles
 } from '@smartb/archetypes-ui-layout'
+import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
+import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
-  title: 'Layout|SB/Stepper',
+  title: 'Layout|Stepper',
   decorators: [withKnobs, withA11y]
 }
 
@@ -51,7 +53,18 @@ export const Stepper = () => {
     gotoStep: (newStep: number) => setStep(newStep),
     onFinish: action('finished')
   }
-  return <SBStepper {...stepperProps} />
+  return (
+    <ThemeContextProvider theme={myTheme}>
+      <SBStepper
+        stepperProps={stepperProps}
+        stepperLabel={{
+          next: 'next',
+          back: 'back',
+          finish: 'finish'
+        }}
+      />
+    </ThemeContextProvider>
+  )
 }
 
 interface Props {

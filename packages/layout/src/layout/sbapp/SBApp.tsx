@@ -1,69 +1,75 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { makeStyles, Paper, Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
-import { SBAppBar } from '../appbar/AppBar'
+import { SBAppBar } from '../Appbar/AppBar'
 import { SBDrawerMenu } from '../drawermenu/Drawermenu'
 import StyleProps from '../StyleProps'
 import { MenuItem } from '../drawermenu/menu'
 import { SBIconProfile, IconProfileProps } from '../profile'
 import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
+import {
+  themeContext,
+  Theme as SBTheme
+} from '@smartb/archetypes-ui-components'
 
-const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) =>
-  createStyles({
-    appbar: (props) => ({
-      height: `${props.appBarHeight}px`,
-      '& .MuiToolbar-root': {
-        height: '100%'
-      }
-    }),
-    drawer: (props) => ({
-      width: `${props.menuWidth}px`,
-      '& .MuiDrawer-paper': {
-        top: `${props.appBarHeight}px`,
+const useStyles = (customTheme: SBTheme) =>
+  makeStyles<Theme, StyleProps>((theme: Theme) =>
+    createStyles({
+      appbar: (props) => ({
+        height: `${props.appBarHeight}px`,
+        backgroundColor: customTheme.primaryColor,
+        '& .MuiToolbar-root': {
+          height: '100%'
+        }
+      }),
+      drawer: (props) => ({
         width: `${props.menuWidth}px`,
-        background: 'white',
-        height: `calc(100% - ${props.appBarHeight}px)`,
-        overflowX: 'hidden'
+        '& .MuiDrawer-paper': {
+          top: `${props.appBarHeight}px`,
+          width: `${props.menuWidth}px`,
+          background: 'white',
+          height: `calc(100% - ${props.appBarHeight}px)`,
+          overflowX: 'hidden'
+        }
+      }),
+      content: {
+        padding: theme.spacing(2, 2),
+        height: '100%',
+        backgroundColor: '#fafafa'
+      },
+      main: (props) => ({
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen
+        }),
+        marginTop: props.appBarHeight
+      }),
+      mainMargin: (props) => ({
+        marginLeft: props.menuWidth
+      }),
+      mainShift: {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen
+        }),
+        marginLeft: 0
+      },
+      hidder: {
+        opacity: '0.5',
+        position: 'fixed',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'black',
+        top: '0',
+        left: '0',
+        zIndex: 5
       }
-    }),
-    content: {
-      padding: theme.spacing(2, 2),
-      height: '100%',
-      backgroundColor: '#fafafa'
-    },
-    main: (props) => ({
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      marginTop: props.appBarHeight
-    }),
-    mainMargin: (props) => ({
-      marginLeft: props.menuWidth
-    }),
-    mainShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen
-      }),
-      marginLeft: 0
-    },
-    hidder: {
-      opacity: '0.5',
-      position: 'fixed',
-      height: '100%',
-      width: '100%',
-      backgroundColor: 'black',
-      top: '0',
-      left: '0',
-      zIndex: 5
-    }
-  })
-)
+    })
+  )
 
 interface Props {
   profilesProps: IconProfileProps[]
@@ -94,7 +100,8 @@ export const SBApp = ({
   styleProps,
   showAppBar
 }: Props) => {
-  const classes = useStyles(styleProps)
+  const theme = useContext(themeContext)
+  const classes = useStyles(theme)(styleProps)
   const [open, setOpen] = React.useState<boolean>(isOpen)
   const openClasses = clsx(classes.main, {
     [classes.mainMargin]: open,

@@ -2,8 +2,9 @@ import React from 'react'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
 import { Typography } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { SBPanel } from '@smartb/archetypes-ui-components'
+import { SBPanel, ThemeContextProvider } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() =>
 )
 
 export default {
-  title: 'Components|SB/Panel',
+  title: 'Components|Panel',
   decorators: [withKnobs, withA11y]
 }
 
@@ -54,24 +55,26 @@ export const Panel = () => {
   )
 
   return (
-    <SBPanel
-      className={classes.card}
-      header={header}
-      footer={footer}
-      logo={logo}
-    >
-      <Typography
-        className={classes.text}
-        variant='body2'
-        color='textSecondary'
-        component='p'
+    <ThemeContextProvider theme={myTheme}>
+      <SBPanel
+        className={classes.card}
+        header={header}
+        footer={footer}
+        logo={logo}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </Typography>
-    </SBPanel>
+        <Typography
+          className={classes.text}
+          variant='body2'
+          color='textSecondary'
+          component='p'
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Typography>
+      </SBPanel>
+    </ThemeContextProvider>
   )
 }
 
@@ -79,19 +82,21 @@ export const PanelSimplified = () => {
   const classes = useStyles()
 
   return (
-    <SBPanel className={classes.card}>
-      <Typography
-        className={classes.text}
-        variant='body2'
-        color='textSecondary'
-        component='p'
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </Typography>
-    </SBPanel>
+    <ThemeContextProvider theme={myTheme}>
+      <SBPanel className={classes.card}>
+        <Typography
+          className={classes.text}
+          variant='body2'
+          color='textSecondary'
+          component='p'
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Typography>
+      </SBPanel>
+    </ThemeContextProvider>
   )
 }
 
