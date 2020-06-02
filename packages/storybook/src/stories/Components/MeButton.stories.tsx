@@ -1,7 +1,11 @@
 import React from 'react'
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
-import { MeButton } from '@smartb/archetypes-ui-components'
+import {
+  MeButton,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
   title: 'Components|MeButton',
@@ -18,12 +22,14 @@ export const Button = () => {
   )
 
   return (
-    <MeButton
-      disabled={disabled}
-      style={{ margin: '20px auto', display: 'block', position: 'relative' }}
-      variant={variant}
-      label={children}
-      onClick={() => {}}
-    />
+    <ThemeContextProvider theme={myTheme}>
+      <MeButton
+        disabled={disabled}
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+        variant={variant}
+        label={children}
+        onClick={() => {}}
+      />
+    </ThemeContextProvider>
   )
 }

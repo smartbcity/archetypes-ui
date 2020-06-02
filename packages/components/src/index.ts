@@ -8,9 +8,13 @@ import {
 } from './DividerContent'
 import { MeButton } from './MeButton'
 import { SBPopUp, Action } from './SBPopUp'
-import { SBTestField } from './SBTestField'
+import { SBTextField } from './SBTextField'
 import { SBSelect, SBSelectItem } from './SBSelect'
-import { Theme, ThemeContextProvider } from './ThemeContextProvider'
+import {
+  Theme,
+  ThemeContextProvider,
+  themeContext
+} from './ThemeContextProvider'
 
 export {
   SBPanel,
@@ -22,9 +26,10 @@ export {
   MeButton,
   SBPopUp,
   Action,
-  SBTestField,
+  SBTextField,
   SBSelect,
   ThemeContextProvider,
   Theme,
+  themeContext,
   SBSelectItem
 }

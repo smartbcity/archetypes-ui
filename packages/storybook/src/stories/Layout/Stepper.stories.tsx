@@ -12,6 +12,8 @@ import {
 } from '@smartb/archetypes-ui-layout'
 import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
+import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
   title: 'Layout|Stepper',
@@ -52,14 +54,16 @@ export const Stepper = () => {
     onFinish: action('finished')
   }
   return (
-    <SBStepper
-      stepperProps={stepperProps}
-      stepperLabel={{
-        next: 'next',
-        back: 'back',
-        finish: 'finish'
-      }}
-    />
+    <ThemeContextProvider theme={myTheme}>
+      <SBStepper
+        stepperProps={stepperProps}
+        stepperLabel={{
+          next: 'next',
+          back: 'back',
+          finish: 'finish'
+        }}
+      />
+    </ThemeContextProvider>
   )
 }
 

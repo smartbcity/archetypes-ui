@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
-import { MeSelect, MeSelectItem } from '@smartb/archetypes-ui-components'
+import { SBSelect, SBSelectItem } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 
 export default {
@@ -13,7 +13,7 @@ export const Select = () => {
   const id = text('id', 'select1')
   const label = text('label', 'label')
   const disabled = boolean('disabled', false)
-  const items: MeSelectItem[] = [
+  const items: SBSelectItem[] = [
     {
       value: 'value1',
       label: 'item1'
@@ -24,13 +24,15 @@ export const Select = () => {
     }
   ]
   return (
-    <MeSelect
-      id={id}
-      label={label}
-      value={value}
-      disabled={disabled}
-      items={items}
-      onChange={(event) => setValue(event.target.value as string)}
-    />
+    <div style={{ width: '100px' }}>
+      <SBSelect
+        id={id}
+        label={label}
+        value={value}
+        disabled={disabled}
+        items={items}
+        onChange={(event) => setValue(event.target.value as string)}
+      />
+    </div>
   )
 }

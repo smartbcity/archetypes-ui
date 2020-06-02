@@ -1,8 +1,13 @@
 import React from 'react'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
-import { SBDividerContent, SBButton } from '@smartb/archetypes-ui-components'
+import {
+  SBDividerContent,
+  SBButton,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
   title: 'Components|DividerContent',
@@ -18,49 +23,51 @@ export const DividerContent = () => {
   )
 
   return (
-    <SBDividerContent
-      dividerText={dividerText}
-      dividerDirection={dividerDirection}
-      style={{ width: '300px' }}
-    >
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with your identity wallet
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with the mobile application
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-    </SBDividerContent>
+    <ThemeContextProvider theme={myTheme}>
+      <SBDividerContent
+        dividerText={dividerText}
+        dividerDirection={dividerDirection}
+        style={{ width: '300px' }}
+      >
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with your identity wallet
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with the mobile application
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+      </SBDividerContent>
+    </ThemeContextProvider>
   )
 }

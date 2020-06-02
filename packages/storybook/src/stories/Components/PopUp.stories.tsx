@@ -1,8 +1,13 @@
 import React from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
-import { MePopUp, Action } from '@smartb/archetypes-ui-components'
+import {
+  SBPopUp,
+  Action,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
 import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
+import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
   title: 'Components|PopUp',
@@ -26,8 +31,10 @@ export const PopUp = () => {
     }
   ]
   return (
-    <MePopUp open={open} title={title} actions={buttons} onClose={() => {}}>
-      {children}
-    </MePopUp>
+    <ThemeContextProvider theme={myTheme}>
+      <SBPopUp open={open} title={title} actions={buttons} onClose={() => {}}>
+        {children}
+      </SBPopUp>
+    </ThemeContextProvider>
   )
 }

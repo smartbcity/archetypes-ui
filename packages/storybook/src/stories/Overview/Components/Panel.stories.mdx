@@ -3,26 +3,32 @@ import {
   SBPanel,
   DividerDirection,
   SBDividerContent,
-  SBButton
+  SBButton,
+  ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
 import { Typography } from '@material-ui/core'
 import PropsTable from '../../../Docs/PropsTable'
 import { AccountCircle } from '@material-ui/icons'
+import { myTheme } from '../../../Docs/Theme/Theme'
 
-<Meta title='Overview|Components/SB/Panel' />
+<Meta title='Overview|Components/Panel' />
 
 # SmartB Panel
 
-<SBPanel style={{ position: 'relative', width: '500px', margin: '20px auto' }}>
-  <Typography
-    variant='body2'
-    color='textSecondary'
-    component='p'
-    align='center'
+<ThemeContextProvider theme={myTheme}>
+  <SBPanel
+    style={{ position: 'relative', width: '500px', margin: '20px auto' }}
   >
-    The SmartB SBPanel
-  </Typography>
-</SBPanel>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      The SmartB SBPanel
+    </Typography>
+  </SBPanel>
+</ThemeContextProvider>
 
 ## Props
 
@@ -89,214 +95,222 @@ import { AccountCircle } from '@material-ui/icons'
 ### Complete standard SBPanel
 
 <Preview>
-  <SBPanel
-    header='Connection'
-    style={{ position: 'relative', width: '500px', margin: '20px auto' }}
-    footer={
-      <SBButton
-        style={{ margin: '20px auto', position: 'relative' }}
-        disabled={true}
-      >
-        Continu
-      </SBButton>
-    }
-  >
-    <SBDividerContent style={{ width: '100%', height: '100%' }}>
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with your identity wallet
-        </Typography>
+  <ThemeContextProvider theme={myTheme}>
+    <SBPanel
+      header='Connection'
+      style={{ position: 'relative', width: '500px', margin: '20px auto' }}
+      footer={
         <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
+          style={{ margin: '20px auto', position: 'relative' }}
+          disabled={true}
         >
-          Yes
+          Continu
         </SBButton>
-      </>
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with the mobile application
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-    </SBDividerContent>
-  </SBPanel>
+      }
+    >
+      <SBDividerContent style={{ width: '100%', height: '100%' }}>
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with your identity wallet
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with the mobile application
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+      </SBDividerContent>
+    </SBPanel>
+  </ThemeContextProvider>
 </Preview>
 
 ### Logo Document
 
 <Preview>
-  <SBPanel
-    header='Connection'
-    style={{ position: 'relative', width: '500px', margin: '20px auto' }}
-    logo='document'
-    footer={
-      <SBButton
-        style={{ margin: '20px auto', position: 'relative' }}
-        disabled={true}
-      >
-        Continu
-      </SBButton>
-    }
-  >
-    <SBDividerContent
-      style={{ width: '100%', height: '100%' }}
-      dividerText='Or'
+  <ThemeContextProvider theme={myTheme}>
+    <SBPanel
+      header='Connection'
+      style={{ position: 'relative', width: '500px', margin: '20px auto' }}
+      logo='document'
+      footer={
+        <SBButton
+          style={{ margin: '20px auto', position: 'relative' }}
+          disabled={true}
+        >
+          Continu
+        </SBButton>
+      }
     >
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with your identity wallet
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with the mobile application
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-    </SBDividerContent>
-  </SBPanel>
+      <SBDividerContent
+        style={{ width: '100%', height: '100%' }}
+        dividerText='Or'
+      >
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with your identity wallet
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with the mobile application
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+      </SBDividerContent>
+    </SBPanel>
+  </ThemeContextProvider>
 </Preview>
 
 ### Custom Logo
 
 <Preview>
-  <SBPanel
-    header='Connection'
-    style={{ position: 'relative', width: '500px', margin: '20px auto' }}
-    customLogo={
-      <AccountCircle
-        style={{
-          height: '115px',
-          width: '115px',
-          position: 'relative',
-          marginLeft: '10px',
-          marginTop: '22px',
-          opacity: '15%'
-        }}
-      />
-    }
-    footer={
-      <SBButton
-        style={{ margin: '20px auto', position: 'relative' }}
-        disabled={true}
-      >
-        Continu
-      </SBButton>
-    }
-  >
-    <SBDividerContent
-      style={{ width: '100%', height: '100%' }}
-      dividerText='Or'
+  <ThemeContextProvider theme={myTheme}>
+    <SBPanel
+      header='Connection'
+      style={{ position: 'relative', width: '500px', margin: '20px auto' }}
+      customLogo={
+        <AccountCircle
+          style={{
+            height: '115px',
+            width: '115px',
+            position: 'relative',
+            marginLeft: '10px',
+            marginTop: '22px',
+            opacity: '15%'
+          }}
+        />
+      }
+      footer={
+        <SBButton
+          style={{ margin: '20px auto', position: 'relative' }}
+          disabled={true}
+        >
+          Continu
+        </SBButton>
+      }
     >
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with your identity wallet
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-      <>
-        <Typography
-          variant='body2'
-          color='textSecondary'
-          component='p'
-          align='center'
-        >
-          connect with the mobile application
-        </Typography>
-        <SBButton
-          style={{
-            margin: '20px auto',
-            display: 'block',
-            position: 'relative'
-          }}
-        >
-          Yes
-        </SBButton>
-      </>
-    </SBDividerContent>
-  </SBPanel>
+      <SBDividerContent
+        style={{ width: '100%', height: '100%' }}
+        dividerText='Or'
+      >
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with your identity wallet
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+        <>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+            align='center'
+          >
+            connect with the mobile application
+          </Typography>
+          <SBButton
+            style={{
+              margin: '20px auto',
+              display: 'block',
+              position: 'relative'
+            }}
+          >
+            Yes
+          </SBButton>
+        </>
+      </SBDividerContent>
+    </SBPanel>
+  </ThemeContextProvider>
 </Preview>
 
 ### Simplified SBPanel
 
 <Preview>
-  <SBPanel
-    style={{ position: 'relative', width: '500px', margin: '20px auto' }}
-  >
-    <Typography
-      variant='body2'
-      color='textSecondary'
-      component='p'
-      align='center'
+  <ThemeContextProvider theme={myTheme}>
+    <SBPanel
+      style={{ position: 'relative', width: '500px', margin: '20px auto' }}
     >
-      connect with the mobile application
-    </Typography>
-    <SBButton
-      style={{ margin: '20px auto', display: 'block', position: 'relative' }}
-    >
-      Yes
-    </SBButton>
-  </SBPanel>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        connect with the mobile application
+      </Typography>
+      <SBButton
+        style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+      >
+        Yes
+      </SBButton>
+    </SBPanel>
+  </ThemeContextProvider>
 </Preview>

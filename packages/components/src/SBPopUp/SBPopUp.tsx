@@ -26,7 +26,13 @@ interface SBPopUpProps {
 export const SBPopUp = (props: SBPopUpProps) => {
   const { open, onClose, actions, title, children, style, className } = props
   return (
-    <Dialog open={open} onClose={onClose} style={style} className={className}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      style={style}
+      PaperProps={{ elevation: 12 }}
+      className={className}
+    >
       {!!title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>{children ? children : ''}</DialogContent>
       <DialogActions style={{ justifyContent: 'space-around' }}>

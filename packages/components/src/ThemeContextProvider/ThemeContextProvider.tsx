@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 export interface Theme {
   primaryColor: string
   secondaryColor: string
+  tertiaryColor: string
   shadows: string[]
 }
 

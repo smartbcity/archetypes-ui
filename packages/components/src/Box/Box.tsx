@@ -103,7 +103,6 @@ export const Box = (props: BoxProps) => {
   } = props
   const theme = useContext(themeContext)
   const classes = useStyles()
-  console.log(theme)
   return (
     <Paper
       className={`${classes.card} ${className}`}

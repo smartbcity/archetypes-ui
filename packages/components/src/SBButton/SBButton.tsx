@@ -9,7 +9,7 @@ const useStyles = (theme: Theme) =>
   makeStyles(() =>
     createStyles({
       button: {
-        backgroundColor: theme.primaryColor,
+        backgroundColor: theme.secondaryColor,
         padding: '10px 30px',
         clipPath:
           'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',

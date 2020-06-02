@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     color: '#535353',
     padding: '7px 13px',
     marginBottom: '8px',
-    minHeight: '40px',
+    minHeight: '20px',
     '&::before': {
       content: 'none'
     }
@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export const SBTestField = ({
+export const SBTextField = ({
   defaultValue,
   label,
   onChange,
@@ -61,6 +61,7 @@ export const SBTestField = ({
         helperText={!isValid && errorMessage}
         FormHelperTextProps={{ classes: { root: classes.helperText } }}
         disabled={disabled}
+        InputProps={{ disableUnderline: true }}
       />
     </div>
   )

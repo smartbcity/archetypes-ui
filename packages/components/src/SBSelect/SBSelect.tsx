@@ -20,6 +20,9 @@ const useStyles = makeStyles(() =>
       minHeight: '40px',
       '&::before': {
         content: 'none'
+      },
+      '&::after': {
+        content: 'none'
       }
     }
   })

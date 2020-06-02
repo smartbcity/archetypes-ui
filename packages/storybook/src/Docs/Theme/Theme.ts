@@ -13,8 +13,13 @@ const getSecondaryColor = (color: string | null) => {
   return color ? color : '#edba27'
 }
 
-const getShadows = (shadow: string | null) => {
+const getTertiaryColor = (color: string | null) => {
+  return color ? color : '#e0e0e0'
+}
+
+export const getShadows = (shadow: string | null) => {
   if (shadow === null) shadow = '0px 3px 10px 0 rgba(0,0,0,0.1)'
+  const origin = shadow
   shadow = shadow.replace(/px/g, '')
   let shadowTab = shadow.split(' ')
   let color = shadowTab[shadowTab.length - 1]
@@ -26,8 +31,8 @@ const getShadows = (shadow: string | null) => {
   let shadowNumbers = shadowTab.map((element) => Number(element))
   const shadowMultipliers = shadowNumbers.map((element) => round(element / 4))
   let shadows: string[] = []
-  shadows[0] = ''
-  shadows[1] = '0 3px 10px 0 rgba(0,0,0,0.1)'
+  shadows[0] = '0 0px 0px 0 rgba(0,0,0,0)'
+  shadows[1] = origin
   for (var i = 2; i < 25; i++) {
     shadowNumbers = shadowNumbers.map(
       (number, index) => number + shadowMultipliers[index]
@@ -45,6 +50,7 @@ const getShadows = (shadow: string | null) => {
 export const myTheme: Theme = {
   primaryColor: getPrimaryColor(localStorage.getItem('primaryColor')),
   secondaryColor: getSecondaryColor(localStorage.getItem('secondaryColor')),
+  tertiaryColor: getTertiaryColor(localStorage.getItem('tertiaryColor')),
   shadows: getShadows(localStorage.getItem('shadow'))
 }
 
