@@ -1,13 +1,13 @@
 import { SBAppBar } from './layout/Appbar'
-import { SBDrawerDetails } from './layout/drawerDetails'
+import { SBDrawerDetails } from './layout/DrawerDetails'
 import {
   Menu,
   MenuItem,
   SBDrawerMenu,
   SimpleMenuItem
-} from './layout/drawermenu'
-import { SBIconProfile, IconProfileProps } from './layout/profile'
-import { SBApp } from './layout/sbapp'
+} from './layout/Drawermenu'
+import { SBIconProfile, IconProfileProps } from './layout/Profile'
+import { SBApp } from './layout/SBApp'
 import StyleProps from './layout/StyleProps'
 import {
   OnNextHandles,
@@ -18,7 +18,7 @@ import {
 import { TabsMenu as SBTabsMenu } from './layout/TabsMenu'
 import { ItemsLayout as SBItemsLayout } from './layout/ItemsLayout'
 import { PanelProfile as SBPanelProfile } from './layout/PanelProfile'
-import { MeStepper as Stepper } from './layout/MeStepper'
+import { Stepper } from './layout/Stepper'
 
 export {
   SBAppBar,

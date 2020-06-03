@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from '../drawermenu/menu'
+import { Menu } from '../Drawermenu/menu'
 import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 

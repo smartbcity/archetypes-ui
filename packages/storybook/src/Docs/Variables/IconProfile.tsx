@@ -15,6 +15,7 @@ export const MultipleSectionMenu: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -25,6 +26,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -35,6 +37,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -45,6 +48,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -57,6 +61,7 @@ export const MultipleSectionMenu: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -67,6 +72,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -77,6 +83,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -87,6 +94,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -99,6 +107,7 @@ export const MultipleSectionMenu: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -109,6 +118,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -119,6 +129,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -129,6 +140,7 @@ export const MultipleSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -153,6 +165,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -163,6 +176,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -173,6 +187,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -189,6 +204,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -199,6 +215,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -209,6 +226,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -225,6 +243,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -235,6 +254,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -245,6 +265,7 @@ export const MultipleSectionMenuWithoutIcon: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -265,6 +286,7 @@ export const OneSectionMenu: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -275,6 +297,7 @@ export const OneSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -285,6 +308,7 @@ export const OneSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -295,6 +319,7 @@ export const OneSectionMenu: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -315,6 +340,7 @@ export const OneSectionMenuFull: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -325,6 +351,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -335,6 +362,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -345,6 +373,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -355,6 +384,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -365,6 +395,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -375,6 +406,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -385,6 +417,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -395,6 +428,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -405,6 +439,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -415,6 +450,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -425,6 +461,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -435,6 +472,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -445,6 +483,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -455,6 +494,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -465,6 +505,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -475,6 +516,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -485,6 +527,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -495,6 +538,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -505,6 +549,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -515,6 +560,7 @@ export const OneSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -535,6 +581,7 @@ export const MultipleSectionMenuFull: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -545,6 +592,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -555,6 +603,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -565,6 +614,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -575,6 +625,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -585,6 +636,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -595,6 +647,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -605,6 +658,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -615,6 +669,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -625,6 +680,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -635,6 +691,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -645,6 +702,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -655,6 +713,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -665,6 +724,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -675,6 +735,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -685,6 +746,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -695,6 +757,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -705,6 +768,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -715,6 +779,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -725,6 +790,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -735,6 +801,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -747,6 +814,7 @@ export const MultipleSectionMenuFull: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -757,6 +825,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -767,6 +836,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -777,6 +847,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }
@@ -789,6 +860,7 @@ export const MultipleSectionMenuFull: Menu = {
         <img
           style={{ width: '30px', height: '30px', margin: '0' }}
           src={defaultLogo}
+          alt='smart b'
         ></img>
       ),
       items: [
@@ -799,6 +871,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -809,6 +882,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         },
@@ -819,6 +893,7 @@ export const MultipleSectionMenuFull: Menu = {
             <img
               style={{ width: '60px', height: '60px' }}
               src={defaultLogo}
+              alt='smart b'
             ></img>
           )
         }

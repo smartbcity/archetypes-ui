@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import { MenuItem } from './menu'
 import StyleProps from '../StyleProps'
-import { IconProfileProps } from '../profile'
+import { IconProfileProps } from '../Profile'
 import { PanelProfile } from '../PanelProfile'
 
 // TODO style only on desktop size
