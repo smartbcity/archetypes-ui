@@ -2,8 +2,8 @@ import React, { CSSProperties, useContext } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
-import { MeStepConnector } from './MeStepConnector'
-import { MeStepEmptyIcon, MeStepIcon } from './MeStepIcon'
+import { MeStepConnector } from './StepConnector'
+import { MeStepEmptyIcon, MeStepIcon } from './StepIcon'
 import { SBStepper, SBStepperProps, SBStepperLabel } from '../sbstepper'
 import { themeContext, Theme } from '@smartb/archetypes-ui-components'
 
@@ -41,7 +41,7 @@ export interface Props {
   style?: CSSProperties
 }
 
-export const MeStepper = (props: Props) => {
+export const Stepper = (props: Props) => {
   const { stepperProps, empty = false, stepperLabel } = props
   const theme = useContext(themeContext)
   const classes = useStyles(theme)()

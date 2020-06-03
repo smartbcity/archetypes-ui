@@ -1,97 +1,119 @@
-import React from 'react';
-import {Menu as SBMenu} from '../drawermenu/menu';
-import {createStyles, makeStyles} from '@material-ui/core/styles';
-import {ExpandMore} from "@material-ui/icons";
-import { ExpansionPanel, ExpansionPanelSummary, ListItemIcon, ListItemText, ExpansionPanelDetails, ListItem, List } from '@material-ui/core';
+import React from 'react'
+import { Menu as SBMenu } from '../Drawermenu/menu'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { ExpandMore } from '@material-ui/icons'
+import {
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ListItemIcon,
+  ListItemText,
+  ExpansionPanelDetails,
+  ListItem,
+  List
+} from '@material-ui/core'
 
 const useStyles = makeStyles(() =>
   createStyles({
     profile: {
-      boxShadow:"none !important",
-      background:"transparent",
-      "&:before" : {
-        height:"0px"
+      boxShadow: 'none !important',
+      background: 'transparent',
+      '&:before': {
+        height: '0px'
       }
     },
     summary: {
-      minHeight:"0px",
-      padding:"0 10px"
+      minHeight: '0px',
+      padding: '0 10px'
     },
     content: {
-      margin:"10px 0px !important"
+      margin: '10px 0px !important'
     },
     expanded: {
-      margin:"0 !important"
+      margin: '0 !important'
     },
     expandedSummary: {
-      minHeight:"0px !important",
+      minHeight: '0px !important'
     },
     list: {
-      width: "100%",
-      padding:"0"
+      width: '100%',
+      padding: '0'
     },
     details: {
-      padding: "0",
-      background:"#f5f5f5"
+      padding: '0',
+      background: '#f5f5f5'
     },
     icon: {
-      alignItems:"center"
+      alignItems: 'center'
     }
-  }),
-);
-
+  })
+)
 
 interface PanelProfileProps {
-    menu: SBMenu;
-    style?: React.CSSProperties;
-    className?: string;
+  menu: SBMenu
+  style?: React.CSSProperties
+  className?: string
 }
 
-export const PanelProfile = (props:PanelProfileProps) => {
-    const {menu, style, className} = props;
-    const classes = useStyles();
+export const PanelProfile = (props: PanelProfileProps) => {
+  const { menu, style, className } = props
+  const classes = useStyles()
 
-    return (
-        <ExpansionPanel className={`${classes.profile} ${className}`} style={style} classes={{expanded: classes.expanded}}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMore />}
-          className={classes.summary}
-          classes={{expanded: classes.expandedSummary, content: classes.content}}
-        >
-          <ListItemIcon>{menu.icon}</ListItemIcon>
-          <ListItemText primary={menu.label} />
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
-            <List className={classes.list}>
-                {menu.items && menu.items.length <= 1 ? 
-                menu.items[0].items && menu.items[0].items.map(item => (
-                    <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
-                        {item.icon &&
-                          <ListItemIcon classes={{root:classes.icon}}>
-                            {item.icon}
-                          </ListItemIcon>
-                        }
-                        <ListItemText primary={item.label} />
-                    </ListItem> 
-                ))
-                :
-                menu.items && menu.items.map((item) => {
-                    return item.items ? (
-                        <PanelProfile key={item.key} menu={item}/>
-                    )
-                    : (
-                        <ListItem button key={item.key} onClick={() => item.goto && item.goto()}>
-                            {item.icon &&
-                              <ListItemIcon classes={{root:classes.icon}}>
-                                {item.icon}
-                              </ListItemIcon>
-                            }
-                            <ListItemText primary={item.label} />
-                        </ListItem> 
-                    )
-                })}
-            </List>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    )
+  return (
+    <ExpansionPanel
+      className={`${classes.profile} ${className}`}
+      style={style}
+      classes={{ expanded: classes.expanded }}
+    >
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMore />}
+        className={classes.summary}
+        classes={{
+          expanded: classes.expandedSummary,
+          content: classes.content
+        }}
+      >
+        <ListItemIcon>{menu.icon}</ListItemIcon>
+        <ListItemText primary={menu.label} />
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails className={classes.details}>
+        <List className={classes.list}>
+          {menu.items && menu.items.length <= 1
+            ? menu.items[0].items &&
+              menu.items[0].items.map((item) => (
+                <ListItem
+                  button
+                  key={item.key}
+                  onClick={() => item.goto && item.goto()}
+                >
+                  {item.icon && (
+                    <ListItemIcon classes={{ root: classes.icon }}>
+                      {item.icon}
+                    </ListItemIcon>
+                  )}
+                  <ListItemText primary={item.label} />
+                </ListItem>
+              ))
+            : menu.items &&
+              menu.items.map((item) => {
+                return item.items ? (
+                  <PanelProfile key={item.key} menu={item} />
+                ) : (
+                  <ListItem
+                    button
+                    key={item.key}
+                    onClick={() => item.goto && item.goto()}
+                  >
+                    {item.icon && (
+                      <ListItemIcon classes={{ root: classes.icon }}>
+                        {item.icon}
+                      </ListItemIcon>
+                    )}
+                    <ListItemText primary={item.label} />
+                  </ListItem>
+                )
+              })}
+        </List>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+  )
 }
