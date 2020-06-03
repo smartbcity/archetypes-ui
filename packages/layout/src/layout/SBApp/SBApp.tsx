@@ -6,7 +6,7 @@ import { SBAppBar } from '../Appbar/AppBar'
 import { SBDrawerMenu } from '../Drawermenu/Drawermenu'
 import StyleProps from '../StyleProps'
 import { MenuItem } from '../Drawermenu/menu'
-import { SBIconProfile, IconProfileProps } from '../profile'
+import { SBIconProfile, IconProfileProps } from '../Profile'
 import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
 import {
