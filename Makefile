@@ -17,12 +17,11 @@ package-libs:
 	@yarn workspaces run build
 
 push-libs:
-	@lerna publish from-git
+	#@lerna publish from-git
 
 push-latest-libs:
 	@docker tag ${STORYBOOK_IMG} ${STORYBOOK_LATEST}
 	@docker push ${STORYBOOK_LATEST}
-
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
