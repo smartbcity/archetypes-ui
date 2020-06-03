@@ -1,5 +1,5 @@
 {
-  "name": "@smartb/r2-storybook",
+  "name": "@smartb/archetypes-storybook",
   "repository": "https://gitlab.smartb.city/app/archetypes-ui.git",
   "author": "Adrien Poupard <adrien@smartb.city>",
   "license": "Apache-2.0",
@@ -25,7 +25,8 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "babel-loader": "^8.1.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^5.3.18",
