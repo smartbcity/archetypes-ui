@@ -25,7 +25,6 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "babel-loader": "^8.1.0",
     "react": "^16.0.0"
   },
   "devDependencies": {
@@ -42,6 +41,7 @@
     "@storybook/addons": "next",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "next",
+    "babel-loader": "^8.1.0",
     "react-scripts": "^3.4.1",
     "ts-loader": "^7.0.1"
   },

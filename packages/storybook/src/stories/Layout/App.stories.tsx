@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { withKnobs, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -27,6 +27,7 @@ export default {
 }
 
 export const App = () => {
+  const [open, setOpen] = useState(window.innerWidth > 768)
   const title = text('title', 'Smartb')
   const profileMenu: Menu = {
     key: 'Settings',
@@ -96,7 +97,10 @@ export const App = () => {
   const menu: MenuItem[] = [
     {
       key: 'dashboard',
-      goto: action('clicked on dashboard'),
+      goto: () => {
+        action('clicked on dashboard')
+        window.innerWidth <= 768 && setOpen(!open)
+      },
       label: 'dashboard',
       icon: (
         <img style={{ width: '30px', height: '30px' }} src={defaultLogo}></img>
@@ -104,7 +108,10 @@ export const App = () => {
     },
     {
       key: 'activities',
-      goto: action('clicked on activities'),
+      goto: () => {
+        action('clicked on activities')
+        window.innerWidth <= 768 && setOpen(!open)
+      },
       label: 'activities',
       icon: (
         <img style={{ width: '30px', height: '30px' }} src={defaultLogo}></img>
@@ -112,17 +119,16 @@ export const App = () => {
     },
     {
       key: 'application',
-      goto: action('clicked on application'),
+      goto: () => {
+        action('clicked on application')
+        window.innerWidth <= 768 && setOpen(!open)
+      },
       label: 'application',
       icon: (
         <img style={{ width: '30px', height: '30px' }} src={defaultLogo}></img>
       )
     }
   ]
-  let showMenu = false
-  if (window.innerWidth > 768) {
-    showMenu = true
-  }
   const styleProps: StyleProps = {
     appBarHeight: 90,
     detailDrawerWidth: 600,
@@ -136,7 +142,8 @@ export const App = () => {
         logo={defaultLogo}
         profilesProps={[profileProps1, profileProps2, profileProps3]}
         menu={menu}
-        isOpen={showMenu}
+        open={open}
+        onToggle={() => setOpen(!open)}
         navBarContent={
           <div>
             <Button onClick={action('clicked on Company')}>Company</Button>
