@@ -34,11 +34,11 @@ const useStyles = (customTheme: SBTheme) =>
           overflowX: 'hidden'
         }
       }),
-      content: {
+      content: (props) => ({
         padding: theme.spacing(2, 2),
-        height: '100%',
+        height: `calc(100% - ${props.appBarHeight}px)`,
         backgroundColor: '#fafafa'
-      },
+      }),
       main: (props) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
@@ -77,11 +77,12 @@ interface Props {
   menu?: MenuItem[]
   children?: React.ReactNode
   logo: string
-  isOpen: boolean
+  open: boolean
   title?: string
   styleProps: StyleProps
   showAppBar: boolean
   drawerContent?: React.ReactNode
+  onToggle: () => void
 }
 
 const defaultProps = {
@@ -94,15 +95,15 @@ export const SBApp = ({
   navBarContent,
   drawerContent,
   menu,
-  isOpen,
+  open,
   title,
   logo,
   styleProps,
-  showAppBar
+  showAppBar,
+  onToggle
 }: Props) => {
   const theme = useContext(themeContext)
   const classes = useStyles(theme)(styleProps)
-  const [open, setOpen] = React.useState<boolean>(isOpen)
   const openClasses = clsx(classes.main, {
     [classes.mainMargin]: open,
     [classes.mainShift]: !open
@@ -118,16 +119,10 @@ export const SBApp = ({
     setInnerWidth(window.innerWidth)
   }, 500)
 
-  const urlChanged = () => {
-    if (window.innerWidth < 768) setOpen(false)
-  }
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
-    window.addEventListener('popstate', urlChanged)
     return () => {
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('popstate', urlChanged)
     }
   }, [])
 
@@ -139,7 +134,7 @@ export const SBApp = ({
             className={classes.appbar}
             logo={logo}
             drawerOpen={open}
-            onDrawerOpen={() => setOpen(!open)}
+            onDrawerOpen={onToggle}
             title={title}
             profiles={
               window.innerWidth > 400 &&
@@ -167,9 +162,13 @@ export const SBApp = ({
           style={{
             display: window.innerWidth < 768 && open ? 'block' : 'none'
           }}
-          onClick={() => setOpen(!open)}
+          onClick={onToggle}
         />
-        <Paper square className={classes.content} elevation={0}>
+        <Paper
+          square
+          className={`${classes.content} App-container`}
+          elevation={0}
+        >
           {children}
         </Paper>
       </main>

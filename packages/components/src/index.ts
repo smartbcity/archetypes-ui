@@ -10,6 +10,7 @@ import { MeButton } from './MeButton'
 import { SBPopUp, Action } from './SBPopUp'
 import { SBTextField } from './SBTextField'
 import { SBSelect, SBSelectItem } from './SBSelect'
+import { DatePicker } from './DatePicker'
 import {
   Theme,
   ThemeContextProvider,
@@ -31,5 +32,6 @@ export {
   ThemeContextProvider,
   Theme,
   themeContext,
-  SBSelectItem
+  SBSelectItem,
+  DatePicker
 }
