@@ -60,6 +60,8 @@ Demo: https://design.inrupt.com/atomic-core/?cat=Organisms#Navigation =>
 
 ```
 lerna version 0.0.1 --no-git-tag-version
+
+lerna publish from-package
 ```
 
 ## Init Project
