@@ -18,7 +18,7 @@ import {
 import { TabsMenu as SBTabsMenu } from './layout/TabsMenu'
 import { ItemsLayout as SBItemsLayout } from './layout/ItemsLayout'
 import { PanelProfile as SBPanelProfile } from './layout/PanelProfile'
-import { Stepper } from './layout/Stepper'
+import { Stepper, StepperImg } from './layout/Stepper'
 
 export {
   SBAppBar,
@@ -38,5 +38,6 @@ export {
   SBTabsMenu,
   SBItemsLayout,
   SBPanelProfile,
-  Stepper
+  Stepper,
+  StepperImg
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Theme, Hidden } from '@material-ui/core'
+import { Grid, Hidden } from '@material-ui/core'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
@@ -17,13 +17,13 @@ const useStyles = makeStyles(() =>
   })
 )
 
-interface MeStepperImgProps {
+interface StepperImgProps {
   className?: string
   img: string
   children: React.ReactNode
 }
 
-const MeStepperImg = (props: MeStepperImgProps) => {
+export const StepperImg = (props: StepperImgProps) => {
   const { img, children, className } = props
   const classes = useStyles()
 
@@ -46,5 +46,3 @@ const MeStepperImg = (props: MeStepperImgProps) => {
     </Grid>
   )
 }
-
-export default MeStepperImg
