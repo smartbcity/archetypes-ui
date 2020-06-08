@@ -30,14 +30,16 @@ const useStyles = (customTheme: SBTheme) =>
           top: `${props.appBarHeight}px`,
           width: `${props.menuWidth}px`,
           background: 'white',
-          height: `calc(100% - ${props.appBarHeight}px)`,
+          height: `calc(100vh - ${props.appBarHeight}px)`,
           overflowX: 'hidden'
         }
       }),
       content: (props) => ({
         padding: theme.spacing(2, 2),
-        height: `calc(100% - ${props.appBarHeight}px)`,
-        backgroundColor: '#fafafa'
+        height: `calc(100vh - ${props.appBarHeight}px)`,
+        backgroundColor: '#fafafa',
+        overflow:"auto",
+        overflowX: 'hidden'
       }),
       main: (props) => ({
         flexGrow: 1,
@@ -61,8 +63,8 @@ const useStyles = (customTheme: SBTheme) =>
       hidder: {
         opacity: '0.5',
         position: 'fixed',
-        height: '100%',
-        width: '100%',
+        height: '100vh',
+        width: '100vw',
         backgroundColor: 'black',
         top: '0',
         left: '0',
