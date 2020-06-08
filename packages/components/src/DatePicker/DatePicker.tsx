@@ -49,7 +49,7 @@ export const DatePicker = (props: DatePickerProps) => {
     <div>
       {label && (
         <InputLabel
-          className={`${classes.listLabel} ${labelClassName}`}
+          className={`${labelClassName} ${classes.listLabel}`}
         >
           {label}
         </InputLabel>
@@ -58,7 +58,7 @@ export const DatePicker = (props: DatePickerProps) => {
         value={value ? value.toString() : ''}
         onChange={(event) => onChange(event.target.value)}
         type='date'
-        className={`${classes.date} ${inputClassName}`}
+        className={`${inputClassName} ${classes.date}`}
       />
     </div>
   )
