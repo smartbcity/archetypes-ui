@@ -37,7 +37,9 @@ const useStyles = (customTheme: SBTheme) =>
       content: (props) => ({
         padding: theme.spacing(2, 2),
         height: `calc(100vh - ${props.appBarHeight}px)`,
-        backgroundColor: '#fafafa'
+        backgroundColor: '#fafafa',
+        overflow:"auto",
+        overflowX: 'hidden'
       }),
       main: (props) => ({
         flexGrow: 1,
