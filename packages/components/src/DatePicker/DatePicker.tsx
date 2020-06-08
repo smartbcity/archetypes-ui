@@ -25,11 +25,10 @@ const useStyles = (theme: Theme) =>
         fontWeight: 300,
         color: '#797979',
         minHeight: '26px',
-        width: '100%',
-        maxWidth: '200px',
+        width: '200px',
+        maxWidth:"100%",
         border: 'none',
-        outline: 'none',
-        cursor: 'pointer'
+        outline: 'none'
       }
     })
   )
@@ -50,7 +49,7 @@ export const DatePicker = (props: DatePickerProps) => {
     <div>
       {label && (
         <InputLabel
-          className={`${classes.listLabel} ${labelClassName && labelClassName}`}
+          className={`${classes.listLabel} ${labelClassName}`}
         >
           {label}
         </InputLabel>
@@ -59,7 +58,7 @@ export const DatePicker = (props: DatePickerProps) => {
         value={value ? value.toString() : ''}
         onChange={(event) => onChange(event.target.value)}
         type='date'
-        className={`${classes.date} ${inputClassName && inputClassName}`}
+        className={`${classes.date} ${inputClassName}`}
       />
     </div>
   )
