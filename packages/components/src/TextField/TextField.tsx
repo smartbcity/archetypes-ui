@@ -1,8 +1,14 @@
 import React from 'react'
-import { InputLabel, TextField } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import {
+  InputLabel,
+  TextField as MuiTextField,
+  TextFieldProps as MuiTextFieldProps,
+  makeStyles
+} from '@material-ui/core'
 
-interface Props {
+import {BasicProps} from "../Types";
+
+export interface TextFieldProps extends BasicProps {
   defaultValue: string
   label: string
   onChange: (value: string) => void
@@ -10,10 +16,11 @@ interface Props {
   errorMessage?: string
   type?: string
   disabled?: boolean
+  muiTextFieldProps?: Partial<MuiTextFieldProps>
 }
 
 const useStyles = makeStyles(() => ({
-  formcontrol: {
+  formControl: {
     width: '100%',
     borderRadius: '21.6px',
     boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.09)',
@@ -35,23 +42,22 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export const SBTextField = ({
-  defaultValue,
-  label,
-  onChange,
-  isValid = true,
-  errorMessage,
-  type = 'text',
-  disabled = false
-}: Props) => {
+export const TextField = (props: TextFieldProps) => {
+  const {
+    defaultValue, label, onChange, isValid = true,
+    errorMessage, type = 'text', disabled = false,
+    id, style, className, muiTextFieldProps
+  } = props
   const classes = useStyles()
 
+  // https://github.com/mui-org/material-ui/issues/20716
+  const fixedTextFieldProps: Partial<MuiTextFieldProps> = {...muiTextFieldProps, variant: "standard"}
   return (
     <div>
       <InputLabel className={classes.label}>{label}</InputLabel>
-      <TextField
+      <MuiTextField
         required
-        className={classes.formcontrol}
+        className={`${className} ${classes.formControl}`}
         fullWidth
         value={defaultValue}
         margin='none'
@@ -59,9 +65,12 @@ export const SBTextField = ({
         onChange={(it) => onChange(it.target.value)}
         error={!isValid}
         helperText={!isValid && errorMessage}
-        FormHelperTextProps={{ classes: { root: classes.helperText } }}
+        FormHelperTextProps={{classes: {root: classes.helperText}}}
         disabled={disabled}
-        InputProps={{ disableUnderline: true }}
+        InputProps={{disableUnderline: true}}
+        id={id}
+        style={style}
+        {...fixedTextFieldProps}
       />
     </div>
   )

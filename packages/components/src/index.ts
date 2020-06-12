@@ -8,7 +8,7 @@ import {
 } from './DividerContent'
 import { MeButton } from './MeButton'
 import { SBPopUp, Action } from './SBPopUp'
-import { SBTextField } from './SBTextField'
+import { TextField } from './TextField'
 import { SBSelect, SBSelectItem } from './SBSelect'
 import { DatePicker } from './DatePicker'
 import {
@@ -27,7 +27,7 @@ export {
   MeButton,
   SBPopUp,
   Action,
-  SBTextField,
+  TextField,
   SBSelect,
   ThemeContextProvider,
   Theme,
