@@ -1,1 +1,1 @@
-export * from './BasicProps'
+export * from './Types'

@@ -6,7 +6,7 @@ import {
   makeStyles
 } from '@material-ui/core'
 
-import {BasicProps} from "../Types";
+import { BasicProps, MergeMuiElementProps } from '../Types'
 
 export interface TextFieldProps extends BasicProps {
   defaultValue: string
@@ -16,7 +16,6 @@ export interface TextFieldProps extends BasicProps {
   errorMessage?: string
   type?: string
   disabled?: boolean
-  muiTextFieldProps?: Partial<MuiTextFieldProps>
 }
 
 const useStyles = makeStyles(() => ({
@@ -42,16 +41,29 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export const TextField = (props: TextFieldProps) => {
+type Props = MergeMuiElementProps<MuiTextFieldProps, TextFieldProps>
+
+export const TextField = (props: Props) => {
   const {
-    defaultValue, label, onChange, isValid = true,
-    errorMessage, type = 'text', disabled = false,
-    id, style, className, muiTextFieldProps
+    defaultValue,
+    label,
+    onChange,
+    isValid = true,
+    errorMessage,
+    type = 'text',
+    disabled = false,
+    id,
+    style,
+    className,
+    ...other
   } = props
   const classes = useStyles()
 
   // https://github.com/mui-org/material-ui/issues/20716
-  const fixedTextFieldProps: Partial<MuiTextFieldProps> = {...muiTextFieldProps, variant: "standard"}
+  const fixedTextFieldProps: Partial<MuiTextFieldProps> = {
+    ...other,
+    variant: 'standard'
+  }
   return (
     <div>
       <InputLabel className={classes.label}>{label}</InputLabel>
@@ -65,9 +77,9 @@ export const TextField = (props: TextFieldProps) => {
         onChange={(it) => onChange(it.target.value)}
         error={!isValid}
         helperText={!isValid && errorMessage}
-        FormHelperTextProps={{classes: {root: classes.helperText}}}
+        FormHelperTextProps={{ classes: { root: classes.helperText } }}
         disabled={disabled}
-        InputProps={{disableUnderline: true}}
+        InputProps={{ disableUnderline: true }}
         id={id}
         style={style}
         {...fixedTextFieldProps}
