@@ -11,6 +11,8 @@ import {
   ListItem,
   List
 } from '@material-ui/core'
+import { BasicProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -48,20 +50,19 @@ const useStyles = makeStyles(() =>
   })
 )
 
-interface PanelProfileProps {
+interface ToolsPanelProps extends BasicProps {
   menu: SBMenu
-  style?: React.CSSProperties
-  className?: string
 }
 
-export const PanelProfile = (props: PanelProfileProps) => {
-  const { menu, style, className } = props
+export const ToolsPanel = (props: ToolsPanelProps) => {
+  const { menu, style, className, id } = props
   const classes = useStyles()
 
   return (
     <ExpansionPanel
-      className={`${classes.profile} ${className}`}
+      className={clsx(classes.profile, 'AruiToolsPanel-root', className)}
       style={style}
+      id={id}
       classes={{ expanded: classes.expanded }}
     >
       <ExpansionPanelSummary
@@ -96,7 +97,7 @@ export const PanelProfile = (props: PanelProfileProps) => {
             : menu.items &&
               menu.items.map((item) => {
                 return item.items ? (
-                  <PanelProfile key={item.key} menu={item} />
+                  <ToolsPanel key={item.key} menu={item} />
                 ) : (
                   <ListItem
                     button

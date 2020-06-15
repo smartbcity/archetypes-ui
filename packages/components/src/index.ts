@@ -1,15 +1,12 @@
-import { Panel as SBPanel } from './Panel'
-import { Card as SBCard } from './Card'
-import { Box as SBBox } from './Box'
+import { Panel } from './Panel'
+import { Card } from './Card'
+import { Box } from './Box'
 import { SBButton } from './SBButton'
-import {
-  DividerContent as SBDividerContent,
-  Direction as DividerDirection
-} from './DividerContent'
-import { MeButton } from './MeButton'
-import { SBPopUp, Action } from './SBPopUp'
+import { DividerContent, Direction as DividerDirection } from './DividerContent'
+import { Button } from './Button'
+import { PopUp, Action } from './PopUp'
 import { TextField } from './TextField'
-import { SBSelect, SBSelectItem } from './SBSelect'
+import { Select, SelectItem } from './Select'
 import { DatePicker } from './DatePicker'
 import {
   Theme,
@@ -18,20 +15,20 @@ import {
 } from './ThemeContextProvider'
 
 export {
-  SBPanel,
-  SBBox,
-  SBCard,
-  SBDividerContent,
+  Panel,
+  Box,
+  Card,
+  DividerContent,
   DividerDirection,
   SBButton,
-  MeButton,
-  SBPopUp,
+  Button,
+  PopUp,
   Action,
   TextField,
-  SBSelect,
+  Select,
   ThemeContextProvider,
   Theme,
   themeContext,
-  SBSelectItem,
+  SelectItem,
   DatePicker
 }

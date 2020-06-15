@@ -1,7 +1,7 @@
 import React from 'react'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
 import {
-  SBDividerContent,
+  DividerContent as AruiDividerContent,
   SBButton,
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
@@ -24,7 +24,7 @@ export const DividerContent = () => {
 
   return (
     <ThemeContextProvider theme={myTheme}>
-      <SBDividerContent
+      <AruiDividerContent
         dividerText={dividerText}
         dividerDirection={dividerDirection}
         style={{ width: '300px' }}
@@ -67,7 +67,7 @@ export const DividerContent = () => {
             Yes
           </SBButton>
         </>
-      </SBDividerContent>
+      </AruiDividerContent>
     </ThemeContextProvider>
   )
 }

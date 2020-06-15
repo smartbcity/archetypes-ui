@@ -2,7 +2,10 @@ import React from 'react'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
 import { Typography } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { SBPanel, ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import {
+  Panel as AruiPanel,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { myTheme } from '../../Docs/Theme/Theme'
 
@@ -56,7 +59,7 @@ export const Panel = () => {
 
   return (
     <ThemeContextProvider theme={myTheme}>
-      <SBPanel
+      <AruiPanel
         className={classes.card}
         header={header}
         footer={footer}
@@ -73,7 +76,7 @@ export const Panel = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </Typography>
-      </SBPanel>
+      </AruiPanel>
     </ThemeContextProvider>
   )
 }
@@ -83,7 +86,7 @@ export const PanelSimplified = () => {
 
   return (
     <ThemeContextProvider theme={myTheme}>
-      <SBPanel className={classes.card}>
+      <AruiPanel className={classes.card}>
         <Typography
           className={classes.text}
           variant='body2'
@@ -95,7 +98,7 @@ export const PanelSimplified = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </Typography>
-      </SBPanel>
+      </AruiPanel>
     </ThemeContextProvider>
   )
 }

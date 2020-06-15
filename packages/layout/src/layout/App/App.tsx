@@ -2,11 +2,11 @@ import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { makeStyles, Paper, Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
-import { SBAppBar } from '../Appbar/AppBar'
-import { SBDrawerMenu } from '../Drawermenu/Drawermenu'
+import { AppBar, AppBarProps } from '../Appbar/AppBar'
+import { DrawerMenu, DrawerMenuProps } from '../Drawermenu/Drawermenu'
 import StyleProps from '../StyleProps'
 import { MenuItem } from '../Drawermenu/menu'
-import { SBIconProfile, IconProfileProps } from '../Profile'
+import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
 import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
 import {
@@ -38,7 +38,7 @@ const useStyles = (customTheme: SBTheme) =>
         padding: theme.spacing(2, 2),
         height: `calc(100vh - ${props.appBarHeight}px)`,
         backgroundColor: '#fafafa',
-        overflow:"auto",
+        overflow: 'auto',
         overflowX: 'hidden'
       }),
       main: (props) => ({
@@ -73,8 +73,20 @@ const useStyles = (customTheme: SBTheme) =>
     })
   )
 
+interface AppClasses {
+  main?: string
+  content?: string
+}
+
+interface AppStyles {
+  main?: React.CSSProperties
+  content?: React.CSSProperties
+}
+
 interface Props {
-  profilesProps: IconProfileProps[]
+  toolsMenuProps: ToolsMenuProps[]
+  appBarProps?: AppBarProps
+  drawerMenuProps?: DrawerMenuProps
   navBarContent?: React.ReactNode
   menu?: MenuItem[]
   children?: React.ReactNode
@@ -85,30 +97,37 @@ interface Props {
   showAppBar: boolean
   drawerContent?: React.ReactNode
   onToggle: () => void
+  classes?: AppClasses
+  styles?: AppStyles
 }
 
 const defaultProps = {
   showAppBar: true
 }
 
-export const SBApp = ({
-  children,
-  profilesProps,
-  navBarContent,
-  drawerContent,
-  menu,
-  open,
-  title,
-  logo,
-  styleProps,
-  showAppBar,
-  onToggle
-}: Props) => {
+export const App = (props: Props) => {
+  const {
+    children,
+    toolsMenuProps,
+    appBarProps,
+    drawerMenuProps,
+    navBarContent,
+    drawerContent,
+    menu,
+    open,
+    title,
+    logo,
+    styleProps,
+    showAppBar,
+    classes,
+    styles,
+    onToggle
+  } = props
   const theme = useContext(themeContext)
-  const classes = useStyles(theme)(styleProps)
-  const openClasses = clsx(classes.main, {
-    [classes.mainMargin]: open,
-    [classes.mainShift]: !open
+  const defaultClasses = useStyles(theme)(styleProps)
+  const openClasses = clsx(defaultClasses.main, {
+    [defaultClasses.mainMargin]: open,
+    [defaultClasses.mainShift]: !open
   })
   const forceUpdate = useForceUpdate()
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
@@ -132,35 +151,41 @@ export const SBApp = ({
     <React.Fragment>
       {showAppBar && (
         <Fragment>
-          <SBAppBar
-            className={classes.appbar}
+          <AppBar
+            className={defaultClasses.appbar}
             logo={logo}
-            drawerOpen={open}
             onDrawerOpen={onToggle}
             title={title}
             profiles={
               window.innerWidth > 400 &&
-              profilesProps.map((profileProps, index) => (
-                <SBIconProfile key={index} {...profileProps} />
+              toolsMenuProps.map((toolsMenuProps, index) => (
+                <ToolsMenu key={index} {...toolsMenuProps} />
               ))
             }
             content={window.innerWidth > 600 && navBarContent}
+            {...appBarProps}
           />
-          <SBDrawerMenu
+          <DrawerMenu
             open={open}
-            className={classes.drawer}
+            className={defaultClasses.drawer}
             menu={menu}
             styleProps={styleProps}
-            profilesProps={window.innerWidth <= 400 ? profilesProps : undefined}
+            toolsMenuProps={
+              window.innerWidth <= 400 ? toolsMenuProps : undefined
+            }
             navBarContent={window.innerWidth <= 600 && navBarContent}
+            {...drawerMenuProps}
           >
             {drawerContent}
-          </SBDrawerMenu>
+          </DrawerMenu>
         </Fragment>
       )}
-      <main className={openClasses}>
+      <main
+        className={clsx(openClasses, 'AruiApp-main', classes?.main)}
+        style={styles?.main}
+      >
         <div
-          className={classes.hidder}
+          className={defaultClasses.hidder}
           style={{
             display: window.innerWidth < 768 && open ? 'block' : 'none'
           }}
@@ -168,7 +193,12 @@ export const SBApp = ({
         />
         <Paper
           square
-          className={`${classes.content} App-container`}
+          className={clsx(
+            defaultClasses.content,
+            'AruiApp-content',
+            classes?.content
+          )}
+          style={styles?.content}
           elevation={0}
         >
           {children}
@@ -178,4 +208,4 @@ export const SBApp = ({
   )
 }
 
-SBApp.defaultProps = defaultProps
+App.defaultProps = defaultProps

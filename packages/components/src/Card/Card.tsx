@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import { Typography, Box } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { logoType } from '../Panel'
-import { Box as SBBox } from '../Box'
+import { Box as AruiBox } from '../Box'
 import {
   Theme,
   themeContext
 } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -17,7 +19,7 @@ const useStyles = (theme: Theme) =>
         paddingLeft: '10%',
         position: 'relative'
       },
-      dividerBAr: {
+      dividerBar: {
         background: theme.primaryColor,
         height: '2px',
         width: '30%',
@@ -53,19 +55,33 @@ const useStyles = (theme: Theme) =>
     })
   )
 
+interface CardClasses {
+  header?: string
+  body?: string
+  dividerBar?: string
+  footer?: string
+}
+
+interface CardStyles {
+  header?: React.CSSProperties
+  body?: React.CSSProperties
+  dividerBar?: React.CSSProperties
+  footer?: React.CSSProperties
+}
+
 export type LogoSize = 'medium' | 'small'
 
-export interface CardProps {
+export interface CardProps extends BasicProps {
   header?: string
   children: React.ReactNode
   logo?: logoType | 'none'
-  className?: string
-  style?: React.CSSProperties
   elevation?: number
   customLogo?: React.ReactNode
   logoSize?: LogoSize
   separator?: React.ReactNode | 'none'
   footer?: string
+  classes?: CardClasses
+  styles?: CardStyles
 }
 
 export const Card = (props: CardProps) => {
@@ -79,46 +95,80 @@ export const Card = (props: CardProps) => {
     customLogo,
     logoSize = 'medium',
     separator,
-    footer
+    footer,
+    id,
+    classes,
+    styles
   } = props
   const theme = useContext(themeContext)
-  const classes = useStyles(theme)()
+  const defaultClasses = useStyles(theme)()
 
   return (
-    <SBBox
-      className={className}
+    <AruiBox
+      className={clsx('AruiCard-root', className)}
       style={style}
+      id={id}
       elevation={elevation}
       customLogo={customLogo}
       logoSize={logoSize}
       logo={logo}
     >
       {!!header && (
-        <Box className={classes.headerContainer}>
+        <Box
+          className={clsx(
+            defaultClasses.headerContainer,
+            'AruiCard-header',
+            classes?.header
+          )}
+          style={styles?.header}
+        >
           <Typography variant='h6' align='left'>
             {header}
           </Typography>
           {!!separator ? (
             separator !== 'none' && separator
           ) : (
-            <div className={classes.dividerBAr}></div>
+            <div
+              className={clsx(
+                defaultClasses.dividerBar,
+                'AruiCard-dividerBar',
+                classes?.dividerBar
+              )}
+              style={styles?.dividerBar}
+            ></div>
           )}
         </Box>
       )}
       <Box
-        className={`${classes.bodyContainer} ${
-          logo !== 'none' && classes.withLogo
-        } ${logoSize === 'small' && logo !== 'none' && classes.withSmallLogo} ${
-          !!footer && classes.withFooter
-        }`}
+        className={clsx(
+          defaultClasses.bodyContainer,
+          {
+            [defaultClasses.withLogo]: logo !== 'none',
+            [defaultClasses.withSmallLogo]:
+              logoSize === 'small' && logo !== 'none',
+            [defaultClasses.withFooter]: !!footer
+          },
+          'AruiCard-body',
+          classes?.body
+        )}
+        style={styles?.body}
       >
         {children}
       </Box>
       {footer && (
-        <Typography className={classes.text} variant='body1' align='left'>
+        <Typography
+          className={clsx(
+            defaultClasses.text,
+            'AruiCard-footer',
+            classes?.footer
+          )}
+          style={styles?.footer}
+          variant='body1'
+          align='left'
+        >
           {footer}
         </Typography>
       )}
-    </SBBox>
+    </AruiBox>
   )
 }

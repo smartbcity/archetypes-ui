@@ -1,14 +1,14 @@
 import React from 'react'
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
 import {
-  MeButton,
+  Button as AruiButton,
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { myTheme } from '../../Docs/Theme/Theme'
 
 export default {
-  title: 'Components|MeButton',
+  title: 'Components|Button',
   decorators: [withKnobs, withA11y]
 }
 
@@ -23,7 +23,7 @@ export const Button = () => {
 
   return (
     <ThemeContextProvider theme={myTheme}>
-      <MeButton
+      <AruiButton
         disabled={disabled}
         style={{ margin: '20px auto', display: 'block', position: 'relative' }}
         variant={variant}

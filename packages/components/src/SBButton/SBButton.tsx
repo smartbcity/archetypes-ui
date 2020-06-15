@@ -4,6 +4,7 @@ import {
   Theme,
   themeContext
 } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps, MergeReactElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -39,36 +40,43 @@ const useStyles = (theme: Theme) =>
     })
   )
 
-export interface SBButtonProps {
+export interface SBButtonProps extends BasicProps {
   children?: React.ReactNode
   onClick?: (event: React.ChangeEvent<{}>) => void
   disabled?: boolean
   hoverEffect?: boolean
-  className?: string
-  style?: React.CSSProperties
 }
 
-export const SBButton = (props: SBButtonProps) => {
-  const {
-    children,
-    onClick,
-    disabled = false,
-    className,
-    style,
-    hoverEffect = true
-  } = props
-  const theme = useContext(themeContext)
-  const classes = useStyles(theme)()
-  return (
-    <button
-      disabled={disabled}
-      style={style}
-      className={`${classes.button} ${!!className && className} ${
-        hoverEffect && !disabled && classes.hover
-      } ${disabled && classes.disabled}`}
-      onClick={!disabled ? onClick : () => {}}
-    >
-      {children}
-    </button>
-  )
-}
+type Props = MergeReactElementProps<'button', SBButtonProps>
+
+export const SBButton = React.forwardRef(
+  (props: Props, ref: React.Ref<HTMLButtonElement>) => {
+    const {
+      children,
+      onClick,
+      disabled = false,
+      className,
+      style,
+      hoverEffect = true,
+      id,
+      ...other
+    } = props
+    const theme = useContext(themeContext)
+    const classes = useStyles(theme)()
+    return (
+      <button
+        ref={ref}
+        disabled={disabled}
+        style={style}
+        className={`${classes.button} ${!!className && className} ${
+          hoverEffect && !disabled && classes.hover
+        } ${disabled && classes.disabled}`}
+        onClick={!disabled ? onClick : () => {}}
+        id={id}
+        {...other}
+      >
+        {children}
+      </button>
+    )
+  }
+)

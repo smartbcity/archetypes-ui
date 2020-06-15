@@ -1,10 +1,14 @@
 import React, { useContext } from 'react'
-import { Button } from '@material-ui/core'
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   themeContext,
   Theme
 } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({
@@ -39,16 +43,16 @@ const useStyles = (theme: Theme) =>
 
 export type Variant = 'contained' | 'outlined'
 
-interface MeButtonProps {
+interface ButtonProps extends BasicProps {
   label: string
   onClick: (event: React.ChangeEvent<{}>) => void
   disabled?: boolean
   variant?: Variant
-  style?: React.CSSProperties
-  className?: string
 }
 
-export const MeButton = (props: MeButtonProps) => {
+type Props = MergeMuiElementProps<MuiButtonProps, ButtonProps>
+
+export const Button = (props: Props) => {
   const theme = useContext(themeContext)
   const classes = useStyles(theme)()
   const {
@@ -57,18 +61,22 @@ export const MeButton = (props: MeButtonProps) => {
     disabled = false,
     variant = 'contained',
     style,
-    className
+    className,
+    id,
+    ...other
   } = props
   const variantClass =
     variant === 'contained' ? classes.contained : classes.outlined
   return (
-    <Button
+    <MuiButton
       style={style}
       disabled={disabled}
-      className={`${variantClass} ${className}`}
+      className={`${variantClass} AruiButton-root ${className}`}
       onClick={(e) => onClick(e)}
+      id={id}
+      {...other}
     >
       {label}
-    </Button>
+    </MuiButton>
   )
 }

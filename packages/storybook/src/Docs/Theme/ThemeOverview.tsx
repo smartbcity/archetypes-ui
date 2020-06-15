@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import {
-  SBCard,
+  Card,
   ThemeContextProvider,
   SBButton,
-  SBPanel
+  Panel
 } from '@smartb/archetypes-ui-components'
 import { myTheme, getShadows } from '../Theme/Theme'
 import ThemeGetter from './ThemeGetter'
@@ -214,28 +214,24 @@ const ThemeOverview = () => {
           </div>
         </div>
         <div className={classes.container}>
-          <SBCard header='elevation 1' elevation={1} style={{ width: '300px' }}>
+          <Card header='elevation 1' elevation={1} style={{ width: '300px' }}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
-          </SBCard>
-          <SBCard header='elevation 6' elevation={6} style={{ width: '300px' }}>
+          </Card>
+          <Card header='elevation 6' elevation={6} style={{ width: '300px' }}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
-          </SBCard>
-          <SBCard
-            header='elevation 12'
-            elevation={12}
-            style={{ width: '300px' }}
-          >
+          </Card>
+          <Card header='elevation 12' elevation={12} style={{ width: '300px' }}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
-          </SBCard>
+          </Card>
         </div>
       </div>
       <div className={classes.root}>
@@ -250,12 +246,12 @@ const ThemeOverview = () => {
           </div>
         </div>
         <div className={classes.container}>
-          <SBCard header='Primary Color' style={{ width: '300px' }}>
+          <Card header='Primary Color' style={{ width: '300px' }}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
-          </SBCard>
+          </Card>
         </div>
       </div>
       <div className={classes.root}>
@@ -285,9 +281,9 @@ const ThemeOverview = () => {
           </div>
         </div>
         <div className={classes.container}>
-          <SBPanel style={{ margin: '20px', width: '500px' }}>
+          <Panel style={{ margin: '20px', width: '500px' }}>
             Tertiary Color
-          </SBPanel>
+          </Panel>
         </div>
       </div>
       <ThemeGetter myTheme={myTheme} />

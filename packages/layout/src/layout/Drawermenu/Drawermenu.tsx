@@ -7,8 +7,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import { MenuItem } from './menu'
 import StyleProps from '../StyleProps'
-import { IconProfileProps } from '../Profile'
-import { PanelProfile } from '../PanelProfile'
+import { ToolsMenuProps } from '../ToolsMenu'
+import { ToolsPanel } from '../ToolsPanel'
+import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
+import { DrawerProps } from '@material-ui/core'
+import { MergeMuiElementProps } from '../Types'
+import clsx from 'clsx'
 
 // TODO style only on desktop size
 const Nav = styled.nav<WidthProps>`
@@ -20,34 +24,64 @@ export interface WidthProps {
   width: number
 }
 
-interface Props {
-  className?: string
-  open: boolean
-  menu?: MenuItem[]
-  styleProps: StyleProps
-  children?: React.ReactNode
-  profilesProps?: IconProfileProps[]
-  navBarContent?: React.ReactNode
+interface DrawermenuClasses {
+  drawer?: string
+  menu?: string
 }
 
-export const SBDrawerMenu = ({
-  open,
-  className,
-  menu,
-  styleProps,
-  children,
-  profilesProps,
-  navBarContent
-}: Props) => {
+interface DrawermenuStyles {
+  drawer?: React.CSSProperties
+  menu?: React.CSSProperties
+}
+
+export interface DrawerMenuProps extends BasicProps {
+  open?: boolean
+  menu?: MenuItem[]
+  styleProps?: StyleProps
+  children?: React.ReactNode
+  toolsMenuProps?: ToolsMenuProps[]
+  navBarContent?: React.ReactNode
+  classes?: DrawermenuClasses
+  styles?: DrawermenuStyles
+}
+
+type Props = MergeMuiElementProps<DrawerProps, DrawerMenuProps>
+
+export const DrawerMenu = (props: Props) => {
+  const {
+    open = false,
+    className,
+    menu,
+    styleProps,
+    children,
+    toolsMenuProps,
+    navBarContent,
+    style,
+    id,
+    classes,
+    styles,
+    ...other
+  } = props
+
   return (
-    <Nav width={styleProps.menuWidth}>
+    <Nav
+      width={styleProps ? styleProps.menuWidth : 0}
+      className={clsx(className, 'AruiDrawerMenu-root')}
+      style={style}
+      id={id}
+    >
       <MuiDrawer
         variant={'persistent'}
         open={open || undefined}
-        className={className}
+        className={clsx(classes?.drawer, 'AruiDrawerMenu-drawer')}
+        style={styles?.drawer}
+        {...other}
       >
         {menu && (
-          <div>
+          <div
+            className={clsx(classes?.menu, 'AruiDrawerMenu-drawer')}
+            style={styles?.menu}
+          >
             <List>
               {menu.map((item) => (
                 <ListItem
@@ -64,11 +98,11 @@ export const SBDrawerMenu = ({
         )}
         {children}
         {navBarContent}
-        {profilesProps &&
-          profilesProps.map((profileProps) => (
-            <PanelProfile
-              menu={profileProps.menu}
-              key={profileProps.menu.key}
+        {toolsMenuProps &&
+          toolsMenuProps.map((toolsMenuProps) => (
+            <ToolsPanel
+              menu={toolsMenuProps.menu}
+              key={toolsMenuProps.menu.key}
             />
           ))}
       </MuiDrawer>

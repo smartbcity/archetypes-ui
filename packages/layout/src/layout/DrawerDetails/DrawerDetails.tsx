@@ -1,10 +1,12 @@
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
-import { Drawer, Theme } from '@material-ui/core'
+import { Drawer, Theme, DrawerProps } from '@material-ui/core'
 import StyleProps from '../StyleProps'
+import { MergeMuiElementProps, BasicProps } from '../Types'
+import clsx from 'clsx'
 
-interface Props {
+interface DrawerDetailsProps extends BasicProps {
   onClose: () => void
   children?: React.ReactNode
   styleProps: StyleProps
@@ -25,15 +27,29 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
   })
 )
 
-export const SBDrawerDetails = ({ onClose, children, styleProps }: Props) => {
+type Props = MergeMuiElementProps<DrawerProps, DrawerDetailsProps>
+
+export const DrawerDetails = (props: Props) => {
+  const {
+    onClose,
+    children,
+    styleProps,
+    className,
+    style,
+    id,
+    ...other
+  } = props
   const classes = useStyles(styleProps)
   return (
     <Drawer
       onBackdropClick={onClose}
-      className={classes.drawer}
       open={true}
       anchor='right'
       onClose={onClose}
+      className={clsx(classes.drawer, 'AruiDrawerDetail-root', className)}
+      style={style}
+      id={id}
+      {...other}
     >
       {children}
     </Drawer>

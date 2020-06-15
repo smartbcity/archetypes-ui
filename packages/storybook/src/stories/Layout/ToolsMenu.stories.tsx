@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, select } from '@storybook/addon-knobs'
-import { SBIconProfile, Menu } from '@smartb/archetypes-ui-layout'
+import { ToolsMenu as AruiToolsMenu, Menu } from '@smartb/archetypes-ui-layout'
 import { withA11y } from '@storybook/addon-a11y'
 import {
   MultipleSectionMenuFull,
@@ -11,11 +11,11 @@ import {
 } from '../../Docs/Variables/IconProfile'
 
 export default {
-  title: 'Layout|IconProfile',
+  title: 'Layout|ToolsMenu',
   decorators: [withKnobs, withA11y]
 }
 
-export const IconProfile = () => {
+export const ToolsMenu = () => {
   const variableSelection = select(
     'menu',
     {
@@ -37,7 +37,7 @@ export const IconProfile = () => {
   if (variableSelection === 'OneSectionMenuFull') menu = OneSectionMenuFull
   const display = select('display', { list: 'list', grid: 'grid' }, 'list')
   return (
-    <SBIconProfile
+    <AruiToolsMenu
       style={{ display: 'block', margin: 'auto' }}
       menu={menu as Menu}
       display={display}

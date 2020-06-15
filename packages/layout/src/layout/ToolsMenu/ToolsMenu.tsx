@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { Menu as SBMenu } from '../Drawermenu/menu'
 import { IconButton, Menu } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { ItemsLayout, Display } from '../ItemsLayout'
+import { ItemsLayout, Display, ItemsLayoutProps } from '../ItemsLayout'
+import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
+import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -40,18 +43,40 @@ const useStyles = makeStyles(() =>
   })
 )
 
-export interface IconProfileProps {
-  menu: SBMenu
-  style?: React.CSSProperties
-  className?: string
-  display?: Display
+interface ToolsMenuClasses {
+  iconButton?: string
+  menu?: string
 }
 
-export const SBIconProfile = (props: IconProfileProps) => {
-  const { menu, style, display = 'list', className } = props
+interface ToolsMenuStyles {
+  iconButton?: React.CSSProperties
+  menu?: React.CSSProperties
+}
+
+export interface ToolsMenuProps extends BasicProps {
+  menu: SBMenu
+  display?: Display
+  classes?: ToolsMenuClasses
+  styles?: ToolsMenuStyles
+  itemsLayoutProps?: ItemsLayoutProps
+  tabsMenuProps?: TabsMenuProps
+}
+
+export const ToolsMenu = (props: ToolsMenuProps) => {
+  const {
+    menu,
+    style,
+    display = 'list',
+    className,
+    id,
+    classes,
+    styles,
+    itemsLayoutProps,
+    tabsMenuProps
+  } = props
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const classes = useStyles()
+  const defaultClasses = useStyles()
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -61,10 +86,18 @@ export const SBIconProfile = (props: IconProfileProps) => {
   }
 
   return (
-    <div>
+    <div
+      className={clsx(className, 'AruiToolsMenu-root')}
+      style={style}
+      id={id}
+    >
       <IconButton
-        style={style}
-        className={`${open && classes.menuOpened} ${className}`}
+        className={clsx(
+          { [defaultClasses.menuOpened]: !!open },
+          'AruiToolsMenu-iconButton',
+          classes?.iconButton
+        )}
+        style={styles?.iconButton}
         aria-controls='menu-appbar'
         aria-haspopup='true'
         onClick={handleMenu}
@@ -73,11 +106,14 @@ export const SBIconProfile = (props: IconProfileProps) => {
         {menu.icon}
       </IconButton>
       <Menu
+        className={clsx('AruiToolsMenu-menu', classes?.menu)}
+        style={styles?.menu}
         classes={{
-          paper: `${classes.menu} ${display === 'grid' && classes.menuGrid}`,
-          list: classes.list
+          paper: `${defaultClasses.menu} ${
+            display === 'grid' && defaultClasses.menuGrid
+          }`,
+          list: defaultClasses.list
         }}
-        id='menu-appbar'
         getContentAnchorEl={null}
         anchorOrigin={{
           vertical: 'bottom',
@@ -93,7 +129,11 @@ export const SBIconProfile = (props: IconProfileProps) => {
         onClose={handleClose}
       >
         {menu.items && menu.items.length === 1 ? (
-          <ItemsLayout menu={menu.items[0]} display={display} />
+          <ItemsLayout
+            menu={menu.items[0]}
+            display={display}
+            {...itemsLayoutProps}
+          />
         ) : (
           <div>
             {menu.items && (
@@ -102,6 +142,7 @@ export const SBIconProfile = (props: IconProfileProps) => {
                 tabs={menu.items.map((it) => {
                   return { label: it.label, icon: it.icon }
                 })}
+                {...tabsMenuProps}
               >
                 {menu.items &&
                   menu.items.map((section, index) => (
@@ -112,10 +153,11 @@ export const SBIconProfile = (props: IconProfileProps) => {
                         className={
                           display !== 'list'
                             ? section.items && section.items.length >= 3
-                              ? classes.gridItemsLayoutMinWidth
-                              : classes.gridItemsLayout
-                            : classes.listItemsLayout
+                              ? defaultClasses.gridItemsLayoutMinWidth
+                              : defaultClasses.gridItemsLayout
+                            : defaultClasses.listItemsLayout
                         }
+                        {...itemsLayoutProps}
                       />
                     </div>
                   ))}

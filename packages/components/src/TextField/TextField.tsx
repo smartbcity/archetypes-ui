@@ -7,6 +7,17 @@ import {
 } from '@material-ui/core'
 
 import { BasicProps, MergeMuiElementProps } from '../Types'
+import clsx from 'clsx'
+
+interface TextFieldClasses {
+  label?: string
+  input?: string
+}
+
+interface TextFieldStyles {
+  label?: React.CSSProperties
+  input?: React.CSSProperties
+}
 
 export interface TextFieldProps extends BasicProps {
   defaultValue: string
@@ -16,6 +27,8 @@ export interface TextFieldProps extends BasicProps {
   errorMessage?: string
   type?: string
   disabled?: boolean
+  classes?: TextFieldClasses
+  styles?: TextFieldStyles
 }
 
 const useStyles = makeStyles(() => ({
@@ -55,9 +68,11 @@ export const TextField = (props: Props) => {
     id,
     style,
     className,
+    classes,
+    styles,
     ...other
   } = props
-  const classes = useStyles()
+  const defaultClasses = useStyles()
 
   // https://github.com/mui-org/material-ui/issues/20716
   const fixedTextFieldProps: Partial<MuiTextFieldProps> = {
@@ -65,11 +80,24 @@ export const TextField = (props: Props) => {
     variant: 'standard'
   }
   return (
-    <div>
-      <InputLabel className={classes.label}>{label}</InputLabel>
+    <div style={style} className={clsx(className, 'AruiTextField-root')}>
+      <InputLabel
+        htmlFor={id}
+        className={clsx(
+          defaultClasses.label,
+          'AruiTextField-label',
+          classes?.label
+        )}
+      >
+        {label}
+      </InputLabel>
       <MuiTextField
         required
-        className={`${className} ${classes.formControl}`}
+        className={clsx(
+          defaultClasses.formControl,
+          'AruiTextField-nput',
+          classes?.input
+        )}
         fullWidth
         value={defaultValue}
         margin='none'
@@ -77,11 +105,9 @@ export const TextField = (props: Props) => {
         onChange={(it) => onChange(it.target.value)}
         error={!isValid}
         helperText={!isValid && errorMessage}
-        FormHelperTextProps={{ classes: { root: classes.helperText } }}
+        FormHelperTextProps={{ classes: { root: defaultClasses.helperText } }}
         disabled={disabled}
-        InputProps={{ disableUnderline: true }}
-        id={id}
-        style={style}
+        InputProps={{ disableUnderline: true, id: id }}
         {...fixedTextFieldProps}
       />
     </div>

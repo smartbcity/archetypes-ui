@@ -71,17 +71,14 @@ export const DatePicker = React.forwardRef(
     const theme = useContext(themeContext)
     const defaultClasses = useStyles(theme)()
     return (
-      <div
-        className={clsx(className, 'AruiDatePicker-root')}
-        style={style}
-        id={id}
-      >
+      <div className={clsx(className, 'AruiDatePicker-root')} style={style}>
         {label && (
           <InputLabel
+            htmlFor={id}
             className={clsx(
               defaultClasses.listLabel,
               'AruiDatePicker-label',
-              !!classes && !!classes.label && classes.label
+              classes?.label
             )}
             style={styles && styles.label}
           >
@@ -90,13 +87,14 @@ export const DatePicker = React.forwardRef(
         )}
         <input
           ref={ref}
+          id={id}
           value={value ? value.toString() : ''}
           onChange={(event) => onChange(event.target.value)}
           type='date'
           className={clsx(
             defaultClasses.date,
             'AruiDatePicker-input',
-            !!classes && !!classes.input && classes.input
+            classes?.input
           )}
           style={styles && styles.label}
           {...other}
