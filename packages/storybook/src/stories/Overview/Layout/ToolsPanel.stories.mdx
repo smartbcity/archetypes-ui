@@ -1,16 +1,16 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
-import { SBPanelProfile } from '@smartb/archetypes-ui-layout'
+import { ToolsPanel } from '@smartb/archetypes-ui-layout'
 import PropsTable from '../../../Docs/PropsTable'
 import {
   OneSectionMenu,
   MultipleSectionMenu
 } from '../../../Docs/Variables/IconProfile.tsx'
 
-<Meta title='Overview|Layout/PanelProfile' />
+<Meta title='Overview|Layout/ToolsPanel' />
 
-# SmartB PanelProfile
+# SmartB ToolsPanel
 
-<SBPanelProfile
+<ToolsPanel
   style={{ display: 'block', margin: 'auto' }}
   menu={OneSectionMenu}
 />
@@ -51,7 +51,7 @@ import {
 ### with sections
 
 <Preview>
-  <SBPanelProfile
+  <ToolsPanel
     style={{ display: 'block', margin: 'auto' }}
     menu={MultipleSectionMenu}
   />
@@ -60,7 +60,7 @@ import {
 ### without sections
 
 <Preview>
-  <SBPanelProfile
+  <ToolsPanel
     style={{ display: 'block', margin: 'auto' }}
     menu={OneSectionMenu}
   />

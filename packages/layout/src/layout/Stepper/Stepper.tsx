@@ -4,7 +4,7 @@ import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { MeStepConnector } from './StepConnector'
 import { MeStepEmptyIcon, MeStepIcon } from './StepIcon'
-import { SBStepper, SBStepperProps, SBStepperLabel } from '../sbstepper'
+import { StepperBase, StepperBaseProps, StepperBaseLabel } from '../StepperBase'
 import { themeContext, Theme } from '@smartb/archetypes-ui-components'
 
 const useStyles = (theme: Theme) =>
@@ -35,21 +35,22 @@ const useStyles = (theme: Theme) =>
   )
 
 export interface Props {
-  stepperProps: SBStepperProps
-  stepperLabel: SBStepperLabel
+  stepperBaseProps: StepperBaseProps
+  stepperBaseLabel: StepperBaseLabel
   empty?: boolean
   style?: CSSProperties
 }
 
 export const Stepper = (props: Props) => {
-  const { stepperProps, empty = false, stepperLabel } = props
+  const { stepperBaseProps, empty = false, stepperBaseLabel } = props
   const theme = useContext(themeContext)
   const classes = useStyles(theme)()
   const StepConnector = MeStepConnector(theme)
   return (
-    <div className='welcome-container'>
-      <SBStepper
-        {...stepperProps}
+    <div className='AruiStepper-root'>
+      {/* old className 'welcome-container'*/}
+      <StepperBase
+        {...stepperBaseProps}
         PaperProps={{ elevation: 0 }}
         StepperProps={{
           connector: <StepConnector />,
@@ -62,7 +63,7 @@ export const Stepper = (props: Props) => {
           StepIconComponent: empty ? MeStepEmptyIcon : MeStepIcon
         }}
         className={clsx(classes.stepper, classes.transparent)}
-        label={stepperLabel}
+        label={stepperBaseLabel}
       />
     </div>
   )

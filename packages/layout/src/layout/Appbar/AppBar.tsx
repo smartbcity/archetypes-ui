@@ -49,8 +49,8 @@ interface AppBarStyles {
 
 export interface AppBarProps extends BasicProps {
   title?: string
-  logo?: string
-  onDrawerOpen?: () => void
+  logo: string
+  onDrawerOpen: () => void
   profiles?: React.ReactNode
   content?: React.ReactNode
   classes?: AppBarClasses

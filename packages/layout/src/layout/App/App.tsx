@@ -85,8 +85,8 @@ interface AppStyles {
 
 interface Props {
   toolsMenuProps: ToolsMenuProps[]
-  appBarProps?: AppBarProps
-  drawerMenuProps?: DrawerMenuProps
+  appBarProps?: Partial<AppBarProps>
+  drawerMenuProps?: Partial<DrawerMenuProps>
   navBarContent?: React.ReactNode
   menu?: MenuItem[]
   children?: React.ReactNode

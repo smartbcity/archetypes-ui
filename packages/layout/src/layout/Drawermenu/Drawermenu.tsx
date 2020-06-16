@@ -35,9 +35,9 @@ interface DrawermenuStyles {
 }
 
 export interface DrawerMenuProps extends BasicProps {
-  open?: boolean
+  open: boolean
   menu?: MenuItem[]
-  styleProps?: StyleProps
+  styleProps: StyleProps
   children?: React.ReactNode
   toolsMenuProps?: ToolsMenuProps[]
   navBarContent?: React.ReactNode
@@ -65,7 +65,7 @@ export const DrawerMenu = (props: Props) => {
 
   return (
     <Nav
-      width={styleProps ? styleProps.menuWidth : 0}
+      width={styleProps.menuWidth}
       className={clsx(className, 'AruiDrawerMenu-root')}
       style={style}
       id={id}

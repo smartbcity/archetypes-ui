@@ -6,10 +6,10 @@ import { App } from './layout/App'
 import StyleProps from './layout/StyleProps'
 import {
   OnNextHandles,
-  SBStepperLabel,
-  SBStepperProps,
+  StepperBaseLabel,
+  StepperBaseProps,
   StepDetails
-} from './layout/sbstepper'
+} from './layout/StepperBase'
 import { TabsMenu } from './layout/TabsMenu'
 import { ItemsLayout } from './layout/ItemsLayout'
 import { ToolsPanel } from './layout/ToolsPanel'
@@ -21,8 +21,8 @@ export {
   DrawerMenu,
   ToolsMenuProps,
   App,
-  SBStepperProps,
-  SBStepperLabel,
+  StepperBaseProps,
+  StepperBaseLabel,
   OnNextHandles,
   StepDetails,
   StyleProps,

@@ -1,19 +1,19 @@
 import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
 import PropsTable from '../../../Docs/PropsTable'
-import { SBTabsMenu } from '@smartb/archetypes-ui-layout'
+import { TabsMenu } from '@smartb/archetypes-ui-layout'
 import { AccountCircle } from '@material-ui/icons'
 
 <Meta title='Overview|Layout/TabsMenu' />
 
 # SmartB TabsMenu
 
-<SBTabsMenu
+<TabsMenu
   tabs={[{ label: 'section1' }, { label: 'section2' }]}
   variant='fixedWidth'
 >
   <div style={{ width: '50px', height: '50px' }}>section1</div>
   <div style={{ width: '50px', height: '50px' }}>section2</div>
-</SBTabsMenu>
+</TabsMenu>
 
 ## Props
 
@@ -66,31 +66,31 @@ import { AccountCircle } from '@material-ui/icons'
 ### fullWidth
 
 <Preview>
-  <SBTabsMenu
+  <TabsMenu
     tabs={[{ label: 'section1' }, { label: 'section2' }]}
     variant='fullWidth'
   >
     <div style={{ width: '50px', height: '50px' }}>section1</div>
     <div style={{ width: '50px', height: '50px' }}>section2</div>
-  </SBTabsMenu>
+  </TabsMenu>
 </Preview>
 
 ### fixedWidth
 
 <Preview>
-  <SBTabsMenu
+  <TabsMenu
     tabs={[{ label: 'section1' }, { label: 'section2' }]}
     variant='fixedWidth'
   >
     <div style={{ width: '50px', height: '50px' }}>section1</div>
     <div style={{ width: '50px', height: '50px' }}>section2</div>
-  </SBTabsMenu>
+  </TabsMenu>
 </Preview>
 
 ### with icons
 
 <Preview>
-  <SBTabsMenu
+  <TabsMenu
     tabs={[
       { label: 'section1', icon: <AccountCircle /> },
       { label: 'section2', icon: <AccountCircle /> }
@@ -99,5 +99,5 @@ import { AccountCircle } from '@material-ui/icons'
   >
     <div style={{ width: '50px', height: '50px' }}>section1</div>
     <div style={{ width: '50px', height: '50px' }}>section2</div>
-  </SBTabsMenu>
+  </TabsMenu>
 </Preview>
