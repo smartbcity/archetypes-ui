@@ -5,6 +5,8 @@ import {
   themeContext,
   Theme
 } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps, MergeReactElementProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -71,83 +73,153 @@ const useStyles = (theme: Theme) =>
 
 export type Direction = 'horizontal' | 'vertical'
 
-export interface DividerContentProps {
+interface DivderContentClasses {
+  content?: string
+  dividerBar?: string
+  dividerText?: string
+  divider?: string
+}
+
+interface DividerContentStyles {
+  content?: React.CSSProperties
+  divider?: React.CSSProperties
+  dividerBar?: React.CSSProperties
+  dividerText?: React.CSSProperties
+}
+
+export interface DividerContentProps extends BasicProps {
   children: React.ReactNode | React.ReactNode[]
   dividerText?: string
   dividerDirection?: Direction
-  className?: string
-  style?: React.CSSProperties
   dividerStyle?: React.CSSProperties
+  classes?: DivderContentClasses
+  styles?: DividerContentStyles
 }
 
-export const DividerContent = (props: DividerContentProps) => {
-  const {
-    children,
-    dividerText,
-    dividerDirection = 'horizontal',
-    className,
-    style,
-    dividerStyle
-  } = props
-  const theme = useContext(themeContext)
-  const classes = useStyles(theme)()
-  return (
-    <div
-      className={`${classes.container} ${
-        dividerDirection === 'vertical' && classes.containerVertical
-      } ${className}`}
-      style={style}
-    >
-      {children instanceof Array ? (
-        children.map((child, index) =>
-          index !== children.length - 1 ? (
-            <Fragment>
-              <div key={index} className={classes.contentContainer}>
+type Props = MergeReactElementProps<'div', DividerContentProps>
+
+export const DividerContent = React.forwardRef(
+  (props: Props, ref: React.Ref<HTMLDivElement>) => {
+    const {
+      children,
+      dividerText,
+      dividerDirection = 'horizontal',
+      className,
+      style,
+      id,
+      classes,
+      styles,
+      ...other
+    } = props
+    const theme = useContext(themeContext)
+    const defaultClasses = useStyles(theme)()
+    return (
+      <div
+        ref={ref}
+        className={clsx(
+          defaultClasses.container,
+          {
+            [defaultClasses.containerVertical]: dividerDirection === 'vertical'
+          },
+          'AruiDividerContent-root',
+          className
+        )}
+        style={style}
+        id={id}
+        {...other}
+      >
+        {children instanceof Array ? (
+          children.map((child, index) =>
+            index !== children.length - 1 ? (
+              <Fragment>
+                <div
+                  key={index}
+                  className={clsx(
+                    defaultClasses.contentContainer,
+                    'AruiDividerContent-content',
+                    classes?.content
+                  )}
+                  style={styles?.content}
+                >
+                  {child}
+                </div>
+                <div
+                  key={index + children.length}
+                  className={clsx(
+                    defaultClasses.divider,
+                    {
+                      [defaultClasses.dividerVertical]:
+                        dividerDirection === 'vertical'
+                    },
+                    'AruiDividerContent-divider',
+                    classes?.divider
+                  )}
+                  style={styles?.divider}
+                >
+                  {!!dividerText && (
+                    <Typography
+                      className={clsx(
+                        defaultClasses.dividerText,
+                        {
+                          [defaultClasses.dividerTextVertical]:
+                            dividerDirection === 'vertical'
+                        },
+                        'AruiDividerContent-dividerText',
+                        classes?.dividerText
+                      )}
+                      style={styles?.dividerText}
+                      variant='body1'
+                      color='textSecondary'
+                      component='p'
+                    >
+                      {dividerText}
+                    </Typography>
+                  )}
+                  <div
+                    className={clsx(
+                      defaultClasses.dividerBar,
+                      {
+                        [defaultClasses.dividerBarVerticalWithoutText]:
+                          !dividerText && dividerDirection === 'vertical',
+                        [defaultClasses.dividerBarWithoutText]:
+                          !dividerText && dividerDirection !== 'vertical',
+                        [defaultClasses.dividerBarVertical]:
+                          dividerDirection === 'vertical'
+                      },
+                      'AruiDividerContent-dividerBar',
+                      classes?.dividerBar
+                    )}
+                    style={styles?.dividerBar}
+                  ></div>
+                </div>
+              </Fragment>
+            ) : (
+              <div
+                key={index}
+                className={clsx(
+                  defaultClasses.contentContainer,
+                  'AruiDividerContent-content',
+                  classes?.content
+                )}
+                style={styles?.content}
+              >
                 {child}
               </div>
-              <div
-                key={index + children.length}
-                className={`${classes.divider} ${
-                  dividerDirection === 'vertical' && classes.dividerVertical
-                }`}
-                style={dividerStyle}
-              >
-                {!!dividerText && (
-                  <Typography
-                    className={`${classes.dividerText} ${
-                      dividerDirection === 'vertical' &&
-                      classes.dividerTextVertical
-                    }`}
-                    variant='body1'
-                    color='textSecondary'
-                    component='p'
-                  >
-                    {dividerText}
-                  </Typography>
-                )}
-                <div
-                  className={`${classes.dividerBar} ${
-                    !dividerText
-                      ? dividerDirection === 'vertical'
-                        ? classes.dividerBarVerticalWithoutText
-                        : classes.dividerBarWithoutText
-                      : null
-                  } ${
-                    dividerDirection === 'vertical' &&
-                    classes.dividerBarVertical
-                  }`}
-                ></div>
-              </div>
-            </Fragment>
-          ) : (
-            <div key={index} className={classes.contentContainer}>
-              {child}
-            </div>
+            )
           )
-        )
-      ) : (
-        <div className={classes.contentContainer}>{children}</div>
-      )}
-    </div>
-  )
-}
+        ) : (
+          <div
+            className={clsx(
+              defaultClasses.contentContainer,
+              'AruiDividerContent-content',
+              classes?.content
+            )}
+            style={styles?.content}
+          >
+            {children}
+          </div>
+        )}
+      </div>
+    )
+  }
+)

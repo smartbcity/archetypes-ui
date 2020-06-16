@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
-import { SBTextField } from '@smartb/archetypes-ui-components'
+import { TextField as AruiTextField } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 
 export default {
@@ -17,7 +17,7 @@ export const TextField = () => {
   const disabled = boolean('disabled', false)
   return (
     <div style={{ width: '100px' }}>
-      <SBTextField
+      <AruiTextField
         defaultValue={value}
         label={label}
         errorMessage={errorMessage}

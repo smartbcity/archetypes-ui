@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
-import { InputLabel } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { InputLabel } from '@material-ui/core'
 import {
   Theme,
   themeContext
 } from '../ThemeContextProvider/ThemeContextProvider'
+import clsx from 'clsx'
+import { BasicProps, MergeReactElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -26,40 +28,78 @@ const useStyles = (theme: Theme) =>
         color: '#797979',
         minHeight: '26px',
         width: '200px',
-        maxWidth:"100%",
+        maxWidth: '100%',
         border: 'none',
         outline: 'none'
       }
     })
   )
 
-interface DatePickerProps {
+interface DatePickerClasses {
+  label?: string
+  input?: string
+}
+
+interface DatePickerStyles {
+  label?: React.CSSProperties
+  input?: React.CSSProperties
+}
+
+interface DatePickerProps extends BasicProps {
   value?: string | Date
   label?: string
   onChange: (date: string) => void
-  labelClassName?: string
-  inputClassName?: string
+  classes?: DatePickerClasses
+  styles?: DatePickerStyles
 }
 
-export const DatePicker = (props: DatePickerProps) => {
-  const { value, label, onChange, labelClassName, inputClassName } = props
-  const theme = useContext(themeContext)
-  const classes = useStyles(theme)()
-  return (
-    <div>
-      {label && (
-        <InputLabel
-          className={`${labelClassName} ${classes.listLabel}`}
-        >
-          {label}
-        </InputLabel>
-      )}
-      <input
-        value={value ? value.toString() : ''}
-        onChange={(event) => onChange(event.target.value)}
-        type='date'
-        className={`${inputClassName} ${classes.date}`}
-      />
-    </div>
-  )
-}
+type Props = MergeReactElementProps<'input', DatePickerProps>
+
+export const DatePicker = React.forwardRef(
+  (props: Props, ref: React.Ref<HTMLInputElement>) => {
+    const {
+      value,
+      label,
+      onChange,
+      classes,
+      styles,
+      id,
+      className,
+      style,
+      ...other
+    } = props
+    const theme = useContext(themeContext)
+    const defaultClasses = useStyles(theme)()
+    return (
+      <div className={clsx(className, 'AruiDatePicker-root')} style={style}>
+        {label && (
+          <InputLabel
+            htmlFor={id}
+            className={clsx(
+              defaultClasses.listLabel,
+              'AruiDatePicker-label',
+              classes?.label
+            )}
+            style={styles && styles.label}
+          >
+            {label}
+          </InputLabel>
+        )}
+        <input
+          ref={ref}
+          id={id}
+          value={value ? value.toString() : ''}
+          onChange={(event) => onChange(event.target.value)}
+          type='date'
+          className={clsx(
+            defaultClasses.date,
+            'AruiDatePicker-input',
+            classes?.input
+          )}
+          style={styles && styles.label}
+          {...other}
+        />
+      </div>
+    )
+  }
+)

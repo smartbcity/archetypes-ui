@@ -1,43 +1,38 @@
-import { SBAppBar } from './layout/Appbar'
-import { SBDrawerDetails } from './layout/DrawerDetails'
-import {
-  Menu,
-  MenuItem,
-  SBDrawerMenu,
-  SimpleMenuItem
-} from './layout/Drawermenu'
-import { SBIconProfile, IconProfileProps } from './layout/Profile'
-import { SBApp } from './layout/SBApp'
+import { AppBar } from './layout/Appbar'
+import { DrawerDetails } from './layout/DrawerDetails'
+import { Menu, MenuItem, DrawerMenu, SimpleMenuItem } from './layout/Drawermenu'
+import { ToolsMenu, ToolsMenuProps } from './layout/ToolsMenu'
+import { App } from './layout/App'
 import StyleProps from './layout/StyleProps'
 import {
   OnNextHandles,
-  SBStepperLabel,
-  SBStepperProps,
+  StepperBaseLabel,
+  StepperBaseProps,
   StepDetails
-} from './layout/sbstepper'
-import { TabsMenu as SBTabsMenu } from './layout/TabsMenu'
-import { ItemsLayout as SBItemsLayout } from './layout/ItemsLayout'
-import { PanelProfile as SBPanelProfile } from './layout/PanelProfile'
+} from './layout/StepperBase'
+import { TabsMenu } from './layout/TabsMenu'
+import { ItemsLayout } from './layout/ItemsLayout'
+import { ToolsPanel } from './layout/ToolsPanel'
 import { Stepper, StepperImg } from './layout/Stepper'
 
 export {
-  SBAppBar,
-  SBDrawerDetails,
-  SBDrawerMenu,
-  IconProfileProps,
-  SBApp,
-  SBStepperProps,
-  SBStepperLabel,
+  AppBar,
+  DrawerDetails,
+  DrawerMenu,
+  ToolsMenuProps,
+  App,
+  StepperBaseProps,
+  StepperBaseLabel,
   OnNextHandles,
   StepDetails,
   StyleProps,
   MenuItem,
   Menu,
   SimpleMenuItem,
-  SBIconProfile,
-  SBTabsMenu,
-  SBItemsLayout,
-  SBPanelProfile,
+  ToolsMenu,
+  TabsMenu,
+  ItemsLayout,
+  ToolsPanel,
   Stepper,
   StepperImg
 }

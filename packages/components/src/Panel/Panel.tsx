@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Card as MuiCard } from '@material-ui/core'
+import { Card as MuiCard, CardProps } from '@material-ui/core'
 import {
   CardHeader,
   Typography,
@@ -14,6 +14,8 @@ import {
   themeContext,
   Theme
 } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps, MergeMuiElementProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -81,17 +83,31 @@ const useStyles = (theme: Theme) =>
     })
   )
 
-export interface PanelProps {
+interface PanelClasses {
+  header?: string
+  content?: string
+  footer?: string
+}
+
+interface PanelStyles {
+  header?: React.CSSProperties
+  content?: React.CSSProperties
+  footer?: React.CSSProperties
+}
+
+export interface PanelProps extends BasicProps {
   header?: string
   children?: React.ReactNode
   logo?: logoType
-  className?: string
   footer?: React.ReactNode
-  style?: React.CSSProperties
   customLogo?: React.ReactNode
+  classes?: PanelClasses
+  styles?: PanelStyles
 }
 
-export const Panel = (props: PanelProps) => {
+type Props = MergeMuiElementProps<CardProps, PanelProps>
+
+export const Panel = (props: Props) => {
   const {
     header,
     children,
@@ -99,22 +115,33 @@ export const Panel = (props: PanelProps) => {
     className,
     footer,
     style,
-    customLogo
+    customLogo,
+    id,
+    classes,
+    styles,
+    ...other
   } = props
   const theme = useContext(themeContext)
-  const classes = useStyles(theme)()
+  const defaultClasses = useStyles(theme)()
   return (
     <MuiCard
-      className={`${classes.card} ${!!className && className}`}
+      className={clsx(defaultClasses.card, 'AruiPanel-root', className)}
       style={style}
+      id={id}
+      {...other}
     >
       <CardHeader
-        className={classes.header}
-        classes={{ content: classes.headerContainer }}
+        className={clsx(
+          defaultClasses.header,
+          'AruiPanel-header',
+          classes?.header
+        )}
+        style={styles?.header}
+        classes={{ content: defaultClasses.headerContainer }}
         subheader={
           !!header && (
             <Typography
-              className={classes.headerContent}
+              className={defaultClasses.headerContent}
               variant='h6'
               color='textSecondary'
               component='p'
@@ -124,24 +151,31 @@ export const Panel = (props: PanelProps) => {
           )
         }
       />
-      <CardContent className={classes.content}>
-        <div className={classes.logoContainer}>
-          <div className={classes.logoBorder}>
+      <CardContent
+        className={clsx(
+          defaultClasses.content,
+          'AruiPanel-content',
+          classes?.content
+        )}
+        style={styles?.content}
+      >
+        <div className={defaultClasses.logoContainer}>
+          <div className={defaultClasses.logoBorder}>
             {!!customLogo ? (
               customLogo
             ) : logo === 'document' ? (
               <img
                 src={documentLogo}
-                className={`${classes.documentLogo} ${
-                  !!header && classes.logoWithHeader
+                className={`${defaultClasses.documentLogo} ${
+                  !!header && defaultClasses.logoWithHeader
                 }`}
                 alt='A smartb logo'
               />
             ) : (
               <img
                 src={defaultLogo}
-                className={`${classes.logo} ${
-                  !!header && classes.logoWithHeader
+                className={`${defaultClasses.logo} ${
+                  !!header && defaultClasses.logoWithHeader
                 }`}
                 alt='A smartb logo'
               />
@@ -150,7 +184,16 @@ export const Panel = (props: PanelProps) => {
         </div>
         {children}
       </CardContent>
-      <CardActions className={classes.footer}>{footer}</CardActions>
+      <CardActions
+        className={clsx(
+          defaultClasses.footer,
+          'AruiPanel-footer',
+          classes?.footer
+        )}
+        style={styles?.footer}
+      >
+        {footer}
+      </CardActions>
     </MuiCard>
   )
 }

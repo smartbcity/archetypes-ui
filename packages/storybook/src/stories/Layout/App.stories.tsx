@@ -4,10 +4,10 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import {
   MenuItem,
-  SBApp,
+  App as SBApp,
   Menu,
   StyleProps,
-  IconProfileProps
+  ToolsMenuProps
 } from '@smartb/archetypes-ui-layout'
 import { Typography, Button } from '@material-ui/core'
 import { withA11y } from '@storybook/addon-a11y'
@@ -85,12 +85,12 @@ export const App = () => {
     ]
   }
 
-  const profileProps1: IconProfileProps = {
+  const profileProps1: ToolsMenuProps = {
     menu: MultipleSectionMenuFull,
     display: 'grid'
   }
-  const profileProps2: IconProfileProps = { menu: profileMenu, display: 'list' }
-  const profileProps3: IconProfileProps = {
+  const profileProps2: ToolsMenuProps = { menu: profileMenu, display: 'list' }
+  const profileProps3: ToolsMenuProps = {
     menu: profileMenu2,
     display: 'list'
   }
@@ -140,7 +140,7 @@ export const App = () => {
         styleProps={styleProps}
         title={title}
         logo={defaultLogo}
-        profilesProps={[profileProps1, profileProps2, profileProps3]}
+        toolsMenuProps={[profileProps1, profileProps2, profileProps3]}
         menu={menu}
         open={open}
         onToggle={() => setOpen(!open)}

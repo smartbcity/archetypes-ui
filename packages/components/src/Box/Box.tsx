@@ -5,6 +5,8 @@ import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '../Panel'
 import { themeContext } from '../ThemeContextProvider/ThemeContextProvider'
+import { BasicProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -81,11 +83,9 @@ const useStyles = makeStyles(() =>
 
 export type LogoSize = 'medium' | 'small'
 
-export interface BoxProps {
+export interface BoxProps extends BasicProps {
   children: React.ReactNode
   logo?: logoType | 'none'
-  className?: string
-  style?: React.CSSProperties
   elevation?: number
   customLogo?: React.ReactNode
   logoSize?: LogoSize
@@ -99,29 +99,31 @@ export const Box = (props: BoxProps) => {
     style,
     elevation = 1,
     customLogo,
-    logoSize = 'medium'
+    logoSize = 'medium',
+    id
   } = props
   const theme = useContext(themeContext)
-  const classes = useStyles()
+  const defaultClasses = useStyles()
   return (
     <Paper
-      className={`${classes.card} ${className}`}
+      className={clsx(defaultClasses.card, 'AruiBox-root', className)}
       style={style}
       elevation={elevation}
+      id={id}
     >
       {children}
       {logo !== 'none' && (
         <div>
           <div
-            className={`${classes.hidder} ${
-              logoSize == 'small' && classes.HidderSmall
+            className={`${defaultClasses.hidder} ${
+              logoSize == 'small' && defaultClasses.HidderSmall
             }`}
             style={{ boxShadow: `${theme.shadows[elevation]} inset` }}
           ></div>
           {!!customLogo ? (
             <Paper
-              className={`${classes.logo} ${
-                logoSize == 'small' && classes.logoSmall
+              className={`${defaultClasses.logo} ${
+                logoSize == 'small' && defaultClasses.logoSmall
               }`}
               elevation={elevation}
             >
@@ -129,8 +131,8 @@ export const Box = (props: BoxProps) => {
             </Paper>
           ) : logo === 'document' ? (
             <Paper
-              className={`${classes.logo} ${
-                logoSize == 'small' && classes.logoSmall
+              className={`${defaultClasses.logo} ${
+                logoSize == 'small' && defaultClasses.logoSmall
               }`}
               elevation={elevation}
             >
@@ -139,19 +141,19 @@ export const Box = (props: BoxProps) => {
                 alt='A smartb logo'
                 className={
                   logoSize == 'small'
-                    ? classes.documentLogoSmall
-                    : classes.documentLogoMedium
+                    ? defaultClasses.documentLogoSmall
+                    : defaultClasses.documentLogoMedium
                 }
               />
             </Paper>
           ) : (
             <Paper
-              className={`${classes.logo} ${
-                logoSize == 'small' && classes.logoSmall
+              className={`${defaultClasses.logo} ${
+                logoSize == 'small' && defaultClasses.logoSmall
               } ${
                 logoSize == 'small'
-                  ? classes.ImpactCityLogoContainerSmall
-                  : classes.ImpactCityLogoContainerMedium
+                  ? defaultClasses.ImpactCityLogoContainerSmall
+                  : defaultClasses.ImpactCityLogoContainerMedium
               }`}
               elevation={elevation}
             >
@@ -160,8 +162,8 @@ export const Box = (props: BoxProps) => {
                 alt='A smartb logo'
                 className={
                   logoSize == 'small'
-                    ? classes.ImpactCityLogoSmall
-                    : classes.ImpactCityLogoMedium
+                    ? defaultClasses.ImpactCityLogoSmall
+                    : defaultClasses.ImpactCityLogoMedium
                 }
               />
             </Paper>

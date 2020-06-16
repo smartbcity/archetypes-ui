@@ -1,7 +1,7 @@
 import React from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import {
-  SBPopUp,
+  PopUp as AruiPopUp,
   Action,
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
@@ -32,9 +32,9 @@ export const PopUp = () => {
   ]
   return (
     <ThemeContextProvider theme={myTheme}>
-      <SBPopUp open={open} title={title} actions={buttons} onClose={() => {}}>
+      <AruiPopUp open={open} title={title} actions={buttons} onClose={() => {}}>
         {children}
-      </SBPopUp>
+      </AruiPopUp>
     </ThemeContextProvider>
   )
 }

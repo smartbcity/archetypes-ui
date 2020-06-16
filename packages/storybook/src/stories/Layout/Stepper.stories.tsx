@@ -6,7 +6,7 @@ import React, {
 import { withKnobs } from '@storybook/addon-knobs'
 import {
   Stepper as SBStepper,
-  SBStepperProps,
+  StepperBaseProps,
   StepDetails,
   OnNextHandles
 } from '@smartb/archetypes-ui-layout'
@@ -47,7 +47,7 @@ const steps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {
 
 export const Stepper = () => {
   const [step, setStep] = useState(0)
-  const stepperProps: SBStepperProps = {
+  const stepperProps: StepperBaseProps = {
     activeStep: step,
     getSteps: steps,
     gotoStep: (newStep: number) => setStep(newStep),
@@ -56,8 +56,8 @@ export const Stepper = () => {
   return (
     <ThemeContextProvider theme={myTheme}>
       <SBStepper
-        stepperProps={stepperProps}
-        stepperLabel={{
+        stepperBaseProps={stepperProps}
+        stepperBaseLabel={{
           next: 'next',
           back: 'back',
           finish: 'finish'

@@ -6,7 +6,10 @@ import {
   text,
   boolean
 } from '@storybook/addon-knobs'
-import { SBCard, ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import {
+  Card as AruiCard,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
 import example from '../assets/smartB.JPG'
@@ -38,7 +41,7 @@ export const Card = () => {
   const image = boolean('image', false)
   return (
     <ThemeContextProvider theme={myTheme}>
-      <SBCard
+      <AruiCard
         header={header}
         logo={logo}
         style={{ width: '350px' }}
@@ -58,7 +61,7 @@ export const Card = () => {
             {children}
           </Typography>
         )}
-      </SBCard>
+      </AruiCard>
     </ThemeContextProvider>
   )
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import { Menu } from '../Drawermenu/menu'
 import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { MergeReactElementProps, BasicProps } from '../Types'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -52,60 +54,120 @@ const useStyles = makeStyles(() =>
 
 export type Display = 'list' | 'grid'
 
-interface ItemsLayout {
+interface ItemsLayoutClasses {
+  gridContainer?: string
+  gridItem?: string
+  listItem?: string
+}
+
+interface ItemsLayoutStyles {
+  gridContainer?: React.CSSProperties
+  gridItem?: React.CSSProperties
+  listItem?: React.CSSProperties
+}
+
+export interface ItemsLayoutProps extends BasicProps {
   menu: Menu
   display?: Display
-  className?: string
-  style?: React.CSSProperties
+  classes?: ItemsLayoutClasses
+  styles?: ItemsLayoutStyles
 }
 
-export const ItemsLayout = (props: ItemsLayout) => {
-  const { menu, display = 'list', className, style } = props
-  const classes = useStyles()
+type Props = MergeReactElementProps<'div', ItemsLayoutProps>
 
-  if (display === 'list')
+export const ItemsLayout = React.forwardRef(
+  (props: Props, ref: React.Ref<HTMLDivElement>) => {
+    const {
+      menu,
+      display = 'list',
+      className,
+      style,
+      id,
+      classes,
+      styles,
+      ...other
+    } = props
+    const defaultClasses = useStyles()
+
+    if (display === 'list')
+      return (
+        <div
+          className={clsx(className, 'AruiItemsLayout-listRoot')}
+          style={style}
+          id={id}
+          ref={ref}
+          {...other}
+        >
+          {menu.items &&
+            menu.items.map((it) => (
+              <MenuItem
+                className={clsx(
+                  defaultClasses.item,
+                  'AruiItemsLayout-listItem',
+                  classes?.listItem
+                )}
+                style={styles?.listItem}
+                key={it.key}
+                onClick={it.goto}
+              >
+                {it.icon && (
+                  <ListItemIcon classes={{ root: defaultClasses.icon }}>
+                    {it.icon}
+                  </ListItemIcon>
+                )}
+                <Typography variant='subtitle2'>{it.label}</Typography>
+              </MenuItem>
+            ))}
+        </div>
+      )
     return (
-      <div className={className} style={style}>
-        {menu.items &&
-          menu.items.map((it) => (
-            <MenuItem className={classes.item} key={it.key} onClick={it.goto}>
-              {it.icon && (
-                <ListItemIcon classes={{ root: classes.icon }}>
-                  {it.icon}
-                </ListItemIcon>
-              )}
-              <Typography variant='subtitle2'>{it.label}</Typography>
-            </MenuItem>
-          ))}
+      <div
+        className={clsx(
+          defaultClasses.gridRoot,
+          'AruiItemsLayout-gridRoot',
+          className
+        )}
+        style={style}
+        id={id}
+        ref={ref}
+        {...other}
+      >
+        <Grid
+          wrap='wrap'
+          container
+          direction='row'
+          alignContent='flex-start'
+          className={clsx(
+            defaultClasses.gridContainer,
+            'AruiItemsLayout-gridContainer',
+            classes?.gridContainer
+          )}
+          style={styles?.gridContainer}
+        >
+          {menu.items &&
+            menu.items.map((it) => (
+              <Grid
+                key={it.key}
+                container
+                onClick={it.goto}
+                alignItems='center'
+                direction='column'
+                justify='space-around'
+                className={clsx(
+                  defaultClasses.gridItem,
+                  'AruiItemsLayout-gridItem',
+                  classes?.gridItem
+                )}
+                style={styles?.gridItem}
+              >
+                {it.icon}
+                <Typography variant='subtitle2' align='center'>
+                  {it.label}
+                </Typography>
+              </Grid>
+            ))}
+        </Grid>
       </div>
     )
-  return (
-    <div className={`${classes.gridRoot} ${className}`} style={style}>
-      <Grid
-        wrap='wrap'
-        container
-        direction='row'
-        alignContent='flex-start'
-        className={classes.gridContainer}
-      >
-        {menu.items &&
-          menu.items.map((it) => (
-            <Grid
-              className={classes.gridItem}
-              key={it.key}
-              container
-              onClick={it.goto}
-              alignItems='center'
-              direction='column'
-              justify='space-around'
-            >
-              {it.icon}
-              <Typography variant='subtitle2' align='center'>
-                {it.label}
-              </Typography>
-            </Grid>
-          ))}
-      </Grid>
-    </div>
-  )
-}
+  }
+)
