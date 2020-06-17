@@ -15,11 +15,11 @@ const useStyles = (theme: Theme) =>
         justifyContent: 'center'
       },
       stepper: {
-        '& .sb-stepper-content': {
+        '& .AruiStepperBase-content': {
           position: 'relative',
           margin: 0
         },
-        '& .sb-stepper-action': {
+        '& .AruiStepperBase-actions': {
           position: 'absolute',
           bottom: 10,
           right: 10
