@@ -80,7 +80,7 @@ export const DatePicker = React.forwardRef(
               'AruiDatePicker-label',
               classes?.label
             )}
-            style={styles && styles.label}
+            style={styles?.label}
           >
             {label}
           </InputLabel>
@@ -96,7 +96,7 @@ export const DatePicker = React.forwardRef(
             'AruiDatePicker-input',
             classes?.input
           )}
-          style={styles && styles.label}
+          style={styles?.input}
           {...other}
         />
       </div>
