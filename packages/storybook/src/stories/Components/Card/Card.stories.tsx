@@ -12,12 +12,18 @@ import {
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
-import example from '../assets/smartB.JPG'
-import { myTheme } from '../../Docs/Theme/Theme'
+import example from '../../assets/smartB.JPG'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './Card.mdx'
 
 export default {
   title: 'Components|Card',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const Card = () => {

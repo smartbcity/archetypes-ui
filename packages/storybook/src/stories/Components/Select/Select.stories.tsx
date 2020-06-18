@@ -5,10 +5,16 @@ import {
   SelectItem
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
+import mdx from './Select.mdx'
 
 export default {
   title: 'Components|Select',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const Select = () => {

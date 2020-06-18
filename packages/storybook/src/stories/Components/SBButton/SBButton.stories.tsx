@@ -1,35 +1,36 @@
 import React from 'react'
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import {
-  Button as AruiButton,
+  SBButton,
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './SBButton.mdx'
 
 export default {
-  title: 'Components|Button',
-  decorators: [withKnobs, withA11y]
+  title: 'Components|SBButton',
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const Button = () => {
   const children = text('children', 'Click Me')
   const disabled = boolean('disabled', false)
-  const variant = select(
-    'variant',
-    { contained: 'contained', outlined: 'outlined' },
-    'contained'
-  )
-
+  const hoverEffect = boolean('hoverEffect', true)
   return (
     <ThemeContextProvider theme={myTheme}>
-      <AruiButton
+      <SBButton
         disabled={disabled}
+        hoverEffect={hoverEffect}
         style={{ margin: '20px auto', display: 'block', position: 'relative' }}
-        variant={variant}
-        label={children}
-        onClick={() => {}}
-      />
+      >
+        {children}
+      </SBButton>
     </ThemeContextProvider>
   )
 }

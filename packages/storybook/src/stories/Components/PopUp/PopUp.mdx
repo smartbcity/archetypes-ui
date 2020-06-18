@@ -1,0 +1,94 @@
+import Preview from '../../../Docs/Preview/Preview'
+import { PopUp, ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import PropsTable from '../../../Docs/PropsTable'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+# SmartB PopUp
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'open',
+      type: 'boolean',
+      defaultValue: '',
+      required: true,
+      description: 'Define if the po-up is open'
+    },
+    {
+      name: 'onClose',
+      type: '(event: React.ChangeEvent<{}>) => void',
+      defaultValue: '',
+      required: true,
+      description: 'The event called when we click away from the pop-up'
+    },
+    {
+      name: 'actions',
+      type: 'Action[]*',
+      defaultValue: '',
+      required: false,
+      description:
+        'The list of the actions that will be displayed at the bottom f the pop-up'
+    },
+    {
+      name: 'title',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The title thart will be displayed at the top of the pop-up'
+    },
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The content that will be displayed in the body of the pop-up'
+    },
+    {
+      name: 'classes',
+      type: 'PopUpClasses*',
+      defaultValue: '',
+      required: false,
+      description: 'The classes applied to the different part of the component'
+    },
+    {
+      name: 'styles',
+      type: 'PopUpStyles*',
+      defaultValue: '',
+      required: false,
+      description: 'The styles applied to the different part of the component'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>{' '}

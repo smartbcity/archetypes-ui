@@ -1,4 +1,4 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import Preview from '../../../Docs/Preview/Preview'
 import {
   SBButton,
   ThemeContextProvider
@@ -20,6 +20,27 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 
 <PropsTable
   rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
     {
       name: 'children',
       type: 'React.ReactNode',
@@ -47,32 +68,20 @@ import { myTheme } from '../../../Docs/Theme/Theme'
       defaultValue: 'false',
       required: false,
       description: 'If false the hoverEffect will be disabled'
-    },
-    {
-      name: 'className',
-      type: 'string',
-      defaultValue: '',
-      required: false,
-      description:
-        'Add the className to the button and override the default properties'
-    },
-    {
-      name: 'style',
-      type: 'React.CSSProperties',
-      defaultValue: '',
-      required: false,
-      description:
-        'Add the style to the button and override the default properties'
     }
   ]}
 />
 
 ## Examples
 
-<Preview>
-  <ThemeContextProvider theme={myTheme}>
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBButton>Normal</SBButton>
+<SBButton hoverEffect={false}>Without hoverEffect</SBButton>
+<SBButton disabled={true}>Disabled</SBButton>`}
+  >
     <SBButton>Normal</SBButton>
     <SBButton hoverEffect={false}>Without hoverEffect</SBButton>
     <SBButton disabled={true}>Disabled</SBButton>
-  </ThemeContextProvider>
-</Preview>
+  </Preview>
+</ThemeContextProvider>

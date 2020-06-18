@@ -1,12 +1,15 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import Preview from '../../../Docs/Preview/Preview'
 import {
-  SBDividerContent,
+  DividerContent as SBDividerContent,
   SBButton,
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
 import { Typography } from '@material-ui/core'
 import PropsTable from '../../../Docs/PropsTable'
 import { myTheme } from '../../../Docs/Theme/Theme'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
 
 <Meta title='Overview|Components/DividerContent' />
 
@@ -22,7 +25,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
       component='p'
       align='center'
     >
-      The SmartB Layout
+      The SmartB Content
     </Typography>
     <Typography
       variant='body2'
@@ -34,10 +37,32 @@ import { myTheme } from '../../../Docs/Theme/Theme'
     </Typography>
   </SBDividerContent>
 </ThemeContextProvider>
+
 ## Props
 
 <PropsTable
   rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
     {
       name: 'children',
       type: 'React.ReactNode[]',
@@ -60,39 +85,116 @@ import { myTheme } from '../../../Docs/Theme/Theme'
       description: 'The direction of the division'
     },
     {
-      name: 'className',
-      type: 'string',
+      name: 'classes',
+      type: 'DividerContentClasses*',
       defaultValue: '',
       required: false,
-      description:
-        'Add the className to the container and override the default properties'
+      description: 'The classes applied to the different part of the component'
     },
     {
-      name: 'style',
-      type: 'React.CSSProperties',
+      name: 'styles',
+      type: 'DividerContentStyles*',
       defaultValue: '',
       required: false,
-      description:
-        'Add the style to the container and override the default properties'
-    },
-    {
-      name: 'dividerStyle',
-      type: 'React.CSSProperties',
-      defaultValue: '',
-      required: false,
-      description:
-        'Add the style to the divider and override the default properties'
+      description: 'The styles applied to the different part of the component'
     }
   ]}
 />
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>{' '}
 
 ## Examples
 
 ### Default Division
 
-<Preview>
-  <ThemeContextProvider theme={myTheme}>
-    <SBDividerContent>
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBDividerContent style={{margin: '20px',}}>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with your identity wallet
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with the mobile application
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+</SBDividerContent>
+<SBDividerContent dividerText='Or' style={{margin: '20px',}}>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with your identity wallet
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with the mobile application
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+</SBDividerContent>`}
+  >
+    <SBDividerContent style={{ margin: '20px' }}>
       <>
         <Typography
           variant='body2'
@@ -132,7 +234,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
         </SBButton>
       </>
     </SBDividerContent>
-    <SBDividerContent dividerText='Or'>
+    <SBDividerContent dividerText='Or' style={{ margin: '20px' }}>
       <>
         <Typography
           variant='body2'
@@ -172,14 +274,95 @@ import { myTheme } from '../../../Docs/Theme/Theme'
         </SBButton>
       </>
     </SBDividerContent>
-  </ThemeContextProvider>
-</Preview>
+  </Preview>
+</ThemeContextProvider>
 
 ### vertical Division
 
-<Preview>
-  <ThemeContextProvider theme={myTheme}>
-    <SBDividerContent dividerDirection='vertical'>
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBDividerContent dividerDirection='vertical' style={{margin: '20px',}}>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with your identity wallet
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with the mobile application
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+</SBDividerContent>
+<SBDividerContent dividerDirection='vertical' dividerText='And' style={{margin: '20px',}}>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with your identity wallet
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+  <>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      connect with the mobile application
+    </Typography>
+    <SBButton
+      style={{
+        margin: '20px auto',
+        display: 'block',
+        position: 'relative'
+      }}
+    >
+      Yes
+    </SBButton>
+  </>
+</SBDividerContent>`}
+  >
+    <SBDividerContent dividerDirection='vertical' style={{ margin: '20px' }}>
       <>
         <Typography
           variant='body2'
@@ -219,7 +402,11 @@ import { myTheme } from '../../../Docs/Theme/Theme'
         </SBButton>
       </>
     </SBDividerContent>
-    <SBDividerContent dividerDirection='vertical' dividerText='And'>
+    <SBDividerContent
+      dividerDirection='vertical'
+      dividerText='And'
+      style={{ margin: '20px' }}
+    >
       <>
         <Typography
           variant='body2'
@@ -259,5 +446,5 @@ import { myTheme } from '../../../Docs/Theme/Theme'
         </SBButton>
       </>
     </SBDividerContent>
-  </ThemeContextProvider>
-</Preview>
+  </Preview>
+</ThemeContextProvider>

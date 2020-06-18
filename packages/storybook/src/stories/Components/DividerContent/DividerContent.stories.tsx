@@ -7,11 +7,17 @@ import {
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
 import { Typography } from '@material-ui/core'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './DividerContent.mdx'
 
 export default {
   title: 'Components|DividerContent',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const DividerContent = () => {

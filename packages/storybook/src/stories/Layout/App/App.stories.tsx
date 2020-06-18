@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import defaultLogo from '../assets/impactcity-logo-2.png'
+import defaultLogo from '../../assets/impactcity-logo-2.png'
 import { withKnobs, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import {
@@ -11,7 +11,7 @@ import {
 } from '@smartb/archetypes-ui-layout'
 import { Typography, Button } from '@material-ui/core'
 import { withA11y } from '@storybook/addon-a11y'
-import { MultipleSectionMenuFull } from '../../Docs/Variables/IconProfile'
+import { MultipleSectionMenuFull } from '../../../Docs/Variables/IconProfile'
 import {
   AccountCircle,
   Settings,
@@ -19,11 +19,17 @@ import {
   ExitToApp
 } from '@material-ui/icons'
 import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './App.mdx'
 
 export default {
   title: 'Layout|App',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const App = () => {

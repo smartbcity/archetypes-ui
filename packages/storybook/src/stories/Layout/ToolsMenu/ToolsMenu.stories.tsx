@@ -8,7 +8,7 @@ import {
   MultipleSectionMenuWithoutIcon,
   OneSectionMenu,
   OneSectionMenuFull
-} from '../../Docs/Variables/IconProfile'
+} from '../../../Docs/Variables/IconProfile'
 
 export default {
   title: 'Layout|ToolsMenu',

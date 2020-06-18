@@ -13,7 +13,7 @@ import {
 import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
 import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
 
 export default {
   title: 'Layout|Stepper',

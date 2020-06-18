@@ -6,11 +6,17 @@ import {
   ThemeContextProvider
 } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './DatePicker.mdx'
 
 export default {
   title: 'Components|DatePicker',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 const useStyles = makeStyles(() =>

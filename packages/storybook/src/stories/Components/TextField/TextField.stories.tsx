@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import { TextField as AruiTextField } from '@smartb/archetypes-ui-components'
 import { withA11y } from '@storybook/addon-a11y'
+import mdx from './TextField.mdx'
 
 export default {
   title: 'Components|TextField',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const TextField = () => {

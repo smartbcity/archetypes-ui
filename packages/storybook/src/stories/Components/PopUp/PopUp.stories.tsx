@@ -7,11 +7,17 @@ import {
 } from '@smartb/archetypes-ui-components'
 import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
-import { myTheme } from '../../Docs/Theme/Theme'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './PopUp.mdx'
 
 export default {
   title: 'Components|PopUp',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const PopUp = () => {
