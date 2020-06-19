@@ -32,7 +32,7 @@ const useStepIconStyles = (theme: Theme) =>
     }
   })
 
-export const MeStepIcon = (props: StepIconProps) => {
+export const StepIcon = (props: StepIconProps) => {
   const theme = useContext(themeContext)
   const classes = useStepIconStyles(theme)()
   const { active, completed, icon } = props
@@ -50,6 +50,6 @@ export const MeStepIcon = (props: StepIconProps) => {
   )
 }
 
-export const MeStepEmptyIcon = () => {
+export const StepEmptyIcon = () => {
   return <Fragment></Fragment>
 }

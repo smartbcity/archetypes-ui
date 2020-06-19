@@ -14,10 +14,16 @@ import { action } from '@storybook/addon-actions'
 import { withA11y } from '@storybook/addon-a11y'
 import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
 import { myTheme } from '../../../Docs/Theme/Theme'
+import mdx from './Stepper.mdx'
 
 export default {
   title: 'Layout|Stepper',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 const steps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {

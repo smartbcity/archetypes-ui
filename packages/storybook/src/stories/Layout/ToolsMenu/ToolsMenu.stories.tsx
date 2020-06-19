@@ -9,10 +9,16 @@ import {
   OneSectionMenu,
   OneSectionMenuFull
 } from '../../../Docs/Variables/IconProfile'
+import mdx from './ToolsMenu.mdx'
 
 export default {
   title: 'Layout|ToolsMenu',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const ToolsMenu = () => {

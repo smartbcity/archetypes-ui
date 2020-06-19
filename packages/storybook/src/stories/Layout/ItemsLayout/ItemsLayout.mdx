@@ -1,0 +1,118 @@
+import Preview from '../../../Docs/Preview/Preview'
+import PropsTable from '../../../Docs/PropsTable'
+import {
+  OneSectionMenuFull,
+  MultipleSectionMenuFull,
+  NoIconMultipleSectionMenuFull
+} from '../../../Docs/Variables/IconProfile.tsx'
+import { ItemsLayout } from '@smartb/archetypes-ui-layout'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+<Meta title='Overview|Layout/ItemsLayout' />
+
+# SmartB items layout
+
+<ItemsLayout
+  style={{ display: 'block', margin: 'auto' }}
+  menu={OneSectionMenuFull.items[0]}
+  display='grid'
+/>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'menu',
+      type: 'Menu',
+      defaultValue: '',
+      required: true,
+      description:
+        'menu contains all the items that will be displayed in the profile'
+    },
+    {
+      name: 'display',
+      type: "'list' | 'grid'",
+      defaultValue: "'list'",
+      required: false,
+      description: 'The organization of the items'
+    },
+    {
+      name: 'classes',
+      type: 'ItemsLayoutClasses*',
+      defaultValue: '',
+      required: false,
+      description: 'The classes applied to the different part of the component'
+    },
+    {
+      name: 'styles',
+      type: 'ItemsLayoutStyles*',
+      defaultValue: '',
+      required: false,
+      description: 'The styles applied to the different part of the component'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>
+
+## Examples
+
+### Display Grid
+
+<Preview
+  code={`<ItemsLayout
+  style={{ display: 'block', margin: 'auto' }}
+  menu={OneSectionMenuFull.items[0]}
+  display='grid'
+/>`}
+>
+  <ItemsLayout
+    style={{ display: 'block', margin: 'auto' }}
+    menu={OneSectionMenuFull.items[0]}
+    display='grid'
+  />
+</Preview>
+
+### Display List
+
+<Preview
+  code={`<ItemsLayout
+  style={{ display: 'block', margin: 'auto' }}
+  menu={OneSectionMenuFull.items[0]}
+  display='list'
+/>`}
+>
+  <ItemsLayout
+    style={{ display: 'block', margin: 'auto' }}
+    menu={OneSectionMenuFull.items[0]}
+    display='list'
+  />
+</Preview>

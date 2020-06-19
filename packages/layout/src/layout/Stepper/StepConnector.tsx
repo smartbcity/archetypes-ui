@@ -1,7 +1,10 @@
-import { StepConnector, withStyles } from '@material-ui/core'
+import {
+  StepConnector as MuiStepConnector,
+  withStyles
+} from '@material-ui/core'
 import { Theme } from '@smartb/archetypes-ui-components'
 
-export const MeStepConnector = (theme: Theme) =>
+export const StepConnector = (theme: Theme) =>
   withStyles({
     alternativeLabel: {
       top: 20,
@@ -25,4 +28,4 @@ export const MeStepConnector = (theme: Theme) =>
       backgroundColor: theme.tertiaryColor,
       borderRadius: 1
     }
-  })(StepConnector)
+  })(MuiStepConnector)

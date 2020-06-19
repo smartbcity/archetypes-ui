@@ -12,10 +12,16 @@ import {
   OneSectionMenu,
   OneSectionMenuFull
 } from '../../../Docs/Variables/IconProfile'
+import mdx from './ToolsPanel.mdx'
 
 export default {
   title: 'Layout|ToolsPanel',
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 }
 
 export const ToolsPanel = () => {

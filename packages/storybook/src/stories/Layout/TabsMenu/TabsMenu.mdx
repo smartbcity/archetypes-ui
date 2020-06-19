@@ -1,7 +1,10 @@
-import { Meta, Props, Story, Preview } from '@storybook/addon-docs/blocks'
+import Preview from '../../../Docs/Preview/Preview'
 import PropsTable from '../../../Docs/PropsTable'
 import { TabsMenu } from '@smartb/archetypes-ui-layout'
 import { AccountCircle } from '@material-ui/icons'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
 
 <Meta title='Overview|Layout/TabsMenu' />
 
@@ -20,8 +23,29 @@ import { AccountCircle } from '@material-ui/icons'
 <PropsTable
   rows={[
     {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
       name: 'tabs',
-      type: '[{label: string, icon?: JSX.Element}]',
+      type: 'Tab[]*',
       defaultValue: '',
       required: true,
       description:
@@ -43,29 +67,41 @@ import { AccountCircle } from '@material-ui/icons'
         "If 'fullWidth' the tabs will take the all the space of the parent if 'fixedWidth' every tab will have 100px of width"
     },
     {
-      name: 'className',
-      type: 'string',
+      name: 'classes',
+      type: 'TabsMenuClasses*',
       defaultValue: '',
       required: false,
-      description:
-        'Add the className to the container and override the default properties'
+      description: 'The classes applied to the different part of the component'
     },
     {
-      name: 'style',
-      type: 'React.CSSProperties',
+      name: 'styles',
+      type: 'TabsMenuStyles*',
       defaultValue: '',
       required: false,
-      description:
-        'Add the style to the container and override the default properties'
+      description: 'The styles applied to the different part of the component'
     }
   ]}
 />
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>
 
 ## Examples
 
 ### fullWidth
 
-<Preview>
+<Preview
+  code={`<TabsMenu
+  tabs={[{ label: 'section1' }, { label: 'section2' }]}
+  variant='fullWidth'
+>
+  <div style={{ width: '50px', height: '50px' }}>section1</div>
+  <div style={{ width: '50px', height: '50px' }}>section2</div>
+</TabsMenu>`}
+>
   <TabsMenu
     tabs={[{ label: 'section1' }, { label: 'section2' }]}
     variant='fullWidth'
@@ -77,7 +113,15 @@ import { AccountCircle } from '@material-ui/icons'
 
 ### fixedWidth
 
-<Preview>
+<Preview
+  code={`<TabsMenu
+  tabs={[{ label: 'section1' }, { label: 'section2' }]}
+  variant='fixedWidth'
+>
+  <div style={{ width: '50px', height: '50px' }}>section1</div>
+  <div style={{ width: '50px', height: '50px' }}>section2</div>
+</TabsMenu>`}
+>
   <TabsMenu
     tabs={[{ label: 'section1' }, { label: 'section2' }]}
     variant='fixedWidth'
@@ -89,7 +133,18 @@ import { AccountCircle } from '@material-ui/icons'
 
 ### with icons
 
-<Preview>
+<Preview
+  code={`<TabsMenu
+  tabs={[
+    { label: 'section1', icon: <AccountCircle /> },
+    { label: 'section2', icon: <AccountCircle /> }
+  ]}
+  variant='fixedWidth'
+>
+  <div style={{ width: '50px', height: '50px' }}>section1</div>
+  <div style={{ width: '50px', height: '50px' }}>section2</div>
+</TabsMenu>`}
+>
   <TabsMenu
     tabs={[
       { label: 'section1', icon: <AccountCircle /> },
