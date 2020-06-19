@@ -1,0 +1,517 @@
+import Preview from '../../../Docs/Preview/Preview'
+import {
+  Card as SBCard,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
+import { Typography } from '@material-ui/core'
+import PropsTable from '../../../Docs/PropsTable'
+import { AccountCircle } from '@material-ui/icons'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+# SmartB Card
+
+<ThemeContextProvider theme={myTheme}>
+  <SBCard
+    style={{
+      position: 'relative',
+      width: '300px',
+      height: '150px',
+      margin: '20px auto'
+    }}
+    header='The SmartB Card'
+  >
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+    >
+      Lorem ipsum
+    </Typography>
+  </SBCard>
+</ThemeContextProvider>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'header',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The text that will be displayed in the header of the card'
+    },
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: true,
+      description: 'The content that will be displayed in the body of the card'
+    },
+    {
+      name: 'logo',
+      type: "'none' | 'default' | 'document'",
+      defaultValue: "'default'",
+      required: false,
+      description: 'Choose the logo in the corner'
+    },
+    {
+      name: 'elevation',
+      type: 'number',
+      defaultValue: '1',
+      required: false,
+      description: 'Defined the elevation of the card'
+    },
+    {
+      name: 'customLogo',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The logo that wil be displayed in the corner instead of the defaults logos'
+    },
+    {
+      name: 'logoSize',
+      type: "'medium' | 'small'",
+      defaultValue: "'medium'",
+      required: false,
+      description: 'Defined the size of the logo in the corner'
+    },
+    {
+      name: 'separator',
+      type: "React.ReactNode | 'none'",
+      defaultValue: '',
+      required: false,
+      description:
+        "If not defined the seperator will appear with default styles, if it's 'none' the seperator won't be displayed, if the seperator is a node it will be displayed instead of the default one"
+    },
+    {
+      name: 'footer',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The text displayed at the bottom of the card'
+    },
+    {
+      name: 'classes',
+      type: 'CardClasses*',
+      defaultValue: '',
+      required: false,
+      description: 'The classes applied to the different part of the component'
+    },
+    {
+      name: 'styles',
+      type: 'CardStyles*',
+      defaultValue: '',
+      required: false,
+      description: 'The styles applied to the different part of the component'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>{' '}
+
+## Examples
+
+### Elevation types
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='elevation 1'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    elevation={1}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='elevation 5'
+  elevation={5}
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='elevation 10'
+  elevation={10}
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>`}
+  >
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='elevation 1'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+        elevation={1}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='elevation 5'
+      elevation={5}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='elevation 10'
+      elevation={10}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+  </Preview>
+</ThemeContextProvider>
+
+### All different logos
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='Default logo'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='Document logo'
+  logo='document'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='small logo'
+  logoSize='small'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='whithout logo'
+  logo='none'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='custom logo'
+  logoSize='small'
+  customLogo={<AccountCircle style={{ width: '40px', height: '40px' }} />}
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>`}
+  >
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='Default logo'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='Document logo'
+      logo='document'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='small logo'
+      logoSize='small'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='whithout logo'
+      logo='none'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='custom logo'
+      logoSize='small'
+      customLogo={<AccountCircle style={{ width: '40px', height: '40px' }} />}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+  </Preview>
+</ThemeContextProvider>
+
+### Header options
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  logo='none'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Card whithout header
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='Card whithout seperator'
+  separator='none'
+  logo='none'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>
+<SBCard
+  style={{ position: 'relative', width: '300px', margin: '20px' }}
+  header='Card whith a custom seperator'
+  separator={
+    <div
+      style={{
+        background: 'aqua',
+        height: '1px',
+        width: '60%',
+        position: 'absolute',
+        left: '20%'
+      }}
+    ></div>
+  }
+  logo='none'
+>
+  <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </Typography>
+</SBCard>`}
+  >
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      logo='none'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Card whithout header
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='Card whithout seperator'
+      separator='none'
+      logo='none'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+    <SBCard
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      header='Card whith a custom seperator'
+      separator={
+        <div
+          style={{
+            background: 'aqua',
+            height: '1px',
+            width: '60%',
+            position: 'absolute',
+            left: '20%'
+          }}
+        ></div>
+      }
+      logo='none'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Typography>
+    </SBCard>
+  </Preview>
+</ThemeContextProvider>

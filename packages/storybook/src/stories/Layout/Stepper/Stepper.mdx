@@ -1,0 +1,51 @@
+import {
+  MenuItem,
+  SBApp,
+  SimpleMenuItem,
+  StyleProps,
+  ProfileProps
+} from '@smartb/archetypes-ui-layout'
+import defaultLogo from '../../assets/impactcity-logo-2.png'
+import PropsTable from '../../../Docs/PropsTable'
+import { Typography } from '@material-ui/core'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+<Meta title='Overview|Layout/App' />
+
+# SmartB App
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'stepperBaseProps',
+      type: 'StepperBaseProps*',
+      defaultValue: '',
+      required: true,
+      description: 'The props of the stepperBase'
+    },
+    {
+      name: 'stepperBaseLabel',
+      type: 'stepperBaseLabel*',
+      defaultValue: '',
+      required: true,
+      description: 'The stepperBase label'
+    },
+    {
+      name: 'empty',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: false,
+      description: 'Define if the icon will be displayed or not'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>

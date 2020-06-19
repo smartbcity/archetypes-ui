@@ -58,8 +58,8 @@ export interface ToolsMenuProps extends BasicProps {
   display?: Display
   classes?: ToolsMenuClasses
   styles?: ToolsMenuStyles
-  itemsLayoutProps?: ItemsLayoutProps
-  tabsMenuProps?: TabsMenuProps
+  itemsLayoutProps?: Partial<ItemsLayoutProps>
+  tabsMenuProps?: Partial<TabsMenuProps>
 }
 
 export const ToolsMenu = (props: ToolsMenuProps) => {

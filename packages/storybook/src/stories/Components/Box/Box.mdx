@@ -1,0 +1,330 @@
+import Preview from '../../../Docs/Preview/Preview'
+import {
+  Box as SBBox,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
+import { Typography } from '@material-ui/core'
+import PropsTable from '../../../Docs/PropsTable'
+import { AccountCircle } from '@material-ui/icons'
+import { myTheme } from '../../../Docs/Theme/Theme'
+
+# SmartB Box
+
+<ThemeContextProvider theme={myTheme}>
+  <SBBox
+    style={{
+      position: 'relative',
+      width: '200px',
+      height: '70px',
+      margin: '20px auto'
+    }}
+  >
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      component='p'
+      align='center'
+      style={{ margin: '20px 40px' }}
+    >
+      'The SmartB Box'
+    </Typography>
+  </SBBox>
+</ThemeContextProvider>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: true,
+      description: 'The content that will be displayed in the body of the card'
+    },
+    {
+      name: 'logo',
+      type: "'none' | 'default' | 'document'",
+      defaultValue: "'default'",
+      required: false,
+      description: 'Choose the logo in the corner'
+    },
+    {
+      name: 'elevation',
+      type: 'number',
+      defaultValue: '1',
+      required: false,
+      description: 'Defined the elevation of the card'
+    },
+    {
+      name: 'customLogo',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The logo that wil be displayed in the corner instead of the defaults logos'
+    },
+    {
+      name: 'logoSize',
+      type: "'medium' | 'small'",
+      defaultValue: "'medium'",
+      required: false,
+      description: 'Defined the size of the logo in the corner'
+    }
+  ]}
+/>
+
+## Examples
+
+### Elevation types
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    style={{margin:"20px 40px"}}
+    elevation={1}
+    >
+    elevation 1
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    elevation={5}
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    style={{margin:"20px 40px"}}
+    align='center'
+    >
+    elevation 5
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    elevation={10}
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    style={{margin:"20px 40px"}}
+    align='center'
+    >
+    elevation 10
+    </Typography>
+</SBBox>`}
+  >
+    <SBBox style={{ position: 'relative', width: '300px', margin: '20px' }}>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+        style={{ margin: '20px 40px' }}
+        elevation={1}
+      >
+        elevation 1
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      elevation={5}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        style={{ margin: '20px 40px' }}
+        align='center'
+      >
+        elevation 5
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      elevation={10}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        style={{ margin: '20px 40px' }}
+        align='center'
+      >
+        elevation 10
+      </Typography>
+    </SBBox>
+  </Preview>
+</ThemeContextProvider>
+
+### All different logos
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    style={{margin:"20px 40px"}}
+    align='center'
+    >
+    Default logo
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    logo='document'
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    >
+    Document logo
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    logoSize='small'
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    >
+    small logo
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    logo='none'
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    >
+    whithout logo
+    </Typography>
+</SBBox>
+<SBBox
+    style={{ position: 'relative', width: '300px', margin: '20px' }}
+    logoSize='small'
+    customLogo={<AccountCircle style={{ width: '40px', height: '40px' }} />}
+>
+    <Typography
+    variant='body2'
+    color='textSecondary'
+    component='p'
+    align='center'
+    >
+    custom logo
+    </Typography>
+</SBBox>`}
+  >
+    <SBBox style={{ position: 'relative', width: '300px', margin: '20px' }}>
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        style={{ margin: '20px 40px' }}
+        align='center'
+      >
+        Default logo
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      logo='document'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+        style={{ margin: '20px 40px' }}
+      >
+        Document logo
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      logoSize='small'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+        style={{ margin: '20px 40px' }}
+      >
+        small logo
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      logo='none'
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        style={{ margin: '20px 40px' }}
+        align='center'
+      >
+        whithout logo
+      </Typography>
+    </SBBox>
+    <SBBox
+      style={{ position: 'relative', width: '300px', margin: '20px' }}
+      logoSize='small'
+      customLogo={<AccountCircle style={{ width: '40px', height: '40px' }} />}
+    >
+      <Typography
+        variant='body2'
+        color='textSecondary'
+        component='p'
+        align='center'
+        style={{ margin: '20px 40px' }}
+      >
+        custom logo
+      </Typography>
+    </SBBox>
+  </Preview>
+</ThemeContextProvider>

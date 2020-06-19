@@ -1,5 +1,7 @@
 import React from 'react'
 import { Theme } from '@smartb/archetypes-ui-components'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface ThemeGetterProps {
   myTheme: Theme
@@ -8,9 +10,9 @@ interface ThemeGetterProps {
 const ThemeGetter = (props: ThemeGetterProps) => {
   const { myTheme } = props
   const themeString = `const defaultTheme = {
-    primaryColor: ${myTheme.primaryColor},
-    secondaryColor: ${myTheme.secondaryColor},
-    tertiaryColor: ${myTheme.tertiaryColor},
+    primaryColor: "${myTheme.primaryColor}",
+    secondaryColor: "${myTheme.secondaryColor}",
+    tertiaryColor: "${myTheme.tertiaryColor}",
     shadows: ["${myTheme.shadows[0]}",
     "${myTheme.shadows[1]}",
     "${myTheme.shadows[2]}",
@@ -27,16 +29,9 @@ const ThemeGetter = (props: ThemeGetterProps) => {
 }
 `
   return (
-    <pre
-      style={{
-        backgroundColor: '#F8F8F8',
-        borderRadius: '3px',
-        padding: '3px 5px',
-        border: '1px solid #EEEEEE'
-      }}
-    >
+    <SyntaxHighlighter language='typescript' style={tomorrow}>
       {themeString}
-    </pre>
+    </SyntaxHighlighter>
   )
 }
 

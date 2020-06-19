@@ -1,0 +1,152 @@
+import Preview from '../../../Docs/Preview/Preview'
+import {
+  TextField,
+  ThemeContextProvider
+} from '@smartb/archetypes-ui-components'
+import PropsTable from '../../../Docs/PropsTable'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+# SmartB TextField
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'defaultValue',
+      type: 'string',
+      defaultValue: '',
+      required: true,
+      description: 'The default value displayed'
+    },
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: '',
+      required: true,
+      description: 'The label of the input'
+    },
+    {
+      name: 'onChange',
+      type: '(value: string) => void',
+      defaultValue: '',
+      required: true,
+      description: 'the event called when the value of the input change'
+    },
+    {
+      name: 'isValid',
+      type: 'boolean',
+      defaultValue: 'true',
+      required: false,
+      description: 'Define if the value of the input is valid or not'
+    },
+    {
+      name: 'errorMessage',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The message displayed when the input value is wrong'
+    },
+    {
+      name: 'type',
+      type: 'string',
+      defaultValue: 'text',
+      required: false,
+      description: 'The type of the input'
+    },
+    ,
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: false,
+      description: 'Define if the input is disabled or not'
+    },
+    {
+      name: 'classes',
+      type: 'TextFieldClasses*',
+      defaultValue: '',
+      required: false,
+      description: 'The classes applied to the different part of the component'
+    },
+    {
+      name: 'styles',
+      type: 'TextFieldStyles*',
+      defaultValue: '',
+      required: false,
+      description: 'The styles applied to the different part of the component'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>{' '}
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={`   <TextField
+    defaultValue=""
+    label="Default"
+    onChange={(value) => setValue(value)}
+   />
+   <TextField
+    defaultValue=""
+    label="Disabled"
+    disabled={true}
+    onChange={(value) => setValue(value)}
+   />
+    <TextField
+    defaultValue=""
+    label="Error message"
+    errorMessage={"there is an error"}
+    isValid={false}
+    onChange={(value) => setValue(value)}
+   />`}
+  >
+    <TextField
+      defaultValue=''
+      label='Default'
+      onChange={(value) => setValue(value)}
+    />
+    <TextField
+      defaultValue=''
+      label='Disabled'
+      disabled={true}
+      onChange={(value) => setValue(value)}
+    />
+    <TextField
+      defaultValue=''
+      label='Error message'
+      errorMessage={'there is an error'}
+      isValid={false}
+      onChange={(value) => setValue(value)}
+    />
+  </Preview>
+</ThemeContextProvider>

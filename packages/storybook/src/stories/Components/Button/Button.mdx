@@ -1,0 +1,114 @@
+import { Button, ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import PropsTable from '../../../Docs/PropsTable'
+import { myTheme } from '../../../Docs/Theme/Theme'
+import Preview from '../../../Docs/Preview/Preview'
+
+# SmartB Button
+
+<ThemeContextProvider theme={myTheme}>
+  <Button
+    style={{ margin: '20px auto', display: 'block', position: 'relative' }}
+    label={'click me'}
+    onClick={() => {}}
+  />
+</ThemeContextProvider>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'className',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The class added to the root element of the component'
+    },
+    {
+      name: 'style',
+      type: 'React.CSSProperties',
+      defaultValue: '',
+      required: false,
+      description: 'The styles added to the root element of the component'
+    },
+    {
+      name: 'id',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The id added to the root element of the component'
+    },
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: '',
+      required: true,
+      description: 'The text displayed in the button'
+    },
+    {
+      name: 'onClick',
+      type: '(event: React.ChangeEvent<{}>) => void',
+      defaultValue: '',
+      required: true,
+      description: 'The event called when the button is clicked'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: false,
+      description: 'Define if the button is disabled or not'
+    },
+    {
+      name: 'variant',
+      type: "'contained' | 'outlined'",
+      defaultValue: "'contained'",
+      required: false,
+      description: 'The styles variations options'
+    }
+  ]}
+/>
+
+## Examples
+
+<ThemeContextProvider theme={myTheme}>
+  <Preview
+    code={` <Button
+    style={{ margin: '20px'}}
+    label={"contained"}
+    onClick={() => {}}
+    variant="contained"
+/>
+<Button
+    style={{ margin: '20px'}}
+    label={"outlined"}
+    onClick={() => {}}
+    variant="outlined"
+/>
+<Button
+    style={{ margin: '20px'}}
+    label={"disabled"}
+    onClick={() => {}}
+    disabled
+/>`}
+  >
+    <Button
+      style={{ margin: '20px' }}
+      label={'contained'}
+      onClick={() => {}}
+      variant='contained'
+    />
+    <Button
+      style={{ margin: '20px' }}
+      label={'outlined'}
+      onClick={() => {}}
+      variant='outlined'
+    />
+    <Button
+      style={{ margin: '20px' }}
+      label={'disabled'}
+      onClick={() => {}}
+      disabled
+    />
+  </Preview>
+</ThemeContextProvider>

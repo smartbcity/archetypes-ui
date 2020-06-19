@@ -16,7 +16,7 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [
         {
-          loader: require.resolve('ts-loader')
+          loader: require.resolve('@storybook/source-loader')
         },
         // Optional
         {

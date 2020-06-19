@@ -114,7 +114,7 @@ export const App = (props: Props) => {
     navBarContent,
     drawerContent,
     menu,
-    open,
+    open = false,
     title,
     logo,
     styleProps,

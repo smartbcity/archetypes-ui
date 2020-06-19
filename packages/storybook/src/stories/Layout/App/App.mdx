@@ -1,0 +1,137 @@
+import {
+  MenuItem,
+  SBApp,
+  SimpleMenuItem,
+  StyleProps,
+  ProfileProps
+} from '@smartb/archetypes-ui-layout'
+import defaultLogo from '../../assets/impactcity-logo-2.png'
+import PropsTable from '../../../Docs/PropsTable'
+import { Typography } from '@material-ui/core'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { types } from './types'
+
+<Meta title='Overview|Layout/App' />
+
+# SmartB App
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'toolsMenuProps',
+      type: 'ToolsMenuProps[]*',
+      defaultValue: '',
+      required: true,
+      description:
+        'An array that contains every tools menu that will be displayed in the navBar'
+    },
+    {
+      name: 'appBarProps',
+      type: 'Partial<AppBarProps>*',
+      defaultValue: '',
+      required: false,
+      description:
+        'The optionnal props of the appBar (normaly given to override classes and styles)'
+    },
+    {
+      name: 'drawerMenuProps?',
+      type: 'Partial<DrawerMenuProps>*',
+      defaultValue: '',
+      required: false,
+      description:
+        'The optionnal props of the drawer menu (normaly given to override classes and styles)'
+    },
+    {
+      name: 'navBarContent',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The content that will be displayed in the navBAr at the left of the profile'
+    },
+    {
+      name: 'menu',
+      type: 'MenuItem[]*',
+      defaultValue: '',
+      required: false,
+      description:
+        'The list of the actions that will be displayed in the drawer menu'
+    },
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The application that has to be surrounded by the navbar and the drawer'
+    },
+    {
+      name: 'logo',
+      type: 'string',
+      defaultValue: '',
+      required: true,
+      description: 'the logo in the navBAr'
+    },
+    {
+      name: 'open',
+      type: 'boolean',
+      defaultValue: 'false',
+      required: true,
+      description: 'Defined if the drawer is open or not'
+    },
+    {
+      name: 'title',
+      type: 'string',
+      defaultValue: '',
+      required: false,
+      description: 'The title that will be displayed in the navBar'
+    },
+    {
+      name: 'styleProps',
+      type:
+        '{ detailDrawerWidth: number, appBarHeight: number, menuWidth: number}',
+      defaultValue: '',
+      required: true,
+      description: 'The style of the navBar and the drawer'
+    },
+    {
+      name: 'showAppBar',
+      type: 'boolean',
+      defaultValue: 'true',
+      required: true,
+      description:
+        'Defined if the appBar (navBar + drawer) will be displayed or not'
+    },
+    {
+      name: 'drawerContent',
+      type: 'React.ReactNode',
+      defaultValue: '',
+      required: false,
+      description:
+        'The content that will be displayed in the drawer below the menu'
+    },
+    {
+      name: 'classes',
+      type: 'AppClasses*',
+      defaultValue: '',
+      required: false,
+      description: 'The classes applied to the different part of the component'
+    },
+    {
+      name: 'styles',
+      type: 'AppStyles*',
+      defaultValue: '',
+      required: false,
+      description: 'The styles applied to the different part of the component'
+    }
+  ]}
+/>
+
+## Complexe Types
+
+<SyntaxHighlighter language='typescript' style={tomorrow}>
+  {types}
+</SyntaxHighlighter>

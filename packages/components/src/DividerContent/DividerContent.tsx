@@ -91,7 +91,6 @@ export interface DividerContentProps extends BasicProps {
   children: React.ReactNode | React.ReactNode[]
   dividerText?: string
   dividerDirection?: Direction
-  dividerStyle?: React.CSSProperties
   classes?: DivderContentClasses
   styles?: DividerContentStyles
 }
