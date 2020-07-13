@@ -33,9 +33,10 @@ export const Button = () => {
         disabled={disabled}
         style={{ margin: '20px auto', display: 'block', position: 'relative' }}
         variant={variant}
-        label={children}
         onClick={() => {}}
-      />
+      >
+        {children}
+      </AruiButton>
     </ThemeContextProvider>
   )
 }
