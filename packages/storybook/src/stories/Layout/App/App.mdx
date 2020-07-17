@@ -23,8 +23,8 @@ import { types } from './types'
     {
       name: 'toolsMenuProps',
       type: 'ToolsMenuProps[]*',
-      defaultValue: '',
-      required: true,
+      defaultValue: '[]',
+      required: false,
       description:
         'An array that contains every tools menu that will be displayed in the navBar'
     },
@@ -78,7 +78,7 @@ import { types } from './types'
     {
       name: 'open',
       type: 'boolean',
-      defaultValue: 'false',
+      defaultValue: '',
       required: true,
       description: 'Defined if the drawer is open or not'
     },
@@ -101,7 +101,7 @@ import { types } from './types'
       name: 'showAppBar',
       type: 'boolean',
       defaultValue: 'true',
-      required: true,
+      required: false,
       description:
         'Defined if the appBar (navBar + drawer) will be displayed or not'
     },
@@ -112,6 +112,14 @@ import { types } from './types'
       required: false,
       description:
         'The content that will be displayed in the drawer below the menu'
+    },
+    {
+      name: 'onToggle',
+      type: '() => void',
+      defaultValue: '',
+      required: true,
+      description:
+        'The function that is called when the hamburger button is clicked'
     },
     {
       name: 'classes',
