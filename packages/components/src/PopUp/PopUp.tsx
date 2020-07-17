@@ -103,7 +103,6 @@ export const PopUp = (props: Props) => {
         {actions &&
           actions.map((action, index) => (
             <Button
-              label={action.label}
               key={index}
               variant={action.variant ? action.variant : 'contained'}
               className={clsx(
@@ -113,7 +112,9 @@ export const PopUp = (props: Props) => {
               )}
               style={styles?.button}
               onClick={action.handler}
-            />
+            >
+              {action.label}
+            </Button>
           ))}
       </DialogActions>
     </Dialog>
