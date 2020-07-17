@@ -84,7 +84,7 @@ interface AppStyles {
 }
 
 interface Props {
-  toolsMenuProps: ToolsMenuProps[]
+  toolsMenuProps?: ToolsMenuProps[]
   appBarProps?: Partial<AppBarProps>
   drawerMenuProps?: Partial<DrawerMenuProps>
   navBarContent?: React.ReactNode
@@ -94,7 +94,7 @@ interface Props {
   open: boolean
   title?: string
   styleProps: StyleProps
-  showAppBar: boolean
+  showAppBar?: boolean
   drawerContent?: React.ReactNode
   onToggle: () => void
   classes?: AppClasses
@@ -108,17 +108,17 @@ const defaultProps = {
 export const App = (props: Props) => {
   const {
     children,
-    toolsMenuProps,
+    toolsMenuProps = [],
     appBarProps,
     drawerMenuProps,
     navBarContent,
     drawerContent,
     menu,
-    open = false,
+    open,
     title,
     logo,
     styleProps,
-    showAppBar,
+    showAppBar = true,
     classes,
     styles,
     onToggle
