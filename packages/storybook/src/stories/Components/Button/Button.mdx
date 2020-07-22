@@ -8,9 +8,10 @@ import Preview from '../../../Docs/Preview/Preview'
 <ThemeContextProvider theme={myTheme}>
   <Button
     style={{ margin: '20px auto', display: 'block', position: 'relative' }}
-    label={'click me'}
     onClick={() => {}}
-  />
+  >
+    click me
+  </Button>
 </ThemeContextProvider>
 
 ## Props
@@ -73,42 +74,24 @@ import Preview from '../../../Docs/Preview/Preview'
 
 <ThemeContextProvider theme={myTheme}>
   <Preview
-    code={` <Button
-    style={{ margin: '20px'}}
-    label={"contained"}
-    onClick={() => {}}
-    variant="contained"
-/>
-<Button
-    style={{ margin: '20px'}}
-    label={"outlined"}
-    onClick={() => {}}
-    variant="outlined"
-/>
-<Button
-    style={{ margin: '20px'}}
-    label={"disabled"}
-    onClick={() => {}}
-    disabled
-/>`}
+    code={`<Button style={{ margin: '20px' }} onClick={() => {}} variant='contained'>
+  contained
+</Button>
+<Button style={{ margin: '20px' }} onClick={() => {}} variant='outlined'>
+  outlined
+</Button>
+<Button style={{ margin: '20px' }} onClick={() => {}} disabled>
+  disabled
+</Button>`}
   >
-    <Button
-      style={{ margin: '20px' }}
-      label={'contained'}
-      onClick={() => {}}
-      variant='contained'
-    />
-    <Button
-      style={{ margin: '20px' }}
-      label={'outlined'}
-      onClick={() => {}}
-      variant='outlined'
-    />
-    <Button
-      style={{ margin: '20px' }}
-      label={'disabled'}
-      onClick={() => {}}
+    <Button style={{ margin: '20px' }} onClick={() => {}} variant='contained'>
+      contained
+    </Button>
+    <Button style={{ margin: '20px' }} onClick={() => {}} variant='outlined'>
+      outlined
+    </Button>
+    <Button style={{ margin: '20px' }} onClick={() => {}} disabled>
       disabled
-    />
+    </Button>
   </Preview>
 </ThemeContextProvider>

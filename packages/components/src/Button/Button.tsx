@@ -38,13 +38,16 @@ const useStyles = (theme: Theme) =>
         theme.secondaryColor +
         ' 181%, #6a9d36 -96%)',
       color: '#ffffff'
+    },
+    disabled: {
+      opacity: '0.7'
     }
   }))
 
 export type Variant = 'contained' | 'outlined'
 
 interface ButtonProps extends BasicProps {
-  label: string
+  children: React.ReactNode
   onClick: (event: React.ChangeEvent<{}>) => void
   disabled?: boolean
   variant?: Variant
@@ -56,7 +59,7 @@ export const Button = (props: Props) => {
   const theme = useContext(themeContext)
   const classes = useStyles(theme)()
   const {
-    label,
+    children,
     onClick,
     disabled = false,
     variant = 'contained',
@@ -71,12 +74,14 @@ export const Button = (props: Props) => {
     <MuiButton
       style={style}
       disabled={disabled}
-      className={`${variantClass} AruiButton-root ${className}`}
+      className={`${variantClass} ${
+        disabled && classes.disabled
+      } AruiButton-root ${className}`}
       onClick={(e) => onClick(e)}
       id={id}
       {...other}
     >
-      {label}
+      {children}
     </MuiButton>
   )
 }
