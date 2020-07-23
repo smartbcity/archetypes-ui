@@ -11,6 +11,7 @@ import { DatePicker } from './DatePicker'
 import {
   Theme,
   ThemeContextProvider,
+  ThemeContextProviderProps,
   themeContext
 } from './ThemeContextProvider'
 
@@ -27,6 +28,7 @@ export {
   TextField,
   Select,
   ThemeContextProvider,
+  ThemeContextProviderProps,
   Theme,
   themeContext,
   SelectItem,
