@@ -87,7 +87,7 @@ export const FilePreview = (props: FilePreviewProps) => {
   const classes = useStyles()
   return (
     <div
-      className={`${className} ${classes.clickableContainer}`}
+      className={`${className} ${onClick && classes.clickableContainer}`}
       style={style}
       onClick={onClick}
       id={id}

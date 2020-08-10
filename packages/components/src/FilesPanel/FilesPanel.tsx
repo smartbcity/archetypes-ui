@@ -53,6 +53,7 @@ export const FilesPanel = (props: FilesPanelProps) => {
   return (
     <Box
       display='flex'
+      flexWrap='wrap'
       className={`${className} ${defaultClasses.container}`}
       id={id}
       style={style}
