@@ -14,6 +14,8 @@ import {
   ThemeContextProviderProps,
   themeContext
 } from './ThemeContextProvider'
+import { FilesPanel, Folder, FolderItem } from './FilesPanel'
+import { FilePreview } from './FilePreview'
 
 export {
   Panel,
@@ -32,5 +34,9 @@ export {
   Theme,
   themeContext,
   SelectItem,
-  DatePicker
+  DatePicker,
+  FilesPanel,
+  Folder,
+  FolderItem,
+  FilePreview
 }
