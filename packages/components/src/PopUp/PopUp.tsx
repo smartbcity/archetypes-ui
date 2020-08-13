@@ -45,6 +45,7 @@ interface PopUpProps extends BasicProps {
   open: boolean
   onClose: (event: React.ChangeEvent<{}>) => void
   actions?: Action[]
+  footer?: React.ReactNode
   title?: string
   children?: React.ReactNode
   classes?: PopUpClasses
@@ -65,6 +66,7 @@ export const PopUp = (props: Props) => {
     id,
     classes,
     styles,
+    footer,
     ...other
   } = props
   const defaultClasses = useStyles()
@@ -92,31 +94,35 @@ export const PopUp = (props: Props) => {
       >
         {children ? children : ''}
       </DialogContent>
-      <DialogActions
-        className={clsx(
-          defaultClasses.actionsContainer,
-          'AruiPopUp-actions',
-          classes?.actions
-        )}
-        style={styles?.actions}
-      >
-        {actions &&
-          actions.map((action, index) => (
-            <Button
-              key={index}
-              variant={action.variant ? action.variant : 'contained'}
-              className={clsx(
-                defaultClasses.button,
-                'AruiPopUp-button',
-                classes?.button
-              )}
-              style={styles?.button}
-              onClick={action.handler}
-            >
-              {action.label}
-            </Button>
-          ))}
-      </DialogActions>
+      {footer ? (
+        footer
+      ) : (
+        <DialogActions
+          className={clsx(
+            defaultClasses.actionsContainer,
+            'AruiPopUp-actions',
+            classes?.actions
+          )}
+          style={styles?.actions}
+        >
+          {actions &&
+            actions.map((action, index) => (
+              <Button
+                key={index}
+                variant={action.variant ? action.variant : 'contained'}
+                className={clsx(
+                  defaultClasses.button,
+                  'AruiPopUp-button',
+                  classes?.button
+                )}
+                style={styles?.button}
+                onClick={action.handler}
+              >
+                {action.label}
+              </Button>
+            ))}
+        </DialogActions>
+      )}
     </Dialog>
   )
 }
