@@ -10,14 +10,19 @@ const useStyles = makeStyles(() => ({
     height: '80%',
     borderTopLeftRadius: '5px',
     borderTopRightRadius: '5px',
-    border: '#757575 1px solid',
+    border: '#e3e3e3 1px solid',
     borderBottom: 'none'
   },
   image: {
+    width: '100%'
+  },
+  imageContainer: {
     width: '100%',
+    height: '80%',
+    overflow: 'hidden',
     borderTopLeftRadius: '5px',
     borderTopRightRadius: '5px',
-    border: '#757575 1px solid',
+    border: '#e3e3e3 1px solid',
     borderBottom: 'none'
   },
   titleContainer: {
@@ -27,7 +32,7 @@ const useStyles = makeStyles(() => ({
     borderBottomLeftRadius: '5px',
     borderBottomRightRadius: '5px',
     background: 'white',
-    border: '#757575 1px solid',
+    border: '#e3e3e3 1px solid',
     padding: '5px'
   },
   clear: {
@@ -48,7 +53,19 @@ const useStyles = makeStyles(() => ({
     whiteSpace: 'nowrap'
   },
   clickableContainer: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    position: 'relative'
+  },
+  hoverComponent: {
+    width: '100%',
+    height: '80%',
+    borderTopLeftRadius: '5px',
+    borderTopRightRadius: '5px',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    background: 'rgba(240, 240, 240, 0.6)',
+    border: '1px rgba(240, 240, 240, 0.6) solid'
   }
 }))
 
@@ -59,6 +76,7 @@ interface FilePreviewProps extends BasicProps {
   readonly?: boolean
   onRemove?: () => void
   onClick?: () => void
+  hoverComponent?: React.ReactNode
 }
 
 export const FilePreview = (props: FilePreviewProps) => {
@@ -71,9 +89,11 @@ export const FilePreview = (props: FilePreviewProps) => {
     style,
     onRemove,
     onClick,
-    id
+    id,
+    hoverComponent
   } = props
   const [urlData, setUrlData] = useState<string>('')
+  const [hover, setHover] = useState<boolean>(false)
   useEffect(() => {
     if (file) {
       const reader = new FileReader()
@@ -90,12 +110,19 @@ export const FilePreview = (props: FilePreviewProps) => {
       className={`${className} ${onClick && classes.clickableContainer}`}
       style={style}
       onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       id={id}
     >
       {urlData !== '' ? (
         <iframe src={urlData} className={classes.iframe} scrolling='no' />
       ) : (
-        <img src={url} alt={title} className={classes.image} />
+        <div className={classes.imageContainer}>
+          <img src={url} alt={title} className={classes.image} />
+        </div>
+      )}
+      {hoverComponent && hover && (
+        <div className={classes.hoverComponent}>{hoverComponent}</div>
       )}
       <Box
         className={classes.titleContainer}
