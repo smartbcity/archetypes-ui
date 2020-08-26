@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, boolean } from '@storybook/addon-knobs'
 import {
   FilesPanel as AruiFilesPanel,
   FolderItem,
@@ -16,6 +16,7 @@ export default {
 }
 
 export const FilesPanel = () => {
+  const isLoading = boolean('isLoading', false)
   const children: FolderItem = {
     type: 'folder',
     label: 'base',
@@ -42,7 +43,8 @@ export const FilesPanel = () => {
           >
             <Button onClick={() => console.log('view')}>View</Button>
           </Box>
-        )
+        ),
+        isLoading: isLoading
       }
     ]
   }

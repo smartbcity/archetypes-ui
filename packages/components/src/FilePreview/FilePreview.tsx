@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Box, Typography, makeStyles } from '@material-ui/core'
 import { PictureAsPdf, Clear } from '@material-ui/icons'
 import pdfLogo from '../assets/pdf.png'
 import { BasicProps } from '../Types'
+import { ClipLoader } from 'react-spinners'
+import { themeContext } from '../ThemeContextProvider'
 
 const useStyles = makeStyles(() => ({
   iframe: {
@@ -26,7 +28,6 @@ const useStyles = makeStyles(() => ({
     borderBottom: 'none'
   },
   titleContainer: {
-    marginTop: '-8px',
     width: 'calc(100% - 10px)',
     height: '20%',
     borderBottomLeftRadius: '5px',
@@ -66,6 +67,10 @@ const useStyles = makeStyles(() => ({
     left: '0',
     background: 'rgba(240, 240, 240, 0.6)',
     border: '1px rgba(240, 240, 240, 0.6) solid'
+  },
+  loading: {
+    background: 'rgba(240, 240, 240, 0.6)',
+    border: '1px rgba(240, 240, 240, 0.6) solid'
   }
 }))
 
@@ -77,6 +82,7 @@ interface FilePreviewProps extends BasicProps {
   onRemove?: () => void
   onClick?: () => void
   hoverComponent?: React.ReactNode
+  isLoading?: boolean
 }
 
 export const FilePreview = (props: FilePreviewProps) => {
@@ -90,10 +96,12 @@ export const FilePreview = (props: FilePreviewProps) => {
     onRemove,
     onClick,
     id,
-    hoverComponent
+    hoverComponent,
+    isLoading = false
   } = props
   const [urlData, setUrlData] = useState<string>('')
   const [hover, setHover] = useState<boolean>(false)
+  const theme = useContext(themeContext)
   useEffect(() => {
     if (file) {
       const reader = new FileReader()
@@ -121,8 +129,22 @@ export const FilePreview = (props: FilePreviewProps) => {
           <img src={url} alt={title} className={classes.image} />
         </div>
       )}
-      {hoverComponent && hover && (
-        <div className={classes.hoverComponent}>{hoverComponent}</div>
+      {((hoverComponent && hover) || isLoading) && (
+        <div className={classes.hoverComponent}>
+          {!isLoading ? (
+            hoverComponent
+          ) : (
+            <Box
+              display='flex'
+              height='100%'
+              justifyContent='center'
+              alignItems='center'
+              className={classes.loading}
+            >
+              <ClipLoader size={40} color={theme.primaryColor} />{' '}
+            </Box>
+          )}
+        </div>
       )}
       <Box
         className={classes.titleContainer}

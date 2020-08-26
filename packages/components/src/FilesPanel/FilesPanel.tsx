@@ -40,6 +40,7 @@ export interface FolderItem {
   src?: string
   items?: FolderItem[]
   hoverComponent?: React.ReactNode
+  isLoading?: boolean
 }
 
 interface FilesPanelProps extends BasicProps {
@@ -70,6 +71,7 @@ export const FilesPanel = (props: FilesPanelProps) => {
               onClick={item.onClick}
               key={item.key}
               hoverComponent={item.hoverComponent}
+              isLoading={item.isLoading}
               readonly
             />
           )
