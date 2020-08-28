@@ -5,6 +5,7 @@ import pdfLogo from '../assets/pdf.png'
 import { BasicProps } from '../Types'
 import { ClipLoader } from 'react-spinners'
 import { themeContext } from '../ThemeContextProvider'
+import { CheckBox } from '../Checkbox'
 
 const useStyles = makeStyles(() => ({
   iframe: {
@@ -14,6 +15,9 @@ const useStyles = makeStyles(() => ({
     borderTopRightRadius: '5px',
     border: '#e3e3e3 1px solid',
     borderBottom: 'none'
+  },
+  container: {
+    position: 'relative'
   },
   image: {
     width: '100%'
@@ -42,6 +46,11 @@ const useStyles = makeStyles(() => ({
     right: '5px',
     cursor: 'pointer'
   },
+  check: {
+    position: 'absolute',
+    right: '0px',
+    marginRight: '-3px'
+  },
   pdf: {
     color: '#e54539'
   },
@@ -54,8 +63,7 @@ const useStyles = makeStyles(() => ({
     whiteSpace: 'nowrap'
   },
   clickableContainer: {
-    cursor: 'pointer',
-    position: 'relative'
+    cursor: 'pointer'
   },
   hoverComponent: {
     width: '100%',
@@ -83,6 +91,7 @@ interface FilePreviewProps extends BasicProps {
   onClick?: () => void
   hoverComponent?: React.ReactNode
   isLoading?: boolean
+  validated?: boolean
 }
 
 export const FilePreview = (props: FilePreviewProps) => {
@@ -97,7 +106,8 @@ export const FilePreview = (props: FilePreviewProps) => {
     onClick,
     id,
     hoverComponent,
-    isLoading = false
+    isLoading = false,
+    validated
   } = props
   const [urlData, setUrlData] = useState<string>('')
   const [hover, setHover] = useState<boolean>(false)
@@ -115,7 +125,9 @@ export const FilePreview = (props: FilePreviewProps) => {
   const classes = useStyles()
   return (
     <div
-      className={`${className} ${onClick && classes.clickableContainer}`}
+      className={`${className} ${classes.container} ${
+        onClick && classes.clickableContainer
+      }`}
       style={style}
       onClick={onClick}
       onMouseEnter={() => setHover(true)}
@@ -158,12 +170,15 @@ export const FilePreview = (props: FilePreviewProps) => {
           align='left'
           className={classes.text}
           style={{
-            maxWidth: readonly ? 'calc(100% - 30px)' : 'calc(100% - 50px)'
+            maxWidth:
+              readonly && validated === undefined
+                ? 'calc(100% - 30px)'
+                : 'calc(100% - 50px)'
           }}
         >
           {title}
         </Typography>
-        {!readonly && (
+        {!readonly ? (
           <Clear
             className={classes.clear}
             onClick={(event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
@@ -171,6 +186,10 @@ export const FilePreview = (props: FilePreviewProps) => {
               onRemove && onRemove()
             }}
           />
+        ) : (
+          validated !== undefined && (
+            <CheckBox className={classes.check} checked={validated} />
+          )
         )}
       </Box>
     </div>

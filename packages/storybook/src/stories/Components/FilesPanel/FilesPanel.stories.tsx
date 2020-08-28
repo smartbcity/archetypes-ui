@@ -17,6 +17,7 @@ export default {
 
 export const FilesPanel = () => {
   const isLoading = boolean('isLoading', false)
+  const validated = boolean('validated', true)
   const children: FolderItem = {
     type: 'folder',
     label: 'base',
@@ -30,10 +31,9 @@ export const FilesPanel = () => {
       },
       {
         type: 'file',
-        label: 'myFile',
+        label: 'myFilesdvsqdvqsdfsqdf',
         key: 'myFile',
         src: 'https://pic.clubic.com/v1/images/1730786/raw',
-        onClick: () => console.log('file'),
         hoverComponent: (
           <Box
             style={{ height: '100%' }}
@@ -44,7 +44,8 @@ export const FilesPanel = () => {
             <Button onClick={() => console.log('view')}>View</Button>
           </Box>
         ),
-        isLoading: isLoading
+        isLoading: isLoading,
+        validated: validated
       }
     ]
   }
