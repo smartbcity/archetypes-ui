@@ -33,6 +33,8 @@ interface CheckBoxProps extends BasicProps {
   disabled?: boolean
   onChange?: () => void
   value?: string
+  checkedIconClassName?: string
+  checkedIconStyle?: React.CSSProperties
 }
 
 export const CheckBox = (props: CheckBoxProps) => {
@@ -44,7 +46,9 @@ export const CheckBox = (props: CheckBoxProps) => {
     value = '',
     className,
     id,
-    style
+    style,
+    checkedIconClassName,
+    checkedIconStyle
   } = props
   const theme = useContext(themeContext)
   const classes = useStyles(theme)()
@@ -64,7 +68,10 @@ export const CheckBox = (props: CheckBoxProps) => {
           disableRipple
           icon={<RadioButtonUnchecked className={classes.iconSize} />}
           checkedIcon={
-            <CheckCircle className={`${classes.icon} ${classes.iconSize}`} />
+            <CheckCircle
+              className={`${classes.icon} ${classes.iconSize} ${checkedIconClassName}`}
+              style={checkedIconStyle}
+            />
           }
         />
       }

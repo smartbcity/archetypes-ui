@@ -16,6 +16,8 @@ import {
 } from './ThemeContextProvider'
 import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
+import { CheckBox } from './Checkbox'
+import { PdfViewer } from './PdfViewer'
 
 export {
   Panel,
@@ -38,5 +40,7 @@ export {
   FilesPanel,
   Folder,
   FolderItem,
-  FilePreview
+  FilePreview,
+  CheckBox,
+  PdfViewer
 }
