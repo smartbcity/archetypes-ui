@@ -1,6 +1,7 @@
 import React from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+import { Page } from 'react-pdf'
+//@ts-ignore
+import { Document } from 'react-pdf/dist/esm/entry.webpack'
 
 interface PdfViewerProps {
   file: any
