@@ -1,7 +1,5 @@
 import React from 'react'
-import { Page } from 'react-pdf'
-//@ts-ignore
-import { Document } from 'react-pdf/dist/esm/entry.webpack'
+import { Page, Document } from 'react-pdf'
 
 interface PdfViewerProps {
   file: any
