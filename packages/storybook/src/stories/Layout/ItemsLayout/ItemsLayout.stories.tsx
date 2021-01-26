@@ -9,7 +9,7 @@ import { OneSectionMenuFull } from '../../../Docs/Variables/IconProfile'
 import mdx from './ItemsLayout.mdx'
 
 export default {
-  title: 'Layout|ItemsLayout',
+  title: 'Layout/ItemsLayout',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -32,3 +32,5 @@ export const ItemsLayout = () => {
     />
   )
 }
+
+ItemsLayout.storyName = 'ItemsLayout'

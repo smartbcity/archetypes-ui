@@ -6,7 +6,7 @@ import mdx from './TabsMenu.mdx'
 import { Typography } from '@material-ui/core'
 
 export default {
-  title: 'Layout|TabsMenu',
+  title: 'Layout/TabsMenu',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -39,3 +39,5 @@ export const TabsMenu = () => {
     </AruiTabsMenu>
   )
 }
+
+TabsMenu.storyName = 'TabsMenu'

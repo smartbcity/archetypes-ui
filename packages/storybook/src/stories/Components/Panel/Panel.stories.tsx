@@ -23,7 +23,7 @@ const useStyles = makeStyles(() =>
 )
 
 export default {
-  title: 'Components|Panel',
+  title: 'Components/Panel',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -86,3 +86,5 @@ export const Panel = () => {
     </ThemeContextProvider>
   )
 }
+
+Panel.storyName = 'Panel'

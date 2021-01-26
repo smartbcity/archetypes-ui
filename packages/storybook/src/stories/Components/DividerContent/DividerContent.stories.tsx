@@ -11,7 +11,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './DividerContent.mdx'
 
 export default {
-  title: 'Components|DividerContent',
+  title: 'Components/DividerContent',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -77,3 +77,5 @@ export const DividerContent = () => {
     </ThemeContextProvider>
   )
 }
+
+DividerContent.storyName = 'DividerContent'

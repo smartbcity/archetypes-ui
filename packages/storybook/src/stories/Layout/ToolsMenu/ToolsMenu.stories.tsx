@@ -12,7 +12,7 @@ import {
 import mdx from './ToolsMenu.mdx'
 
 export default {
-  title: 'Layout|ToolsMenu',
+  title: 'Layout/ToolsMenu',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -50,3 +50,5 @@ export const ToolsMenu = () => {
     />
   )
 }
+
+ToolsMenu.storyName = 'ToolsMenu'

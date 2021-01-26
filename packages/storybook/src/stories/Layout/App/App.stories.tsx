@@ -23,7 +23,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './App.mdx'
 
 export default {
-  title: 'Layout|App',
+  title: 'Layout/App',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -161,3 +161,5 @@ export const App = () => {
     </ThemeContextProvider>
   )
 }
+
+App.storyName = 'App'

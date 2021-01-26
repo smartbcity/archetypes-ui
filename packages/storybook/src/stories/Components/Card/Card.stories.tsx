@@ -17,7 +17,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './Card.mdx'
 
 export default {
-  title: 'Components|Card',
+  title: 'Components/Card',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -71,3 +71,5 @@ export const Card = () => {
     </ThemeContextProvider>
   )
 }
+
+Card.storyName = 'Card'

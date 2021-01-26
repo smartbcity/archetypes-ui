@@ -10,7 +10,7 @@ import pdf from '../../assets/test.pdf'
 import { createStyles, makeStyles } from '@material-ui/core'
 
 export default {
-  title: 'Components|PdfViewer',
+  title: 'Components/PdfViewer',
   decorators: [withKnobs, withA11y]
 }
 
@@ -43,3 +43,5 @@ export const PdfViewer = () => {
     </ThemeContextProvider>
   )
 }
+
+PdfViewer.storyName = 'PdfViewer'

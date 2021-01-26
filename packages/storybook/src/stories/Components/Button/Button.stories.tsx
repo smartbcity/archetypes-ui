@@ -9,7 +9,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './Button.mdx'
 
 export default {
-  title: 'Components|Button',
+  title: 'Components/Button',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -40,3 +40,5 @@ export const Button = () => {
     </ThemeContextProvider>
   )
 }
+
+Button.storyName = 'Button'

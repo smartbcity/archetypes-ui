@@ -15,7 +15,7 @@ import {
 import mdx from './ToolsPanel.mdx'
 
 export default {
-  title: 'Layout|ToolsPanel',
+  title: 'Layout/ToolsPanel',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -51,3 +51,5 @@ export const ToolsPanel = () => {
     />
   )
 }
+
+ToolsPanel.storyName = 'ToolsPanel'

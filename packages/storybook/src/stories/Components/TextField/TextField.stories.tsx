@@ -5,7 +5,7 @@ import { withA11y } from '@storybook/addon-a11y'
 import mdx from './TextField.mdx'
 
 export default {
-  title: 'Components|TextField',
+  title: 'Components/TextField',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -34,4 +34,6 @@ export const TextField = () => {
       />
     </div>
   )
-}
+};
+
+TextField.storyName = 'TextField';
