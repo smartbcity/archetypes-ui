@@ -11,7 +11,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './PopUp.mdx'
 
 export default {
-  title: 'Components|PopUp',
+  title: 'Components/PopUp',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -44,3 +44,6 @@ export const PopUp = () => {
     </ThemeContextProvider>
   )
 }
+
+
+PopUp.storyName = 'PopUp'

@@ -10,7 +10,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './Box.mdx'
 
 export default {
-  title: 'Components|Box',
+  title: 'Components/Box',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -56,3 +56,5 @@ export const Box = () => {
     </ThemeContextProvider>
   )
 }
+
+Box.storyName = 'Box'

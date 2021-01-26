@@ -11,7 +11,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import { Box } from '@material-ui/core'
 
 export default {
-  title: 'Components|FilesPanel',
+  title: 'Components/FilesPanel',
   decorators: [withKnobs, withA11y]
 }
 
@@ -55,3 +55,5 @@ export const FilesPanel = () => {
     </ThemeContextProvider>
   )
 }
+
+FilesPanel.storyName = 'FilesPanel'

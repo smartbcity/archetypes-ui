@@ -17,7 +17,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './Stepper.mdx'
 
 export default {
-  title: 'Layout|Stepper',
+  title: 'Layout/Stepper',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -91,3 +91,5 @@ const BasicStep: RefForwardingComponent<OnNextHandles, Props> = (
 }
 
 const BasicStepForward = React.forwardRef(BasicStep)
+
+Stepper.storyName = 'Stepper'

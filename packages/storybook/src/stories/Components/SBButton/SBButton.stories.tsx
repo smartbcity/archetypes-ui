@@ -9,7 +9,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './SBButton.mdx'
 
 export default {
-  title: 'Components|SBButton',
+  title: 'Components/SBButton',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -34,3 +34,5 @@ export const Button = () => {
     </ThemeContextProvider>
   )
 }
+
+Button.storyName = 'SBButton'

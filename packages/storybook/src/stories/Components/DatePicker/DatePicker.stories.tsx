@@ -10,7 +10,7 @@ import { myTheme } from '../../../Docs/Theme/Theme'
 import mdx from './DatePicker.mdx'
 
 export default {
-  title: 'Components|DatePicker',
+  title: 'Components/DatePicker',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -42,3 +42,6 @@ export const DatePicker = () => {
     </ThemeContextProvider>
   )
 }
+
+
+DatePicker.storyName = 'DatePicker'

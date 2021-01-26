@@ -6,7 +6,7 @@
   "version": "0.0.21",
   "description": "React components library",
   "private": false,
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
@@ -14,8 +14,6 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",

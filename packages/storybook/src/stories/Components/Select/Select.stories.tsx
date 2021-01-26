@@ -8,7 +8,7 @@ import { withA11y } from '@storybook/addon-a11y'
 import mdx from './Select.mdx'
 
 export default {
-  title: 'Components|Select',
+  title: 'Components/Select',
   decorators: [withKnobs, withA11y],
   parameters: {
     docs: {
@@ -45,3 +45,5 @@ export const Select = () => {
     </div>
   )
 }
+
+Select.storyName = 'Select'
