@@ -32,7 +32,7 @@
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-backgrounds": "^6.1.15",
     "@storybook/addon-docs": "^6.1.15",
-    "@storybook/addon-info": "^6.1.15",
+    "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-knobs": "^6.1.15",
     "@storybook/addon-links": "^6.1.15",
     "@storybook/addon-notes": "^5.3.21",
@@ -50,7 +50,12 @@
     "@material-ui/icons": "^4.9.1",
     "@smartb/archetypes-ui-components": "^0.0.21",
     "@smartb/archetypes-ui-layout": "^0.0.21",
-    "react-docgen-typescript-loader": "^3.7.2"
+    "@smartb/did-domain": "^0.1.0-1611736635264",
+    "@smartb/s2-dsl-automate": "^0.1.0-1611043844113",
+    "abort-controller": "^3.0.0",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "text-encoding": "^0.7.0",
+    "vis-data": "^7.1.2"
   },
   "files": [
     "dist"

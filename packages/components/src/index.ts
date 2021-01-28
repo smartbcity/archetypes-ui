@@ -18,6 +18,7 @@ import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
 import { CheckBox } from './Checkbox'
 import { PdfViewer } from './PdfViewer'
+import { AutomateViewer} from './Automate'
 
 export {
   Panel,
@@ -25,6 +26,7 @@ export {
   Card,
   DividerContent,
   DividerDirection,
+  AutomateViewer,
   SBButton,
   Button,
   PopUp,
