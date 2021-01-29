@@ -6,14 +6,16 @@
   "version": "0.0.21",
   "description": "React components library",
   "private": false,
-  "main": "src/index.ts",
   "module": "dist/index.modern.js",
+  "main": "dist/index.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -28,12 +30,16 @@
     "dist"
   ],
   "dependencies": {
+    "@lifeomic/react-vis-network": "^1.1.0",
     "@material-ui/core": "^4.8.1",
     "@material-ui/icons": "^4.5.1",
+    "@smartb/did-domain": "^0.1.0-1611736635264",
+    "@smartb/s2-dsl-automate": "^0.1.0-1611043844113",
     "@types/react-dropzone": "^5.1.0",
     "react-dropzone": "^11.0.3",
     "react-pdf": "^5.0.0",
-    "react-spinners": "^0.9.0"
+    "react-spinners": "^0.9.0",
+    "vis-network": "^9.0.0"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb"
 }

@@ -10,21 +10,5 @@ module.exports = {
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
     '@storybook/addon-a11y'
-  ],
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: require.resolve('@storybook/source-loader')
-        },
-        // Optional
-        {
-          loader: require.resolve('react-docgen-typescript-loader')
-        }
-      ]
-    })
-    config.resolve.extensions.push('.ts', '.tsx')
-    return config
-  }
+  ]
 }
