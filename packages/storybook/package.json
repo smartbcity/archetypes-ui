@@ -52,8 +52,10 @@
     "@smartb/archetypes-ui-layout": "^0.0.21",
     "@smartb/did-domain": "^0.1.0-1611736635264",
     "@smartb/s2-dsl-automate": "^0.1.0-1611043844113",
+    "@types/stringify-object": "^3.3.0",
     "abort-controller": "^3.0.0",
     "react-docgen-typescript-loader": "^3.7.2",
+    "stringify-object": "^3.3.0",
     "text-encoding": "^0.7.0",
     "vis-data": "^7.1.2"
   },
