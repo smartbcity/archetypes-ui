@@ -14,6 +14,7 @@ import { TabsMenu } from './layout/TabsMenu'
 import { ItemsLayout } from './layout/ItemsLayout'
 import { ToolsPanel } from './layout/ToolsPanel'
 import { Stepper, StepperImg } from './layout/Stepper'
+import {Timeline, TimelineProps, TimeLineCell} from "./layout/Timeline"
 
 export {
   AppBar,
@@ -34,5 +35,8 @@ export {
   ItemsLayout,
   ToolsPanel,
   Stepper,
-  StepperImg
+  StepperImg,
+  Timeline, 
+  TimelineProps, 
+  TimeLineCell
 }
