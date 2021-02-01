@@ -18,7 +18,8 @@ import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
 import { CheckBox } from './Checkbox'
 import { PdfViewer } from './PdfViewer'
-import { AutomateViewer} from './Automate'
+import { AutomateViewer } from './Automate'
+import { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 
 export {
   Panel,
@@ -44,5 +45,8 @@ export {
   FolderItem,
   FilePreview,
   CheckBox,
-  PdfViewer
+  PdfViewer,
+  Timeline,
+  TimeLineCell,
+  TimelineProps
 }
