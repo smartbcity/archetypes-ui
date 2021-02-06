@@ -9,7 +9,7 @@ yarn workspaces run build
 - Components library
 
 ```
-yarn workspace @smartb/archetypes-storybook storybook
+yarn storybook
 ```
 
 ## Proto
