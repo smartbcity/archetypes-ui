@@ -97,9 +97,9 @@ export interface CardProps extends BasicProps {
    */
   logoSize?: LogoSize
   /**
-   * If not defined the seperator will appear with default styles
-   * If it's 'none' the seperator won't be displayed
-   * If the seperator is a node it will be displayed instead of the default one
+   * If not defined the seperator will appear with default styles,
+   * if it's 'none' the seperator won't be displayed,
+   * if the seperator is a node it will be displayed instead of the default one
    */
   separator?: React.ReactNode | 'none'
   /**
