@@ -77,7 +77,7 @@ interface DropPictureProps extends BasicProps {
    */
   width?: number
   /**
-   * If true, the logo is returned
+   * If true, it cannot be edited
    */
   readonly?: boolean
   src?: string
