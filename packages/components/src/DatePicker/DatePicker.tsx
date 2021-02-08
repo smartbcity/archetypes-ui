@@ -46,10 +46,26 @@ interface DatePickerStyles {
 }
 
 interface DatePickerProps extends BasicProps {
+  /**
+   * The Date entered in the input
+   */
   value?: string | Date
+  /**
+   * The label of the input
+   */
   label?: string
+  /**
+   * The event called when the value of the input changed
+   * @param date
+   */
   onChange: (date: string) => void
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DatePickerClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DatePickerStyles
 }
 
