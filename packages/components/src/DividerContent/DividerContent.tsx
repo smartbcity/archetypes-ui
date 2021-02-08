@@ -88,10 +88,25 @@ interface DividerContentStyles {
 }
 
 export interface DividerContentProps extends BasicProps {
+  /**
+   * An array of content that will be divided
+   */
   children: React.ReactNode | React.ReactNode[]
+  /**
+   * The text of the divider
+   */
   dividerText?: string
+  /**
+   * The direction of the division
+   */
   dividerDirection?: Direction
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DivderContentClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DividerContentStyles
 }
 
