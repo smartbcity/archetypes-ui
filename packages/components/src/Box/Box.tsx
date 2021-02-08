@@ -84,10 +84,25 @@ const useStyles = makeStyles(() =>
 export type LogoSize = 'medium' | 'small'
 
 export interface BoxProps extends BasicProps {
+  /**
+   * The content that will be displayed in the body of the card
+   */
   children: React.ReactNode
+  /**
+   * Choose the logo in the corner
+   */
   logo?: logoType | 'none'
+  /**
+   * Defined the elevation of the card
+   */
   elevation?: number
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * Defined the size of the logo in the corner
+   */
   logoSize?: LogoSize
 }
 
