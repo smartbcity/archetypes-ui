@@ -12,7 +12,7 @@ import {
   Theme,
   ThemeContextProvider,
   ThemeContextProviderProps,
-  themeContext
+  ThemeContext
 } from './ThemeContextProvider'
 import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
@@ -37,7 +37,7 @@ export {
   ThemeContextProvider,
   ThemeContextProviderProps,
   Theme,
-  themeContext,
+  ThemeContext,
   SelectItem,
   DatePicker,
   FilesPanel,

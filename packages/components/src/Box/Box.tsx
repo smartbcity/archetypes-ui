@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
-import { Paper } from '@material-ui/core'
+import React from 'react'
+import { Paper, useTheme } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '../Panel'
-import { themeContext } from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps } from '../Types'
 import clsx from 'clsx'
 
@@ -117,7 +116,7 @@ export const Box = (props: BoxProps) => {
     logoSize = 'medium',
     id
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles()
   return (
     <Paper

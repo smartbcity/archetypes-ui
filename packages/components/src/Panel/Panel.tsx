@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Card as MuiCard, CardProps } from '@material-ui/core'
 import {
   CardHeader,
@@ -10,12 +10,9 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '.'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -142,7 +139,7 @@ export const Panel = (props: Props) => {
     styles,
     ...other
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
   return (
     <MuiCard
