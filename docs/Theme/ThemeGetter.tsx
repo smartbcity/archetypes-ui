@@ -1,14 +1,14 @@
-import React from 'react'
-import { Theme } from '@smartb/archetypes-ui-components'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import React from "react";
+import { Theme } from "../../packages/components/src/ThemeContextProvider";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface ThemeGetterProps {
-  myTheme: Theme
+  myTheme: Theme;
 }
 
 const ThemeGetter = (props: ThemeGetterProps) => {
-  const { myTheme } = props
+  const { myTheme } = props;
   const themeString = `const defaultTheme = {
     primaryColor: "${myTheme.primaryColor}",
     secondaryColor: "${myTheme.secondaryColor}",
@@ -26,13 +26,12 @@ const ThemeGetter = (props: ThemeGetterProps) => {
     "${myTheme.shadows[10]}",
     "${myTheme.shadows[11]}",
     "${myTheme.shadows[12]}"]
-}
-`
+  }`;
   return (
-    <SyntaxHighlighter language='typescript' style={tomorrow}>
+    <SyntaxHighlighter language="typescript" style={tomorrow}>
       {themeString}
     </SyntaxHighlighter>
-  )
-}
+  );
+};
 
-export default ThemeGetter
+export default ThemeGetter;

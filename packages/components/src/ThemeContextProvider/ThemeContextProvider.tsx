@@ -24,10 +24,9 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
     ...defaultTheme,
     ...props.theme
   })
-  const setPartialTheme = useCallback(
-    (partialTheme: Partial<Theme>) => setTheme({ ...theme, ...partialTheme }),
-    []
-  )
+  const setPartialTheme = useCallback((partialTheme: Partial<Theme>) => {
+    return setTheme({ ...theme, ...partialTheme })
+  }, [])
   const defaultMuiTheme = defaultMaterialUiTheme(theme, customMuiTheme)
   return (
     <ThemeContext.Provider

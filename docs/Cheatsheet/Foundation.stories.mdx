@@ -1,8 +1,7 @@
-import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
-import ColorOverview from "../../documentation/src/ColorOverview";
-import GridOverview from "../../documentation/src/GridOverview";
+import { Meta, Story } from "@storybook/addon-docs/blocks";
+import ColorOverview from "../../packages/documentation/src/ColorOverview";
+import GridOverview from "../../packages/documentation/src/GridOverview";
 import defaultLogo from "@smartb/archetypes-storybook/src/stories/assets/impactcity-logo-2.png";
-import smartB from "../../documentation/src/assets/smartB.JPG";
 import { Typography } from "@material-ui/core";
 
 <Meta title="Overview/Cheatsheet/Foundation" />
@@ -12,11 +11,6 @@ import { Typography } from "@material-ui/core";
 <ColorOverview image={defaultLogo} colors={["#45b549", "#f0d365", "#d1a339"]} />
 
 These are the color from https://smartb.city/
-
-<ColorOverview
-  image={smartB}
-  colors={["#e0e0e0", "#4d4d4d", "#edba27", "#fec519", "#f1db9e"]}
-/>
 
 # Typography
 

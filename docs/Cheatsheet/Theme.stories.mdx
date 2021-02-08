@@ -1,11 +1,15 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import ThemeOverview from "../Theme/ThemeOverview";
+import { ThemeContextProvider } from "../../packages/components/src/ThemeContextProvider";
+import { myTheme } from "../Theme/Theme";
 
-<Meta title="Overview/Cheatsheet" />
+<Meta title="Overview/Cheatsheet/Cheatsheet" />
 
 # Theme
 
 Pour utiliser les composants de la librairie il faut définir le composant `ThemeContextProvider` comme parent du projet en lui donnant
 un `theme` que vous pouvez redéfinir et récupérer ci-dessous:
 
-<ThemeOverview />
+<ThemeContextProvider theme={myTheme}>
+  <ThemeOverview />
+</ThemeContextProvider>
