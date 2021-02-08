@@ -20,14 +20,42 @@ interface TextFieldStyles {
 }
 
 export interface TextFieldProps extends BasicProps {
+  /**
+   * The default value displayed
+   */
   defaultValue: string
+  /**
+   * The label of the input
+   */
   label: string
+  /**
+   * The event called when the value of the input change
+   * @param value
+   */
   onChange: (value: string) => void
+  /**
+   * Define if the value of the input is valid or not
+   */
   isValid?: boolean
+  /**
+   * The message displayed when the input value is wrong
+   */
   errorMessage?: string
+  /**
+   * The type of the input
+   */
   type?: string
+  /**
+   * Define if the input is disabled or not
+   */
   disabled?: boolean
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: TextFieldClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: TextFieldStyles
 }
 
