@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { themeContext, Theme } from '../ThemeContextProvider'
 import { BasicProps, MergeMuiElementProps } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({
@@ -77,7 +77,7 @@ export interface ButtonBasicProps extends BasicProps {
 export type ButtonProps = MergeMuiElementProps<MuiButtonProps, ButtonBasicProps>
 
 export const Button = (props: ButtonProps) => {
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const classes = useStyles(theme)()
   const {
     children,

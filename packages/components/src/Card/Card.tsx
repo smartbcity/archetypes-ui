@@ -1,14 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { logoType } from '../Panel'
 import { Box as AruiBox } from '../Box'
-import {
-  Theme,
-  themeContext
-} from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -132,7 +129,7 @@ export const Card = (props: CardProps) => {
     classes,
     styles
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
 
   return (
