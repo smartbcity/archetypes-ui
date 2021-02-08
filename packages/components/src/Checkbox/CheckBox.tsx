@@ -28,12 +28,33 @@ const useStyles = (theme: Theme) =>
   }))
 
 interface CheckBoxProps extends BasicProps {
+  /**
+   * If true, the component is checked
+   */
   checked: boolean
+  /**
+   * The content that will be displayed
+   */
   text?: string
+  /**
+   * If true, the checkbox will be disabled
+   */
   disabled?: boolean
+  /**
+   * Callback fired when the state is changed
+   */
   onChange?: () => void
+  /**
+   * The value of the component
+   */
   value?: string
+  /**
+   * ClassName for the checked icon
+   */
   checkedIconClassName?: string
+  /**
+   * Style for the checked icon
+   */
   checkedIconStyle?: React.CSSProperties
 }
 
