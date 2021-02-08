@@ -72,15 +72,47 @@ interface CardStyles {
 export type LogoSize = 'medium' | 'small'
 
 export interface CardProps extends BasicProps {
+  /**
+   * The text that will be displayed in the header of the card
+   */
   header?: string
+  /**
+   * The content that will be displayed in the body of the card
+   */
   children: React.ReactNode
+  /**
+   * Choose the logo in the corner
+   */
   logo?: logoType | 'none'
+  /**
+   * Defined the elevation of the card
+   */
   elevation?: number
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * Defined the size of the logo in the corner
+   */
   logoSize?: LogoSize
+  /**
+   * If not defined the seperator will appear with default styles
+   * If it's 'none' the seperator won't be displayed
+   * If the seperator is a node it will be displayed instead of the default one
+   */
   separator?: React.ReactNode | 'none'
+  /**
+   * The text displayed at the bottom of the card
+   */
   footer?: string
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: CardClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: CardStyles
 }
 
