@@ -6,10 +6,12 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
 };
 
-export const decorators = [
-  (Story) => (
+export const withThemeProvider = (Story) => {
+  return (
     <ThemeContextProvider theme={myTheme}>
       <Story />
     </ThemeContextProvider>
-  ),
-];
+  );
+};
+
+export const decorators = [withThemeProvider];

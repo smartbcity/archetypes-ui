@@ -9,9 +9,8 @@ import { MenuItem } from './menu'
 import StyleProps from '../StyleProps'
 import { ToolsMenuProps } from '../ToolsMenu'
 import { ToolsPanel } from '../ToolsPanel'
-import { BasicProps } from '@smartb/archetypes-ui-components'
 import { DrawerProps } from '@material-ui/core'
-import { MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
 
 // TODO style only on desktop size
