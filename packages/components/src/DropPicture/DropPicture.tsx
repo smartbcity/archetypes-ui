@@ -63,11 +63,27 @@ const useStyles = (width: number) =>
   }))
 
 interface DropPictureProps extends BasicProps {
+  /**
+   * The event called when a picture is dropped
+   * @param picture
+   */
   onPictureDroped: (picture: File) => void
+  /**
+   * The event called when a picture is removed
+   */
   onRemovePicture: () => void
+  /**
+   * Set the width for the dropzone area
+   */
   width?: number
+  /**
+   * If true, the logo is returned
+   */
   readonly?: boolean
   src?: string
+  /**
+   * The default logo to display on the dropzone area
+   */
   defaultLogo?: string
 }
 
