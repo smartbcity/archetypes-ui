@@ -96,12 +96,33 @@ interface PanelStyles {
 }
 
 export interface PanelProps extends BasicProps {
+  /**
+   * The text that will be displayed in the header of the panel
+   */
   header?: string
+  /**
+   * The content that will be displayed in the body of the SBPanel
+   */
   children?: React.ReactNode
+  /**
+   * Choose the logo in the background
+   */
   logo?: logoType
+  /**
+   * The content that will be displayed in the footer
+   */
   footer?: React.ReactNode
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: PanelClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: PanelStyles
 }
 
