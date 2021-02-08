@@ -51,15 +51,38 @@ interface SelectStyles {
 }
 
 interface SelectProps extends BasicProps {
+  /**
+   * The label of the select
+   */
   label: string
+  /**
+   * The current selected value also included in the items
+   */
   value?: string
+  /**
+   * The title thart will be displayed at the top of the pop-up
+   */
   items: SelectItem[]
+  /**
+   * Define if the component is disabled or not
+   */
   disabled?: boolean
+  /**
+   * The event called when a different item is selected
+   * @param event
+   * @param child
+   */
   onChange?: (
     event: React.ChangeEvent<{ name?: string; value: unknown }>,
     child: React.ReactNode
   ) => void
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: SelectClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: SelectStyles
 }
 
