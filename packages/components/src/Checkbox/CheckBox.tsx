@@ -27,7 +27,7 @@ const useStyles = (theme: Theme) =>
     }
   }))
 
-interface CheckBoxProps extends BasicProps {
+export interface CheckBoxProps extends BasicProps {
   /**
    * If true, the component is checked
    */

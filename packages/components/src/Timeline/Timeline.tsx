@@ -9,10 +9,10 @@ import {
   TimelineContent
 } from '@material-ui/lab'
 import React from 'react'
-import { MergeMuiElementProps } from '../../../layout/src/layout/Types'
 import { makeStyles, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Theme, useTheme } from '../ThemeContextProvider'
+import { MergeMuiElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({

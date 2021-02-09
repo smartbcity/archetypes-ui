@@ -42,7 +42,7 @@ interface DatePickerStyles {
   input?: React.CSSProperties
 }
 
-interface DatePickerProps extends BasicProps {
+export interface DatePickerProps extends BasicProps {
   /**
    * The Date entered in the input
    */
