@@ -9,8 +9,7 @@ import {
   ExitToApp,
   Settings
 } from '@material-ui/icons'
-import defaultLogo from '../../../../assets/impactcity-logo-2.png'
-import { Menu } from '../../../dist'
+import defaultLogo from '../assets/impactcity-logo-2.png'
 import { Button } from '@material-ui/core'
 
 export default {
@@ -24,7 +23,7 @@ const Template: Story<AppProps> = (args: AppProps) => {
   return <AruiApp {...args} open={open} onToggle={() => setOpen(!open)} />
 }
 
-const profileMenu: Menu = {
+const profileMenu = {
   key: 'Settings',
   goto: action('clicked on preference'),
   label: 'Settings',
@@ -50,7 +49,7 @@ const profileMenu: Menu = {
   ]
 }
 
-const profileMenu2: Menu = {
+const profileMenu2 = {
   label: 'profile',
   key: 'profile',
   icon: <AccountCircle />,
