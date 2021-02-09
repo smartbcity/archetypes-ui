@@ -34,13 +34,37 @@ interface DrawermenuStyles {
 }
 
 export interface DrawerMenuProps extends BasicProps {
+  /**
+   * Define if the drawer menu is open or not
+   */
   open: boolean
+  /**
+   * Items of the drawer menu
+   */
   menu?: MenuItem[]
+  /**
+   * The styles applied to the navBar
+   */
   styleProps: StyleProps
+  /**
+   * The content that will be displayed in the body of the drawer menu
+   */
   children?: React.ReactNode
+  /**
+   * An array that contains every tools menu that will be displayed in the navBar
+   */
   toolsMenuProps?: ToolsMenuProps[]
+  /**
+   * The content that will be displayed in the navBar at the left of the profile
+   */
   navBarContent?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DrawermenuClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DrawermenuStyles
 }
 

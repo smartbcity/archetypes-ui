@@ -50,7 +50,10 @@ const useStyles = makeStyles(() =>
   })
 )
 
-interface ToolsPanelProps extends BasicProps {
+export interface ToolsPanelProps extends BasicProps {
+  /**
+   * The menu that contains all the items that will be displayed in the panel
+   */
   menu: SBMenu
 }
 

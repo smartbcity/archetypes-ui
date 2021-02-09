@@ -6,14 +6,15 @@ import { App } from './layout/App'
 import StyleProps from './layout/StyleProps'
 import {
   OnNextHandles,
-  StepperBaseLabel,
-  StepperBaseProps,
-  StepDetails
-} from './layout/StepperBase'
+  MuiStepperWrapperProps,
+  MuiStepperWrapperLabel,
+  StepDetails,
+  StepperImg,
+  Stepper
+} from './layout/Stepper'
 import { TabsMenu } from './layout/TabsMenu'
 import { ItemsLayout } from './layout/ItemsLayout'
 import { ToolsPanel } from './layout/ToolsPanel'
-import { Stepper, StepperImg } from './layout/Stepper'
 
 export {
   AppBar,
@@ -21,8 +22,8 @@ export {
   DrawerMenu,
   ToolsMenuProps,
   App,
-  StepperBaseProps,
-  StepperBaseLabel,
+  MuiStepperWrapperProps,
+  MuiStepperWrapperLabel,
   OnNextHandles,
   StepDetails,
   StyleProps,

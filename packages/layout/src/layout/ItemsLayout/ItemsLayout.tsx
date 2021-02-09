@@ -67,9 +67,21 @@ interface ItemsLayoutStyles {
 }
 
 export interface ItemsLayoutProps extends BasicProps {
+  /**
+   * Menu contains all the items that will be displayed in the profile
+   */
   menu: Menu
+  /**
+   * The organization of the items
+   */
   display?: Display
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: ItemsLayoutClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: ItemsLayoutStyles
 }
 

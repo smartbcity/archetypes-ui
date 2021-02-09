@@ -5,9 +5,8 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { ItemsLayout, Display, ItemsLayoutProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
-import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
 import clsx from 'clsx'
-
+import { BasicProps } from '../Types'
 const useStyles = makeStyles(() =>
   createStyles({
     menu: {
@@ -54,11 +53,29 @@ interface ToolsMenuStyles {
 }
 
 export interface ToolsMenuProps extends BasicProps {
+  /**
+   * Menu contains all the items that will be displayed in the profile
+   */
   menu: SBMenu
+  /**
+   * The organization of the items
+   */
   display?: Display
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: ToolsMenuClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: ToolsMenuStyles
+  /**
+   * The optionnal props of the ItemsLayout (normaly given to override classes and styles)
+   */
   itemsLayoutProps?: Partial<ItemsLayoutProps>
+  /**
+   * The optionnal props of the TabsMenu (normaly given to override classes and styles)
+   */
   tabsMenuProps?: Partial<TabsMenuProps>
 }
 

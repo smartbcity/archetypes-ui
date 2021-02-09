@@ -12,7 +12,9 @@ import {
   Theme,
   ThemeContextProvider,
   ThemeContextProviderProps,
-  ThemeContext
+  ThemeContext,
+  useTheme,
+  useThemeContext
 } from './ThemeContextProvider'
 import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
@@ -48,5 +50,7 @@ export {
   PdfViewer,
   Timeline,
   TimeLineCell,
-  TimelineProps
+  TimelineProps,
+  useTheme,
+  useThemeContext
 }
