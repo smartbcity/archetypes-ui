@@ -62,7 +62,7 @@ const useStyles = (width: number) =>
     }
   }))
 
-interface DropPictureProps extends BasicProps {
+export interface DropPictureProps extends BasicProps {
   /**
    * The event called when a picture is dropped
    * @param picture

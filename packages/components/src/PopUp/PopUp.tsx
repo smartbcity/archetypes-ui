@@ -41,7 +41,7 @@ interface PopUpStyles {
   button?: React.CSSProperties
 }
 
-interface PopUpProps extends BasicProps {
+export interface PopUpProps extends BasicProps {
   /**
    * Define if the po-up is open
    */

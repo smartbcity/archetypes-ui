@@ -50,7 +50,7 @@ interface SelectStyles {
   select?: React.CSSProperties
 }
 
-interface SelectProps extends BasicProps {
+export interface SelectProps extends BasicProps {
   /**
    * The label of the select
    */
