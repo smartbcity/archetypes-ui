@@ -1,12 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import Stepper, { StepperProps } from '@material-ui/core/Stepper'
-import Step, { StepProps } from '@material-ui/core/Step'
-import StepLabel, { StepLabelProps } from '@material-ui/core/StepLabel'
+import MuiStepper, {
+  StepperProps as MuiStepperProps
+} from '@material-ui/core/Stepper'
+import MuiStep, { StepProps as MuiStepProps } from '@material-ui/core/Step'
+import MuiStepLabel, {
+  StepLabelProps as MuiStepLabelProps
+} from '@material-ui/core/StepLabel'
 import Button, { ButtonProps } from '@material-ui/core/Button'
 import { Paper, PaperProps } from '@material-ui/core'
 import clsx from 'clsx'
-import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
+import { BasicProps } from '../Types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,7 +45,7 @@ export interface StepDetails {
   component: React.ReactNode
 }
 
-export interface StepperBaseLabel {
+export interface MuiStepperWrapperLabel {
   next: string
   back: string
   finish: string
@@ -51,9 +55,9 @@ const englishLabel = {
   next: 'Next',
   back: 'Back',
   finish: 'Finish'
-} as StepperBaseLabel
+} as MuiStepperWrapperLabel
 
-interface StepperBaseClasses {
+interface MuiStepperWrapperClasses {
   content?: string
   actions?: string
   backButton?: string
@@ -61,7 +65,7 @@ interface StepperBaseClasses {
   finishButton?: string
 }
 
-interface StepperBaseStyles {
+interface MuiStepperWrapperStyles {
   content?: React.CSSProperties
   actions?: React.CSSProperties
   backButton?: React.CSSProperties
@@ -69,22 +73,60 @@ interface StepperBaseStyles {
   finishButton?: React.CSSProperties
 }
 
-export interface StepperBaseProps extends BasicProps {
+export interface MuiStepperWrapperProps extends BasicProps {
+  /**
+   * Define the current active step
+   */
   activeStep: number
+  /**
+   * Get the steps details
+   * @param stepRef
+   */
   getSteps: (stepRef: React.RefObject<OnNextHandles>) => StepDetails[]
+  /**
+   * Move to the given step
+   * @param stepNumber
+   */
   gotoStep: (stepNumber: number) => void
+  /**
+   * The event called when all steps are finished
+   */
   onFinish: () => void
+  /**
+   * The optionnal props of the Paper (normaly given to override classes and styles)
+   */
   PaperProps?: Partial<PaperProps>
-  StepperProps?: Partial<StepperProps>
+  /**
+   * The optionnal props of the Stepper (normaly given to override classes and styles)
+   */
+  StepperProps?: Partial<MuiStepperProps>
+  /**
+   * The optionnal props of the StepperButton (normaly given to override classes and styles)
+   */
   StepperButtonProps?: Partial<ButtonProps>
-  StepProps?: Partial<StepProps>
-  StepLabelProps?: Partial<StepLabelProps>
-  label?: StepperBaseLabel
-  classes?: StepperBaseClasses
-  styles?: StepperBaseStyles
+  /**
+   * The optionnal props of the Step (normaly given to override classes and styles)
+   */
+  StepProps?: Partial<MuiStepProps>
+  /**
+   * The optionnal props of the StepLabel (normaly given to override classes and styles)
+   */
+  StepLabelProps?: Partial<MuiStepLabelProps>
+  /**
+   * Labels for stepper buttons
+   */
+  label?: MuiStepperWrapperLabel
+  /**
+   * The classes applied to the different part of the component
+   */
+  classes?: MuiStepperWrapperClasses
+  /**
+   * The styles applied to the different part of the component
+   */
+  styles?: MuiStepperWrapperStyles
 }
 
-export const StepperBase = (props: StepperBaseProps) => {
+export const MuiStepperWrapper = (props: MuiStepperWrapperProps) => {
   const {
     activeStep,
     gotoStep,
@@ -105,15 +147,16 @@ export const StepperBase = (props: StepperBaseProps) => {
   const defaultClasses = useStyles()
   const stepRef = useRef<OnNextHandles>(null)
   const steps = getSteps(stepRef)
-  const handleNext = () => {
+
+  const handleNext = useCallback(() => {
     const isOk = stepRef.current && stepRef.current.onNext()
     isOk && gotoStep(activeStep + 1)
-  }
+  }, [gotoStep, activeStep])
 
-  const handleTerminate = () => {
+  const handleTerminate = useCallback(() => {
     const isOk = stepRef.current && stepRef.current.onNext()
     isOk && onFinish()
-  }
+  }, [onFinish])
 
   const getStepContent = (stepIndex: number, steps: StepDetails[]) => {
     return stepIndex >= steps.length
@@ -121,9 +164,9 @@ export const StepperBase = (props: StepperBaseProps) => {
       : steps[stepIndex].component
   }
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     gotoStep(activeStep - 1)
-  }
+  }, [activeStep, gotoStep])
 
   const activeButtonProps: Partial<ButtonProps> = {
     ...StepperButtonProps,
@@ -138,13 +181,13 @@ export const StepperBase = (props: StepperBaseProps) => {
     >
       {' '}
       {/* old className "sb-stepper" */}
-      <Stepper activeStep={activeStep} alternativeLabel {...StepperProps}>
+      <MuiStepper activeStep={activeStep} alternativeLabel {...StepperProps}>
         {steps.map((step) => (
-          <Step key={step.id} {...StepProps}>
-            <StepLabel {...StepLabelProps}>{step.label}</StepLabel>
-          </Step>
+          <MuiStep key={step.id} {...StepProps}>
+            <MuiStepLabel {...StepLabelProps}>{step.label}</MuiStepLabel>
+          </MuiStep>
         ))}
-      </Stepper>
+      </MuiStepper>
       <Paper
         elevation={0}
         className={clsx(
