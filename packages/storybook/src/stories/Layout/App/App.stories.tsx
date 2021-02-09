@@ -18,8 +18,10 @@ import {
   Description,
   ExitToApp
 } from '@material-ui/icons'
-import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
-import { myTheme } from '../../../Docs/Theme/Theme'
+import {
+  ThemeContextProvider,
+  useTheme
+} from '@smartb/archetypes-ui-components'
 import mdx from './App.mdx'
 
 export default {
@@ -130,9 +132,7 @@ export const App = () => {
         window.innerWidth <= 768 && setOpen(!open)
       },
       label: 'application',
-      icon: (
-        <img style={{ width: '30px', height: '30px' }} src={defaultLogo}></img>
-      )
+      icon: <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
     }
   ]
   const styleProps: StyleProps = {
@@ -141,7 +141,7 @@ export const App = () => {
     menuWidth: 210
   }
   return (
-    <ThemeContextProvider theme={myTheme}>
+    <ThemeContextProvider theme={useTheme()}>
       <SBApp
         styleProps={styleProps}
         title={title}
