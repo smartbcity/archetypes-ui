@@ -8,7 +8,6 @@ import {
   Payment,
   Settings
 } from '@material-ui/icons'
-import defaultLogo from '../assets/impactcity-logo-2.png'
 
 export default {
   title: 'Components/ToolsMenu',
