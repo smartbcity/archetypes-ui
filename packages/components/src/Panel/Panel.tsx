@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Card as MuiCard, CardProps } from '@material-ui/core'
 import {
   CardHeader,
@@ -10,12 +10,9 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '.'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -96,12 +93,33 @@ interface PanelStyles {
 }
 
 export interface PanelProps extends BasicProps {
+  /**
+   * The text that will be displayed in the header of the panel
+   */
   header?: string
+  /**
+   * The content that will be displayed in the body of the SBPanel
+   */
   children?: React.ReactNode
+  /**
+   * Choose the logo in the background
+   */
   logo?: logoType
+  /**
+   * The content that will be displayed in the footer
+   */
   footer?: React.ReactNode
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: PanelClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: PanelStyles
 }
 
@@ -121,7 +139,7 @@ export const Panel = (props: Props) => {
     styles,
     ...other
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
   return (
     <MuiCard

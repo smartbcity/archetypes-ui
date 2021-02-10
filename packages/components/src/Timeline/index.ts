@@ -1,1 +1,1 @@
-export * from './Timeline'
+export { Timeline, TimeLineCell, TimelineProps } from './Timeline'

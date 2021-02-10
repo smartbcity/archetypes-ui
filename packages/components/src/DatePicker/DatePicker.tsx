@@ -1,12 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { InputLabel } from '@material-ui/core'
-import {
-  Theme,
-  themeContext
-} from '../ThemeContextProvider/ThemeContextProvider'
 import clsx from 'clsx'
 import { BasicProps, MergeReactElementProps } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -45,11 +42,27 @@ interface DatePickerStyles {
   input?: React.CSSProperties
 }
 
-interface DatePickerProps extends BasicProps {
+export interface DatePickerProps extends BasicProps {
+  /**
+   * The Date entered in the input
+   */
   value?: string | Date
+  /**
+   * The label of the input
+   */
   label?: string
+  /**
+   * The event called when the value of the input changed
+   * @param date
+   */
   onChange: (date: string) => void
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DatePickerClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DatePickerStyles
 }
 
@@ -68,7 +81,7 @@ export const DatePicker = React.forwardRef(
       style,
       ...other
     } = props
-    const theme = useContext(themeContext)
+    const theme = useTheme()
     const defaultClasses = useStyles(theme)()
     return (
       <div className={clsx(className, 'AruiDatePicker-root')} style={style}>

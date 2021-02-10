@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Typography, makeStyles } from '@material-ui/core'
 import { PictureAsPdf, Clear } from '@material-ui/icons'
 import pdfLogo from '../assets/pdf.png'
 import { BasicProps } from '../Types'
 import { ClipLoader } from 'react-spinners'
-import { themeContext } from '../ThemeContextProvider'
 import { CheckBox } from '../Checkbox'
+import { useTheme } from '../ThemeContextProvider'
 
 const useStyles = makeStyles(() => ({
   iframe: {
@@ -111,7 +111,7 @@ export const FilePreview = (props: FilePreviewProps) => {
   } = props
   const [urlData, setUrlData] = useState<string>('')
   const [hover, setHover] = useState<boolean>(false)
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   useEffect(() => {
     if (file) {
       const reader = new FileReader()

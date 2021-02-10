@@ -1,12 +1,9 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps, MergeReactElementProps } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -88,10 +85,25 @@ interface DividerContentStyles {
 }
 
 export interface DividerContentProps extends BasicProps {
+  /**
+   * An array of content that will be divided
+   */
   children: React.ReactNode | React.ReactNode[]
+  /**
+   * The text of the divider
+   */
   dividerText?: string
+  /**
+   * The direction of the division
+   */
   dividerDirection?: Direction
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DivderContentClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DividerContentStyles
 }
 
@@ -110,7 +122,7 @@ export const DividerContent = React.forwardRef(
       styles,
       ...other
     } = props
-    const theme = useContext(themeContext)
+    const theme = useTheme()
     const defaultClasses = useStyles(theme)()
     return (
       <div

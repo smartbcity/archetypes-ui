@@ -1,10 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import {
-  Theme,
-  themeContext
-} from '../ThemeContextProvider/ThemeContextProvider'
 import { BasicProps, MergeReactElementProps } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -41,9 +38,22 @@ const useStyles = (theme: Theme) =>
   )
 
 export interface SBButtonProps extends BasicProps {
+  /**
+   * The react children props
+   */
   children?: React.ReactNode
+  /**
+   * The event called when the button is clicked
+   * @param event
+   */
   onClick?: (event: React.ChangeEvent<{}>) => void
+  /**
+   * If true the button will be disabled
+   */
   disabled?: boolean
+  /**
+   * If false the hoverEffect will be disabled
+   */
   hoverEffect?: boolean
 }
 
@@ -61,7 +71,7 @@ export const SBButton = React.forwardRef(
       id,
       ...other
     } = props
-    const theme = useContext(themeContext)
+    const theme = useTheme()
     const classes = useStyles(theme)()
     return (
       <button

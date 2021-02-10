@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
 import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
-import { themeContext, Theme } from '../ThemeContextProvider'
+import { Theme, useTheme } from '../ThemeContextProvider'
 import { BasicProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
@@ -27,13 +27,34 @@ const useStyles = (theme: Theme) =>
     }
   }))
 
-interface CheckBoxProps extends BasicProps {
+export interface CheckBoxProps extends BasicProps {
+  /**
+   * If true, the component is checked
+   */
   checked: boolean
+  /**
+   * The content that will be displayed
+   */
   text?: string
+  /**
+   * If true, the checkbox will be disabled
+   */
   disabled?: boolean
+  /**
+   * Callback fired when the state is changed
+   */
   onChange?: () => void
+  /**
+   * The value of the component
+   */
   value?: string
+  /**
+   * ClassName for the checked icon
+   */
   checkedIconClassName?: string
+  /**
+   * Style for the checked icon
+   */
   checkedIconStyle?: React.CSSProperties
 }
 
@@ -50,7 +71,7 @@ export const CheckBox = (props: CheckBoxProps) => {
     checkedIconClassName,
     checkedIconStyle
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const classes = useStyles(theme)()
 
   return (
