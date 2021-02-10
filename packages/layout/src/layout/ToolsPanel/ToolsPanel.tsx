@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as SBMenu } from '../Drawermenu/menu'
+import { Menu as SBMenu } from '../DrawerMenu'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { ExpandMore } from '@material-ui/icons'
 import {
@@ -50,7 +50,10 @@ const useStyles = makeStyles(() =>
   })
 )
 
-interface ToolsPanelProps extends BasicProps {
+export interface ToolsPanelProps extends BasicProps {
+  /**
+   * The menu that contains all the items that will be displayed in the panel
+   */
   menu: SBMenu
 }
 

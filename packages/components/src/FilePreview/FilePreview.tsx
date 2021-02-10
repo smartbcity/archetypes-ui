@@ -82,7 +82,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-interface FilePreviewProps extends BasicProps {
+export interface FilePreviewProps extends BasicProps {
   url?: string
   file?: File
   title: string

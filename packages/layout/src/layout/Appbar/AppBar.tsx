@@ -48,12 +48,30 @@ interface AppBarStyles {
 }
 
 export interface AppBarProps extends BasicProps {
+  /**
+   * The title thzt will be displayed at the top left of the component
+   */
   title?: string
+  /**
+   * The path to the logo of the component
+   */
   logo: string
+  /**
+   * The event called when opening the component
+   */
   onDrawerOpen: () => void
   profiles?: React.ReactNode
+  /**
+   * The content that will be displayed at the top right of the component
+   */
   content?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: AppBarClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: AppBarStyles
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from '../Drawermenu/menu'
+import { Menu } from '../DrawerMenu'
 import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { MergeReactElementProps, BasicProps } from '../Types'
@@ -67,9 +67,21 @@ interface ItemsLayoutStyles {
 }
 
 export interface ItemsLayoutProps extends BasicProps {
+  /**
+   * Menu contains all the items that will be displayed in the profile
+   */
   menu: Menu
+  /**
+   * The organization of the items
+   */
   display?: Display
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: ItemsLayoutClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: ItemsLayoutStyles
 }
 

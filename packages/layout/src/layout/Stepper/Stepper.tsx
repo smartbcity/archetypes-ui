@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { StepConnector } from './StepConnector'
 import { StepEmptyIcon, StepIcon } from './StepIcon'
-import { StepperBase, StepperBaseProps, StepperBaseLabel } from '../StepperBase'
-import { themeContext, Theme } from '@smartb/archetypes-ui-components'
+import {
+  MuiStepperWrapper,
+  MuiStepperWrapperProps,
+  MuiStepperWrapperLabel
+} from './MuiStepperWrapper'
+import { Theme, useTheme } from '@smartb/archetypes-ui-components'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() =>
@@ -34,26 +38,39 @@ const useStyles = (theme: Theme) =>
     })
   )
 
-export interface Props {
-  stepperBaseProps: StepperBaseProps
-  stepperBaseLabel: StepperBaseLabel
+export interface StepperProps {
+  /**
+   * The props of the stepperBase
+   */
+  muiStepperWrapperProps: MuiStepperWrapperProps
+  /**
+   * The stepperBase label
+   */
+  muiStepperWrapperLabel: MuiStepperWrapperLabel
+  /**
+   * Define if the icon will be displayed or not
+   */
   empty?: boolean
 }
 
-export const Stepper = (props: Props) => {
-  const { stepperBaseProps, empty = false, stepperBaseLabel } = props
-  const theme = useContext(themeContext)
+export const Stepper = (props: StepperProps) => {
+  const {
+    muiStepperWrapperProps,
+    empty = false,
+    muiStepperWrapperLabel
+  } = props
+  const theme = useTheme()
   const classes = useStyles(theme)()
   const AruiStepConnector = StepConnector(theme)
   return (
     <div className='AruiStepper-root'>
-      {/* old className 'welcome-container'*/}
-      <StepperBase
-        {...stepperBaseProps}
+      {/* old className 'welcome-container' */}
+      <MuiStepperWrapper
+        {...muiStepperWrapperProps}
         PaperProps={{ elevation: 0 }}
         StepperProps={{
           connector: <AruiStepConnector />,
-          className: classes.transparent
+          className: clsx(classes.stepper, classes.transparent)
         }}
         StepperButtonProps={{
           className: classes.button
@@ -61,8 +78,7 @@ export const Stepper = (props: Props) => {
         StepLabelProps={{
           StepIconComponent: empty ? StepEmptyIcon : StepIcon
         }}
-        className={clsx(classes.stepper, classes.transparent)}
-        label={stepperBaseLabel}
+        label={muiStepperWrapperLabel}
       />
     </div>
   )

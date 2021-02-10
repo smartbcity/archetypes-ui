@@ -31,3 +31,13 @@ declare module '*.pdf' {
   const value: any
   export = value
 }
+
+declare module '*.JPG' {
+  const value: any
+  export = value
+}
+
+declare module '*.mdx' {
+  const value: any
+  export = value
+}

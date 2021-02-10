@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { createStyles, makeStyles, withStyles } from '@material-ui/core/styles'
 import { AppBar, Tab, Tabs } from '@material-ui/core'
-import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
 import clsx from 'clsx'
+import { BasicProps } from '../Types'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -66,10 +66,25 @@ interface TabsMenuStyles {
 }
 
 export interface TabsMenuProps extends BasicProps {
+  /**
+   * Tabs contains an array of string and icons to defined the every section of the menu
+   */
   tabs: Tab[]
+  /**
+   * Every nodes will fill the tab at the same index
+   */
   children: React.ReactNode[]
+  /**
+   * If 'fullWidth' the tabs will take the all the space of the parent if 'fixedWidth' every tab will have 100px of width
+   */
   variant?: Variant
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: TabsMenuClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: TabsMenuStyles
 }
 

@@ -1,18 +1,14 @@
-import React, { Fragment, useEffect, useState, useContext } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { makeStyles, Paper, Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { AppBar, AppBarProps } from '../Appbar'
-import { DrawerMenu, DrawerMenuProps } from '../Drawermenu'
 import StyleProps from '../StyleProps'
-import { MenuItem } from '../Drawermenu'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
 import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
-import {
-  themeContext,
-  Theme as SBTheme
-} from '@smartb/archetypes-ui-components'
+import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-components'
+import { DrawerMenu, DrawerMenuProps, MenuItem } from '../DrawerMenu'
 
 const useStyles = (customTheme: SBTheme) =>
   makeStyles<Theme, StyleProps>((theme: Theme) =>
@@ -83,21 +79,66 @@ interface AppStyles {
   content?: React.CSSProperties
 }
 
-interface Props {
+export interface AppProps {
+  /**
+   * An array that contains every tools menu that will be displayed in the navBar
+   */
   toolsMenuProps?: ToolsMenuProps[]
+  /**
+   * The optionnal props of the appBar (normaly given to override classes and styles)
+   */
   appBarProps?: Partial<AppBarProps>
+  /**
+   * The optionnal props of the drawer menu (normaly given to override classes and styles)
+   */
   drawerMenuProps?: Partial<DrawerMenuProps>
+  /**
+   * The content that will be displayed in the navBAr at the left of the profile
+   */
   navBarContent?: React.ReactNode
+  /**
+   * The list of the actions that will be displayed in the drawer menu
+   */
   menu?: MenuItem[]
+  /**
+   * The application that has to be surrounded by the navbar and the drawer
+   */
   children?: React.ReactNode
+  /**
+   * The logo in the navBAr
+   */
   logo: string
+  /**
+   * Defined if the drawer is open or not
+   */
   open: boolean
+  /**
+   * The title that will be displayed in the navBar
+   */
   title?: string
+  /**
+   * The style of the navBar and the drawer
+   */
   styleProps: StyleProps
+  /**
+   * Defined if the appBar (navBar + drawer) will be displayed or not
+   */
   showAppBar?: boolean
+  /**
+   * The content that will be displayed in the drawer below the menu
+   */
   drawerContent?: React.ReactNode
+  /**
+   * The function that is called when the hamburger button is clicked
+   */
   onToggle: () => void
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: AppClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: AppStyles
 }
 
@@ -105,7 +146,7 @@ const defaultProps = {
   showAppBar: true
 }
 
-export const App = (props: Props) => {
+export const App = (props: AppProps) => {
   const {
     children,
     toolsMenuProps = [],
@@ -123,7 +164,7 @@ export const App = (props: Props) => {
     styles,
     onToggle
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)(styleProps)
   const openClasses = clsx(defaultClasses.main, {
     [defaultClasses.mainMargin]: open,
@@ -134,7 +175,7 @@ export const App = (props: Props) => {
   const [handleResize] = useDebouncedCallback(() => {
     const min = Math.min.apply(Math, [window.innerWidth, innerWidth])
     const max = Math.max.apply(Math, [window.innerWidth, innerWidth])
-    if ((400 > min && 400 < max) || (600 > min && 600 < max)) {
+    if ((min < 400 && max > 400) || (min < 600 && max > 600)) {
       forceUpdate()
     }
     setInnerWidth(window.innerWidth)

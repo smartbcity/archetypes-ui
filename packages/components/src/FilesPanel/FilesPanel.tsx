@@ -44,7 +44,7 @@ export interface FolderItem {
   validated?: boolean
 }
 
-interface FilesPanelProps extends BasicProps {
+export interface FilesPanelProps extends BasicProps {
   /**
    * Main folder that will be use to display other files or folders that are located inside the main folder
    */
