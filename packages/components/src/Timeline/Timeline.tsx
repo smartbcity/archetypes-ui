@@ -8,11 +8,11 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@material-ui/lab'
-import React, { useContext } from 'react'
-import { MergeMuiElementProps } from '../../../layout/src/layout/Types'
+import React from 'react'
 import { makeStyles, Typography } from '@material-ui/core'
-import { Theme, themeContext } from '@smartb/archetypes-ui-components'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
+import { MergeMuiElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({
@@ -126,7 +126,7 @@ type Props = MergeMuiElementProps<MuiTimelineProps, TimelineProps>
  */
 export const Timeline = (props: Props) => {
   const { lines, classes, styles, ...other } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
   return (
     <MuiTimeline {...other}>
