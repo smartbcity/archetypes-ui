@@ -1,6 +1,12 @@
 import { AppBar } from './layout/Appbar'
 import { DrawerDetails } from './layout/DrawerDetails'
-import { Menu, MenuItem, DrawerMenu, SimpleMenuItem } from './layout/Drawermenu'
+import {
+  Menu,
+  MenuItem,
+  DrawerMenu,
+  DrawerMenuProps,
+  SimpleMenuItem
+} from './layout/DrawerMenu'
 import { ToolsMenu, ToolsMenuProps } from './layout/ToolsMenu'
 import { App } from './layout/App'
 import StyleProps from './layout/StyleProps'
@@ -20,6 +26,7 @@ export {
   AppBar,
   DrawerDetails,
   DrawerMenu,
+  DrawerMenuProps,
   ToolsMenuProps,
   App,
   MuiStepperWrapperProps,

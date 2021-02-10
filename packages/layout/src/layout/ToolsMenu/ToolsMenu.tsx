@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu as SBMenu } from '../Drawermenu/menu'
+import { Menu as SBMenu } from '../DrawerMenu/menu'
 import { IconButton, Menu } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { ItemsLayout, Display, ItemsLayoutProps } from '../ItemsLayout'

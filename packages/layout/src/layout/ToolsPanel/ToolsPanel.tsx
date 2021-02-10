@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as SBMenu } from '../Drawermenu/menu'
+import { Menu as SBMenu } from '../DrawerMenu/menu'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { ExpandMore } from '@material-ui/icons'
 import {
