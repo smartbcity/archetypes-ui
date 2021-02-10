@@ -6,7 +6,7 @@ import defaultLogo from '../assets/impactcity-logo-2.png'
 import { AccountCircle } from '@material-ui/icons'
 
 export default {
-  title: 'Components/ToolsPanel',
+  title: 'Layout/ToolsPanel',
   component: AruiToolsPanel
 } as Meta
 

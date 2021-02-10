@@ -9,7 +9,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { OnNextHandles, StepDetails } from './MuiStepperWrapper'
 
 export default {
-  title: 'Components/Stepper',
+  title: 'Layout/Stepper',
   component: AruiStepper
 } as Meta
 

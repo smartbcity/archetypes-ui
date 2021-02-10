@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 
 export default {
-  title: 'Components/ItemsLayout',
+  title: 'Layout/ItemsLayout',
   component: AruiItemsLayout
 } as Meta
 

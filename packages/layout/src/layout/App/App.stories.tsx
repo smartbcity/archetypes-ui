@@ -13,7 +13,7 @@ import defaultLogo from '../assets/impactcity-logo-2.png'
 import { Button } from '@material-ui/core'
 
 export default {
-  title: 'Components/App',
+  title: 'Layout/App',
   component: AruiApp
 } as Meta
 

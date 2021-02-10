@@ -10,7 +10,7 @@ import {
 } from '@material-ui/icons'
 
 export default {
-  title: 'Components/ToolsMenu',
+  title: 'Layout/ToolsMenu',
   component: AruiToolsMenu
 } as Meta
 

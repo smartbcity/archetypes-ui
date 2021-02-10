@@ -14,7 +14,7 @@ import { action } from '@storybook/addon-actions'
 import { Button } from '@material-ui/core'
 
 export default {
-  title: 'Components/DrawerMenu',
+  title: 'Layout/DrawerMenu',
   component: AruiDrawerMenu
 } as Meta
 
@@ -78,8 +78,8 @@ const profileMenu2 = {
   ]
 }
 
-export const Drawermenu = Template.bind({})
-Drawermenu.args = {
+export const DrawerMenu = Template.bind({})
+DrawerMenu.args = {
   styleProps: {
     detailDrawerWidth: 200,
     appBarHeight: 300,

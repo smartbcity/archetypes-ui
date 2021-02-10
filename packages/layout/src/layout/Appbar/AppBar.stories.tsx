@@ -5,7 +5,8 @@ import { Story } from '@storybook/react/types-6-0'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 
 export default {
-  title: 'Components/AppBar',
+  title: 'Layout/AppBar',
+
   component: AruiAppBar
 } as Meta
 
