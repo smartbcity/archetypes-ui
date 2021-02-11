@@ -3,7 +3,16 @@ import { ThemeContextProvider } from "../packages/components/src/ThemeContextPro
 import { myTheme } from "../docs/Theme/Theme";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  options: {
+    storySort: {
+      order: [
+        "Overview",
+        ["Getting started", "Cheatsheet"],
+        "Components",
+        "Layout",
+      ],
+    },
+  },
 };
 
 export const withThemeProvider = (Story) => {
