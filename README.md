@@ -1,62 +1,63 @@
-## Build
+# Archetypes-ui libraries
+
+![](https://badgen.net/badge/React/16.0.0/purple)
+[![](https://badgen.net/npm/v/@smartb/archetypes-ui-layout/latest)](https://www.npmjs.com/package/@smartb/archetypes-ui-components)
+![](https://badgen.net/npm/types/tslib)
+
+## 📦 Install
+
+```bash
+npm install @smartb/archetypes-ui-components
+npm install @smartb/archetypes-ui-layout
+```
+
+```bash
+yarn add @smartb/archetypes-ui-components
+yarn add @smartb/archetypes-ui-layout
+```
+
+## 🧰 The contents
+
+Almost every components are based on [Material-ui](https://material-ui.com/).
+
+- @smartb/archetypes-ui-components regroups basic components to build an application like button, card, panel etc...
+
+- @smartb/archetypes-ui-layout regroups complexe layouts to structure an application like nav-bar, steppers, tools-menu etc...
+
+## 🌈 Override styles
+
+There is a `theme provider` component in @smartb/archetypes-ui-components that has to include the app.
+
+You have to give it a theme that you can get and customise [here](/?path=/story/overview-cheatsheet-theme--page). And you can also give it a [material-ui theme](https://material-ui.com/customization/default-theme/) to override the material-ui default properties.
+
+Every components and layouts will have the following props to easily override their default styles:
+
+- `className` to give a class to the root of the component.
+- `style` to give custom styles to the root of the component.
+- `classes` An object regrouping all the classes you can give to the different parts of a component.
+- `styles` An object regrouping all the custom styles you can give to the different parts of a component.
+
+Each part of a component also has a unique class construct like that: `"Arui" + /*the name of the component*/ + "-" + /*the name of the part of the component*/`.
+
+For Example: `AruiCard-root`.
+
+These classes allows you to override the default css properties from a static css file.
+
+## ⛏ Source
+
+- Build
 
 ```
 yarn workspaces run build
 ```
 
-## Run
-
-- Components library
+- Run Storybook
 
 ```
 yarn storybook
 ```
 
-## Proto
-
-https://share.proto.io/80VK5K/
-
-## Example
-
-- Use Both CSF and Docs
-
-```
-Source: https://github.com/appnexus/lucid
-Demo: https://appnexus.github.io/lucid/?path=/docs/* =>
-```
-
-```
-Source: https://github.com/necolas/react-native-web
-Demo: https://necolas.github.io/react-native-web/docs/?path=/docs/components-button--color
-```
-
-```
-Source: https://github.com/jask-oss/reaviz
-Demo: https://reaviz.io/?path=/docs/docs-intro--page
-```
-
-- Pages Organization
-
-```
-Source: https://github.com/wix/wix-style-react
-Demo: https://wix-style-react.now.sh/?path=/story/introduction-cheatsheet--components-cheatsheet
-```
-
-- Pages Style
-
-```
-Source: https://github.com/thorjarhun/react-storybook-todolist
-Demo: https://thorjarhun.github.io/react-storybook-todolist/
-```
-
-- Nice Design
-
-```
-Source: https://github.com/inrupt/solid-react-components
-Demo: https://design.inrupt.com/atomic-core/?cat=Organisms#Navigation =>
-```
-
-## Version
+- Release Version
 
 ```
 lerna version 0.0.1 --no-git-tag-version
@@ -64,47 +65,9 @@ lerna version 0.0.1 --no-git-tag-version
 lerna publish from-package
 ```
 
-## Init Project
-
-Based on:
-https://dev.to/shnydercom/monorepos-lerna-typescript-cra-and-storybook-combined-4hli
-
-```
-git init r2-react
-cd r2-react
-
-yarn init r2-react
-yarn add lerna -D
-yarn lerna init
-
-vim package.json
-
-"workspaces": [
-  "packages/*"
-],
-"npmClient": "yarn",
-"useWorkspaces": true,
-
-
-cd packages
-create-react-library components
-npm install -g create-react-library
-
-cd r2-react-components
-rm -fr .git
-npx -p @storybook/cli sb init
-
-
-yarn storybook
-```
-
-## Create new package
+- Create new package
 
 ```
 cd packages
 create-react-library COMPONENT_NAME
 ```
-
-## Addons
-
-https://storybook.js.org/addons/
