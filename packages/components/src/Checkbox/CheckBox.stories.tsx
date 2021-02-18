@@ -16,3 +16,4 @@ export const CheckBox = Template.bind({})
 CheckBox.args = {
   checked: false
 }
+CheckBox.storyName = 'CheckBox'

@@ -14,5 +14,7 @@ module.exports = {
         transcludeMarkdown: true,
       },
     },
+    "@storybook/addon-controls",
+    "storybook-addon-react-docgen",
   ],
 };

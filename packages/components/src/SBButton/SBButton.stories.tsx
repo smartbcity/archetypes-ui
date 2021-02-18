@@ -16,3 +16,5 @@ export const SBButton = Template.bind({})
 SBButton.args = {
   children: 'SBButton'
 }
+
+SBButton.storyName = 'SBButton'

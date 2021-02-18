@@ -17,3 +17,4 @@ DropPicture.args = {
   onRemovePicture: () => {},
   onPictureDroped: () => {}
 }
+DropPicture.storyName = 'DropPicture'

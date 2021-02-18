@@ -4,10 +4,38 @@ import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { Paper, Typography } from '@material-ui/core'
 import { Fastfood } from '@material-ui/icons'
+import { styles, classes, TimeLineCell } from './types'
 
 export default {
   title: 'Components/Timeline',
-  component: AruiTimeline
+  component: AruiTimeline,
+  argTypes: {
+    lines: {
+      table: {
+        type: {
+          summary: 'TimeLineCell[]',
+          detail: TimeLineCell
+        }
+      },
+      control: null
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'TextFieldStyles',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'TextFieldStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<TimelineProps> = (args: TimelineProps) => (

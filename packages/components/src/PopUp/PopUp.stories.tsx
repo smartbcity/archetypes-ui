@@ -3,10 +3,47 @@ import { PopUp as AruiPopUp, PopUpProps } from './PopUp'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
+import { ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks'
+import { styles, classes, Action } from './types'
 
 export default {
   title: 'Components/PopUp',
-  component: AruiPopUp
+  component: AruiPopUp,
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <ArgsTable story={PRIMARY_STORY} />
+        </>
+      )
+    }
+  },
+  argTypes: {
+    actions: {
+      table: {
+        type: {
+          summary: 'Action[]',
+          detail: Action
+        }
+      }
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'PopUpClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'PopUpStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<PopUpProps> = (args: PopUpProps) => {
@@ -31,3 +68,5 @@ PopUp.args = {
     }
   ]
 }
+
+PopUp.storyName = 'PopUp'

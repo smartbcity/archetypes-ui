@@ -71,10 +71,14 @@ export interface ToolsMenuProps extends BasicProps {
   styles?: ToolsMenuStyles
   /**
    * The optionnal props of the ItemsLayout (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
    */
   itemsLayoutProps?: Partial<ItemsLayoutProps>
   /**
    * The optionnal props of the TabsMenu (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
    */
   tabsMenuProps?: Partial<TabsMenuProps>
 }

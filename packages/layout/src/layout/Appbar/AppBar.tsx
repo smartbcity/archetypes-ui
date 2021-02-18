@@ -60,7 +60,6 @@ export interface AppBarProps extends BasicProps {
    * The event called when opening the component
    */
   onDrawerOpen: () => void
-  profiles?: React.ReactNode
   /**
    * The content that will be displayed at the top right of the component
    */
@@ -85,7 +84,6 @@ export const AppBar = (props: Props) => {
     className,
     style,
     id,
-    profiles,
     content,
     classes,
     styles,
@@ -136,7 +134,6 @@ export const AppBar = (props: Props) => {
         </DrawerSpacer>
         <div className={defaultClasses.grow} />
         {content}
-        {profiles}
       </Toolbar>
     </MuiAppBar>
   )

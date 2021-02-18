@@ -4,10 +4,22 @@ import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { AccountCircle } from '@material-ui/icons'
+import { Menu } from './types'
 
 export default {
   title: 'Layout/ToolsPanel',
-  component: AruiToolsPanel
+  component: AruiToolsPanel,
+  argTypes: {
+    menu: {
+      table: {
+        type: {
+          summary: 'Menu',
+          detail: Menu
+        }
+      },
+      control: null
+    }
+  }
 } as Meta
 
 const Template: Story<ToolsPanelProps> = (args: ToolsPanelProps) => (
@@ -60,3 +72,5 @@ ToolsPanel.args = {
     ]
   }
 }
+
+ToolsPanel.storyName = 'ToolsPanel'

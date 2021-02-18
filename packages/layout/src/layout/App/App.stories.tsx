@@ -10,11 +10,111 @@ import {
   Settings
 } from '@material-ui/icons'
 import defaultLogo from '../assets/impactcity-logo-2.png'
-import { Button } from '@material-ui/core'
+import { Box, Button, Typography } from '@material-ui/core'
+import {
+  ArgsTable,
+  PRIMARY_STORY,
+  Subtitle
+} from '@storybook/addon-docs/blocks'
+import { styles, classes, StyleProps, MenuItem } from './types'
+import LinkTo from '@storybook/addon-links/react'
 
 export default {
   title: 'Layout/App',
-  component: AruiApp
+  component: AruiApp,
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <ArgsTable story={PRIMARY_STORY} />
+          <Subtitle>References</Subtitle>
+          <Box display='flex' flexDirection='column'>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='ToolsMenu'>
+                ToolsMenuProps
+              </LinkTo>
+            </Typography>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='AppBar'>
+                appBarProps
+              </LinkTo>
+            </Typography>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='DrawerMenu'>
+                drawerMenuProps
+              </LinkTo>
+            </Typography>
+          </Box>
+        </>
+      )
+    }
+  },
+  argTypes: {
+    toolsMenuProps: {
+      table: {
+        type: {
+          summary: 'ToolsMenuProps[]'
+        }
+      },
+      control: null
+    },
+    appBarProps: {
+      table: {
+        type: {
+          summary: 'Partial<AppBarProps>'
+        }
+      },
+      control: null
+    },
+    drawerMenuProps: {
+      table: {
+        type: {
+          summary: 'Partial<DrawerMenuProps>'
+        }
+      },
+      control: null
+    },
+    menu: {
+      table: {
+        type: {
+          summary: 'MenuItem[]',
+          detail: MenuItem
+        }
+      },
+      control: null
+    },
+    styleProps: {
+      table: {
+        type: {
+          summary: 'StyleProps',
+          detail: StyleProps
+        }
+      },
+      control: null
+    },
+    navBarContent: {
+      control: null
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'AppClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'AppStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<AppProps> = (args: AppProps) => {

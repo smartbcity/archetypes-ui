@@ -3,10 +3,38 @@ import { ItemsLayout as AruiItemsLayout, ItemsLayoutProps } from './ItemsLayout'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import defaultLogo from '../assets/impactcity-logo-2.png'
+import { styles, classes, Menu } from './types'
 
 export default {
   title: 'Layout/ItemsLayout',
-  component: AruiItemsLayout
+  component: AruiItemsLayout,
+  argTypes: {
+    menu: {
+      table: {
+        type: {
+          summary: 'Menu',
+          detail: Menu
+        }
+      },
+      control: null
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'ItemsLayoutClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'ItemsLayoutStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<ItemsLayoutProps> = (args: ItemsLayoutProps) => (
@@ -57,3 +85,5 @@ ItemsLayout.args = {
     ]
   }
 }
+
+ItemsLayout.storyName = 'ItemsLayout'

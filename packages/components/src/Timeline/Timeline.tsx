@@ -106,15 +106,15 @@ interface TimelineStyles {
 
 export interface TimelineProps {
   /**
-   * Is this the principal call to action on the page?
+   * The data that must be given to fill the timeline
    */
   lines: TimeLineCell[]
   /**
-   * the classes of the component
+   * The classes applied to the different part of the component
    */
   classes?: TimelineClasses
   /**
-   * the styles of the component
+   * The styles applied to the different part of the component
    */
   styles?: TimelineStyles
 }

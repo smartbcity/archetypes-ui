@@ -8,10 +8,75 @@ import {
   Payment,
   Settings
 } from '@material-ui/icons'
+import { Box, Button, Typography } from '@material-ui/core'
+import {
+  ArgsTable,
+  PRIMARY_STORY,
+  Subtitle
+} from '@storybook/addon-docs/blocks'
+import { styles, classes, Menu } from './types'
+import LinkTo from '@storybook/addon-links/react'
 
 export default {
   title: 'Layout/ToolsMenu',
-  component: AruiToolsMenu
+  component: AruiToolsMenu,
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <ArgsTable story={PRIMARY_STORY} />
+          <Subtitle>References</Subtitle>
+          <Box display='flex' flexDirection='column'>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='ItemsLayout'>
+                itemsLayoutProps
+              </LinkTo>
+            </Typography>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='TabsMenu'>
+                tabsMenuProps
+              </LinkTo>
+            </Typography>
+          </Box>
+        </>
+      )
+    }
+  },
+  argTypes: {
+    menu: {
+      table: {
+        type: {
+          summary: 'Menu',
+          detail: Menu
+        }
+      },
+      control: null
+    },
+    itemsLayoutProps: {
+      control: null
+    },
+    tabsMenuProps: {
+      control: null
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'ToolsMenuClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'ToolsMenuStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<ToolsMenuProps> = (args: ToolsMenuProps) => (
@@ -44,3 +109,5 @@ ToolsMenu.args = {
     ]
   }
 }
+
+ToolsMenu.storyName = 'ToolsMenu'

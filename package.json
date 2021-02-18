@@ -48,7 +48,8 @@
     "@types/react-pdf": "^4.0.5",
     "clsx": "^1.1.1",
     "react-pdf": "^5.0.0",
-    "react-syntax-highlighter": "^12.2.1"
+    "react-syntax-highlighter": "^15.4.3",
+    "storybook-addon-react-docgen": "^1.2.42"
   },
   "husky": {
     "hooks": {

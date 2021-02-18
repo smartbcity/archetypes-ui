@@ -82,14 +82,20 @@ interface AppStyles {
 export interface AppProps {
   /**
    * An array that contains every tools menu that will be displayed in the navBar
+   *
+   * **See the reference below** ⬇️
    */
   toolsMenuProps?: ToolsMenuProps[]
   /**
    * The optionnal props of the appBar (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
    */
   appBarProps?: Partial<AppBarProps>
   /**
    * The optionnal props of the drawer menu (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
    */
   drawerMenuProps?: Partial<DrawerMenuProps>
   /**

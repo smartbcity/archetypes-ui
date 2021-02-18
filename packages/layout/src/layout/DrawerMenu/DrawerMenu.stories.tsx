@@ -12,10 +12,83 @@ import {
 } from '@material-ui/icons'
 import { action } from '@storybook/addon-actions'
 import { Button } from '@material-ui/core'
+import { Box, Button, Typography } from '@material-ui/core'
+import {
+  ArgsTable,
+  PRIMARY_STORY,
+  Subtitle
+} from '@storybook/addon-docs/blocks'
+import { styles, classes, StyleProps, MenuItem } from './types'
+import LinkTo from '@storybook/addon-links/react'
 
 export default {
   title: 'Layout/DrawerMenu',
-  component: AruiDrawerMenu
+  component: AruiDrawerMenu,
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <ArgsTable story={PRIMARY_STORY} />
+          <Subtitle>References</Subtitle>
+          <Box display='flex' flexDirection='column'>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Layout' story='ToolsMenu'>
+                ToolsMenuProps
+              </LinkTo>
+            </Typography>
+          </Box>
+        </>
+      )
+    }
+  },
+  argTypes: {
+    toolsMenuProps: {
+      table: {
+        type: {
+          summary: 'ToolsMenuProps[]'
+        }
+      },
+      control: null
+    },
+    menu: {
+      table: {
+        type: {
+          summary: 'MenuItem[]',
+          detail: MenuItem
+        }
+      },
+      control: null
+    },
+    styleProps: {
+      table: {
+        type: {
+          summary: 'StyleProps',
+          detail: StyleProps
+        }
+      },
+      control: null
+    },
+    navBarContent: {
+      control: null
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'DrawermenuClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'DrawermenuStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<DrawerMenuProps> = (args: DrawerMenuProps) => (
@@ -120,3 +193,5 @@ DrawerMenu.args = {
     }
   ]
 }
+
+DrawerMenu.storyName = 'DrawerMenu'

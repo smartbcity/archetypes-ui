@@ -52,6 +52,8 @@ export interface DrawerMenuProps extends BasicProps {
   children?: React.ReactNode
   /**
    * An array that contains every tools menu that will be displayed in the navBar
+   *
+   * **See the reference below** ⬇️
    */
   toolsMenuProps?: ToolsMenuProps[]
   /**

@@ -6,11 +6,43 @@ import React, {
 import { Stepper as AruiStepper, StepperProps } from './Stepper'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
+import { ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks'
 import { OnNextHandles, StepDetails } from './MuiStepperWrapper'
+import { MuiStepperWrapper } from './MuiStepperWrapper'
+import { MuiStepperWrapperLabel } from './types'
 
 export default {
   title: 'Layout/Stepper',
-  component: AruiStepper
+  component: AruiStepper,
+  subcomponents: { MuiStepperWrapper },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <ArgsTable story={PRIMARY_STORY} />
+        </>
+      )
+    }
+  },
+  argTypes: {
+    muiStepperWrapperProps: {
+      table: {
+        type: {
+          summary: 'MuiStepperWrapperProps'
+        }
+      },
+      control: null
+    },
+    muiStepperWrapperLabel: {
+      table: {
+        type: {
+          summary: 'MuiStepperWrapperLabel',
+          detail: MuiStepperWrapperLabel
+        }
+      },
+      control: null
+    }
+  }
 } as Meta
 
 const getSteps = (stepRef: React.RefObject<OnNextHandles>): StepDetails[] => {

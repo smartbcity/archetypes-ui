@@ -43,7 +43,7 @@ const useStyles = (theme: Theme) =>
 
 export type Variant = 'contained' | 'outlined'
 
-export interface ButtonBasicProps extends BasicProps {
+export interface ButtonProps extends BasicProps {
   /**
    * The class added to the root element of the component
    */
@@ -74,9 +74,9 @@ export interface ButtonBasicProps extends BasicProps {
   children: React.ReactNode
 }
 
-export type ButtonProps = MergeMuiElementProps<MuiButtonProps, ButtonBasicProps>
+export type Props = MergeMuiElementProps<MuiButtonProps, ButtonProps>
 
-export const Button = (props: ButtonProps) => {
+export const Button = (props: Props) => {
   const theme = useTheme()
   const classes = useStyles(theme)()
   const {

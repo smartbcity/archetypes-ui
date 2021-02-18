@@ -2,10 +2,29 @@ import React from 'react'
 import { Panel as AruiPanel, PanelProps } from './Panel'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
+import { styles, classes } from './types'
 
 export default {
   title: 'Components/Panel',
-  component: AruiPanel
+  component: AruiPanel,
+  argTypes: {
+    classes: {
+      table: {
+        type: {
+          summary: 'PanelClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'PanelStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<PanelProps> = (args: PanelProps) => (
