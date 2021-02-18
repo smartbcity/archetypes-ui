@@ -9,26 +9,24 @@ import { Theme, useTheme } from '../ThemeContextProvider'
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     outlined: {
-      minWidth: '136px',
+      minWidth: '80px',
       padding: '7px',
       fontSize: '0.75rem',
       color: theme.secondaryColor,
       backgroundColor: '#ffffff',
-      borderRadius: '11px',
+      borderRadius: '5px',
       boxShadow: theme.shadows[2],
-      border: 'solid 1.1px ' + theme.secondaryColor,
       '&:hover': {
         backgroundColor: theme.secondaryColor,
         color: '#ffffff'
       }
     },
     contained: {
-      minWidth: '136px',
+      minWidth: '80px',
       padding: '7px 0',
       fontSize: '0.75rem',
-      borderRadius: '11px',
+      borderRadius: '5px',
       boxShadow: theme.shadows[2],
-      border: 'solid 1.1px ' + theme.secondaryColor,
       backgroundImage:
         'linear-gradient(226deg, ' +
         theme.secondaryColor +
@@ -40,7 +38,7 @@ const useStyles = (theme: Theme) =>
     }
   })
 
-export type Variant = 'contained' | 'outlined'
+export type Variant = 'contained' | 'outlined' 
 
 export interface ButtonBasicProps extends BasicProps {
   /**
@@ -58,7 +56,7 @@ export interface ButtonBasicProps extends BasicProps {
   /**
    * The event called when the button is clicked
    */
-  onClick: (event: React.ChangeEvent<{}>) => void
+  onClick?: (event: React.ChangeEvent<{}>) => void
   /**
    * Define if the button is disabled or not
    */
@@ -71,6 +69,10 @@ export interface ButtonBasicProps extends BasicProps {
    * The inner components
    */
   children: React.ReactNode
+  /**
+   * The link to go to. Href has priority over onClick
+   */
+  href?: string
 }
 
 type ButtonProps = MergeMuiElementProps<MuiButtonProps, ButtonBasicProps>
@@ -86,6 +88,7 @@ export const Button = (props: ButtonProps) => {
     style,
     className,
     id,
+    href,
     ...other
   } = props
   const variantClass =
@@ -97,7 +100,8 @@ export const Button = (props: ButtonProps) => {
       className={`${variantClass} ${
         disabled && classes.disabled
       } AruiButton-root ${className}`}
-      onClick={(e) => onClick(e)}
+      onClick={(e) => !href && onClick && onClick(e)}
+      href={href}
       id={id}
       {...other}
     >
