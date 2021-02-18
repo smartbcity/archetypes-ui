@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ReactDropzone, { FileRejection, DropzoneProps } from 'react-dropzone'
-import { Tooltip, Paper, makeStyles, Typography } from '@material-ui/core'
+import { Tooltip, Paper, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (width: number) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     root: {
       width: `${width}px`
     },
@@ -60,7 +60,7 @@ const useStyles = (width: number) =>
       top: '50%',
       left: '50%'
     }
-  }))
+  })
 
 export interface DropPictureBasicProps extends BasicProps {
   /**

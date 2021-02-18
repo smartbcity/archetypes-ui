@@ -4,7 +4,7 @@ import {
   Menu,
   MenuItem,
   DrawerMenu,
-  DrawerMenuProps,
+  DrawerMenuBasicProps as DrawerMenuProps,
   SimpleMenuItem
 } from './layout/DrawerMenu'
 import { ToolsMenu, ToolsMenuProps } from './layout/ToolsMenu'

@@ -1,46 +1,44 @@
 import React, { useState } from 'react'
 import { Menu as SBMenu } from '../DrawerMenu'
 import { IconButton, Menu } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { ItemsLayout, Display, ItemsLayoutProps } from '../ItemsLayout'
+import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
 import clsx from 'clsx'
-import { BasicProps } from '../Types'
-const useStyles = makeStyles(() =>
-  createStyles({
-    menu: {
-      maxWidth: '300px',
-      maxHeight: '500px'
-    },
-    menuGrid: {
-      maxWidth: '375px'
-    },
-    list: {
-      padding: '0 !important',
-      width: '100% !important',
-      '& > div': {
-        outline: '0 !important'
-      }
-    },
-    menuOpened: {
-      backgroundColor: 'rgba(0, 0, 0, 0.04)'
-    },
-    gridItemsLayoutMinWidth: {
-      maxWidth: '375px',
-      maxHeight: '410px',
-      minWidth: '358px'
-    },
-    gridItemsLayout: {
-      maxWidth: '375px',
-      maxHeight: '410px'
-    },
-    listItemsLayout: {
-      maxHeight: '410px',
-      overflow: 'auto'
+import { BasicProps, lowLevelStyles } from '../Types'
+
+const useStyles = lowLevelStyles({
+  menu: {
+    maxWidth: '300px',
+    maxHeight: '500px'
+  },
+  menuGrid: {
+    maxWidth: '375px'
+  },
+  list: {
+    padding: '0 !important',
+    width: '100% !important',
+    '& > div': {
+      outline: '0 !important'
     }
-  })
-)
+  },
+  menuOpened: {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)'
+  },
+  gridItemsLayoutMinWidth: {
+    maxWidth: '375px',
+    maxHeight: '410px',
+    minWidth: '358px'
+  },
+  gridItemsLayout: {
+    maxWidth: '375px',
+    maxHeight: '410px'
+  },
+  listItemsLayout: {
+    maxHeight: '410px',
+    overflow: 'auto'
+  }
+})
 
 interface ToolsMenuClasses {
   iconButton?: string
@@ -74,7 +72,7 @@ export interface ToolsMenuProps extends BasicProps {
    *
    * **See the reference below** ⬇️
    */
-  itemsLayoutProps?: Partial<ItemsLayoutProps>
+  itemsLayoutProps?: Partial<ItemsLayoutBasicProps>
   /**
    * The optionnal props of the TabsMenu (normaly given to override classes and styles)
    *

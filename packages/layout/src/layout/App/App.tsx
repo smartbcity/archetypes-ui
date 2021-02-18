@@ -1,17 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { makeStyles, Paper, Theme } from '@material-ui/core'
+import { Paper, Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
-import { AppBar, AppBarProps } from '../Appbar'
+import { AppBar, AppBarBasicProps } from '../Appbar'
 import StyleProps from '../StyleProps'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
 import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
 import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-components'
-import { DrawerMenu, DrawerMenuProps, MenuItem } from '../DrawerMenu'
+import { DrawerMenu, DrawerMenuBasicProps, MenuItem } from '../DrawerMenu'
+import { lowLevelStyles } from '../Types'
 
 const useStyles = (customTheme: SBTheme) =>
-  makeStyles<Theme, StyleProps>((theme: Theme) =>
+  lowLevelStyles<Theme, StyleProps>((theme: Theme) =>
     createStyles({
       appbar: (props) => ({
         height: `${props.appBarHeight}px`,
@@ -91,13 +92,13 @@ export interface AppProps {
    *
    * **See the reference below** ⬇️
    */
-  appBarProps?: Partial<AppBarProps>
+  appBarProps?: Partial<AppBarBasicProps>
   /**
    * The optionnal props of the drawer menu (normaly given to override classes and styles)
    *
    * **See the reference below** ⬇️
    */
-  drawerMenuProps?: Partial<DrawerMenuProps>
+  drawerMenuProps?: Partial<DrawerMenuBasicProps>
   /**
    * The content that will be displayed in the navBAr at the left of the profile
    */

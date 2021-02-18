@@ -3,12 +3,11 @@ import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     outlined: {
       minWidth: '136px',
       padding: '7px',
@@ -39,7 +38,7 @@ const useStyles = (theme: Theme) =>
     disabled: {
       opacity: '0.7'
     }
-  }))
+  })
 
 export type Variant = 'contained' | 'outlined'
 

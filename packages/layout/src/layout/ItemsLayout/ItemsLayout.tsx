@@ -1,56 +1,53 @@
 import React from 'react'
 import { Menu } from '../DrawerMenu'
 import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { MergeReactElementProps, BasicProps } from '../Types'
+import { MergeReactElementProps, BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    gridContainer: {
-      display: 'flex',
-      padding: '5px',
-      flexWrap: 'wrap',
-      boxSizing: 'initial'
+const useStyles = lowLevelStyles({
+  gridContainer: {
+    display: 'flex',
+    padding: '5px',
+    flexWrap: 'wrap',
+    boxSizing: 'initial'
+  },
+  gridItem: {
+    width: '110px',
+    display: 'flex',
+    height: '95px',
+    margin: '3px',
+    padding: '5px',
+    flexWrap: 'nowrap',
+    borderRadius: '3px',
+    cursor: 'pointer',
+    '& h6': {
+      maxWidth: '100px',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden'
     },
-    gridItem: {
-      width: '110px',
-      display: 'flex',
-      height: '95px',
-      margin: '3px',
-      padding: '5px',
-      flexWrap: 'nowrap',
-      borderRadius: '3px',
-      cursor: 'pointer',
-      '& h6': {
-        maxWidth: '100px',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden'
-      },
-      '&:hover h6': {
-        textOverflow: 'initial',
-        whiteSpace: 'initial'
-      },
-      '&:hover': {
-        height: 'auto',
-        minHeight: '90px',
-        background: '#f5f5f5'
-      }
+    '&:hover h6': {
+      textOverflow: 'initial',
+      whiteSpace: 'initial'
     },
-    gridRoot: {
-      overflowY: 'auto',
-      overflowX: 'hidden'
-    },
-    item: {
-      padding: '6px 15px'
-    },
-    icon: {
-      minWidth: '0px',
-      marginRight: '10px'
+    '&:hover': {
+      height: 'auto',
+      minHeight: '90px',
+      background: '#f5f5f5'
     }
-  })
-)
+  },
+  gridRoot: {
+    overflowY: 'auto',
+    overflowX: 'hidden'
+  },
+  item: {
+    padding: '6px 15px'
+  },
+  icon: {
+    minWidth: '0px',
+    marginRight: '10px'
+  }
+})
 
 export type Display = 'list' | 'grid'
 

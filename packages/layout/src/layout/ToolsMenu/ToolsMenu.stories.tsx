@@ -8,7 +8,7 @@ import {
   Payment,
   Settings
 } from '@material-ui/icons'
-import { Box, Button, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import {
   ArgsTable,
   PRIMARY_STORY,
@@ -55,6 +55,11 @@ export default {
       control: null
     },
     itemsLayoutProps: {
+      table: {
+        type: {
+          summary: 'Partial<ItemsLayoutBasicProps>'
+        }
+      },
       control: null
     },
     tabsMenuProps: {

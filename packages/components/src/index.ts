@@ -21,7 +21,11 @@ import { FilePreview } from './FilePreview'
 import { CheckBox } from './Checkbox'
 import { PdfViewer } from './PdfViewer'
 import { AutomateViewer } from './Automate'
-import { Timeline, TimelineProps, TimeLineCell } from './Timeline'
+import {
+  Timeline,
+  TimelineBasicProps as TimelineProps,
+  TimeLineCell
+} from './Timeline'
 
 export {
   Panel,

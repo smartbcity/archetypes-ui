@@ -2,11 +2,10 @@ import React from 'react'
 import {
   InputLabel,
   TextField as MuiTextField,
-  TextFieldProps as MuiTextFieldProps,
-  makeStyles
+  TextFieldProps as MuiTextFieldProps
 } from '@material-ui/core'
 
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
 interface TextFieldClasses {
@@ -59,7 +58,7 @@ export interface TextFieldBasicProps extends BasicProps {
   styles?: TextFieldStyles
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = lowLevelStyles({
   formControl: {
     width: '100%',
     borderRadius: '21.6px',
@@ -80,7 +79,7 @@ const useStyles = makeStyles(() => ({
   helperText: {
     marginLeft: '3px'
   }
-}))
+})
 
 type TextFieldProps = MergeMuiElementProps<
   MuiTextFieldProps,

@@ -8,9 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
 const MenuButton = styled(IconButton)`
@@ -27,13 +25,12 @@ const DrawerSpacer = styled.div`
     height: 20px;
   }
 `
-const useStyles = makeStyles(() =>
-  createStyles({
-    grow: {
-      flexGrow: 1
-    }
-  })
-)
+
+const useStyles = lowLevelStyles({
+  grow: {
+    flexGrow: 1
+  }
+})
 
 interface AppBarClasses {
   menuButton?: string
@@ -61,6 +58,10 @@ export interface AppBarBasicProps extends BasicProps {
    */
   onDrawerOpen: () => void
   /**
+   * The profiles that will be displayed at the top right of the component
+   */
+  profiles?: React.ReactNode
+  /**
    * The content that will be displayed at the top right of the component
    */
   content?: React.ReactNode
@@ -87,6 +88,7 @@ export const AppBar = (props: AppBarProps) => {
     content,
     classes,
     styles,
+    profiles,
     ...other
   } = props
   const defaultClasses = useStyles()
@@ -133,6 +135,7 @@ export const AppBar = (props: AppBarProps) => {
           </List>
         </DrawerSpacer>
         <div className={defaultClasses.grow} />
+        {profiles}
         {content}
       </Toolbar>
     </MuiAppBar>

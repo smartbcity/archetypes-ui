@@ -1,36 +1,33 @@
 import React from 'react'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { InputLabel } from '@material-ui/core'
 import clsx from 'clsx'
-import { BasicProps, MergeReactElementProps } from '../Types'
+import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
 import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      listLabel: {
-        color: '#646464',
-        fontWeight: 500,
-        fontSize: '13px'
-      },
-      date: {
-        boxShadow: theme.shadows[2],
-        borderRadius: 25,
-        position: 'relative',
-        backgroundColor: '#fafafa',
-        padding: '7px 13px',
-        marginTop: '11px',
-        fontSize: 12,
-        fontWeight: 300,
-        color: '#797979',
-        minHeight: '26px',
-        width: '200px',
-        maxWidth: '100%',
-        border: 'none',
-        outline: 'none'
-      }
-    })
-  )
+  lowLevelStyles({
+    listLabel: {
+      color: '#646464',
+      fontWeight: 500,
+      fontSize: '13px'
+    },
+    date: {
+      boxShadow: theme.shadows[2],
+      borderRadius: 25,
+      position: 'relative',
+      backgroundColor: '#fafafa',
+      padding: '7px 13px',
+      marginTop: '11px',
+      fontSize: 12,
+      fontWeight: 300,
+      color: '#797979',
+      minHeight: '26px',
+      width: '200px',
+      maxWidth: '100%',
+      border: 'none',
+      outline: 'none'
+    }
+  })
 
 interface DatePickerClasses {
   label?: string

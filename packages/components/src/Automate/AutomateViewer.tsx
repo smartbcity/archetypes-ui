@@ -1,19 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Node, Network, Edge } from 'vis-network'
 import { city } from '@smartb/s2-dsl-automate'
-import { createStyles, makeStyles } from '@material-ui/core'
-import { BasicProps, MergeReactElementProps } from '../Types'
+import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 class Automate extends city.smartb.s2.dsl.automate.S2Automate {}
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    container: {
-      width: '100%',
-      height: '500px'
-    }
-  })
-)
+const useStyles = lowLevelStyles({
+  container: {
+    width: '100%',
+    height: '500px'
+  }
+})
+
 const options = {
   physics: {
     enabled: true,

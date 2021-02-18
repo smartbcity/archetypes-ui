@@ -1,56 +1,53 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { logoType } from '../Panel'
 import { Box as AruiBox, BoxProps } from '../Box'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      headerContainer: {
-        width: 'calc(90% - 10px)',
-        padding: '10px',
-        paddingLeft: '10%',
-        position: 'relative'
-      },
-      dividerBar: {
-        background: theme.primaryColor,
-        height: '2px',
-        width: '30%',
-        position: 'absolute',
-        bottom: '0px',
-        left: '10%'
-      },
-      bodyContainer: {
-        minHeight: '50px',
-        width: 'calc(100% - 30px)',
-        padding: '15px'
-      },
-      withLogo: {
-        paddingBottom: '30px',
-        paddingRight: '30px',
-        width: 'calc(100% - 45px)'
-      },
-      withSmallLogo: {
-        paddingBottom: '20px',
-        paddingRight: '20px',
-        width: 'calc(100% - 35px)'
-      },
-      withFooter: {
-        paddingBottom: '15px',
-        paddingRight: '15px',
-        width: 'calc(100% - 30px)'
-      },
-      text: {
-        paddingBottom: '10px',
-        paddingLeft: '10%',
-        paddingRight: '35px'
-      }
-    })
-  )
+  lowLevelStyles({
+    headerContainer: {
+      width: 'calc(90% - 10px)',
+      padding: '10px',
+      paddingLeft: '10%',
+      position: 'relative'
+    },
+    dividerBar: {
+      background: theme.primaryColor,
+      height: '2px',
+      width: '30%',
+      position: 'absolute',
+      bottom: '0px',
+      left: '10%'
+    },
+    bodyContainer: {
+      minHeight: '50px',
+      width: 'calc(100% - 30px)',
+      padding: '15px'
+    },
+    withLogo: {
+      paddingBottom: '30px',
+      paddingRight: '30px',
+      width: 'calc(100% - 45px)'
+    },
+    withSmallLogo: {
+      paddingBottom: '20px',
+      paddingRight: '20px',
+      width: 'calc(100% - 35px)'
+    },
+    withFooter: {
+      paddingBottom: '15px',
+      paddingRight: '15px',
+      width: 'calc(100% - 30px)'
+    },
+    text: {
+      paddingBottom: '10px',
+      paddingLeft: '10%',
+      paddingRight: '35px'
+    }
+  })
 
 interface CardClasses {
   header?: string

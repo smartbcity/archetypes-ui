@@ -1,11 +1,11 @@
-import makeStyles from '@material-ui/core/styles/makeStyles'
 import { StepIconProps as MuiStepIconProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { Theme, useTheme } from '@smartb/archetypes-ui-components'
+import { lowLevelStyles } from '../Types'
 
 const useStepIconStyles = (theme: Theme) =>
-  makeStyles({
+  lowLevelStyles({
     root: {
       backgroundColor: theme.tertiaryColor,
       zIndex: 1,

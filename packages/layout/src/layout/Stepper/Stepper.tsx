@@ -1,6 +1,4 @@
 import React from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { StepConnector } from './StepConnector'
 import { StepEmptyIcon, StepIcon } from './StepIcon'
@@ -10,33 +8,32 @@ import {
   MuiStepperWrapperLabel
 } from './MuiStepperWrapper'
 import { Theme, useTheme } from '@smartb/archetypes-ui-components'
+import { lowLevelStyles } from '../Types'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      transparent: {
-        backgroundColor: '#ffffff',
-        justifyContent: 'center'
+  lowLevelStyles({
+    transparent: {
+      backgroundColor: '#ffffff',
+      justifyContent: 'center'
+    },
+    stepper: {
+      '& .AruiStepperBase-content': {
+        position: 'relative',
+        margin: 0
       },
-      stepper: {
-        '& .AruiStepperBase-content': {
-          position: 'relative',
-          margin: 0
-        },
-        '& .AruiStepperBase-actions': {
-          position: 'absolute',
-          bottom: 10,
-          right: 10
-        }
-      },
-      button: {
-        backgroundColor: theme.secondaryColor,
-        '&:hover': {
-          backgroundColor: theme.secondaryColor
-        }
+      '& .AruiStepperBase-actions': {
+        position: 'absolute',
+        bottom: 10,
+        right: 10
       }
-    })
-  )
+    },
+    button: {
+      backgroundColor: theme.secondaryColor,
+      '&:hover': {
+        backgroundColor: theme.secondaryColor
+      }
+    }
+  })
 
 export interface StepperProps {
   /**

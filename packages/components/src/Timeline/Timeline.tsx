@@ -9,13 +9,13 @@ import {
   TimelineContent
 } from '@material-ui/lab'
 import React from 'react'
-import { makeStyles, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Theme, useTheme } from '../ThemeContextProvider'
-import { MergeMuiElementProps } from '../Types'
+import { MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     dot: {
       background: theme.primaryColor,
       position: 'relative',
@@ -70,7 +70,7 @@ const useStyles = (theme: Theme) =>
         opacity: 0
       }
     }
-  }))
+  })
 
 export interface TimeLineCell {
   id: string

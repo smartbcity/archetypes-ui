@@ -1,32 +1,30 @@
 import React, { useState } from 'react'
-import { createStyles, makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Tab, Tabs } from '@material-ui/core'
 import clsx from 'clsx'
-import { BasicProps } from '../Types'
+import { BasicProps, lowLevelStyles } from '../Types'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    appBar: {
-      background: 'transparent',
-      boxShadow: 'none !important'
-    },
-    tab: {
-      color: 'rgba(0, 0, 0, 0.87)',
-      minWidth: '100px',
-      maxWidth: '100px',
-      minHeight: '10px',
-      padding: '5px',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap'
-    },
-    tabFW: {
-      color: 'rgba(0, 0, 0, 0.87)',
-      minHeight: '10px',
-      minWidth: '0',
-      padding: '5px'
-    }
-  })
-)
+const useStyles = lowLevelStyles({
+  appBar: {
+    background: 'transparent',
+    boxShadow: 'none !important'
+  },
+  tab: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    minWidth: '100px',
+    maxWidth: '100px',
+    minHeight: '10px',
+    padding: '5px',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap'
+  },
+  tabFW: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    minHeight: '10px',
+    minWidth: '0',
+    padding: '5px'
+  }
+})
 
 const StyledTabs = withStyles(() => ({
   root: {

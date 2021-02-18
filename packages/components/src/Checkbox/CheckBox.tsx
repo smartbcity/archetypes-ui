@@ -3,15 +3,14 @@ import React from 'react'
 import {
   Checkbox,
   FormControlLabel,
-  CheckboxProps as MuiCheckboxProps,
-  makeStyles
+  CheckboxProps as MuiCheckboxProps
 } from '@material-ui/core'
 import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
 import { Theme, useTheme } from '../ThemeContextProvider'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     root: {
       borderRadius: 20
     },
@@ -30,7 +29,7 @@ const useStyles = (theme: Theme) =>
       width: '22px',
       height: '22px'
     }
-  }))
+  })
 
 export interface CheckBoxBasicProps extends BasicProps {
   /**

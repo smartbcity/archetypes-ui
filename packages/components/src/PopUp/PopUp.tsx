@@ -4,14 +4,13 @@ import {
   DialogTitle,
   DialogActions,
   DialogContent,
-  DialogProps,
-  makeStyles
+  DialogProps
 } from '@material-ui/core'
 import { Button, Variant } from '../Button'
-import { MergeMuiElementProps, BasicProps } from '../Types'
+import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(() => ({
+const useStyles = lowLevelStyles({
   actionsContainer: {
     justifyContent: 'space-around'
   },
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '5px',
     padding: '5px 6px'
   }
-}))
+})
 
 export type Action = {
   label: string

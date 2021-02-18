@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@material-ui/core/styles'
 import MuiStepper, {
   StepperProps as MuiStepperProps
 } from '@material-ui/core/Stepper'
@@ -10,30 +10,28 @@ import MuiStepLabel, {
 import Button, { ButtonProps } from '@material-ui/core/Button'
 import { Paper, PaperProps } from '@material-ui/core'
 import clsx from 'clsx'
-import { BasicProps } from '../Types'
+import { BasicProps, lowLevelStyles } from '../Types'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '90%',
-      height: '90%',
-      maxWidth: '90%'
-    },
-    stepper: {
-      margin: theme.spacing(5)
-    },
-    actions: {
-      marginTop: theme.spacing(5)
-    },
-    backButton: {
-      marginRight: theme.spacing(1)
-    },
-    instructions: {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1)
-    }
-  })
-)
+const useStyles = lowLevelStyles((theme: Theme) => ({
+  root: {
+    width: '90%',
+    height: '90%',
+    maxWidth: '90%'
+  },
+  stepper: {
+    margin: theme.spacing(5)
+  },
+  actions: {
+    marginTop: theme.spacing(5)
+  },
+  backButton: {
+    marginRight: theme.spacing(1)
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
+  }
+}))
 
 export interface OnNextHandles {
   onNext(): boolean
