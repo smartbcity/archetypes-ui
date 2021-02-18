@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import ReactDropzone, { FileRejection } from 'react-dropzone'
-import { Tooltip, Paper, makeStyles, Typography } from '@material-ui/core'
+import ReactDropzone, { FileRejection, DropzoneProps } from 'react-dropzone'
+import { Tooltip, Paper, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
-import { BasicProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (width: number) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     root: {
       width: `${width}px`
     },
@@ -60,16 +60,37 @@ const useStyles = (width: number) =>
       top: '50%',
       left: '50%'
     }
-  }))
+  })
 
-interface DropPictureProps extends BasicProps {
+export interface DropPictureBasicProps extends BasicProps {
+  /**
+   * The event called when a picture is dropped
+   * @param picture
+   */
   onPictureDroped: (picture: File) => void
+  /**
+   * The event called when a picture is removed
+   */
   onRemovePicture: () => void
+  /**
+   * Set the width for the dropzone area
+   */
   width?: number
+  /**
+   * If true, it cannot be edited
+   */
   readonly?: boolean
   src?: string
+  /**
+   * The default logo to display on the dropzone area
+   */
   defaultLogo?: string
 }
+
+type DropPictureProps = MergeMuiElementProps<
+  DropzoneProps,
+  DropPictureBasicProps
+>
 
 export const DropPicture = (props: DropPictureProps) => {
   const {
@@ -81,7 +102,8 @@ export const DropPicture = (props: DropPictureProps) => {
     readonly = false,
     src = '',
     defaultLogo = '',
-    id
+    id,
+    ...other
   } = props
   const classes = useStyles(width)()
   const [isValid, setValidity] = useState<boolean>(true)
@@ -141,6 +163,7 @@ export const DropPicture = (props: DropPictureProps) => {
       multiple={false}
       accept={'image/jpeg, image/png'}
       maxSize={1000000}
+      {...other}
     >
       {({ getRootProps, getInputProps }) =>
         logo === '' ? (

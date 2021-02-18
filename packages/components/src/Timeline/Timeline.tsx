@@ -8,14 +8,14 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@material-ui/lab'
-import React, { useContext } from 'react'
-import { MergeMuiElementProps } from '../../../layout/src/layout/Types'
-import { makeStyles, Typography } from '@material-ui/core'
-import { Theme, themeContext } from '@smartb/archetypes-ui-components'
+import React from 'react'
+import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
+import { MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     dot: {
       background: theme.primaryColor,
       position: 'relative',
@@ -70,7 +70,7 @@ const useStyles = (theme: Theme) =>
         opacity: 0
       }
     }
-  }))
+  })
 
 export interface TimeLineCell {
   id: string
@@ -104,29 +104,29 @@ interface TimelineStyles {
   separator?: React.CSSProperties
 }
 
-export interface TimelineProps {
+export interface TimelineBasicProps {
   /**
-   * Is this the principal call to action on the page?
+   * The data that must be given to fill the timeline
    */
   lines: TimeLineCell[]
   /**
-   * the classes of the component
+   * The classes applied to the different part of the component
    */
   classes?: TimelineClasses
   /**
-   * the styles of the component
+   * The styles applied to the different part of the component
    */
   styles?: TimelineStyles
 }
 
-type Props = MergeMuiElementProps<MuiTimelineProps, TimelineProps>
+type TimelineProps = MergeMuiElementProps<MuiTimelineProps, TimelineBasicProps>
 
 /**
  * A timeline
  */
-export const Timeline = (props: Props) => {
+export const Timeline = (props: TimelineProps) => {
   const { lines, classes, styles, ...other } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
   return (
     <MuiTimeline {...other}>

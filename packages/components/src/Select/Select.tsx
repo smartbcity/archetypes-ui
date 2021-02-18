@@ -5,35 +5,31 @@ import {
   Select as MuiSelect,
   SelectProps as MuiSelectProps
 } from '@material-ui/core'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import { MergeMuiElementProps, BasicProps } from '../Types'
+import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    title: {
-      margin: '8px 16px'
+const useStyles = lowLevelStyles({
+  title: {
+    margin: '8px 16px'
+  },
+  formControl: {
+    width: '100%',
+    borderRadius: '21.6px',
+    boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.09)',
+    backgroundColor: '#ffffff',
+    fontSize: '14px',
+    color: '#535353',
+    padding: '0 13px',
+    marginBottom: '8px',
+    minHeight: '40px',
+    '&::before': {
+      content: 'none'
     },
-    formControl: {
-      width: '100%',
-      borderRadius: '21.6px',
-      boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.09)',
-      backgroundColor: '#ffffff',
-      fontSize: '14px',
-      color: '#535353',
-      padding: '0 13px',
-      marginBottom: '8px',
-      minHeight: '40px',
-      '&::before': {
-        content: 'none'
-      },
-      '&::after': {
-        content: 'none'
-      }
+    '&::after': {
+      content: 'none'
     }
-  })
-)
+  }
+})
 
 export interface SelectItem {
   value: string
@@ -50,22 +46,45 @@ interface SelectStyles {
   select?: React.CSSProperties
 }
 
-interface SelectProps extends BasicProps {
+export interface SelectBasicProps extends BasicProps {
+  /**
+   * The label of the select
+   */
   label: string
+  /**
+   * The current selected value also included in the items
+   */
   value?: string
+  /**
+   * The title thart will be displayed at the top of the pop-up
+   */
   items: SelectItem[]
+  /**
+   * Define if the component is disabled or not
+   */
   disabled?: boolean
+  /**
+   * The event called when a different item is selected
+   * @param event
+   * @param child
+   */
   onChange?: (
     event: React.ChangeEvent<{ name?: string; value: unknown }>,
     child: React.ReactNode
   ) => void
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: SelectClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: SelectStyles
 }
 
-type Props = MergeMuiElementProps<MuiSelectProps, SelectProps>
+type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = (props: Props) => {
+export const Select = (props: SelectProps) => {
   const {
     label,
     items,

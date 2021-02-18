@@ -1,21 +1,18 @@
 import React from 'react'
 import { Grid, Hidden } from '@material-ui/core'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
+import { lowLevelStyles } from '../Types'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    img: {
-      width: '100%',
-      height: '100%',
-      maxWidth: '351px',
-      maxHeight: '411px',
-      backgroundColor: '#fff',
-      objectFit: 'contain'
-    }
-  })
-)
+const useStyles = lowLevelStyles({
+  img: {
+    width: '100%',
+    height: '100%',
+    maxWidth: '351px',
+    maxHeight: '411px',
+    backgroundColor: '#fff',
+    objectFit: 'contain'
+  }
+})
 
 interface StepperImgProps {
   className?: string

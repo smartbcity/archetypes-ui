@@ -4,14 +4,13 @@ import {
   DialogTitle,
   DialogActions,
   DialogContent,
-  DialogProps,
-  makeStyles
+  DialogProps
 } from '@material-ui/core'
 import { Button, Variant } from '../Button'
-import { MergeMuiElementProps, BasicProps } from '../Types'
+import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(() => ({
+const useStyles = lowLevelStyles({
   actionsContainer: {
     justifyContent: 'space-around'
   },
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '5px',
     padding: '5px 6px'
   }
-}))
+})
 
 export type Action = {
   label: string
@@ -41,20 +40,45 @@ interface PopUpStyles {
   button?: React.CSSProperties
 }
 
-interface PopUpProps extends BasicProps {
+export interface PopUpBasicProps extends BasicProps {
+  /**
+   * Define if the po-up is open
+   */
   open: boolean
+  /**
+   * The event called when we click away from the pop-up
+   * @param event
+   */
   onClose: (event: React.ChangeEvent<{}>) => void
+  /**
+   * The list of the actions that will be displayed at the bottom f the pop-up
+   */
   actions?: Action[]
+  /**
+   * The content that will be displayed in the footer
+   */
   footer?: React.ReactNode
+  /**
+   * The title thart will be displayed at the top of the pop-up
+   */
   title?: string
+  /**
+   * The content that will be displayed in the body of the pop-up
+   */
   children?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: PopUpClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: PopUpStyles
 }
 
-type Props = MergeMuiElementProps<DialogProps, PopUpProps>
+type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-export const PopUp = (props: Props) => {
+export const PopUp = (props: PopUpProps) => {
   const {
     open,
     onClose,

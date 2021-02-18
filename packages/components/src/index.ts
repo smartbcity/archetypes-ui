@@ -12,14 +12,20 @@ import {
   Theme,
   ThemeContextProvider,
   ThemeContextProviderProps,
-  themeContext
+  ThemeContext,
+  useTheme,
+  useThemeContext
 } from './ThemeContextProvider'
 import { FilesPanel, Folder, FolderItem } from './FilesPanel'
 import { FilePreview } from './FilePreview'
 import { CheckBox } from './Checkbox'
 import { PdfViewer } from './PdfViewer'
 import { AutomateViewer } from './Automate'
-import { Timeline, TimelineProps, TimeLineCell } from './Timeline'
+import {
+  Timeline,
+  TimelineBasicProps as TimelineProps,
+  TimeLineCell
+} from './Timeline'
 
 export {
   Panel,
@@ -37,7 +43,7 @@ export {
   ThemeContextProvider,
   ThemeContextProviderProps,
   Theme,
-  themeContext,
+  ThemeContext,
   SelectItem,
   DatePicker,
   FilesPanel,
@@ -48,5 +54,7 @@ export {
   PdfViewer,
   Timeline,
   TimeLineCell,
-  TimelineProps
+  TimelineProps,
+  useTheme,
+  useThemeContext
 }

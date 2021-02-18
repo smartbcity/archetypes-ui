@@ -1,59 +1,53 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Typography, Box } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { logoType } from '../Panel'
-import { Box as AruiBox } from '../Box'
-import {
-  Theme,
-  themeContext
-} from '../ThemeContextProvider/ThemeContextProvider'
-import { BasicProps } from '../Types'
+import { Box as AruiBox, BoxProps } from '../Box'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      headerContainer: {
-        width: 'calc(90% - 10px)',
-        padding: '10px',
-        paddingLeft: '10%',
-        position: 'relative'
-      },
-      dividerBar: {
-        background: theme.primaryColor,
-        height: '2px',
-        width: '30%',
-        position: 'absolute',
-        bottom: '0px',
-        left: '10%'
-      },
-      bodyContainer: {
-        minHeight: '50px',
-        width: 'calc(100% - 30px)',
-        padding: '15px'
-      },
-      withLogo: {
-        paddingBottom: '30px',
-        paddingRight: '30px',
-        width: 'calc(100% - 45px)'
-      },
-      withSmallLogo: {
-        paddingBottom: '20px',
-        paddingRight: '20px',
-        width: 'calc(100% - 35px)'
-      },
-      withFooter: {
-        paddingBottom: '15px',
-        paddingRight: '15px',
-        width: 'calc(100% - 30px)'
-      },
-      text: {
-        paddingBottom: '10px',
-        paddingLeft: '10%',
-        paddingRight: '35px'
-      }
-    })
-  )
+  lowLevelStyles({
+    headerContainer: {
+      width: 'calc(90% - 10px)',
+      padding: '10px',
+      paddingLeft: '10%',
+      position: 'relative'
+    },
+    dividerBar: {
+      background: theme.primaryColor,
+      height: '2px',
+      width: '30%',
+      position: 'absolute',
+      bottom: '0px',
+      left: '10%'
+    },
+    bodyContainer: {
+      minHeight: '50px',
+      width: 'calc(100% - 30px)',
+      padding: '15px'
+    },
+    withLogo: {
+      paddingBottom: '30px',
+      paddingRight: '30px',
+      width: 'calc(100% - 45px)'
+    },
+    withSmallLogo: {
+      paddingBottom: '20px',
+      paddingRight: '20px',
+      width: 'calc(100% - 35px)'
+    },
+    withFooter: {
+      paddingBottom: '15px',
+      paddingRight: '15px',
+      width: 'calc(100% - 30px)'
+    },
+    text: {
+      paddingBottom: '10px',
+      paddingLeft: '10%',
+      paddingRight: '35px'
+    }
+  })
 
 interface CardClasses {
   header?: string
@@ -71,18 +65,52 @@ interface CardStyles {
 
 export type LogoSize = 'medium' | 'small'
 
-export interface CardProps extends BasicProps {
+export interface CardBasicProps extends BasicProps {
+  /**
+   * The text that will be displayed in the header of the card
+   */
   header?: string
+  /**
+   * The content that will be displayed in the body of the card
+   */
   children: React.ReactNode
+  /**
+   * Choose the logo in the corner
+   */
   logo?: logoType | 'none'
+  /**
+   * Defined the elevation of the card
+   */
   elevation?: number
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * Defined the size of the logo in the corner
+   */
   logoSize?: LogoSize
+  /**
+   * If not defined the seperator will appear with default styles,
+   * if it's 'none' the seperator won't be displayed,
+   * if the seperator is a node it will be displayed instead of the default one
+   */
   separator?: React.ReactNode | 'none'
+  /**
+   * The text displayed at the bottom of the card
+   */
   footer?: string
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: CardClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: CardStyles
 }
+
+type CardProps = MergeMuiElementProps<BoxProps, CardBasicProps>
 
 export const Card = (props: CardProps) => {
   const {
@@ -98,9 +126,10 @@ export const Card = (props: CardProps) => {
     footer,
     id,
     classes,
-    styles
+    styles,
+    ...other
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
 
   return (
@@ -112,6 +141,7 @@ export const Card = (props: CardProps) => {
       customLogo={customLogo}
       logoSize={logoSize}
       logo={logo}
+      {...other}
     >
       {!!header && (
         <Box

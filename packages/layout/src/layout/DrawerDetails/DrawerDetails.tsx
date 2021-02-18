@@ -6,9 +6,18 @@ import StyleProps from '../StyleProps'
 import { MergeMuiElementProps, BasicProps } from '../Types'
 import clsx from 'clsx'
 
-interface DrawerDetailsProps extends BasicProps {
+export interface DrawerDetailsProps extends BasicProps {
+  /**
+   * The event called when closing the component
+   */
   onClose: () => void
+  /**
+   * The content that will be displayed in the body of the drawer
+   */
   children?: React.ReactNode
+  /**
+   * The styles applied to the different part of the component
+   */
   styleProps: StyleProps
 }
 

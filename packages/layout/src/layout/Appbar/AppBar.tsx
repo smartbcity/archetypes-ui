@@ -8,9 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import createStyles from '@material-ui/core/styles/createStyles'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
 const MenuButton = styled(IconButton)`
@@ -27,13 +25,12 @@ const DrawerSpacer = styled.div`
     height: 20px;
   }
 `
-const useStyles = makeStyles(() =>
-  createStyles({
-    grow: {
-      flexGrow: 1
-    }
-  })
-)
+
+const useStyles = lowLevelStyles({
+  grow: {
+    flexGrow: 1
+  }
+})
 
 interface AppBarClasses {
   menuButton?: string
@@ -47,19 +44,40 @@ interface AppBarStyles {
   title?: React.CSSProperties
 }
 
-export interface AppBarProps extends BasicProps {
+export interface AppBarBasicProps extends BasicProps {
+  /**
+   * The title thzt will be displayed at the top left of the component
+   */
   title?: string
+  /**
+   * The path to the logo of the component
+   */
   logo: string
+  /**
+   * The event called when opening the component
+   */
   onDrawerOpen: () => void
+  /**
+   * The profiles that will be displayed at the top right of the component
+   */
   profiles?: React.ReactNode
+  /**
+   * The content that will be displayed at the top right of the component
+   */
   content?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: AppBarClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: AppBarStyles
 }
 
-type Props = MergeMuiElementProps<MuiAppBarProps, AppBarProps>
+type AppBarProps = MergeMuiElementProps<MuiAppBarProps, AppBarBasicProps>
 
-export const AppBar = (props: Props) => {
+export const AppBar = (props: AppBarProps) => {
   const {
     onDrawerOpen,
     logo,
@@ -67,10 +85,10 @@ export const AppBar = (props: Props) => {
     className,
     style,
     id,
-    profiles,
     content,
     classes,
     styles,
+    profiles,
     ...other
   } = props
   const defaultClasses = useStyles()
@@ -117,8 +135,8 @@ export const AppBar = (props: Props) => {
           </List>
         </DrawerSpacer>
         <div className={defaultClasses.grow} />
-        {content}
         {profiles}
+        {content}
       </Toolbar>
     </MuiAppBar>
   )

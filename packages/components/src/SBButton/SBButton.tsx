@@ -1,56 +1,63 @@
-import React, { useContext } from 'react'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import {
-  Theme,
-  themeContext
-} from '../ThemeContextProvider/ThemeContextProvider'
-import { BasicProps, MergeReactElementProps } from '../Types'
+import React from 'react'
+import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      button: {
-        backgroundColor: theme.secondaryColor,
-        padding: '10px 30px',
-        clipPath:
-          'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',
-        WebkitClipPath:
-          'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',
-        border: 'none',
-        cursor: 'pointer',
-        transition: '0.2s',
-        borderRadius: '1px',
-        fontSize: '1rem',
-        '&:focus': {
-          outline: 'none'
-        }
-      },
-      hover: {
-        '&:hover': {
-          clipPath:
-            'polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)',
-          WebkitClipPath:
-            'polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)'
-        }
-      },
-      disabled: {
-        opacity: '0.8',
-        cursor: 'default'
+  lowLevelStyles({
+    button: {
+      backgroundColor: theme.secondaryColor,
+      padding: '10px 30px',
+      clipPath:
+        'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',
+      WebkitClipPath:
+        'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',
+      border: 'none',
+      cursor: 'pointer',
+      transition: '0.2s',
+      borderRadius: '1px',
+      fontSize: '1rem',
+      '&:focus': {
+        outline: 'none'
       }
-    })
-  )
+    },
+    hover: {
+      '&:hover': {
+        clipPath:
+          'polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)',
+        WebkitClipPath:
+          'polygon(0 0, 93% 0, 100% 20%, 100% 80%, 100% 100%, 7% 100%, 0 80%, 0 20%)'
+      }
+    },
+    disabled: {
+      opacity: '0.8',
+      cursor: 'default'
+    }
+  })
 
-export interface SBButtonProps extends BasicProps {
+export interface SBButtonBasicProps extends BasicProps {
+  /**
+   * The react children props
+   */
   children?: React.ReactNode
+  /**
+   * The event called when the button is clicked
+   * @param event
+   */
   onClick?: (event: React.ChangeEvent<{}>) => void
+  /**
+   * If true the button will be disabled
+   */
   disabled?: boolean
+  /**
+   * If false the hoverEffect will be disabled
+   */
   hoverEffect?: boolean
 }
 
-type Props = MergeReactElementProps<'button', SBButtonProps>
+type SBButtonProps = MergeReactElementProps<'button', SBButtonBasicProps>
 
 export const SBButton = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLButtonElement>) => {
+  (props: SBButtonProps, ref: React.Ref<HTMLButtonElement>) => {
     const {
       children,
       onClick,
@@ -61,7 +68,7 @@ export const SBButton = React.forwardRef(
       id,
       ...other
     } = props
-    const theme = useContext(themeContext)
+    const theme = useTheme()
     const classes = useStyles(theme)()
     return (
       <button

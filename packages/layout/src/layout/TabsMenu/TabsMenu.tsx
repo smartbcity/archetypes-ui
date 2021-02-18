@@ -1,32 +1,30 @@
 import React, { useState } from 'react'
-import { createStyles, makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Tab, Tabs } from '@material-ui/core'
-import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
 import clsx from 'clsx'
+import { BasicProps, lowLevelStyles } from '../Types'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    appBar: {
-      background: 'transparent',
-      boxShadow: 'none !important'
-    },
-    tab: {
-      color: 'rgba(0, 0, 0, 0.87)',
-      minWidth: '100px',
-      maxWidth: '100px',
-      minHeight: '10px',
-      padding: '5px',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap'
-    },
-    tabFW: {
-      color: 'rgba(0, 0, 0, 0.87)',
-      minHeight: '10px',
-      minWidth: '0',
-      padding: '5px'
-    }
-  })
-)
+const useStyles = lowLevelStyles({
+  appBar: {
+    background: 'transparent',
+    boxShadow: 'none !important'
+  },
+  tab: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    minWidth: '100px',
+    maxWidth: '100px',
+    minHeight: '10px',
+    padding: '5px',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap'
+  },
+  tabFW: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    minHeight: '10px',
+    minWidth: '0',
+    padding: '5px'
+  }
+})
 
 const StyledTabs = withStyles(() => ({
   root: {
@@ -66,10 +64,25 @@ interface TabsMenuStyles {
 }
 
 export interface TabsMenuProps extends BasicProps {
+  /**
+   * Tabs contains an array of string and icons to defined the every section of the menu
+   */
   tabs: Tab[]
+  /**
+   * Every nodes will fill the tab at the same index
+   */
   children: React.ReactNode[]
+  /**
+   * If 'fullWidth' the tabs will take the all the space of the parent if 'fixedWidth' every tab will have 100px of width
+   */
   variant?: Variant
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: TabsMenuClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: TabsMenuStyles
 }
 

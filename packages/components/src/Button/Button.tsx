@@ -1,17 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     outlined: {
       minWidth: '136px',
       padding: '7px',
@@ -42,21 +38,45 @@ const useStyles = (theme: Theme) =>
     disabled: {
       opacity: '0.7'
     }
-  }))
+  })
 
 export type Variant = 'contained' | 'outlined'
 
-interface ButtonProps extends BasicProps {
-  children: React.ReactNode
+export interface ButtonBasicProps extends BasicProps {
+  /**
+   * The class added to the root element of the component
+   */
+  className: string
+  /**
+   * The class added to the root element of the component
+   */
+  style?: React.CSSProperties
+  /**
+   * The id added to the root element of the component
+   */
+  id?: string
+  /**
+   * The event called when the button is clicked
+   */
   onClick: (event: React.ChangeEvent<{}>) => void
+  /**
+   * Define if the button is disabled or not
+   */
   disabled?: boolean
+  /**
+   * The styles variations options
+   */
   variant?: Variant
+  /**
+   * The inner components
+   */
+  children: React.ReactNode
 }
 
-type Props = MergeMuiElementProps<MuiButtonProps, ButtonProps>
+type ButtonProps = MergeMuiElementProps<MuiButtonProps, ButtonBasicProps>
 
-export const Button = (props: Props) => {
-  const theme = useContext(themeContext)
+export const Button = (props: ButtonProps) => {
+  const theme = useTheme()
   const classes = useStyles(theme)()
   const {
     children,

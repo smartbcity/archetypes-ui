@@ -1,47 +1,44 @@
 import React, { useState } from 'react'
-import { Menu as SBMenu } from '../Drawermenu/menu'
+import { Menu as SBMenu } from '../DrawerMenu'
 import { IconButton, Menu } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { ItemsLayout, Display, ItemsLayoutProps } from '../ItemsLayout'
+import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
-import { BasicProps } from '@smartb/archetypes-ui-components/dist/Types'
 import clsx from 'clsx'
+import { BasicProps, lowLevelStyles } from '../Types'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    menu: {
-      maxWidth: '300px',
-      maxHeight: '500px'
-    },
-    menuGrid: {
-      maxWidth: '375px'
-    },
-    list: {
-      padding: '0 !important',
-      width: '100% !important',
-      '& > div': {
-        outline: '0 !important'
-      }
-    },
-    menuOpened: {
-      backgroundColor: 'rgba(0, 0, 0, 0.04)'
-    },
-    gridItemsLayoutMinWidth: {
-      maxWidth: '375px',
-      maxHeight: '410px',
-      minWidth: '358px'
-    },
-    gridItemsLayout: {
-      maxWidth: '375px',
-      maxHeight: '410px'
-    },
-    listItemsLayout: {
-      maxHeight: '410px',
-      overflow: 'auto'
+const useStyles = lowLevelStyles({
+  menu: {
+    maxWidth: '300px',
+    maxHeight: '500px'
+  },
+  menuGrid: {
+    maxWidth: '375px'
+  },
+  list: {
+    padding: '0 !important',
+    width: '100% !important',
+    '& > div': {
+      outline: '0 !important'
     }
-  })
-)
+  },
+  menuOpened: {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)'
+  },
+  gridItemsLayoutMinWidth: {
+    maxWidth: '375px',
+    maxHeight: '410px',
+    minWidth: '358px'
+  },
+  gridItemsLayout: {
+    maxWidth: '375px',
+    maxHeight: '410px'
+  },
+  listItemsLayout: {
+    maxHeight: '410px',
+    overflow: 'auto'
+  }
+})
 
 interface ToolsMenuClasses {
   iconButton?: string
@@ -54,11 +51,33 @@ interface ToolsMenuStyles {
 }
 
 export interface ToolsMenuProps extends BasicProps {
+  /**
+   * Menu contains all the items that will be displayed in the profile
+   */
   menu: SBMenu
+  /**
+   * The organization of the items
+   */
   display?: Display
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: ToolsMenuClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: ToolsMenuStyles
-  itemsLayoutProps?: Partial<ItemsLayoutProps>
+  /**
+   * The optionnal props of the ItemsLayout (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
+   */
+  itemsLayoutProps?: Partial<ItemsLayoutBasicProps>
+  /**
+   * The optionnal props of the TabsMenu (normaly given to override classes and styles)
+   *
+   * **See the reference below** ⬇️
+   */
   tabsMenuProps?: Partial<TabsMenuProps>
 }
 

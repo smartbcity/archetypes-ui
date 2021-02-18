@@ -1,6 +1,5 @@
 import React from 'react'
-import { Menu as SBMenu } from '../Drawermenu/menu'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { Menu as SBMenu } from '../DrawerMenu'
 import { ExpandMore } from '@material-ui/icons'
 import {
   ExpansionPanel,
@@ -11,46 +10,47 @@ import {
   ListItem,
   List
 } from '@material-ui/core'
-import { BasicProps } from '../Types'
+import { BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    profile: {
-      boxShadow: 'none !important',
-      background: 'transparent',
-      '&:before': {
-        height: '0px'
-      }
-    },
-    summary: {
-      minHeight: '0px',
-      padding: '0 10px'
-    },
-    content: {
-      margin: '10px 0px !important'
-    },
-    expanded: {
-      margin: '0 !important'
-    },
-    expandedSummary: {
-      minHeight: '0px !important'
-    },
-    list: {
-      width: '100%',
-      padding: '0'
-    },
-    details: {
-      padding: '0',
-      background: '#f5f5f5'
-    },
-    icon: {
-      alignItems: 'center'
+const useStyles = lowLevelStyles({
+  profile: {
+    boxShadow: 'none !important',
+    background: 'transparent',
+    '&:before': {
+      height: '0px'
     }
-  })
-)
+  },
+  summary: {
+    minHeight: '0px',
+    padding: '0 10px'
+  },
+  content: {
+    margin: '10px 0px !important'
+  },
+  expanded: {
+    margin: '0 !important'
+  },
+  expandedSummary: {
+    minHeight: '0px !important'
+  },
+  list: {
+    width: '100%',
+    padding: '0'
+  },
+  details: {
+    padding: '0',
+    background: '#f5f5f5'
+  },
+  icon: {
+    alignItems: 'center'
+  }
+})
 
-interface ToolsPanelProps extends BasicProps {
+export interface ToolsPanelProps extends BasicProps {
+  /**
+   * The menu that contains all the items that will be displayed in the panel
+   */
   menu: SBMenu
 }
 

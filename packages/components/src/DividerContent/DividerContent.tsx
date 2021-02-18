@@ -1,75 +1,69 @@
-import React, { Fragment, useContext } from 'react'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import React, { Fragment } from 'react'
 import { Typography } from '@material-ui/core'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
-import { BasicProps, MergeReactElementProps } from '../Types'
+import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        minHeight: '100px'
-      },
-      containerVertical: {
-        flexDirection: 'column'
-      },
-      contentContainer: {
-        position: 'relative'
-      },
-      divider: {
-        width: '2px',
-        height: '150px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        position: 'relative'
-      },
-      dividerVertical: {
-        width: '80%',
-        height: '1px',
-        marginTop: '20px',
-        marginBottom: '20px'
-      },
-      dividerBar: {
-        background: theme.primaryColor,
-        width: '0.5px',
-        height: '80%',
-        position: 'absolute',
-        bottom: '0px'
-      },
-      dividerBarVertical: {
-        width: '80%',
-        height: '0.5px',
-        left: '20%'
-      },
-      dividerBarWithoutText: {
-        height: '100%'
-      },
-      dividerBarVerticalWithoutText: {
-        width: '100%',
-        left: '0%'
-      },
-      dividerText: {
-        textAlign: 'center',
-        position: 'absolute',
-        top: '2%',
-        transform: 'translate(-50%,-50%)',
-        left: '50%',
-        lineHeight: '15px'
-      },
-      dividerTextVertical: {
-        left: '5%',
-        top: '0%'
-      }
-    })
-  )
+  lowLevelStyles({
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      minHeight: '100px'
+    },
+    containerVertical: {
+      flexDirection: 'column'
+    },
+    contentContainer: {
+      position: 'relative'
+    },
+    divider: {
+      width: '2px',
+      height: '150px',
+      marginLeft: '20px',
+      marginRight: '20px',
+      position: 'relative'
+    },
+    dividerVertical: {
+      width: '80%',
+      height: '1px',
+      marginTop: '20px',
+      marginBottom: '20px'
+    },
+    dividerBar: {
+      background: theme.primaryColor,
+      width: '0.5px',
+      height: '80%',
+      position: 'absolute',
+      bottom: '0px'
+    },
+    dividerBarVertical: {
+      width: '80%',
+      height: '0.5px',
+      left: '20%'
+    },
+    dividerBarWithoutText: {
+      height: '100%'
+    },
+    dividerBarVerticalWithoutText: {
+      width: '100%',
+      left: '0%'
+    },
+    dividerText: {
+      textAlign: 'center',
+      position: 'absolute',
+      top: '2%',
+      transform: 'translate(-50%,-50%)',
+      left: '50%',
+      lineHeight: '15px'
+    },
+    dividerTextVertical: {
+      left: '5%',
+      top: '0%'
+    }
+  })
 
 export type Direction = 'horizontal' | 'vertical'
 
@@ -87,18 +81,36 @@ interface DividerContentStyles {
   dividerText?: React.CSSProperties
 }
 
-export interface DividerContentProps extends BasicProps {
+export interface DividerContentBasicProps extends BasicProps {
+  /**
+   * An array of content that will be divided
+   */
   children: React.ReactNode | React.ReactNode[]
+  /**
+   * The text of the divider
+   */
   dividerText?: string
+  /**
+   * The direction of the division
+   */
   dividerDirection?: Direction
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: DivderContentClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: DividerContentStyles
 }
 
-type Props = MergeReactElementProps<'div', DividerContentProps>
+type DividerContentProps = MergeReactElementProps<
+  'div',
+  DividerContentBasicProps
+>
 
 export const DividerContent = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLDivElement>) => {
+  (props: DividerContentProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       children,
       dividerText,
@@ -110,7 +122,7 @@ export const DividerContent = React.forwardRef(
       styles,
       ...other
     } = props
-    const theme = useContext(themeContext)
+    const theme = useTheme()
     const defaultClasses = useStyles(theme)()
     return (
       <div
