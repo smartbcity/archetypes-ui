@@ -5,7 +5,6 @@ import clsx from 'clsx'
 import { AppBar, AppBarBasicProps } from '../Appbar'
 import StyleProps from '../StyleProps'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
-import useForceUpdate from 'use-force-update'
 import { useDebouncedCallback } from 'use-debounce'
 import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-components'
 import { DrawerMenu, DrawerMenuBasicProps, MenuItem } from '../DrawerMenu'
@@ -177,15 +176,13 @@ export const App = (props: AppProps) => {
     [defaultClasses.mainMargin]: open,
     [defaultClasses.mainShift]: !open
   })
-  const forceUpdate = useForceUpdate()
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [handleResize] = useDebouncedCallback(() => {
     const min = Math.min.apply(Math, [window.innerWidth, innerWidth])
     const max = Math.max.apply(Math, [window.innerWidth, innerWidth])
     if ((min < 400 && max > 400) || (min < 600 && max > 600)) {
-      forceUpdate()
+      setInnerWidth(window.innerWidth)
     }
-    setInnerWidth(window.innerWidth)
   }, 500)
 
   useEffect(() => {

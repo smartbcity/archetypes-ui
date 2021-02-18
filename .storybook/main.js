@@ -15,6 +15,5 @@ module.exports = {
       },
     },
     "@storybook/addon-controls",
-    "storybook-addon-react-docgen",
   ],
 };
