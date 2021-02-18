@@ -2,8 +2,8 @@ import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { logoType } from '../Panel'
-import { Box as AruiBox } from '../Box'
-import { BasicProps } from '../Types'
+import { Box as AruiBox, BoxProps } from '../Box'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
 import { Theme, useTheme } from '../ThemeContextProvider'
 
@@ -68,7 +68,7 @@ interface CardStyles {
 
 export type LogoSize = 'medium' | 'small'
 
-export interface CardProps extends BasicProps {
+export interface CardBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the card
    */
@@ -113,6 +113,8 @@ export interface CardProps extends BasicProps {
   styles?: CardStyles
 }
 
+type CardProps = MergeMuiElementProps<BoxProps, CardBasicProps>
+
 export const Card = (props: CardProps) => {
   const {
     header,
@@ -127,7 +129,8 @@ export const Card = (props: CardProps) => {
     footer,
     id,
     classes,
-    styles
+    styles,
+    ...other
   } = props
   const theme = useTheme()
   const defaultClasses = useStyles(theme)()
@@ -141,6 +144,7 @@ export const Card = (props: CardProps) => {
       customLogo={customLogo}
       logoSize={logoSize}
       logo={logo}
+      {...other}
     >
       {!!header && (
         <Box

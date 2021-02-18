@@ -92,7 +92,7 @@ interface PanelStyles {
   footer?: React.CSSProperties
 }
 
-export interface PanelProps extends BasicProps {
+export interface PanelBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the panel
    */
@@ -123,9 +123,9 @@ export interface PanelProps extends BasicProps {
   styles?: PanelStyles
 }
 
-type Props = MergeMuiElementProps<CardProps, PanelProps>
+type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
 
-export const Panel = (props: Props) => {
+export const Panel = (props: PanelProps) => {
   const {
     header,
     children,

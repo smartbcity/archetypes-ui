@@ -1,5 +1,8 @@
 import React from 'react'
-import { DropPicture as AruiDropPicture, DropPictureProps } from './DropPicture'
+import {
+  DropPicture as AruiDropPicture,
+  DropPictureBasicProps
+} from './DropPicture'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
@@ -8,9 +11,9 @@ export default {
   component: AruiDropPicture
 } as Meta
 
-const Template: Story<DropPictureProps> = (args: DropPictureProps) => (
-  <AruiDropPicture {...args}></AruiDropPicture>
-)
+const Template: Story<DropPictureBasicProps> = (
+  args: DropPictureBasicProps
+) => <AruiDropPicture {...args}></AruiDropPicture>
 
 export const DropPicture = Template.bind({})
 DropPicture.args = {

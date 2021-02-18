@@ -66,7 +66,7 @@ interface ItemsLayoutStyles {
   listItem?: React.CSSProperties
 }
 
-export interface ItemsLayoutProps extends BasicProps {
+export interface ItemsLayoutBasicProps extends BasicProps {
   /**
    * Menu contains all the items that will be displayed in the profile
    */
@@ -85,10 +85,10 @@ export interface ItemsLayoutProps extends BasicProps {
   styles?: ItemsLayoutStyles
 }
 
-type Props = MergeReactElementProps<'div', ItemsLayoutProps>
+type ItemsLayoutProps = MergeReactElementProps<'div', ItemsLayoutBasicProps>
 
 export const ItemsLayout = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLDivElement>) => {
+  (props: ItemsLayoutProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       menu,
       display = 'list',

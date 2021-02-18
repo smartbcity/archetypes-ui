@@ -1,5 +1,5 @@
 import React from 'react'
-import { SBButton as AruiSBButton, SBButtonProps } from './SBButton'
+import { SBButton as AruiSBButton, SBButtonBasicProps } from './SBButton'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
@@ -8,7 +8,7 @@ export default {
   component: AruiSBButton
 } as Meta
 
-const Template: Story<SBButtonProps> = (args: SBButtonProps) => (
+const Template: Story<SBButtonBasicProps> = (args: SBButtonBasicProps) => (
   <AruiSBButton {...args}></AruiSBButton>
 )
 

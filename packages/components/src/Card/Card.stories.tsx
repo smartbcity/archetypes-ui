@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card as AruiCard, CardProps } from './Card'
+import { Card as AruiCard, CardBasicProps } from './Card'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
@@ -30,7 +30,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<CardProps> = (args: CardProps) => (
+const Template: Story<CardBasicProps> = (args: CardBasicProps) => (
   <AruiCard {...args}>{args.children}</AruiCard>
 )
 

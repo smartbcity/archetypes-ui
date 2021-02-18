@@ -37,7 +37,7 @@ const useStyles = (theme: Theme) =>
     })
   )
 
-export interface SBButtonProps extends BasicProps {
+export interface SBButtonBasicProps extends BasicProps {
   /**
    * The react children props
    */
@@ -57,10 +57,10 @@ export interface SBButtonProps extends BasicProps {
   hoverEffect?: boolean
 }
 
-type Props = MergeReactElementProps<'button', SBButtonProps>
+type SBButtonProps = MergeReactElementProps<'button', SBButtonBasicProps>
 
 export const SBButton = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLButtonElement>) => {
+  (props: SBButtonProps, ref: React.Ref<HTMLButtonElement>) => {
     const {
       children,
       onClick,

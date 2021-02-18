@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button as AruiButton, ButtonProps } from './Button'
+import { Button as AruiButton, ButtonBasicProps } from './Button'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
@@ -8,7 +8,7 @@ export default {
   component: AruiButton
 } as Meta
 
-const Template: Story<ButtonProps> = (args: ButtonProps) => (
+const Template: Story<ButtonBasicProps> = (args: ButtonBasicProps) => (
   <AruiButton {...args}>{args.children}</AruiButton>
 )
 

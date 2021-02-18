@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PopUp as AruiPopUp, PopUpProps } from './PopUp'
+import { PopUp as AruiPopUp, PopUpBasicProps } from './PopUp'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
@@ -46,7 +46,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<PopUpProps> = (args: PopUpProps) => {
+const Template: Story<PopUpBasicProps> = (args: PopUpBasicProps) => {
   const [open, setOpen] = useState(true)
   return <AruiPopUp {...args} open={open} onClose={() => setOpen(!open)} />
 }

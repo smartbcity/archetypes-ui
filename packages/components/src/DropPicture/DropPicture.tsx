@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import ReactDropzone, { FileRejection } from 'react-dropzone'
+import ReactDropzone, { FileRejection, DropzoneProps } from 'react-dropzone'
 import { Tooltip, Paper, makeStyles, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
-import { BasicProps } from '../Types'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 
 const useStyles = (width: number) =>
   makeStyles(() => ({
@@ -62,7 +62,7 @@ const useStyles = (width: number) =>
     }
   }))
 
-export interface DropPictureProps extends BasicProps {
+export interface DropPictureBasicProps extends BasicProps {
   /**
    * The event called when a picture is dropped
    * @param picture
@@ -87,6 +87,11 @@ export interface DropPictureProps extends BasicProps {
   defaultLogo?: string
 }
 
+type DropPictureProps = MergeMuiElementProps<
+  DropzoneProps,
+  DropPictureBasicProps
+>
+
 export const DropPicture = (props: DropPictureProps) => {
   const {
     onPictureDroped,
@@ -97,7 +102,8 @@ export const DropPicture = (props: DropPictureProps) => {
     readonly = false,
     src = '',
     defaultLogo = '',
-    id
+    id,
+    ...other
   } = props
   const classes = useStyles(width)()
   const [isValid, setValidity] = useState<boolean>(true)
@@ -157,6 +163,7 @@ export const DropPicture = (props: DropPictureProps) => {
       multiple={false}
       accept={'image/jpeg, image/png'}
       maxSize={1000000}
+      {...other}
     >
       {({ getRootProps, getInputProps }) =>
         logo === '' ? (

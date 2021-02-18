@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextField as AruiTextField, TextFieldProps } from './TextField'
+import { TextField as AruiTextField, TextFieldBasicProps } from './TextField'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
@@ -27,7 +27,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<TextFieldProps> = (args: TextFieldProps) => {
+const Template: Story<TextFieldBasicProps> = (args: TextFieldBasicProps) => {
   const [value, setValue] = useState('')
   return (
     <AruiTextField

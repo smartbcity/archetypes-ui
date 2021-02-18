@@ -1,5 +1,8 @@
 import React from 'react'
-import { ItemsLayout as AruiItemsLayout, ItemsLayoutProps } from './ItemsLayout'
+import {
+  ItemsLayout as AruiItemsLayout,
+  ItemsLayoutBasicProps
+} from './ItemsLayout'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import defaultLogo from '../assets/impactcity-logo-2.png'
@@ -37,9 +40,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<ItemsLayoutProps> = (args: ItemsLayoutProps) => (
-  <AruiItemsLayout {...args} />
-)
+const Template: Story<ItemsLayoutBasicProps> = (
+  args: ItemsLayoutBasicProps
+) => <AruiItemsLayout {...args} />
 
 export const ItemsLayout = Template.bind({})
 ItemsLayout.args = {

@@ -104,7 +104,7 @@ interface TimelineStyles {
   separator?: React.CSSProperties
 }
 
-export interface TimelineProps {
+export interface TimelineBasicProps {
   /**
    * The data that must be given to fill the timeline
    */
@@ -119,12 +119,12 @@ export interface TimelineProps {
   styles?: TimelineStyles
 }
 
-type Props = MergeMuiElementProps<MuiTimelineProps, TimelineProps>
+type TimelineProps = MergeMuiElementProps<MuiTimelineProps, TimelineBasicProps>
 
 /**
  * A timeline
  */
-export const Timeline = (props: Props) => {
+export const Timeline = (props: TimelineProps) => {
   const { lines, classes, styles, ...other } = props
   const theme = useTheme()
   const defaultClasses = useStyles(theme)()

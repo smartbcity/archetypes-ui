@@ -50,7 +50,7 @@ interface SelectStyles {
   select?: React.CSSProperties
 }
 
-export interface SelectProps extends BasicProps {
+export interface SelectBasicProps extends BasicProps {
   /**
    * The label of the select
    */
@@ -86,9 +86,9 @@ export interface SelectProps extends BasicProps {
   styles?: SelectStyles
 }
 
-type Props = MergeMuiElementProps<MuiSelectProps, SelectProps>
+type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = (props: Props) => {
+export const Select = (props: SelectProps) => {
   const {
     label,
     items,

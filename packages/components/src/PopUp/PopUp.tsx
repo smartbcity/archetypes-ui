@@ -41,7 +41,7 @@ interface PopUpStyles {
   button?: React.CSSProperties
 }
 
-export interface PopUpProps extends BasicProps {
+export interface PopUpBasicProps extends BasicProps {
   /**
    * Define if the po-up is open
    */
@@ -77,9 +77,9 @@ export interface PopUpProps extends BasicProps {
   styles?: PopUpStyles
 }
 
-type Props = MergeMuiElementProps<DialogProps, PopUpProps>
+type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-export const PopUp = (props: Props) => {
+export const PopUp = (props: PopUpProps) => {
   const {
     open,
     onClose,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box as AruiBox, BoxProps } from './Box'
+import { Box as AruiBox, BoxBasicProps } from './Box'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
@@ -8,7 +8,7 @@ export default {
   component: AruiBox
 } as Meta
 
-const Template: Story<BoxProps> = (args: BoxProps) => (
+const Template: Story<BoxBasicProps> = (args: BoxBasicProps) => (
   <AruiBox {...args}>{args.children}</AruiBox>
 )
 

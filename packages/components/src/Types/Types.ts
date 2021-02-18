@@ -1,6 +1,15 @@
 export interface BasicProps {
+  /**
+   * The id of the root component
+   */
   id?: string
+  /**
+   * The style of the root component
+   */
   style?: React.CSSProperties
+  /**
+   * The className of the root component
+   */
   className?: string
 }
 

@@ -1,9 +1,14 @@
 import React from 'react'
 
-import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
+import {
+  Checkbox,
+  FormControlLabel,
+  CheckboxProps as MuiCheckboxProps,
+  makeStyles
+} from '@material-ui/core'
 import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
 import { Theme, useTheme } from '../ThemeContextProvider'
-import { BasicProps } from '../Types'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({
@@ -27,7 +32,7 @@ const useStyles = (theme: Theme) =>
     }
   }))
 
-export interface CheckBoxProps extends BasicProps {
+export interface CheckBoxBasicProps extends BasicProps {
   /**
    * If true, the component is checked
    */
@@ -58,6 +63,8 @@ export interface CheckBoxProps extends BasicProps {
   checkedIconStyle?: React.CSSProperties
 }
 
+type CheckBoxProps = MergeMuiElementProps<MuiCheckboxProps, CheckBoxBasicProps>
+
 export const CheckBox = (props: CheckBoxProps) => {
   const {
     checked = false,
@@ -69,7 +76,8 @@ export const CheckBox = (props: CheckBoxProps) => {
     id,
     style,
     checkedIconClassName,
-    checkedIconStyle
+    checkedIconStyle,
+    ...other
   } = props
   const theme = useTheme()
   const classes = useStyles(theme)()
@@ -94,6 +102,7 @@ export const CheckBox = (props: CheckBoxProps) => {
               style={checkedIconStyle}
             />
           }
+          {...other}
         />
       }
       label={text}

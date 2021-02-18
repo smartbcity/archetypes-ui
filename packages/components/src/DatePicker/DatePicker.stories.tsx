@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { DatePicker as AruiDatePicker, DatePickerProps } from './DatePicker'
+import {
+  DatePicker as AruiDatePicker,
+  DatePickerBasicProps
+} from './DatePicker'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
@@ -27,7 +30,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<DatePickerProps> = (args: DatePickerProps) => {
+const Template: Story<DatePickerBasicProps> = (args: DatePickerBasicProps) => {
   const [date, setDate] = useState('')
   return (
     <AruiDatePicker

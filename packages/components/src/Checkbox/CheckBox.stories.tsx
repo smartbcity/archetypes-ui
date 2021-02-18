@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckBox as AruiCheckBox, CheckBoxProps } from './CheckBox'
+import { CheckBox as AruiCheckBox, CheckBoxBasicProps } from './CheckBox'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
@@ -8,7 +8,7 @@ export default {
   component: AruiCheckBox
 } as Meta
 
-const Template: Story<CheckBoxProps> = (args: CheckBoxProps) => (
+const Template: Story<CheckBoxBasicProps> = (args: CheckBoxBasicProps) => (
   <AruiCheckBox {...args} />
 )
 

@@ -19,7 +19,7 @@ interface TextFieldStyles {
   input?: React.CSSProperties
 }
 
-export interface TextFieldProps extends BasicProps {
+export interface TextFieldBasicProps extends BasicProps {
   /**
    * The default value displayed
    */
@@ -82,9 +82,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = MergeMuiElementProps<MuiTextFieldProps, TextFieldProps>
+type TextFieldProps = MergeMuiElementProps<
+  MuiTextFieldProps,
+  TextFieldBasicProps
+>
 
-export const TextField = (props: Props) => {
+export const TextField = (props: TextFieldProps) => {
   const {
     defaultValue,
     label,

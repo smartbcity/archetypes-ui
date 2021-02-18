@@ -47,7 +47,7 @@ interface AppBarStyles {
   title?: React.CSSProperties
 }
 
-export interface AppBarProps extends BasicProps {
+export interface AppBarBasicProps extends BasicProps {
   /**
    * The title thzt will be displayed at the top left of the component
    */
@@ -74,9 +74,9 @@ export interface AppBarProps extends BasicProps {
   styles?: AppBarStyles
 }
 
-type Props = MergeMuiElementProps<MuiAppBarProps, AppBarProps>
+type AppBarProps = MergeMuiElementProps<MuiAppBarProps, AppBarBasicProps>
 
-export const AppBar = (props: Props) => {
+export const AppBar = (props: AppBarProps) => {
   const {
     onDrawerOpen,
     logo,

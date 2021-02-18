@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   DividerContent as AruiDividerContent,
-  DividerContentProps
+  DividerContentBasicProps
 } from './DividerContent'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
@@ -37,7 +37,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<DividerContentProps> = (args: DividerContentProps) => (
+const Template: Story<DividerContentBasicProps> = (
+  args: DividerContentBasicProps
+) => (
   <AruiDividerContent {...args}>
     <>first</>
     <>second</>

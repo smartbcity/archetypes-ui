@@ -33,7 +33,7 @@ interface DrawermenuStyles {
   menu?: React.CSSProperties
 }
 
-export interface DrawerMenuProps extends BasicProps {
+export interface DrawerMenuBasicProps extends BasicProps {
   /**
    * Define if the drawer menu is open or not
    */
@@ -70,9 +70,9 @@ export interface DrawerMenuProps extends BasicProps {
   styles?: DrawermenuStyles
 }
 
-type Props = MergeMuiElementProps<DrawerProps, DrawerMenuProps>
+type DrawerMenuProps = MergeMuiElementProps<DrawerProps, DrawerMenuBasicProps>
 
-export const DrawerMenu = (props: Props) => {
+export const DrawerMenu = (props: DrawerMenuProps) => {
   const {
     open = false,
     className,

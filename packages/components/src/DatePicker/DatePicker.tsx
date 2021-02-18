@@ -42,7 +42,7 @@ interface DatePickerStyles {
   input?: React.CSSProperties
 }
 
-export interface DatePickerProps extends BasicProps {
+export interface DatePickerBasicProps extends BasicProps {
   /**
    * The Date entered in the input
    */
@@ -66,10 +66,10 @@ export interface DatePickerProps extends BasicProps {
   styles?: DatePickerStyles
 }
 
-type Props = MergeReactElementProps<'input', DatePickerProps>
+type DatePickerProps = MergeReactElementProps<'input', DatePickerBasicProps>
 
 export const DatePicker = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLInputElement>) => {
+  (props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       value,
       label,

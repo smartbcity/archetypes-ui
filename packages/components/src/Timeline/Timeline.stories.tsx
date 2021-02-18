@@ -1,5 +1,5 @@
 import React from 'react'
-import { Timeline as AruiTimeline, TimelineProps } from './Timeline'
+import { Timeline as AruiTimeline, TimelineBasicProps } from './Timeline'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { Paper, Typography } from '@material-ui/core'
@@ -38,7 +38,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<TimelineProps> = (args: TimelineProps) => (
+const Template: Story<TimelineBasicProps> = (args: TimelineBasicProps) => (
   <AruiTimeline {...args}></AruiTimeline>
 )
 

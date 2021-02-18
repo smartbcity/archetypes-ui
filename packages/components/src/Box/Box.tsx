@@ -1,10 +1,10 @@
 import React from 'react'
-import { Paper, useTheme } from '@material-ui/core'
+import { Paper, useTheme, PaperProps } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '../Panel'
-import { BasicProps } from '../Types'
+import { BasicProps, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
 
 const useStyles = makeStyles(() =>
@@ -82,7 +82,7 @@ const useStyles = makeStyles(() =>
 
 export type LogoSize = 'medium' | 'small'
 
-export interface BoxProps extends BasicProps {
+export interface BoxBasicProps extends BasicProps {
   /**
    * The content that will be displayed in the body of the card
    */
@@ -105,6 +105,8 @@ export interface BoxProps extends BasicProps {
   logoSize?: LogoSize
 }
 
+export type BoxProps = MergeMuiElementProps<PaperProps, BoxBasicProps>
+
 export const Box = (props: BoxProps) => {
   const {
     children,
@@ -114,7 +116,8 @@ export const Box = (props: BoxProps) => {
     elevation = 1,
     customLogo,
     logoSize = 'medium',
-    id
+    id,
+    ...other
   } = props
   const theme = useTheme()
   const defaultClasses = useStyles()
@@ -124,6 +127,7 @@ export const Box = (props: BoxProps) => {
       style={style}
       elevation={elevation}
       id={id}
+      {...other}
     >
       {children}
       {logo !== 'none' && (

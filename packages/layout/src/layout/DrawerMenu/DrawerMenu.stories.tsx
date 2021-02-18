@@ -1,5 +1,8 @@
 import React from 'react'
-import { DrawerMenu as AruiDrawerMenu, DrawerMenuProps } from './DrawerMenu'
+import {
+  DrawerMenu as AruiDrawerMenu,
+  DrawerMenuBasicProps
+} from './DrawerMenu'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import {
@@ -11,7 +14,6 @@ import {
   Settings
 } from '@material-ui/icons'
 import { action } from '@storybook/addon-actions'
-import { Button } from '@material-ui/core'
 import { Box, Button, Typography } from '@material-ui/core'
 import {
   ArgsTable,
@@ -91,7 +93,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<DrawerMenuProps> = (args: DrawerMenuProps) => (
+const Template: Story<DrawerMenuBasicProps> = (args: DrawerMenuBasicProps) => (
   <AruiDrawerMenu {...args}></AruiDrawerMenu>
 )
 

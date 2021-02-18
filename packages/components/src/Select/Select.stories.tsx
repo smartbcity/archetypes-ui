@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select as AruiSelect, SelectProps } from './Select'
+import { Select as AruiSelect, SelectBasicProps } from './Select'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { styles, classes, SelectItem, onChange } from './types'
@@ -43,7 +43,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<SelectProps> = (args: SelectProps) => (
+const Template: Story<SelectBasicProps> = (args: SelectBasicProps) => (
   <AruiSelect {...args}></AruiSelect>
 )
 

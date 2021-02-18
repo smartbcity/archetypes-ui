@@ -84,7 +84,7 @@ interface DividerContentStyles {
   dividerText?: React.CSSProperties
 }
 
-export interface DividerContentProps extends BasicProps {
+export interface DividerContentBasicProps extends BasicProps {
   /**
    * An array of content that will be divided
    */
@@ -107,10 +107,13 @@ export interface DividerContentProps extends BasicProps {
   styles?: DividerContentStyles
 }
 
-type Props = MergeReactElementProps<'div', DividerContentProps>
+type DividerContentProps = MergeReactElementProps<
+  'div',
+  DividerContentBasicProps
+>
 
 export const DividerContent = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLDivElement>) => {
+  (props: DividerContentProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       children,
       dividerText,
