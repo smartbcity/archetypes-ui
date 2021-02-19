@@ -120,7 +120,7 @@ export interface PanelBasicProps extends BasicProps {
   styles?: PanelStyles
 }
 
-type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
+export type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
 
 export const Panel = (props: PanelProps) => {
   const {

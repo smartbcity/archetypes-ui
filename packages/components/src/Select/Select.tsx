@@ -82,7 +82,7 @@ export interface SelectBasicProps extends BasicProps {
   styles?: SelectStyles
 }
 
-type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
+export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
 export const Select = (props: SelectProps) => {
   const {

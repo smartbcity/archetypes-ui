@@ -104,7 +104,7 @@ export interface DividerContentBasicProps extends BasicProps {
   styles?: DividerContentStyles
 }
 
-type DividerContentProps = MergeReactElementProps<
+export type DividerContentProps = MergeReactElementProps<
   'div',
   DividerContentBasicProps
 >

@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogProps
 } from '@material-ui/core'
-import { Button, Variant } from '../Button'
+import { Button, Variant } from '../Buttons'
 import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
@@ -76,7 +76,7 @@ export interface PopUpBasicProps extends BasicProps {
   styles?: PopUpStyles
 }
 
-type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
+export type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
 export const PopUp = (props: PopUpProps) => {
   const {

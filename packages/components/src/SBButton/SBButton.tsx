@@ -54,7 +54,7 @@ export interface SBButtonBasicProps extends BasicProps {
   hoverEffect?: boolean
 }
 
-type SBButtonProps = MergeReactElementProps<'button', SBButtonBasicProps>
+export type SBButtonProps = MergeReactElementProps<'button', SBButtonBasicProps>
 
 export const SBButton = React.forwardRef(
   (props: SBButtonProps, ref: React.Ref<HTMLButtonElement>) => {

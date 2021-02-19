@@ -62,7 +62,10 @@ export interface CheckBoxBasicProps extends BasicProps {
   checkedIconStyle?: React.CSSProperties
 }
 
-type CheckBoxProps = MergeMuiElementProps<MuiCheckboxProps, CheckBoxBasicProps>
+export type CheckBoxProps = MergeMuiElementProps<
+  MuiCheckboxProps,
+  CheckBoxBasicProps
+>
 
 export const CheckBox = (props: CheckBoxProps) => {
   const {

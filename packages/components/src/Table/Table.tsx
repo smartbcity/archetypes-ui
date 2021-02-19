@@ -123,52 +123,52 @@ export interface TableBasicProps<Row> extends BasicProps {
    */
   selectableRows?: boolean
   /**
-   * The envent triggered when a row is clicked. 
-   * 
+   * The envent triggered when a row is clicked.
+   *
    * ⚠️ if some part of the table are not clickable add `data-tag='___react-data-table-allow-propagation___'` on the top-level components
    */
   onRowClicked?: (row: Row) => void
   /**
-   * The number of pages the table contain. 
-   * 
+   * The number of pages the table contain.
+   *
    * ⚠️ if you want the pagination to appear you must provide this props and also **page**
    */
   totalPages?: number
   /**
-  * the envent trigger when the current page has to change
-  */
+   * the envent trigger when the current page has to change
+   */
   handlePageChange?: (page: number) => void
   /**
-  * Indicates if the data is currently loading
-  */
+   * Indicates if the data is currently loading
+   */
   isLoading?: boolean
   /**
-  * This must be a unique id applied to the row
-  */
+   * This must be a unique id applied to the row
+   */
   keyField?: string
   /**
-  * The message appearing when no data is given
-  */
+   * The message appearing when no data is given
+   */
   noDataMessage?: string
   /**
-   * The number of pages the table contain. 
-   * 
+   * The number of pages the table contain.
+   *
    * ⚠️ if you want the pagination to appear you must provide this props and also `totalPages`
    */
   page?: number
   /**
-  * Indicates if the row can be expand
-  */
+   * Indicates if the row can be expand
+   */
   expandableRows?: boolean
   /**
-  * The component displayed in the expanded part of a row. 
-  * 
-  * ⚠️ this component must have the prop `data?: T` to get the data of the row its expanding
-  */
+   * The component displayed in the expanded part of a row.
+   *
+   * ⚠️ this component must have the prop `data?: T` to get the data of the row its expanding
+   */
   ExpandableComponents?: React.ReactNode
   /**
-  * indicates if the row should expand when its clicked
-  */
+   * indicates if the row should expand when its clicked
+   */
   expandOnRowClicked?: boolean
   /**
    * The displayed component when the data is loading
@@ -180,7 +180,10 @@ export interface TableBasicProps<Row> extends BasicProps {
   id?: string
 }
 
-type TableProps<row> = MergeMuiElementProps<IDataTableProps<row>, TableBasicProps<row>>
+export type TableProps<row> = MergeMuiElementProps<
+  IDataTableProps<row>,
+  TableBasicProps<row>
+>
 
 export const Table = <Row,>(props: TableProps<Row>) => {
   const {
@@ -209,28 +212,28 @@ export const Table = <Row,>(props: TableProps<Row>) => {
       {isLoading ? (
         loadingComponent ?? <Typography>Loading...</Typography>
       ) : (
-          <DataTable
-            columns={columns}
-            className={`${className} ${classes.container}`}
-            style={style}
-            theme='colisactiv'
-            data={data}
-            noHeader
-            noDataComponent={
-              noDataMessage ? noDataMessage : 'Aucun élément à afficher'
-            }
-            highlightOnHover
-            pointerOnHover
-            selectableRows={selectableRows}
-            onRowClicked={onRowClicked}
-            customStyles={customStyles(theme) as IDataTableStyles}
-            keyField={keyField}
-            expandableRows={expandableRows}
-            expandableRowsComponent={ExpandableComponents}
-            expandOnRowClicked={expandOnRowClicked}
-            {...other}
-          />
-        )}
+        <DataTable
+          columns={columns}
+          className={`${className} ${classes.container}`}
+          style={style}
+          theme='colisactiv'
+          data={data}
+          noHeader
+          noDataComponent={
+            noDataMessage ? noDataMessage : 'Aucun élément à afficher'
+          }
+          highlightOnHover
+          pointerOnHover
+          selectableRows={selectableRows}
+          onRowClicked={onRowClicked}
+          customStyles={customStyles(theme) as IDataTableStyles}
+          keyField={keyField}
+          expandableRows={expandableRows}
+          expandableRowsComponent={ExpandableComponents}
+          expandOnRowClicked={expandOnRowClicked}
+          {...other}
+        />
+      )}
 
       {page && totalPages ? (
         <CustomPagination

@@ -41,7 +41,7 @@ export interface AutomateViewerBasicProps extends BasicProps {
   onSelect?: (edgesSelected: Edge[], nodeSelected?: Node) => void
 }
 
-type AutomateViewerProps = MergeReactElementProps<
+export type AutomateViewerProps = MergeReactElementProps<
   'div',
   AutomateViewerBasicProps
 >

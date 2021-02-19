@@ -110,7 +110,7 @@ export interface CardBasicProps extends BasicProps {
   styles?: CardStyles
 }
 
-type CardProps = MergeMuiElementProps<BoxProps, CardBasicProps>
+export type CardProps = MergeMuiElementProps<BoxProps, CardBasicProps>
 
 export const Card = (props: CardProps) => {
   const {

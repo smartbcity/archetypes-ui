@@ -81,7 +81,7 @@ const useStyles = lowLevelStyles({
   }
 })
 
-type TextFieldProps = MergeMuiElementProps<
+export type TextFieldProps = MergeMuiElementProps<
   MuiTextFieldProps,
   TextFieldBasicProps
 >

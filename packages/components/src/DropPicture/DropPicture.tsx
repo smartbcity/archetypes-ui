@@ -87,7 +87,7 @@ export interface DropPictureBasicProps extends BasicProps {
   defaultLogo?: string
 }
 
-type DropPictureProps = MergeMuiElementProps<
+export type DropPictureProps = MergeMuiElementProps<
   DropzoneProps,
   DropPictureBasicProps
 >
