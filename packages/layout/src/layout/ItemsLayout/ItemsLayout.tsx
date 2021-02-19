@@ -110,6 +110,10 @@ export const ItemsLayout = React.forwardRef(
           {menu.items &&
             menu.items.map((it) => (
               <MenuItem
+                button
+                component={it.href ? 'a' : 'div'}
+                onClick={() => it.goto && !it.href && it.goto()}
+                href={it.href}
                 className={clsx(
                   defaultClasses.item,
                   'AruiItemsLayout-listItem',
@@ -117,7 +121,6 @@ export const ItemsLayout = React.forwardRef(
                 )}
                 style={styles?.listItem}
                 key={it.key}
-                onClick={it.goto}
               >
                 {it.icon && (
                   <ListItemIcon classes={{ root: defaultClasses.icon }}>
@@ -157,8 +160,9 @@ export const ItemsLayout = React.forwardRef(
             menu.items.map((it) => (
               <Grid
                 key={it.key}
-                container
-                onClick={it.goto}
+                component={it.href ? 'a' : 'div'}
+                onClick={() => it.goto && !it.href && it.goto()}
+                href={it.href}
                 alignItems='center'
                 direction='column'
                 justify='space-around'

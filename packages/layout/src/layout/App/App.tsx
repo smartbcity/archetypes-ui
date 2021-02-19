@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Paper, Theme } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import { Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { AppBar, AppBarBasicProps } from '../Appbar'
@@ -16,46 +16,86 @@ const useStyles = (customTheme: SBTheme) =>
       appbar: (props) => ({
         height: `${props.appBarHeight}px`,
         backgroundColor: customTheme.hex.primaryColor,
+        boxShadow: customTheme.shadows[4],
         '& .MuiToolbar-root': {
           height: '100%'
-        }
+        },
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen
+        })
+      }),
+      appBarOpen: (props) => ({
+        width: `calc(100% - ${props.menuWidth}px)`,
+        marginLeft: `${props.menuWidth}px`,
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen
+        })
+      }),
+      titleContainer: (props) => ({
+        height: `${props.appBarHeight}px`,
+        paddingLeft: '10px',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'fixed',
+        marginLeft: `0px`,
+        top: '0px',
+        left: '0px',
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen
+        })
+      }),
+      titleContainerOpen: (props) => ({
+        marginLeft: `${props.menuWidth}px`,
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen
+        })
       }),
       drawer: (props) => ({
         width: `${props.menuWidth}px`,
         '& .MuiDrawer-paper': {
-          top: `${props.appBarHeight}px`,
+          top: `0px`,
+          zIndex: 1000,
           width: `${props.menuWidth}px`,
           background: 'white',
-          height: `calc(100vh - ${props.appBarHeight}px)`,
-          overflowX: 'hidden'
+          height: `100vh`,
+          overflowX: 'hidden',
+          transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen
+          })
         }
       }),
-      content: (props) => ({
-        padding: theme.spacing(2, 2),
-        height: `calc(100vh - ${props.appBarHeight}px)`,
-        backgroundColor: '#fafafa',
-        overflow: 'auto',
-        overflowX: 'hidden'
+      drawerClosed: (props) => ({
+        '& .MuiDrawer-paper': {
+          transform: `translateX(-${props.menuWidth}px)`,
+          transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.leavingScreen
+          })
+        }
       }),
       main: (props) => ({
         flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
+        transition: theme.transitions.create('padding', {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen
         }),
-        marginTop: props.appBarHeight
+        paddingTop: props.appBarHeight,
+        paddingLeft: props.menuWidth
       }),
-      mainMargin: (props) => ({
-        marginLeft: props.menuWidth
-      }),
-      mainShift: {
-        transition: theme.transitions.create('margin', {
+      mainShift: (props) => ({
+        flexGrow: 1,
+        paddingTop: props.appBarHeight,
+        transition: theme.transitions.create('padding', {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen
         }),
-        marginLeft: 0
-      },
+        paddingLeft: 0
+      }),
       hidder: {
         opacity: '0.5',
         position: 'fixed',
@@ -71,12 +111,10 @@ const useStyles = (customTheme: SBTheme) =>
 
 interface AppClasses {
   main?: string
-  content?: string
 }
 
 interface AppStyles {
   main?: React.CSSProperties
-  content?: React.CSSProperties
 }
 
 export interface AppProps {
@@ -172,10 +210,6 @@ export const App = (props: AppProps) => {
   } = props
   const theme = useTheme()
   const defaultClasses = useStyles(theme)(styleProps)
-  const openClasses = clsx(defaultClasses.main, {
-    [defaultClasses.mainMargin]: open,
-    [defaultClasses.mainShift]: !open
-  })
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [handleResize] = useDebouncedCallback(() => {
     const min = Math.min.apply(Math, [window.innerWidth, innerWidth])
@@ -194,39 +228,52 @@ export const App = (props: AppProps) => {
 
   return (
     <React.Fragment>
-      {showAppBar && (
-        <Fragment>
-          <AppBar
-            className={defaultClasses.appbar}
-            logo={logo}
-            onDrawerOpen={onToggle}
-            title={title}
-            profiles={
-              window.innerWidth > 400 &&
-              toolsMenuProps.map((toolsMenuProps, index) => (
-                <ToolsMenu key={index} {...toolsMenuProps} />
-              ))
-            }
-            content={window.innerWidth > 600 && navBarContent}
-            {...appBarProps}
-          />
-          <DrawerMenu
-            open={open}
-            className={defaultClasses.drawer}
-            menu={menu}
-            styleProps={styleProps}
-            toolsMenuProps={
-              window.innerWidth <= 400 ? toolsMenuProps : undefined
-            }
-            navBarContent={window.innerWidth <= 600 && navBarContent}
-            {...drawerMenuProps}
-          >
-            {drawerContent}
-          </DrawerMenu>
-        </Fragment>
-      )}
+      <AppBar
+        className={clsx(
+          defaultClasses.appbar,
+          open && defaultClasses.appBarOpen
+        )}
+        classes={{
+          ...appBarProps?.classes,
+          titleContainer: clsx(
+            appBarProps?.classes?.titleContainer,
+            defaultClasses.titleContainer,
+            open && defaultClasses.titleContainerOpen
+          )
+        }}
+        logo={logo}
+        onDrawerOpen={onToggle}
+        show={showAppBar}
+        title={title}
+        profiles={
+          window.innerWidth > 400 &&
+          toolsMenuProps.map((toolsMenuProps, index) => (
+            <ToolsMenu key={index} {...toolsMenuProps} />
+          ))
+        }
+        content={window.innerWidth > 600 && navBarContent}
+        {...appBarProps}
+      />
+      <DrawerMenu
+        open={open}
+        className={clsx(
+          defaultClasses.drawer,
+          !open && defaultClasses.drawerClosed
+        )}
+        menu={menu}
+        styleProps={styleProps}
+        toolsMenuProps={window.innerWidth <= 400 ? toolsMenuProps : undefined}
+        navBarContent={window.innerWidth <= 600 && navBarContent}
+        {...drawerMenuProps}
+      >
+        {drawerContent}
+      </DrawerMenu>
       <main
-        className={clsx(openClasses, 'AruiApp-main', classes?.main)}
+        className={clsx(
+          open ? defaultClasses.main : defaultClasses.mainShift,
+          'AruiApp-main',
+          classes?.main
+        )}
         style={styles?.main}
       >
         <div
@@ -236,18 +283,7 @@ export const App = (props: AppProps) => {
           }}
           onClick={onToggle}
         />
-        <Paper
-          square
-          className={clsx(
-            defaultClasses.content,
-            'AruiApp-content',
-            classes?.content
-          )}
-          style={styles?.content}
-          elevation={0}
-        >
-          {children}
-        </Paper>
+        {children}
       </main>
     </React.Fragment>
   )

@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import MuiDrawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -10,14 +9,16 @@ import StyleProps from '../StyleProps'
 import { ToolsMenuProps } from '../ToolsMenu'
 import { ToolsPanel } from '../ToolsPanel'
 import { DrawerProps } from '@material-ui/core'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '../Types'
 import clsx from 'clsx'
 
-// TODO style only on desktop size
-const Nav = styled.nav<WidthProps>`
-  width: ${(props) => props.width};
-  flex-shrink: 0;
-`
+const useStyles = (width: number) =>
+  lowLevelStyles({
+    nav: {
+      width: width,
+      flexShrink: 0
+    }
+  })
 
 export interface WidthProps {
   width: number
@@ -87,11 +88,11 @@ export const DrawerMenu = (props: DrawerMenuProps) => {
     styles,
     ...other
   } = props
+  const defaultClasses = useStyles(styleProps.menuWidth)()
 
   return (
-    <Nav
-      width={styleProps.menuWidth}
-      className={clsx(className, 'AruiDrawerMenu-root')}
+    <nav
+      className={clsx(className, 'AruiDrawerMenu-root', defaultClasses.nav)}
       style={style}
       id={id}
     >
@@ -111,8 +112,10 @@ export const DrawerMenu = (props: DrawerMenuProps) => {
               {menu.map((item) => (
                 <ListItem
                   button
+                  component={item.href ? 'a' : 'div'}
                   key={item.key}
-                  onClick={() => item.goto && item.goto()}
+                  onClick={() => item.goto && !item.href && item.goto()}
+                  href={item.href}
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.label} />
@@ -131,6 +134,6 @@ export const DrawerMenu = (props: DrawerMenuProps) => {
             />
           ))}
       </MuiDrawer>
-    </Nav>
+    </nav>
   )
 }

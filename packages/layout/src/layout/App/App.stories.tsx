@@ -221,7 +221,7 @@ App.args = {
   ),
   drawerContent: 'Drawer content',
   styleProps: {
-    appBarHeight: 90,
+    appBarHeight: 70,
     detailDrawerWidth: 600,
     menuWidth: 210
   }
