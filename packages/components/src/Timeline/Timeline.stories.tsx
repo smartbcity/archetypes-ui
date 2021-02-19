@@ -38,9 +38,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<TimelineBasicProps> = (args: TimelineBasicProps) => (
-  <AruiTimeline {...args}></AruiTimeline>
-)
+const Template: Story<TimelineBasicProps> = (args: TimelineBasicProps) => {
+  return <AruiTimeline {...args}></AruiTimeline>
+}
 
 export const Timeline = Template.bind({})
 
@@ -66,7 +66,7 @@ Timeline.args = {
       startDate: now - 3600000 * 2
     },
     {
-      id: 'cell-1',
+      id: 'cell-2',
       content: (
         <Paper style={{ padding: '20px' }}>
           <Typography>
@@ -82,7 +82,7 @@ Timeline.args = {
       disabled: true
     },
     {
-      id: 'cell-1',
+      id: 'cell-3',
       content: (
         <Paper style={{ padding: '20px' }}>
           <Typography>
@@ -100,7 +100,7 @@ Timeline.args = {
       startDot: <Fastfood />
     },
     {
-      id: 'cell-1',
+      id: 'cell-4',
       content: (
         <Paper style={{ padding: '20px' }}>
           <Typography>
