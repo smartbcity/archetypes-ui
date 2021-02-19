@@ -28,9 +28,9 @@ const useStyles = (theme: Theme) =>
       }
     },
     button: {
-      backgroundColor: theme.secondaryColor,
+      backgroundColor: theme.hex.secondaryColor,
       '&:hover': {
-        backgroundColor: theme.secondaryColor
+        backgroundColor: theme.hex.secondaryColor
       }
     }
   })

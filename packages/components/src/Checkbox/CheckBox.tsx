@@ -23,7 +23,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     icon: {
-      color: theme.primaryColor
+      color: theme.hex.primaryColor
     },
     iconSize: {
       width: '22px',

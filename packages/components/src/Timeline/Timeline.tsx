@@ -17,20 +17,20 @@ import { MergeMuiElementProps, lowLevelStyles } from '../Types'
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     dot: {
-      background: theme.primaryColor,
+      background: theme.hex.primaryColor,
       position: 'relative',
       alignSelf: 'unset'
     },
     dotPassed: {
-      background: theme.tertiaryColor,
+      background: theme.hex.tertiaryColor,
       position: 'relative',
       alignSelf: 'unset'
     },
     connector: {
-      background: theme.tertiaryColor
+      background: theme.hex.tertiaryColor
     },
     connectorProgress: {
-      background: theme.primaryColor,
+      background: theme.hex.primaryColor,
       width: '100%',
       height: '100%'
     },
@@ -47,7 +47,7 @@ const useStyles = (theme: Theme) =>
       padding: '6px 16px'
     },
     activeDot: {
-      border: `2px solid ${theme.secondaryColor}`,
+      border: `2px solid ${theme.hex.secondaryColor}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',

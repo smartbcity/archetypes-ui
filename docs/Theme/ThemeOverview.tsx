@@ -188,7 +188,7 @@ const ThemeOverview = () => {
               onChange={(event) =>
                 onColorChange("primaryColor", event.target.value)
               }
-              value={themeContext.theme.primaryColor}
+              value={themeContext.theme.hex.primaryColor}
             />
           </div>
         </div>
@@ -210,7 +210,7 @@ const ThemeOverview = () => {
               onChange={(event) =>
                 onColorChange("secondaryColor", event.target.value)
               }
-              value={themeContext.theme.secondaryColor}
+              value={themeContext.theme.hex.secondaryColor}
             />
           </div>
         </div>
@@ -227,7 +227,7 @@ const ThemeOverview = () => {
               onChange={(event) =>
                 onColorChange("tertiaryColor", event.target.value)
               }
-              value={themeContext.theme.tertiaryColor}
+              value={themeContext.theme.hex.tertiaryColor}
             />
           </div>
         </div>

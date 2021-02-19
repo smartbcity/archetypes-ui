@@ -10,26 +10,28 @@ const useStyles = (theme: Theme) =>
   lowLevelStyles({
     outlined: {
       minWidth: '80px',
-      padding: '7px',
-      fontSize: '0.75rem',
-      color: theme.secondaryColor,
+      padding: '5px 10px',
+      fontSize: '0.85rem',
+      color: theme.hex.secondaryColor,
+      border: `1px solid ${theme.hex.secondaryColor}`,
+      textTransform: "none",
       backgroundColor: '#ffffff',
-      borderRadius: '5px',
+      borderRadius: '4px',
       boxShadow: theme.shadows[2],
       '&:hover': {
-        backgroundColor: theme.secondaryColor,
-        color: '#ffffff'
+        backgroundColor: `rgba(0, 0, 0, 0.04)`
       }
     },
     contained: {
       minWidth: '80px',
-      padding: '7px 0',
-      fontSize: '0.75rem',
-      borderRadius: '5px',
+      padding: '7px 10px',
+      fontSize: '0.85rem',
+      borderRadius: '4px',
+      textTransform: "none",
       boxShadow: theme.shadows[2],
       backgroundImage:
         'linear-gradient(226deg, ' +
-        theme.secondaryColor +
+        theme.hex.secondaryColor +
         ' 181%, #6a9d36 -96%)',
       color: '#ffffff'
     },

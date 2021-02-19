@@ -153,7 +153,7 @@ export const FilePreview = (props: FilePreviewProps) => {
               alignItems='center'
               className={classes.loading}
             >
-              <ClipLoader size={40} color={theme.primaryColor} />{' '}
+              <ClipLoader size={40} color={theme.hex.primaryColor} />{' '}
             </Box>
           )}
         </div>

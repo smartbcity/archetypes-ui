@@ -10,9 +10,17 @@ interface ThemeGetterProps {
 const ThemeGetter = (props: ThemeGetterProps) => {
   const { myTheme } = props;
   const themeString = `const defaultTheme = {
-    primaryColor: "${myTheme.primaryColor}",
-    secondaryColor: "${myTheme.secondaryColor}",
-    tertiaryColor: "${myTheme.tertiaryColor}",
+    name: "${myTheme.name}",
+    hex: {
+      primaryColor: "${myTheme.hex.primaryColor}",
+      secondaryColor: "${myTheme.hex.secondaryColor}",
+      tertiaryColor: "${myTheme.hex.tertiaryColor}",
+    },
+    rgb: {
+      primaryColor: "${myTheme.rgb.primaryColor}",
+      secondaryColor: "${myTheme.rgb.secondaryColor}",
+      tertiaryColor: "${myTheme.rgb.tertiaryColor}",
+    },
     shadows: ["${myTheme.shadows[0]}",
     "${myTheme.shadows[1]}",
     "${myTheme.shadows[2]}",

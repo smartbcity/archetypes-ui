@@ -36,19 +36,26 @@ export const getShadows = (shadow: string | null) => {
 };
 
 export const myTheme: Theme = {
-  primaryColor: "#fec519",
-  secondaryColor: "#edba27",
-  tertiaryColor: "#e0e0e0",
+  hex: {
+    primaryColor: "#fec519",
+    secondaryColor: "#edba27",
+    tertiaryColor: "#e0e0e0",
+  },
+  rgb: {
+    primaryColor: "254, 197, 25",
+    secondaryColor: "237, 186, 39",
+    tertiaryColor: "224, 224, 224",
+  },
   shadows: getShadows(localStorage.getItem("shadow")),
 };
 
 export default createMuiTheme({
   palette: {
     primary: {
-      main: myTheme.primaryColor,
+      main: myTheme.hex.primaryColor,
     },
     secondary: {
-      main: myTheme.secondaryColor,
+      main: myTheme.hex.secondaryColor,
     },
   },
 });
