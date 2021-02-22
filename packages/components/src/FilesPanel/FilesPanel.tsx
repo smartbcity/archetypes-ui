@@ -44,9 +44,18 @@ export interface FolderItem {
   validated?: boolean
 }
 
-interface FilesPanelProps extends BasicProps {
+export interface FilesPanelProps extends BasicProps {
+  /**
+   * Main folder that will be use to display other files or folders that are located inside the main folder
+   */
   folder: FolderItem
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: FolderClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: FolderStyles
 }
 

@@ -10,6 +10,13 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-essentials": "^6.1.15",
+    "@storybook/addon-links": "^6.1.15",
+    "@storybook/addons": "^6.1.17",
+    "@storybook/node-logger": "^6.1.15",
+    "@storybook/react": "^6.1.15",
+    "@storybook/theming": "^6.1.17",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.27",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
@@ -35,18 +42,18 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
-    "react-scripts": "^3.4.1",
-    "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "@types/react-pdf": "^4.0.5",
-    "clsx": "^1.1.1",
-    "react-pdf": "^5.0.0",
-    "react-syntax-highlighter": "^12.2.1"
+    "typescript": "^4.0.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "clsx": "^1.1.1"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic"
   }
 }

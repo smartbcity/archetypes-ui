@@ -1,12 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
+import {
+  Checkbox,
+  FormControlLabel,
+  CheckboxProps as MuiCheckboxProps
+} from '@material-ui/core'
 import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
-import { themeContext, Theme } from '../ThemeContextProvider'
-import { BasicProps } from '../Types'
+import { Theme, useTheme } from '../ThemeContextProvider'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
+  lowLevelStyles({
     root: {
       borderRadius: 20
     },
@@ -19,23 +23,49 @@ const useStyles = (theme: Theme) =>
       }
     },
     icon: {
-      color: theme.primaryColor
+      color: theme.hex.primaryColor
     },
     iconSize: {
       width: '22px',
       height: '22px'
     }
-  }))
+  })
 
-interface CheckBoxProps extends BasicProps {
+export interface CheckBoxBasicProps extends BasicProps {
+  /**
+   * If true, the component is checked
+   */
   checked: boolean
+  /**
+   * The content that will be displayed
+   */
   text?: string
+  /**
+   * If true, the checkbox will be disabled
+   */
   disabled?: boolean
+  /**
+   * Callback fired when the state is changed
+   */
   onChange?: () => void
+  /**
+   * The value of the component
+   */
   value?: string
+  /**
+   * ClassName for the checked icon
+   */
   checkedIconClassName?: string
+  /**
+   * Style for the checked icon
+   */
   checkedIconStyle?: React.CSSProperties
 }
+
+export type CheckBoxProps = MergeMuiElementProps<
+  MuiCheckboxProps,
+  CheckBoxBasicProps
+>
 
 export const CheckBox = (props: CheckBoxProps) => {
   const {
@@ -48,9 +78,10 @@ export const CheckBox = (props: CheckBoxProps) => {
     id,
     style,
     checkedIconClassName,
-    checkedIconStyle
+    checkedIconStyle,
+    ...other
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const classes = useStyles(theme)()
 
   return (
@@ -73,6 +104,7 @@ export const CheckBox = (props: CheckBoxProps) => {
               style={checkedIconStyle}
             />
           }
+          {...other}
         />
       }
       label={text}

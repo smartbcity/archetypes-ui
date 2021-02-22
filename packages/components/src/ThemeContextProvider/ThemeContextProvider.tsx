@@ -1,98 +1,47 @@
-import React, { createContext } from 'react'
-import {
-  createMuiTheme,
-  ThemeProvider,
-  Theme as MuiTheme
-} from '@material-ui/core'
+import React, { createContext, useCallback, useContext } from 'react'
+import { ThemeProvider, Theme as MuiTheme } from '@material-ui/core'
+import { defaultMaterialUiTheme, defaultTheme, Theme } from './Theme'
 
-export interface Theme {
-  name?: string
-  primaryColor: string
-  secondaryColor: string
-  tertiaryColor: string
-  shadows: string[]
+export interface ThemeContextProps {
+  theme: Theme
+  changeTheme: (theme: Partial<Theme>) => void
 }
 
-export const theme: Theme = {
-  name: "default",
-  primaryColor: "#48d7a2",
-  secondaryColor: "#005ecc",
-  tertiaryColor: "#f2f6f9",
-  shadows: [
-    "0 0px 0px 0 rgba(0,0,0,0)",
-    "0px 3px 10px 0 rgba(0,0,0,0.1)",
-    "0px 3.75px 12.5px 0px rgba(0,0,0,0.12)",
-    "0px 4.5px 15px 0px rgba(0,0,0,0.14)",
-    "0px 5.25px 17.5px 0px rgba(0,0,0,0.16)",
-    "0px 6px 20px 0px rgba(0,0,0,0.18)",
-    "0px 6.75px 22.5px 0px rgba(0,0,0,0.2)",
-    "0px 7.5px 25px 0px rgba(0,0,0,0.22)",
-    "0px 8.25px 27.5px 0px rgba(0,0,0,0.24)",
-    "0px 9px 30px 0px rgba(0,0,0,0.26)",
-    "0px 9.75px 32.5px 0px rgba(0,0,0,0.28)",
-    "0px 10.5px 35px 0px rgba(0,0,0,0.3)",
-    "0px 11.25px 37.5px 0px rgba(0,0,0,0.32)",
-  ],
-}; //the archetypes theme (maybe not the final version)
-
-const muiTheme = (theme: Theme, customMuiTheme?: MuiTheme) => {
-  const themeOverride = {
-    overrides: {
-      MuiPaper: {
-        elevation1: {
-          boxShadow: theme.shadows[1]
-        },
-        elevation2: {
-          boxShadow: theme.shadows[2]
-        },
-        elevation3: {
-          boxShadow: theme.shadows[3]
-        },
-        elevation4: {
-          boxShadow: theme.shadows[4]
-        },
-        elevation5: {
-          boxShadow: theme.shadows[5]
-        },
-        elevation6: {
-          boxShadow: theme.shadows[6]
-        },
-        elevation7: {
-          boxShadow: theme.shadows[7]
-        },
-        elevation8: {
-          boxShadow: theme.shadows[8]
-        },
-        elevation9: {
-          boxShadow: theme.shadows[9]
-        },
-        elevation10: {
-          boxShadow: theme.shadows[10]
-        },
-        elevation11: {
-          boxShadow: theme.shadows[11]
-        },
-        elevation12: {
-          boxShadow: theme.shadows[12]
-        }
-      }
-    }
-  }
-  return customMuiTheme ?  createMuiTheme(themeOverride, customMuiTheme) : createMuiTheme(themeOverride)
-};
-
-export const themeContext = createContext(theme)
+export const ThemeContext = createContext<ThemeContextProps>({
+  theme: defaultTheme,
+  changeTheme: () => {}
+})
 
 export interface ThemeContextProviderProps {
-  theme: Theme;
-  children: React.ReactNode;
-  customMuiTheme?: MuiTheme;
+  children: React.ReactNode
+  theme: Partial<Theme>
+  customMuiTheme?: Partial<MuiTheme>
 }
 
 export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
-  const { theme, children, customMuiTheme } = props;
-  const defaultMuiTheme = muiTheme(theme, customMuiTheme);
-  return (<themeContext.Provider value={theme}>
-          <ThemeProvider theme={defaultMuiTheme}>{children}</ThemeProvider>
-        </themeContext.Provider>)
+  const { children, customMuiTheme } = props
+  const [theme, setTheme] = React.useState<Theme>({
+    ...defaultTheme,
+    ...props.theme
+  })
+  const setPartialTheme = useCallback((partialTheme: Partial<Theme>) => {
+    return setTheme({ ...theme, ...partialTheme })
+  }, [])
+  const defaultMuiTheme = defaultMaterialUiTheme(theme, customMuiTheme)
+  return (
+    <ThemeContext.Provider
+      value={{ theme: theme, changeTheme: setPartialTheme }}
+    >
+      <ThemeProvider theme={defaultMuiTheme}>{children}</ThemeProvider>
+    </ThemeContext.Provider>
+  )
+}
+
+export const useTheme = () => {
+  const themeContext = useContext(ThemeContext)
+  return themeContext.theme
+}
+
+export const useThemeContext = () => {
+  return useContext(ThemeContext)
 }

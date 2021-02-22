@@ -1,12 +1,29 @@
 import React from 'react'
 import { Page, Document } from 'react-pdf'
 
-interface PdfViewerProps {
+export interface PdfViewerProps {
+  /**
+   * Pdf file to preview
+   */
   file: any
+  /**
+   * The page number to display
+   */
   pageNumber: number
+  /**
+   * Set the total number page of the pdf file
+   * @param total
+   */
   setTotalPage: (total: number) => void
+  /**
+   * The classes applied to the different part of the component
+   */
   className?: string
+
   scale?: number
+  /**
+   * Define the width of the component
+   */
   width?: number
 }
 

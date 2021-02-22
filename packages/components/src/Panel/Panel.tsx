@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Card as MuiCard, CardProps } from '@material-ui/core'
 import {
   CardHeader,
@@ -6,82 +6,76 @@ import {
   CardContent,
   CardActions
 } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '.'
-import {
-  themeContext,
-  Theme
-} from '../ThemeContextProvider/ThemeContextProvider'
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
+import { Theme, useTheme } from '../ThemeContextProvider'
 
 const useStyles = (theme: Theme) =>
-  makeStyles(() =>
-    createStyles({
-      card: {
-        borderRadius: '10px'
-      },
-      header: {
-        minHeight: '100px'
-      },
-      headerContainer: {
-        display: 'flex',
-        justifyContent: 'center'
-      },
-      headerContent: {
-        width: '70%',
-        textAlign: 'center',
-        display: 'block',
-        zIndex: 1
-      },
-      content: {
-        backgroundColor: theme.tertiaryColor,
-        minHeight: '100px',
-        position: 'relative',
-        justifyContent: 'center',
-        paddingTop: '40px'
-      },
-      footer: {
-        minHeight: '50px',
-        display: 'flex',
-        justifyContent: 'center'
-      },
-      logoContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        width: 'calc(100% - 32px)',
-        position: 'absolute',
-        top: '-110px',
-        zIndex: 0
-      },
-      logoBorder: {
-        width: '136px',
-        height: '136px',
-        borderRadius: '50%',
-        background: 'white'
-      },
-      logo: {
-        height: '130px',
-        width: '130px',
-        position: 'relative',
-        marginLeft: '12px',
-        opacity: '50%'
-      },
-      documentLogo: {
-        height: '115px',
-        width: '115px',
-        position: 'relative',
-        marginLeft: '11.5px',
-        marginTop: '12px',
-        opacity: '50%'
-      },
-      logoWithHeader: {
-        opacity: '15%'
-      }
-    })
-  )
+  lowLevelStyles({
+    card: {
+      borderRadius: '10px'
+    },
+    header: {
+      minHeight: '100px'
+    },
+    headerContainer: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    headerContent: {
+      width: '70%',
+      textAlign: 'center',
+      display: 'block',
+      zIndex: 1
+    },
+    content: {
+      backgroundColor: theme.hex.tertiaryColor,
+      minHeight: '100px',
+      position: 'relative',
+      justifyContent: 'center',
+      paddingTop: '40px'
+    },
+    footer: {
+      minHeight: '50px',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    logoContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      width: 'calc(100% - 32px)',
+      position: 'absolute',
+      top: '-110px',
+      zIndex: 0
+    },
+    logoBorder: {
+      width: '136px',
+      height: '136px',
+      borderRadius: '50%',
+      background: 'white'
+    },
+    logo: {
+      height: '130px',
+      width: '130px',
+      position: 'relative',
+      marginLeft: '12px',
+      opacity: '50%'
+    },
+    documentLogo: {
+      height: '115px',
+      width: '115px',
+      position: 'relative',
+      marginLeft: '11.5px',
+      marginTop: '12px',
+      opacity: '50%'
+    },
+    logoWithHeader: {
+      opacity: '15%'
+    }
+  })
 
 interface PanelClasses {
   header?: string
@@ -95,19 +89,40 @@ interface PanelStyles {
   footer?: React.CSSProperties
 }
 
-export interface PanelProps extends BasicProps {
+export interface PanelBasicProps extends BasicProps {
+  /**
+   * The text that will be displayed in the header of the panel
+   */
   header?: string
+  /**
+   * The content that will be displayed in the body of the SBPanel
+   */
   children?: React.ReactNode
+  /**
+   * Choose the logo in the background
+   */
   logo?: logoType
+  /**
+   * The content that will be displayed in the footer
+   */
   footer?: React.ReactNode
+  /**
+   * The logo that wil be displayed in the corner instead of the defaults logos
+   */
   customLogo?: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: PanelClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: PanelStyles
 }
 
-type Props = MergeMuiElementProps<CardProps, PanelProps>
+export type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
 
-export const Panel = (props: Props) => {
+export const Panel = (props: PanelProps) => {
   const {
     header,
     children,
@@ -121,7 +136,7 @@ export const Panel = (props: Props) => {
     styles,
     ...other
   } = props
-  const theme = useContext(themeContext)
+  const theme = useTheme()
   const defaultClasses = useStyles(theme)()
   return (
     <MuiCard

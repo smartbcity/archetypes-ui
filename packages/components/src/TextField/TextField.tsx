@@ -2,11 +2,10 @@ import React from 'react'
 import {
   InputLabel,
   TextField as MuiTextField,
-  TextFieldProps as MuiTextFieldProps,
-  makeStyles
+  TextFieldProps as MuiTextFieldProps
 } from '@material-ui/core'
 
-import { BasicProps, MergeMuiElementProps } from '../Types'
+import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
 interface TextFieldClasses {
@@ -19,19 +18,47 @@ interface TextFieldStyles {
   input?: React.CSSProperties
 }
 
-export interface TextFieldProps extends BasicProps {
+export interface TextFieldBasicProps extends BasicProps {
+  /**
+   * The default value displayed
+   */
   defaultValue: string
+  /**
+   * The label of the input
+   */
   label: string
+  /**
+   * The event called when the value of the input change
+   * @param value
+   */
   onChange: (value: string) => void
+  /**
+   * Define if the value of the input is valid or not
+   */
   isValid?: boolean
+  /**
+   * The message displayed when the input value is wrong
+   */
   errorMessage?: string
+  /**
+   * The type of the input
+   */
   type?: string
+  /**
+   * Define if the input is disabled or not
+   */
   disabled?: boolean
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: TextFieldClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: TextFieldStyles
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = lowLevelStyles({
   formControl: {
     width: '100%',
     borderRadius: '21.6px',
@@ -52,11 +79,14 @@ const useStyles = makeStyles(() => ({
   helperText: {
     marginLeft: '3px'
   }
-}))
+})
 
-type Props = MergeMuiElementProps<MuiTextFieldProps, TextFieldProps>
+export type TextFieldProps = MergeMuiElementProps<
+  MuiTextFieldProps,
+  TextFieldBasicProps
+>
 
-export const TextField = (props: Props) => {
+export const TextField = (props: TextFieldProps) => {
   const {
     defaultValue,
     label,
