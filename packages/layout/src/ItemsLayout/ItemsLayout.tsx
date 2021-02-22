@@ -82,7 +82,10 @@ export interface ItemsLayoutBasicProps extends BasicProps {
   styles?: ItemsLayoutStyles
 }
 
-type ItemsLayoutProps = MergeReactElementProps<'div', ItemsLayoutBasicProps>
+export type ItemsLayoutProps = MergeReactElementProps<
+  'div',
+  ItemsLayoutBasicProps
+>
 
 export const ItemsLayout = React.forwardRef(
   (props: ItemsLayoutProps, ref: React.Ref<HTMLDivElement>) => {

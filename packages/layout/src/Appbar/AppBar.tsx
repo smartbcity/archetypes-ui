@@ -77,7 +77,7 @@ export interface AppBarBasicProps extends BasicProps {
   styles?: AppBarStyles
 }
 
-type AppBarProps = MergeMuiElementProps<MuiAppBarProps, AppBarBasicProps>
+export type AppBarProps = MergeMuiElementProps<MuiAppBarProps, AppBarBasicProps>
 
 export const AppBar = (props: AppBarProps) => {
   const {

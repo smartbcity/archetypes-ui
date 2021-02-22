@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import { MenuItem } from './Menu'
-import StyleProps from '../StyleProps'
+import { StyleProps } from '../StyleProps'
 import { ToolsMenuProps } from '../ToolsMenu'
 import { ToolsPanel } from '../ToolsPanel'
 import { DrawerProps } from '@material-ui/core'
@@ -71,7 +71,10 @@ export interface DrawerMenuBasicProps extends BasicProps {
   styles?: DrawermenuStyles
 }
 
-type DrawerMenuProps = MergeMuiElementProps<DrawerProps, DrawerMenuBasicProps>
+export type DrawerMenuProps = MergeMuiElementProps<
+  DrawerProps,
+  DrawerMenuBasicProps
+>
 
 export const DrawerMenu = (props: DrawerMenuProps) => {
   const {

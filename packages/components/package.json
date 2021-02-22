@@ -41,6 +41,7 @@
     "react-dropzone": "^11.0.3",
     "react-pdf": "^5.0.0",
     "react-spinners": "^0.9.0",
+    "styled-components": "^5.2.1",
     "vis-data": "^7.1.2",
     "vis-network": "^9.0.0"
   },

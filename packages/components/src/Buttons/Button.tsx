@@ -19,10 +19,6 @@ export interface ButtonBasicProps extends BasicProps {
   /**
    * The class added to the root element of the component
    */
-  className: string
-  /**
-   * The class added to the root element of the component
-   */
   style?: React.CSSProperties
   /**
    * The id added to the root element of the component
@@ -43,7 +39,7 @@ export interface ButtonBasicProps extends BasicProps {
   /**
    * The inner components
    */
-  children: React.ReactNode
+  children?: React.ReactNode
   /**
    * The link to go to. Href has priority over onClick
    */

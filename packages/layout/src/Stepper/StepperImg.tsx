@@ -14,7 +14,7 @@ const useStyles = lowLevelStyles({
   }
 })
 
-interface StepperImgProps {
+export interface StepperImgProps {
   className?: string
   img: string
   children: React.ReactNode

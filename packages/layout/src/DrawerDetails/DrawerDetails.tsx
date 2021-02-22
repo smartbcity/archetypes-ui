@@ -2,7 +2,7 @@ import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import createStyles from '@material-ui/core/styles/createStyles'
 import { Drawer, Theme, DrawerProps } from '@material-ui/core'
-import StyleProps from '../StyleProps'
+import { StyleProps } from '../StyleProps'
 import { MergeMuiElementProps, BasicProps } from '../Types'
 import clsx from 'clsx'
 
