@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@material-ui/core'
 import { BackButton } from '@smartb/archetypes-ui-components'
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { BasicProps, MergeMuiElementProps } from '../Types'
 
 interface PageClasses {
@@ -63,7 +63,7 @@ export const Page = (props: pageProps) => {
   }, [onGoBackClick, headerContent])
   if (fixedHeader)
     return (
-      <>
+      <Fragment>
         <Box
           id='AruiPage-HeaderId'
           display='flex'
@@ -92,7 +92,7 @@ export const Page = (props: pageProps) => {
         >
           {children}
         </Box>
-      </>
+      </Fragment>
     )
   return (
     <Box {...other}>
