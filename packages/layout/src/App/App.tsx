@@ -262,8 +262,12 @@ export const App = (props: AppProps) => {
         )}
         menu={menu}
         styleProps={styleProps}
-        toolsMenuProps={window.innerWidth <= 400 ? toolsMenuProps : undefined}
-        navBarContent={window.innerWidth <= 600 && navBarContent}
+        toolsMenuProps={
+          window.innerWidth <= 600 || !showAppBar ? toolsMenuProps : undefined
+        }
+        navBarContent={
+          (window.innerWidth <= 600 || !showAppBar) && navBarContent
+        }
         {...drawerMenuProps}
       >
         {drawerContent}

@@ -139,6 +139,7 @@ export const AppBar = (props: AppBarProps) => {
               )}
             </ListItem>
           </List>
+          {content}
         </Box>
       </Box>
     )
