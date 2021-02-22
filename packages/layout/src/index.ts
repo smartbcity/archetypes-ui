@@ -23,4 +23,4 @@ export {
 export { TabsMenu, TabsMenuProps } from './TabsMenu'
 export { ItemsLayout, ItemsLayoutProps } from './ItemsLayout'
 export { ToolsPanel, ToolsPanelProps } from './ToolsPanel'
-export { Page, pageProps } from './page'
+export { Page, pageProps } from './Page'
