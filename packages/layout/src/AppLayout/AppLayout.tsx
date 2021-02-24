@@ -1,16 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Drawer, DrawerProps, Theme } from '@material-ui/core'
+import React from 'react'
+import { Drawer, Theme, DrawerProps } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { StyleProps } from '../StyleProps'
-import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
-import { useDebouncedCallback } from 'use-debounce'
 import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-components'
-import { MenuContainer, MenuItem } from '../Menu'
 import { lowLevelStyles } from '../Types'
-import { ToolsPanel } from '../ToolsPanel'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
-import { TitleContainer } from './TitleContainer'
 
 const useStyles = (customTheme: SBTheme) =>
   lowLevelStyles<Theme, StyleProps>((theme: Theme) =>
@@ -107,28 +102,19 @@ const useStyles = (customTheme: SBTheme) =>
         top: '0',
         left: '0',
         zIndex: 5
-      },
-      grow: {
-        flexGrow: 1
       }
     })
   )
 
-interface AppClasses {
+interface AppLayoutClasses {
   main?: string
 }
 
-interface AppStyles {
+interface AppLayoutStyles {
   main?: React.CSSProperties
 }
 
-export interface AppProps {
-  /**
-   * An array that contains every tools menu that will be displayed in the navBar
-   *
-   * **See the reference below** ⬇️
-   */
-  toolsMenuProps?: ToolsMenuProps[]
+export interface AppLayoutProps {
   /**
    * The optionnal props of the appBar
    *
@@ -142,35 +128,23 @@ export interface AppProps {
    */
   drawerProps?: Partial<DrawerProps>
   /**
-   * The content that will be displayed in the navBAr at the left of the profile
+   * The content that will be displayed in the appBAr
    */
-  navBarContent?: React.ReactNode
+  appBarContent?: React.ReactNode
   /**
-   * The list of the actions that will be displayed in the drawer menu
-   */
-  menu?: MenuItem[]
-  /**
-   * The application that has to be surrounded by the navbar and the drawer
+   * The application that has to be surrounded by the appbar and the drawer
    */
   children?: React.ReactNode
-  /**
-   * The logo in the navBAr
-   */
-  logo: string
   /**
    * Defined if the drawer is open or not
    */
   open: boolean
   /**
-   * The title that will be displayed in the navBar
-   */
-  title?: string
-  /**
-   * The style of the navBar and the drawer
+   * The base dimension of the appLayout
    */
   styleProps: StyleProps
   /**
-   * Defined if the appBar (navBar + drawer) will be displayed or not
+   * Defined if the appBar will be displayed or not
    */
   showAppBar?: boolean
   /**
@@ -178,68 +152,44 @@ export interface AppProps {
    */
   showDrawer?: boolean
   /**
-   * The content that will be displayed in the drawer below the menu
+   * The content that will be displayed in the drawer
    */
   drawerContent?: React.ReactNode
   /**
    * The function that is called when the hamburger button is clicked
    */
-  onToggle: () => void
+  onToggle?: () => void
   /**
    * The classes applied to the different part of the component
    */
-  classes?: AppClasses
+  classes?: AppLayoutClasses
   /**
    * The styles applied to the different part of the component
    */
-  styles?: AppStyles
+  styles?: AppLayoutStyles
 }
 
-const defaultProps = {
-  showAppBar: true
-}
-
-export const App = (props: AppProps) => {
+export const AppLayout = (props: AppLayoutProps) => {
   const {
     children,
-    toolsMenuProps = [],
+    appBarContent,
     appBarLayoutProps,
     drawerProps,
-    navBarContent,
+    showDrawer = true,
     drawerContent,
-    menu,
     open,
-    title,
-    logo,
     styleProps,
     showAppBar = true,
-    showDrawer = true,
     classes,
     styles,
     onToggle
   } = props
   const theme = useTheme()
   const defaultClasses = useStyles(theme)(styleProps)
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
-  const [handleResize] = useDebouncedCallback(() => {
-    const min = Math.min.apply(Math, [window.innerWidth, innerWidth])
-    const max = Math.max.apply(Math, [window.innerWidth, innerWidth])
-    if ((min < 400 && max > 400) || (min < 600 && max > 600)) {
-      setInnerWidth(window.innerWidth)
-    }
-  }, 500)
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
 
   return (
     <React.Fragment>
       <AppBarLayout
-        onDrawerOpen={onToggle}
         className={
           showAppBar
             ? clsx(
@@ -253,29 +203,16 @@ export const App = (props: AppProps) => {
                 appBarLayoutProps?.className
               )
         }
+        onDrawerOpen={showDrawer ? onToggle : undefined}
         show={showAppBar}
         {...appBarLayoutProps}
       >
-        {showAppBar ? (
-          <Fragment>
-            <TitleContainer title={title} logo={logo} />
-            <div
-              className={clsx(defaultClasses.grow, 'AruiAppBar-flexFiller')}
-            />
-            {window.innerWidth > 600 && navBarContent}
-            {window.innerWidth > 400 &&
-              toolsMenuProps.map((toolsMenuProps, index) => (
-                <ToolsMenu key={index} {...toolsMenuProps} />
-              ))}
-          </Fragment>
-        ) : (
-          <TitleContainer title={title} logo={logo} />
-        )}
+        {appBarContent}
       </AppBarLayout>
       {showDrawer && (
         <Drawer
-          variant='persistent'
           open={open}
+          variant='persistent'
           className={clsx(
             defaultClasses.drawer,
             !open && defaultClasses.drawerClosed,
@@ -283,17 +220,7 @@ export const App = (props: AppProps) => {
           )}
           {...drawerProps}
         >
-          {menu && <MenuContainer menu={menu} />}
           {drawerContent}
-          {(window.innerWidth <= 600 || !showAppBar) && navBarContent}
-          {(window.innerWidth <= 600 || !showAppBar) &&
-            toolsMenuProps &&
-            toolsMenuProps.map((toolsMenuProps) => (
-              <ToolsPanel
-                menu={toolsMenuProps.menu}
-                key={toolsMenuProps.menu.key}
-              />
-            ))}
         </Drawer>
       )}
       <main
@@ -316,5 +243,3 @@ export const App = (props: AppProps) => {
     </React.Fragment>
   )
 }
-
-App.defaultProps = defaultProps
