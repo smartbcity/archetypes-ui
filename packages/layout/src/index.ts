@@ -6,7 +6,7 @@ export {
   DrawerMenu,
   SimpleMenuItem,
   DrawerMenuProps
-} from './DrawerMenu'
+} from './Menu'
 export { ToolsMenu, ToolsMenuProps } from './ToolsMenu'
 export { App, AppProps } from './App'
 export { StyleProps } from './StyleProps'

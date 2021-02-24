@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as SBMenu } from '../DrawerMenu'
+import { Menu as SBMenu } from '../Menu'
 import { ExpandMore } from '@material-ui/icons'
 import {
   ExpansionPanel,
