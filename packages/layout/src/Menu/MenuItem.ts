@@ -1,15 +1,9 @@
-export interface SimpleMenuItem {
-  key: string
-  goto?: () => void
-  href?: string
-  label: string
-}
-
 export interface MenuItem {
   key: string
   goto?: () => void
   href?: string
   label: string
+  component?: React.ElementType<any>
   icon?: JSX.Element
 }
 
