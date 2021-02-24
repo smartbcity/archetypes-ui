@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"]
+  "include": ["src", "../components/src/Menu/menu.ts"]
 }

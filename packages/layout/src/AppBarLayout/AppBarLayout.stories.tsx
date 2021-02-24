@@ -1,14 +1,16 @@
 import React from 'react'
-import { AppBar as AruiAppBar, AppBarBasicProps } from './AppBar'
+import {
+  AppBarLayout as AruiAppBarLayout,
+  AppBarLayoutBasicProps
+} from './AppBarLayout'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
-import defaultLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes } from './types'
 import { ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks'
 
 export default {
-  title: 'Layout/AppBar',
-  component: AruiAppBar,
+  title: 'Layout/AppBarLayout',
+  component: AruiAppBarLayout,
   parameters: {
     docs: {
       page: () => (
@@ -22,7 +24,7 @@ export default {
     classes: {
       table: {
         type: {
-          summary: 'AppBarClasses',
+          summary: 'AppBarLayoutClasses',
           detail: classes
         }
       }
@@ -30,7 +32,7 @@ export default {
     styles: {
       table: {
         type: {
-          summary: 'AppBarStyles',
+          summary: 'AppBarLayoutStyles',
           detail: styles
         }
       }
@@ -38,16 +40,13 @@ export default {
   }
 } as Meta
 
-const Template: Story<AppBarBasicProps> = (args: AppBarBasicProps) => (
-  <AruiAppBar {...args}></AruiAppBar>
-)
+const Template: Story<AppBarLayoutBasicProps> = (
+  args: AppBarLayoutBasicProps
+) => <AruiAppBarLayout {...args}></AruiAppBarLayout>
 
-export const AppBar = Template.bind({})
-AppBar.args = {
-  logo: defaultLogo,
+export const AppBarLayout = Template.bind({})
+AppBarLayout.args = {
   onDrawerOpen: () => {},
-  content: 'Some content',
-  title: 'Title',
-  profiles: 'Profile'
+  children: 'Some content'
 }
-AppBar.storyName = 'AppBar'
+AppBarLayout.storyName = 'AppBarLayout'
