@@ -7,7 +7,7 @@ import { lowLevelStyles } from '../Types'
 const useStepIconStyles = (theme: Theme) =>
   lowLevelStyles({
     root: {
-      backgroundColor: theme.hex.tertiaryColor,
+      backgroundColor: theme.tertiaryColor,
       zIndex: 1,
       color: '#fff',
       width: 40,
@@ -18,15 +18,15 @@ const useStepIconStyles = (theme: Theme) =>
       alignItems: 'center'
     },
     active: {
-      backgroundColor: theme.hex.primaryColor,
-      boxShadow: theme.hex.primaryColor
+      backgroundColor: theme.primaryColor,
+      boxShadow: theme.primaryColor
     },
     completed: {
-      backgroundColor: theme.hex.primaryColor,
-      boxShadow: theme.hex.primaryColor
+      backgroundColor: theme.primaryColor,
+      boxShadow: theme.primaryColor
     },
     activeIcon: {
-      border: '2px solid ' + theme.hex.secondaryColor,
+      border: '2px solid ' + theme.secondaryColor,
       padding: '3px',
       borderRadius: '50%'
     }

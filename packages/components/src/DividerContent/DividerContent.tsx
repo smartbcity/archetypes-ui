@@ -33,7 +33,7 @@ const useStyles = (theme: Theme) =>
       marginBottom: '20px'
     },
     dividerBar: {
-      background: theme.hex.primaryColor,
+      background: theme.primaryColor,
       width: '0.5px',
       height: '80%',
       position: 'absolute',
