@@ -13,9 +13,9 @@ export const containedUseStyles = (theme: Theme) =>
       color: '#ffffff'
     },
     defaultColor: {
-      background: theme.hex.secondaryColor,
+      background: theme.secondaryColor,
       '&:hover': {
-        background: theme.hex.secondaryColor
+        background: theme.secondaryColor
       }
     },
     success: {
@@ -63,10 +63,10 @@ export const outlinedUseStyles = (theme: Theme) =>
       }
     },
     defaultColor: {
-      border: `1px solid ${theme.hex.secondaryColor}`,
-      color: theme.hex.secondaryColor,
+      border: `1px solid ${theme.secondaryColor}`,
+      color: theme.secondaryColor,
       '& span': {
-        color: theme.hex.secondaryColor
+        color: theme.secondaryColor
       }
     },
     success: {
@@ -91,7 +91,7 @@ export const outlinedUseStyles = (theme: Theme) =>
       }
     },
     buttonProgress: {
-      color: theme.hex.secondaryColor,
+      color: theme.secondaryColor,
       marginRight: 5
     },
     icon: {

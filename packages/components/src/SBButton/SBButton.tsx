@@ -5,7 +5,7 @@ import { Theme, useTheme } from '../ThemeContextProvider'
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     button: {
-      backgroundColor: theme.hex.secondaryColor,
+      backgroundColor: theme.secondaryColor,
       padding: '10px 30px',
       clipPath:
         'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',

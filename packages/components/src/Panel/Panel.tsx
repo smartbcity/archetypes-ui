@@ -32,7 +32,7 @@ const useStyles = (theme: Theme) =>
       zIndex: 1
     },
     content: {
-      backgroundColor: theme.hex.tertiaryColor,
+      backgroundColor: theme.tertiaryColor,
       minHeight: '100px',
       position: 'relative',
       justifyContent: 'center',

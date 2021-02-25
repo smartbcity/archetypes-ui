@@ -57,7 +57,7 @@ const customStyles = (theme: Theme) => ({
       borderRadius: '5px',
       border: `2px solid transparent !important`,
       '&:hover': {
-        border: `2px solid ${theme.hex.secondaryColor} !important`,
+        border: `2px solid ${theme.secondaryColor} !important`,
         backgroundColor: `#FFFFFF !important`,
         borderRadius: 5,
         outlineWidth: 'inherit !important'

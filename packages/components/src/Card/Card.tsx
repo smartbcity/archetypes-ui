@@ -15,7 +15,7 @@ const useStyles = (theme: Theme) =>
       position: 'relative'
     },
     dividerBar: {
-      background: theme.hex.primaryColor,
+      background: theme.primaryColor,
       height: '2px',
       width: '30%',
       position: 'absolute',

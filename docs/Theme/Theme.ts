@@ -52,10 +52,10 @@ export const myTheme: Theme = {
 export default createMuiTheme({
   palette: {
     primary: {
-      main: myTheme.hex.primaryColor,
+      main: myTheme.primaryColor,
     },
     secondary: {
-      main: myTheme.hex.secondaryColor,
+      main: myTheme.secondaryColor,
     },
   },
 });

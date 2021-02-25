@@ -12,20 +12,20 @@ export const StepConnector = (theme: Theme) =>
       right: 'calc(50% + 30px)'
     },
     active: {
-      color: theme.hex.primaryColor,
+      color: theme.primaryColor,
       '& $line': {
-        backgroundColor: theme.hex.primaryColor
+        backgroundColor: theme.primaryColor
       }
     },
     completed: {
       '& $line': {
-        backgroundColor: theme.hex.primaryColor
+        backgroundColor: theme.primaryColor
       }
     },
     line: {
       height: 3,
       border: 0,
-      backgroundColor: theme.hex.tertiaryColor,
+      backgroundColor: theme.tertiaryColor,
       borderRadius: 1
     }
   })(MuiStepConnector)

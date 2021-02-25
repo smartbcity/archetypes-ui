@@ -2,29 +2,17 @@ import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core'
 
 export interface Theme {
   name?: string
-  hex: Palette
-  rgb: Palette
-  shadows: string[]
-}
-
-export interface Palette {
   primaryColor: string
   secondaryColor: string
   tertiaryColor: string
+  shadows: string[]
 }
 
 export const defaultTheme: Theme = {
   name: 'default',
-  hex: {
-    primaryColor: '#48d7a2',
-    secondaryColor: '#005ecc',
-    tertiaryColor: '#f2f6f9',
-  },
-  rgb: {
-    primaryColor: '72, 215, 162',
-    secondaryColor: '0, 94, 204',
-    tertiaryColor: '242, 246, 249',
-  },
+  primaryColor: '#48d7a2',
+  secondaryColor: '#005ecc',
+  tertiaryColor: '#f2f6f9',
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
     '0px 3px 10px 0 rgba(0,0,0,0.1)',

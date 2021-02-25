@@ -71,6 +71,7 @@ const Item = (props: ItemProps) => {
     label,
     href,
     onClick,
+    componentProps,
     button,
     component,
     classes,
@@ -84,6 +85,7 @@ const Item = (props: ItemProps) => {
       component={component ? component : href ? 'a' : 'div'}
       onClick={onItemClick}
       href={href}
+      {...componentProps}
       {...other}
     >
       <ListItemIcon className={classes?.icon} style={styles?.icon}>

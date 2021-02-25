@@ -17,12 +17,12 @@ import { MergeMuiElementProps, lowLevelStyles, BasicProps } from '../Types'
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     dot: {
-      background: theme.hex.primaryColor,
+      background: theme.primaryColor,
       position: 'relative',
       alignSelf: 'unset'
     },
     dotPassed: {
-      background: theme.hex.tertiaryColor,
+      background: theme.tertiaryColor,
       position: 'relative',
       alignSelf: 'unset'
     },
@@ -47,10 +47,10 @@ const useStyles = (theme: Theme) =>
       opacity: '1'
     },
     connector: {
-      background: theme.hex.tertiaryColor
+      background: theme.tertiaryColor
     },
     connectorProgress: {
-      background: theme.hex.primaryColor,
+      background: theme.primaryColor,
       width: '100%',
       height: '100%'
     },
@@ -82,7 +82,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     selectedIndicatorRight: {
-      stroke: theme.hex.primaryColor,
+      stroke: theme.primaryColor,
       position: 'absolute',
       strokeWidth: '3px',
       right: '0px',
@@ -90,7 +90,7 @@ const useStyles = (theme: Theme) =>
       height: '30px'
     },
     selectedIndicatorLeft: {
-      stroke: theme.hex.primaryColor,
+      stroke: theme.primaryColor,
       position: 'absolute',
       strokeWidth: '3px',
       left: '0px',
@@ -98,7 +98,7 @@ const useStyles = (theme: Theme) =>
       height: '30px'
     },
     activeDot: {
-      border: `2px solid ${theme.hex.secondaryColor}`,
+      border: `2px solid ${theme.secondaryColor}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',

@@ -12,9 +12,9 @@ const ThemeGetter = (props: ThemeGetterProps) => {
   const themeString = `const defaultTheme = {
     name: "${myTheme.name}",
     hex: {
-      primaryColor: "${myTheme.hex.primaryColor}",
-      secondaryColor: "${myTheme.hex.secondaryColor}",
-      tertiaryColor: "${myTheme.hex.tertiaryColor}",
+      primaryColor: "${myTheme.primaryColor}",
+      secondaryColor: "${myTheme.secondaryColor}",
+      tertiaryColor: "${myTheme.tertiaryColor}",
     },
     rgb: {
       primaryColor: "${myTheme.rgb.primaryColor}",
