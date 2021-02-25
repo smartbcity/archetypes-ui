@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/components", "packages/layout"],
+  "packages": ["packages/components", "packages/forms", "packages/layout"],
   "npmClient": "yarn",
   "tagVersionPrefix": "",
   "version": "independent"

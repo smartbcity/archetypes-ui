@@ -17,7 +17,6 @@ export {
 export { PopUp, Action, PopUpProps } from './PopUp'
 export { TextField, TextFieldProps } from './TextField'
 export { Select, SelectItem, SelectProps } from './Select'
-export { DatePicker, DatePickerProps } from './DatePicker'
 export {
   Theme,
   ThemeContextProvider,
@@ -33,3 +32,4 @@ export { PdfViewer, PdfViewerProps } from './PdfViewer'
 export { AutomateViewer, AutomateViewerProps } from './Automate'
 export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 export { Loading, LoadingProps } from './Loading'
+export { BasicProps, lowLevelStyles, MergeMuiElementProps, MergeReactElementProps} from './Types'

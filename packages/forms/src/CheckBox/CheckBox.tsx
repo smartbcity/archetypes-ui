@@ -1,23 +1,19 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 
-import {
-  Checkbox,
-  FormControlLabel,
-  CheckboxProps as MuiCheckboxProps
-} from '@material-ui/core'
-import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
-import { Theme, useTheme } from '../ThemeContextProvider'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
+import CheckBoxIcon from '@material-ui/icons/CheckBox'
+import {BasicProps, Theme, useTheme} from '@smartb/archetypes-ui-components'
 
-/**
- * @deprecated
- */
+
 const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+  makeStyles(() => ({
     root: {
       borderRadius: 20
     },
     container: {
+      marginLeft: '0px',
+      marginRight: '0px',
       '& .MuiTypography-root': {
         fontSize: '14px'
       },
@@ -32,66 +28,64 @@ const useStyles = (theme: Theme) =>
       width: '22px',
       height: '22px'
     }
-  })
+  }))
 
-/**
- * @Deprecated
- */
-export interface CheckBoxBasicProps extends BasicProps {
+export interface CheckBoxProps extends BasicProps {
+
   /**
    * If true, the component is checked
    */
   checked: boolean
+
   /**
    * The content that will be displayed
    */
   text?: string
+
   /**
    * If true, the checkbox will be disabled
    */
   disabled?: boolean
+
   /**
    * Callback fired when the state is changed
    */
-  onChange?: () => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+
   /**
    * The value of the component
    */
   value?: string
+
+  /**
+   * ClassName for the unchecked icon
+   */
+  uncheckedIconClassName?: string
+
   /**
    * ClassName for the checked icon
    */
   checkedIconClassName?: string
+
   /**
    * Style for the checked icon
    */
   checkedIconStyle?: React.CSSProperties
+
 }
 
-/**
- * @Deprecated
- */
-export type CheckBoxProps = MergeMuiElementProps<
-  MuiCheckboxProps,
-  CheckBoxBasicProps
->
-
-/**
- * @Deprecated
- */
 export const CheckBox = (props: CheckBoxProps) => {
   const {
     checked = false,
     text = '',
     disabled = false,
-    onChange = () => {},
+    onChange,
     value = '',
     className,
-    id,
     style,
+    uncheckedIconClassName,
     checkedIconClassName,
-    checkedIconStyle,
-    ...other
+    checkedIconStyle
   } = props
   const theme = useTheme()
   const classes = useStyles(theme)()
@@ -101,22 +95,25 @@ export const CheckBox = (props: CheckBoxProps) => {
       value={value}
       className={`${classes.container} ${className}`}
       style={style}
-      id={id}
       control={
         <Checkbox
           checked={checked}
           disabled={disabled}
           onChange={onChange}
-          className={classes.root}
+          className={`${classes.root}`}
+          style={{ cursor: !onChange ? 'initial' : '' }}
           disableRipple
-          icon={<RadioButtonUnchecked className={classes.iconSize} />}
+          icon={
+            <CheckBoxOutlineBlankIcon
+              className={`${uncheckedIconClassName} ${classes.iconSize}`}
+            />
+          }
           checkedIcon={
-            <CheckCircle
+            <CheckBoxIcon
               className={`${classes.icon} ${classes.iconSize} ${checkedIconClassName}`}
               style={checkedIconStyle}
             />
           }
-          {...other}
         />
       }
       label={text}

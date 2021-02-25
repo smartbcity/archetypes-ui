@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { styles, classes, SelectItem, onChange } from './types'
 
 export default {
-  title: 'Components/Select',
+  title: 'Components/Deprecated/Select',
   component: AruiSelect,
   argTypes: {
     items: {

@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
 
 export default {
-  title: 'Components/TextField',
+  title: 'Components/Deprecated/TextField',
   component: AruiTextField,
   argTypes: {
     classes: {

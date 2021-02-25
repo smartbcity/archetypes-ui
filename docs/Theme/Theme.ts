@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { Theme } from "../../packages/components/src/ThemeContextProvider";
+import { Theme } from "@smartb/archetypes-ui-components";
 
 const round = (value: number) => {
   return Math.round(value * 100) / 100;
@@ -36,16 +36,9 @@ export const getShadows = (shadow: string | null) => {
 };
 
 export const myTheme: Theme = {
-  hex: {
-    primaryColor: "#fec519",
-    secondaryColor: "#edba27",
-    tertiaryColor: "#e0e0e0",
-  },
-  rgb: {
-    primaryColor: "254, 197, 25",
-    secondaryColor: "237, 186, 39",
-    tertiaryColor: "224, 224, 224",
-  },
+  primaryColor: "#fec519",
+  secondaryColor: "#edba27",
+  tertiaryColor: "#e0e0e0",
   shadows: getShadows(localStorage.getItem("shadow")),
 };
 

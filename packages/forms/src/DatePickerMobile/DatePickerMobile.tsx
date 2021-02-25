@@ -1,8 +1,7 @@
 import React from 'react'
 import { InputLabel } from '@material-ui/core'
 import clsx from 'clsx'
-import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import {BasicProps, lowLevelStyles, MergeReactElementProps, Theme, useTheme} from "@smartb/archetypes-ui-components";
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
@@ -39,7 +38,7 @@ interface DatePickerStyles {
   input?: React.CSSProperties
 }
 
-export interface DatePickerBasicProps extends BasicProps {
+export interface DatePickerMobileBasicProps extends BasicProps {
   /**
    * The Date entered in the input
    */
@@ -63,13 +62,13 @@ export interface DatePickerBasicProps extends BasicProps {
   styles?: DatePickerStyles
 }
 
-export type DatePickerProps = MergeReactElementProps<
+export type DatePickerMobileProps = MergeReactElementProps<
   'input',
-  DatePickerBasicProps
+  DatePickerMobileBasicProps
 >
 
-export const DatePicker = React.forwardRef(
-  (props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
+export const DatePickerMobile = React.forwardRef(
+  (props: DatePickerMobileProps, ref: React.Ref<HTMLInputElement>) => {
     const {
       value,
       label,

@@ -9,6 +9,7 @@ export const parameters = {
         "Overview",
         ["Getting started", "Cheatsheet"],
         "Components",
+        "Forms",
         "Layout",
       ],
     },
