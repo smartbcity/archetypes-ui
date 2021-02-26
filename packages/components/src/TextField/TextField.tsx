@@ -8,16 +8,25 @@ import {
 import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
-interface TextFieldClasses {
+/**
+ * @deprecated
+ */
+export interface TextFieldClasses {
   label?: string
   input?: string
 }
 
-interface TextFieldStyles {
+/**
+ * @deprecated
+ */
+export interface TextFieldStyles {
   label?: React.CSSProperties
   input?: React.CSSProperties
 }
 
+/**
+ * @deprecated
+ */
 export interface TextFieldBasicProps extends BasicProps {
   /**
    * The default value displayed
@@ -81,11 +90,17 @@ const useStyles = lowLevelStyles({
   }
 })
 
+/**
+ * @deprecated
+ */
 export type TextFieldProps = MergeMuiElementProps<
   MuiTextFieldProps,
   TextFieldBasicProps
 >
 
+/**
+ * @deprecated
+ */
 export const TextField = (props: TextFieldProps) => {
   const {
     defaultValue,

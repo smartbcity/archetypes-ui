@@ -11,7 +11,7 @@ const useStyles = lowLevelStyles({
   }
 })
 
-export const DeleteButton = (props: ButtonProps) => {
+export const DeleteButton = function <T = {}>(props: ButtonProps<T>) {
   const classes = useStyles()
   return (
     <Button

@@ -11,7 +11,7 @@ const useStyles = lowLevelStyles({
   }
 })
 
-export const EditButton = (props: ButtonProps) => {
+export const EditButton = function <T = {}>(props: ButtonProps<T>) {
   const classes = useStyles()
   return (
     <Button

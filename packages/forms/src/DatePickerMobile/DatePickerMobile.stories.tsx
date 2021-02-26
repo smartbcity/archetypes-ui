@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import {
-  DatePicker as AruiDatePicker,
-  DatePickerBasicProps
-} from './DatePicker'
+  DatePickerMobile,
+  DatePickerMobileBasicProps
+} from './DatePickerMobile'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
 
 export default {
-  title: 'Components/DatePicker',
-  component: AruiDatePicker,
+  title: 'Forms/DatePickerMobile',
+  component: DatePickerMobile,
   argTypes: {
     classes: {
       table: {
@@ -30,10 +30,10 @@ export default {
   }
 } as Meta
 
-const Template: Story<DatePickerBasicProps> = (args: DatePickerBasicProps) => {
+const Template: Story<DatePickerMobileBasicProps> = (args: DatePickerMobileBasicProps) => {
   const [date, setDate] = useState('')
   return (
-    <AruiDatePicker
+    <DatePickerMobile
       {...args}
       onChange={(date: string) => setDate(date)}
       value={date}
@@ -46,4 +46,4 @@ DatePicker.args = {
   label: 'Date Picker'
 }
 
-DatePicker.storyName = 'DatePicker'
+DatePicker.storyName = 'DatePickerMobile'

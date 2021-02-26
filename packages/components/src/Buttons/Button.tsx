@@ -15,7 +15,7 @@ import {
 
 export type Variant = 'contained' | 'outlined' | 'text'
 
-export interface ButtonBasicProps extends BasicProps {
+export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The class added to the root element of the component
    */
@@ -69,11 +69,22 @@ export interface ButtonBasicProps extends BasicProps {
    * to wait for the end of the action. But if you want to force that state you can set **isLoading** to `true`.
    */
   isLoading?: boolean
+  /**
+   * The element that will be placed in the root element (a button by default)
+   */
+  component?: React.ElementType<any>
+  /**
+   * The additional props of the root element
+   */
+  componentProps?: T
 }
 
-export type ButtonProps = MergeMuiElementProps<MuiButtonProps, ButtonBasicProps>
+export type ButtonProps<T = {}> = MergeMuiElementProps<
+  MuiButtonProps,
+  ButtonBasicProps<T>
+>
 
-export const Button = (props: ButtonProps) => {
+export const Button = function <T = {}>(props: ButtonProps<T>) {
   const {
     children,
     onClick,
@@ -89,6 +100,8 @@ export const Button = (props: ButtonProps) => {
     icon,
     noIcon,
     isLoading = false,
+    component,
+    componentProps,
     ...other
   } = props
   const theme = useTheme()
@@ -115,6 +128,44 @@ export const Button = (props: ButtonProps) => {
     },
     [onClick]
   )
+
+  if (component)
+    return (
+      <MuiButton<typeof component>
+        style={style}
+        disabled={loading || disabled || forcedLoading}
+        className={`${classes.root} ${
+          disabled && classes.disabled
+        } AruiButton-root ${className} ${success ? classes.success : ''} ${
+          fail ? classes.fail : ''
+        } ${advertissement ? classes.advertissement : classes.defaultColor}`}
+        onClick={(e: any) => !href && onClick && onClickMemoisied(e)}
+        component={component}
+        href={href}
+        id={id}
+        {...componentProps}
+        {...other}
+      >
+        {!noIcon &&
+          (loading || forcedLoading ? (
+            <CircularProgress
+              size={variant === 'contained' ? 26 : 20}
+              className={classes.buttonProgress}
+            />
+          ) : success ? (
+            <Check className={classes.icon} />
+          ) : fail ? (
+            <Close className={classes.icon} />
+          ) : advertissement ? (
+            <ReportProblemOutlined className={classes.icon} />
+          ) : icon ? (
+            icon
+          ) : (
+            ''
+          ))}
+        {children}
+      </MuiButton>
+    )
 
   return (
     <MuiButton

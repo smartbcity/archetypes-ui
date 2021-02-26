@@ -9,6 +9,9 @@ import { RadioButtonUnchecked, CheckCircle } from '@material-ui/icons'
 import { Theme, useTheme } from '../ThemeContextProvider'
 import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 
+/**
+ * @deprecated
+ */
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     root: {
@@ -31,6 +34,9 @@ const useStyles = (theme: Theme) =>
     }
   })
 
+/**
+ * @Deprecated
+ */
 export interface CheckBoxBasicProps extends BasicProps {
   /**
    * If true, the component is checked
@@ -62,11 +68,17 @@ export interface CheckBoxBasicProps extends BasicProps {
   checkedIconStyle?: React.CSSProperties
 }
 
+/**
+ * @Deprecated
+ */
 export type CheckBoxProps = MergeMuiElementProps<
   MuiCheckboxProps,
   CheckBoxBasicProps
 >
 
+/**
+ * @Deprecated
+ */
 export const CheckBox = (props: CheckBoxProps) => {
   const {
     checked = false,

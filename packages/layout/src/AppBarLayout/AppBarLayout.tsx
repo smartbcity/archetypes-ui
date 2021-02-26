@@ -7,6 +7,9 @@ import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({
+  root: {
+    zIndex: 1100
+  },
   iconButton: {
     marginRight: '20px'
   },
@@ -54,7 +57,7 @@ export const AppBarLayout = (props: AppBarLayoutProps) => {
   const defaultClasses = useStyles()
   if (!show)
     return (
-      <Box className={clsx(className, 'AruiAppBar-root')}>
+      <Box className={clsx(className, 'AruiAppBar-root', defaultClasses.root)}>
         {onDrawerOpen && (
           <IconButton
             className={clsx(

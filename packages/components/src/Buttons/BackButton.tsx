@@ -13,7 +13,7 @@ const useStyles = lowLevelStyles({
   }
 })
 
-export const BackButton = (props: ButtonProps) => {
+export const BackButton = function <T = {}>(props: ButtonProps<T>) {
   const classes = useStyles()
   return (
     <Button

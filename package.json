@@ -17,11 +17,13 @@
     "@storybook/node-logger": "^6.1.15",
     "@storybook/react": "^6.1.15",
     "@storybook/theming": "^6.1.17",
+    "@svgr/webpack": "^5.5.0",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.27",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
+    "clsx": "^1.1.1",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
@@ -42,9 +44,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
-    "typescript": "^4.2.2",
     "react-syntax-highlighter": "^15.4.3",
-    "clsx": "^1.1.1"
+    "typescript": "^4.2.2"
   },
   "husky": {
     "hooks": {

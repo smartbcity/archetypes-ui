@@ -8,11 +8,11 @@ COPY . ./
 RUN yarn install
 ENV PATH /app/node_modules/.bin:$PATH
 RUN  yarn workspaces run build
-RUN  yarn workspace @smartb/archetypes-storybook build-storybook
+RUN  yarn build-storybook
 
 FROM nginx:1.17.0-alpine
 
-COPY --from=build /app/packages/storybook/storybook-static /var/www
+COPY --from=build /app/storybook-static /var/www
 COPY infra/docker/storybook/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
