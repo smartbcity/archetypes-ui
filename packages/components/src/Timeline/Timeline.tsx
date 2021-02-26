@@ -8,11 +8,12 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@material-ui/lab'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Theme, useTheme } from '../ThemeContextProvider'
 import { MergeMuiElementProps, lowLevelStyles, BasicProps } from '../Types'
+import { Arrow } from '../icons'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
@@ -35,22 +36,24 @@ const useStyles = (theme: Theme) =>
     },
     selectableItem: {
       cursor: 'pointer',
+      '&:hover .AruiTimeLine-selectorIndicator': {
+        display: 'block'
+      },
       '&:hover .AruiTimeLine-item': {
-        transform: 'scale(1.05)',
-        margin: '20px 0',
         opacity: '1'
       }
     },
     itemSelected: {
-      transform: 'scale(1.05)',
-      margin: '20px 0',
-      opacity: '1'
+      opacity: '1',
+      '& .AruiTimeLine-selectorIndicator': {
+        display: 'block'
+      }
     },
     connector: {
       background: theme.tertiaryColor
     },
     connectorProgress: {
-      background: theme.primaryColor,
+      background: theme.secondaryColor,
       width: '100%',
       height: '100%'
     },
@@ -71,6 +74,16 @@ const useStyles = (theme: Theme) =>
     flexSeparator: {
       flex: 1
     },
+    selectorIndicator: {
+      display: 'none',
+      width: '25px',
+      height: '25px',
+      strokeWidth: '1.5',
+      position: 'absolute',
+      left: '-10px',
+      top: '2px',
+      transform: 'rotate(180deg)'
+    },
     timelineAlternate: {
       '& .AruiTimeLine-item-ClickableContainer:nth-child(even) .AruiTimeLine-item': {
         flexDirection: 'row-reverse'
@@ -80,22 +93,6 @@ const useStyles = (theme: Theme) =>
       '& .AruiTimeLine-item': {
         flexDirection: 'row-reverse'
       }
-    },
-    selectedIndicatorRight: {
-      stroke: theme.primaryColor,
-      position: 'absolute',
-      strokeWidth: '3px',
-      right: '0px',
-      bottom: '-10px',
-      height: '30px'
-    },
-    selectedIndicatorLeft: {
-      stroke: theme.primaryColor,
-      position: 'absolute',
-      strokeWidth: '3px',
-      left: '0px',
-      top: '-10px',
-      height: '30px'
     },
     activeDot: {
       border: `2px solid ${theme.secondaryColor}`,
@@ -255,26 +252,13 @@ export const Timeline = (props: TimelineProps) => {
               )}
               style={styles?.item}
             >
-              {isSelected && (
-                <Fragment>
-                  <svg
-                    viewBox='0 0 51 51'
-                    fill='none'
-                    className={defaultClasses.selectedIndicatorLeft}
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path d='M51 1H6C3.23858 1 1 3.23858 1 6V51' />
-                  </svg>
-                  <svg
-                    viewBox='0 0 51 51'
-                    fill='none'
-                    className={defaultClasses.selectedIndicatorRight}
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path d='M8.34465e-07 50H45C47.7614 50 50 47.7614 50 45V5.00705e-07' />
-                  </svg>
-                </Fragment>
-              )}
+              <Arrow
+                color={theme.primaryColor}
+                className={clsx(
+                  defaultClasses.selectorIndicator,
+                  'AruiTimeLine-selectorIndicator'
+                )}
+              />
               <TimelineOppositeContent
                 className={clsx(
                   align === 'alternate'

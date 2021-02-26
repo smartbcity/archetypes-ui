@@ -82,16 +82,18 @@ const useStyles = (customTheme: SBTheme) =>
           duration: theme.transitions.duration.leavingScreen
         }),
         paddingTop: props.appBarHeight,
-        paddingLeft: props.menuWidth
+        paddingLeft: `${props.menuWidth + 10}px`,
+        paddingRight: '10px'
       }),
       mainShift: (props) => ({
         flexGrow: 1,
         paddingTop: props.appBarHeight,
+        paddingLeft: '10px',
+        paddingRight: '10px',
         transition: theme.transitions.create('padding', {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen
-        }),
-        paddingLeft: 0
+        })
       }),
       hidder: {
         opacity: '0.5',
@@ -238,6 +240,7 @@ export const AppLayout = (props: AppLayoutProps) => {
           }}
           onClick={onToggle}
         />
+        salut
         {children}
       </main>
     </React.Fragment>
