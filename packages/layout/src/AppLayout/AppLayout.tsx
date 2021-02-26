@@ -240,7 +240,6 @@ export const AppLayout = (props: AppLayoutProps) => {
           }}
           onClick={onToggle}
         />
-        salut
         {children}
       </main>
     </React.Fragment>
