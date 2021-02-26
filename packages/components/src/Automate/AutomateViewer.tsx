@@ -3,7 +3,7 @@ import { Node, Network, Edge } from 'vis-network'
 import { city } from '@smartb/s2-dsl-automate'
 import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
 import clsx from 'clsx'
-import { useTheme } from '..'
+import { useTheme } from '../ThemeContextProvider'
 class Automate extends city.smartb.s2.dsl.automate.S2Automate {}
 
 const useStyles = lowLevelStyles({
