@@ -1,10 +1,10 @@
 import React from 'react'
-import {Meta} from "@storybook/react";
-import { Table as AruiTable, TableBasicProps } from './Table';
+import { Meta } from '@storybook/react'
+import { Table as AruiTable, TableBasicProps } from './Table'
 import { Story } from '@storybook/react/types-6-0'
-import {IDataTableColumn} from 'react-data-table-component'
-import { Typography } from '@material-ui/core';
-import { IDataTableColumn as IDataTableColumnString } from './types';
+import { IDataTableColumn } from 'react-data-table-component'
+import { Typography } from '@material-ui/core'
+import { IDataTableColumn as IDataTableColumnString } from './types'
 
 export default {
   title: 'Components/Table',
@@ -31,13 +31,15 @@ export default {
           summary: '(row: T) => void'
         }
       }
-    },
+    }
   }
 } as Meta
 
-const Template: Story<TableBasicProps<BasicData>> = (args: TableBasicProps<BasicData>) => (
-  <AruiTable {...args}></AruiTable>
-)
+const Template: Story<TableBasicProps<BasicData>> = (
+  args: TableBasicProps<BasicData>
+) => {
+  return <AruiTable {...args}></AruiTable>
+}
 
 export const Table = Template.bind({})
 
@@ -47,32 +49,38 @@ interface BasicData {
   isRelaxed: boolean
 }
 
-const data: BasicData[] = [{
-  id: "0",
-  name: "Jean",
-  isRelaxed: true
-}, {
-  id: "1",
-  name: "Mathieu",
-  isRelaxed: false
-}, {
-  id: "2",
-  name: "Simon",
-  isRelaxed: true
-}]
+const data: BasicData[] = [
+  {
+    id: '0',
+    name: 'Jean',
+    isRelaxed: true
+  },
+  {
+    id: '1',
+    name: 'Mathieu',
+    isRelaxed: false
+  },
+  {
+    id: '2',
+    name: 'Simon',
+    isRelaxed: true
+  }
+]
 
-const columns: IDataTableColumn<BasicData>[] = [{
-  name: "Id",
-  cell: (row) => <Typography>{row.id}</Typography>
-},
-{
-  name: "Name",
-  cell: (row) => <Typography>{row.name}</Typography>
-},
-{
-  name: "Is he relax ?",
-  cell: (row) => <Typography>{row.isRelaxed ? "yes" : "no"}</Typography>
-}]
+const columns: IDataTableColumn<BasicData>[] = [
+  {
+    name: 'Id',
+    cell: (row) => <Typography>{row.id}</Typography>
+  },
+  {
+    name: 'Name',
+    cell: (row) => <Typography>{row.name}</Typography>
+  },
+  {
+    name: 'Is he relax ?',
+    cell: (row) => <Typography>{row.isRelaxed ? 'yes' : 'no'}</Typography>
+  }
+]
 
 Table.args = {
   data: data,
