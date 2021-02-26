@@ -5,9 +5,9 @@ import DataTable, {
   IDataTableProps
 } from 'react-data-table-component'
 import { Typography } from '@material-ui/core'
-import { CustomPagination } from './CustomPagination'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '../Types'
 import { useTheme, Theme } from '../ThemeContextProvider'
+import { Pagination } from '../Pagination'
 
 const useStyles = lowLevelStyles({
   container: {
@@ -109,6 +109,8 @@ const customStyles = (theme: Theme) => ({
   }
 })
 
+export type Column<Row> = IDataTableColumn<Row>
+
 export interface TableBasicProps<Row> extends BasicProps {
   /**
    * An array of the data that will be displayed in the table
@@ -117,7 +119,7 @@ export interface TableBasicProps<Row> extends BasicProps {
   /**
    * The columns of the table build with the data
    */
-  columns: IDataTableColumn<Row>[]
+  columns: Column<Row>[]
   /**
    * Indicates if the user can select the row with a checkbox or not
    */
@@ -236,7 +238,7 @@ export const Table = <Row,>(props: TableProps<Row>) => {
       )}
 
       {page && totalPages ? (
-        <CustomPagination
+        <Pagination
           onPageChange={handlePageChange}
           page={page}
           totalPage={totalPages}

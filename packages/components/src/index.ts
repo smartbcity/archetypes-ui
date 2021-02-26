@@ -32,4 +32,11 @@ export { PdfViewer, PdfViewerProps } from './PdfViewer'
 export { AutomateViewer, AutomateViewerProps } from './Automate'
 export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 export { Loading, LoadingProps } from './Loading'
-export { BasicProps, lowLevelStyles, MergeMuiElementProps, MergeReactElementProps} from './Types'
+export {
+  BasicProps,
+  lowLevelStyles,
+  MergeMuiElementProps,
+  MergeReactElementProps
+} from './Types'
+export { Pagination, PaginationProps } from './Pagination'
+export { Table, TableProps, Column } from './Table'
