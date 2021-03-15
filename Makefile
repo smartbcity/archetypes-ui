@@ -1,7 +1,7 @@
 STORYBOOK_DOCKERFILE	:= infra/docker/storybook/Dockerfile
-STORYBOOK_NAME	   	 	:= smartbcity/r2-storybook
+STORYBOOK_NAME	   	 	:= smartbcity/e2-storybook
 STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
-STORYBOOK_LATEST		:= ${REST_MOBI_NAME}:latest
+STORYBOOK_LATEST		:= ${STORYBOOK_NAME}:latest
 
 test:
 	@echo 'No test yet'
