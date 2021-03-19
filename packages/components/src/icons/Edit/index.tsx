@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent } from './Edit.svg'
-import { MergeReactElementProps } from '../types'
+import { MergeReactElementProps } from '@smartb/archetypes-ui-themes'
 
 interface EditProps {
   color?: string

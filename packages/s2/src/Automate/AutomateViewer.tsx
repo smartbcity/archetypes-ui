@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Node, Network, Edge } from 'vis-network'
 import { city } from '@smartb/s2-dsl-automate'
-import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeReactElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { useTheme } from '../ThemeContextProvider'
+import { useTheme } from '@smartb/archetypes-ui-themes'
+
 class Automate extends city.smartb.s2.dsl.automate.S2Automate {}
 
 const useStyles = lowLevelStyles({
@@ -84,8 +89,8 @@ export const AutomateViewer = (props: AutomateViewerProps) => {
     //@ts-ignore
     const edges: Edge[] = transitions.map(
       (trans: city.smartb.s2.dsl.automate.S2Transition, index) => {
-        const from = !!trans.from ? trans.from.position + 1 : 0
-        const to = trans.to.position + 1
+        const from = !!trans.from ? trans.from.nodePosition() + 1 : 0
+        const to = trans.to.nodePosition() + 1
         if (!selfRefSize[from]) selfRefSize[from] = 0
         if (from === to) selfRefSize[from]++
         nbNodes = Math.max(nbNodes, Math.max(to + 1))

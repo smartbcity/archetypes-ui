@@ -5,8 +5,12 @@ import DataTable, {
   IDataTableProps
 } from 'react-data-table-component'
 import { Typography } from '@material-ui/core'
-import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '../Types'
-import { useTheme, Theme } from '../ThemeContextProvider'
+import {
+  BasicProps,
+  lowLevelStyles,
+  MergeMuiElementProps
+} from '@smartb/archetypes-ui-themes'
+import { useTheme, Theme } from '@smartb/archetypes-ui-themes'
 import { Pagination } from '../Pagination'
 
 const useStyles = lowLevelStyles({

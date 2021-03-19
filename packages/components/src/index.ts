@@ -17,26 +17,11 @@ export {
 export { PopUp, Action, PopUpProps } from './PopUp'
 export { TextField, TextFieldProps } from './TextField'
 export { Select, SelectItem, SelectProps } from './Select'
-export {
-  Theme,
-  ThemeContextProvider,
-  ThemeContextProviderProps,
-  ThemeContext,
-  useTheme,
-  useThemeContext
-} from './ThemeContextProvider'
 export { FilesPanel, Folder, FolderItem, FilesPanelProps } from './FilesPanel'
 export { FilePreview, FilePreviewProps } from './FilePreview'
 export { CheckBox, CheckBoxProps } from './Checkbox'
 export { PdfViewer, PdfViewerProps } from './PdfViewer'
-export { AutomateViewer, AutomateViewerProps } from './Automate'
 export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 export { Loading, LoadingProps } from './Loading'
-export {
-  BasicProps,
-  lowLevelStyles,
-  MergeMuiElementProps,
-  MergeReactElementProps
-} from './Types'
 export { Pagination, PaginationProps } from './Pagination'
 export { Table, TableProps, Column } from './Table'

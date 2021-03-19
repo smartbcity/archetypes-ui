@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent } from './delete.svg'
-import { MergeReactElementProps } from '../types'
+import { MergeReactElementProps } from '@smartb/archetypes-ui-themes'
 
 interface DeleteProps {
   color?: string

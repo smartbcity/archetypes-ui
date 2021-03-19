@@ -11,8 +11,12 @@ import {
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import { Theme, useTheme } from '../ThemeContextProvider'
-import { MergeMuiElementProps, lowLevelStyles, BasicProps } from '../Types'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import {
+  MergeMuiElementProps,
+  lowLevelStyles,
+  BasicProps
+} from '@smartb/archetypes-ui-themes'
 import { Arrow } from '../icons'
 
 const useStyles = (theme: Theme) =>

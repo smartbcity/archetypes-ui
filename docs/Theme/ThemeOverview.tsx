@@ -9,7 +9,7 @@ import ThemeGetter from "./ThemeGetter";
 import {
   Theme,
   useThemeContext,
-} from "@smartb/archetypes-ui-components/src/ThemeContextProvider";
+} from "@smartb/archetypes-ui-themes/src/ThemeContextProvider";
 
 const useStyles = makeStyles(() =>
   createStyles({

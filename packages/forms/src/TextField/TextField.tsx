@@ -1,8 +1,13 @@
 import React from 'react'
-import {InputAdornment, InputLabel, makeStyles, TextField as MuiTextField} from '@material-ui/core'
-import {Clear} from '@material-ui/icons'
-import {useInputStylesSimple} from "../style";
-import {BasicProps} from "@smartb/archetypes-ui-components";
+import {
+  InputAdornment,
+  InputLabel,
+  makeStyles,
+  TextField as MuiTextField
+} from '@material-ui/core'
+import { Clear } from '@material-ui/icons'
+import { useInputStylesSimple } from '../style'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 
 export interface TextFieldProps extends BasicProps {
   /**
@@ -104,7 +109,9 @@ export interface TextFieldProps extends BasicProps {
   /**
    * The event called when the input is blured
    */
-  onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onBlur?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void
 }
 
 const useStyles = makeStyles(() => ({
@@ -134,9 +141,9 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
     placeHolder = '',
     style,
     textFieldType,
-    baseClassName = "",
+    baseClassName = '',
     defaultValue,
-    value = "",
+    value = '',
     disabled = false,
     inputIcon,
     onRemoveValue,
@@ -174,18 +181,23 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         InputProps={{
           ref: ref,
           startAdornment: !!inputIcon && iconPosition === 'start' && (
-            <InputAdornment component="div" position='start'>{inputIcon}</InputAdornment>
+            <InputAdornment component='div' position='start'>
+              {inputIcon}
+            </InputAdornment>
           ),
           endAdornment: !!inputIcon && iconPosition === 'end' && (
-            <InputAdornment component="div" position='end'>{inputIcon}</InputAdornment>
+            <InputAdornment component='div' position='end'>
+              {inputIcon}
+            </InputAdornment>
           ),
           disableUnderline: true,
           style: { paddingRight: onRemoveValue ? '22px' : '' },
           inputProps: {
-            className:baseClassName,
+            className: baseClassName,
             min: 0
           },
-          className: inputIcon && iconPosition === 'start'
+          className:
+            inputIcon && iconPosition === 'start'
               ? classesLocal.withIconStart
               : inputIcon && iconPosition === 'end'
               ? classesLocal.withIconEnd

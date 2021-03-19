@@ -3,8 +3,8 @@ import { Drawer, Theme, DrawerProps } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
 import { StyleProps } from '../StyleProps'
-import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-components'
-import { lowLevelStyles } from '../Types'
+import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-themes'
+import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
 
 const useStyles = (customTheme: SBTheme) =>

@@ -1,10 +1,15 @@
 import React from 'react'
-import {FormControl, FormHelperText, InputLabel, Select as MuiSelect} from '@material-ui/core'
-import {Clear} from '@material-ui/icons'
-import {makeStyles} from '@material-ui/core/styles'
-import {SelectIcon} from '../assets/icons'
-import {useInputStylesSimple} from "../style";
-import {BasicProps} from "@smartb/archetypes-ui-components";
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  Select as MuiSelect
+} from '@material-ui/core'
+import { Clear } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/core/styles'
+import { SelectIcon } from '../assets/icons'
+import { useInputStylesSimple } from '../style'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 
 export type Option = {
   value: string | number
@@ -24,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
   disabledStyle: {
     '& .MuiSelect-root': {
-      fontSize: "14px",
+      fontSize: '14px',
       color: 'rgba(0, 0, 0, 0.35)'
     }
   },
@@ -32,14 +37,13 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     right: '35px',
     top: '50%',
-    marginTop: "-12px",
+    marginTop: '-12px',
     cursor: 'pointer',
     color: 'rgba(0, 0, 0, 0.54)'
   }
 }))
 
 export interface SelectProps extends BasicProps {
-
   /**
    * The value displayed
    */
@@ -99,7 +103,9 @@ export interface SelectProps extends BasicProps {
   /**
    * The event called when the input is blured
    */
-  onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onBlur?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void
 }
 
 export const Select = React.forwardRef((props: SelectProps, ref) => {
@@ -110,7 +116,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
     options,
     className,
     placeHolder,
-    baseClassName = "",
+    baseClassName = '',
     style,
     id,
     error = false,
@@ -140,7 +146,9 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
         ref={ref}
         onClick={onClick}
         onBlur={onBlur}
-        className={`${classesLocal.root} ${value === '' && placeHolder ? classesLocal.disabledStyle : ""} ${baseClassName}`}
+        className={`${classesLocal.root} ${
+          value === '' && placeHolder ? classesLocal.disabledStyle : ''
+        } ${baseClassName}`}
         id={id}
         variant={'filled'}
         native
@@ -151,7 +159,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
             color='#98A5AE'
             style={{
               width: '20px',
-              height: "20px",
+              height: '20px',
               right: '10px',
               top: 'calc(50% - 10px)'
             }}
@@ -163,8 +171,8 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
         inputProps={{
           name: label,
           style: {
-            paddingRight: value !== '' && onRemoveValue ? "49px" : "26px",
-            textOverflow: "ellipsis"
+            paddingRight: value !== '' && onRemoveValue ? '49px' : '26px',
+            textOverflow: 'ellipsis'
           }
         }}
         style={{
@@ -173,10 +181,13 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
         }}
         disabled={disabled ? disabled : false}
       >
-        {value === '' && placeHolder ?
-        <option aria-label='Placeholder' value="" disabled>{placeHolder}</option>
-      : value === '' && !placeHolder && <option aria-label='None' value=''/>
-      }
+        {value === '' && placeHolder ? (
+          <option aria-label='Placeholder' value='' disabled>
+            {placeHolder}
+          </option>
+        ) : (
+          value === '' && !placeHolder && <option aria-label='None' value='' />
+        )}
         {options.map((option, index) => (
           <option value={option.value} key={index}>
             {option.label}

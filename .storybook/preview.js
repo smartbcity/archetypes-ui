@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeContextProvider } from "../packages/components/src/ThemeContextProvider";
+import { ThemeContextProvider } from "../packages/themes/src/ThemeContextProvider";
 import { myTheme } from "../docs/Theme/Theme";
 
 export const parameters = {

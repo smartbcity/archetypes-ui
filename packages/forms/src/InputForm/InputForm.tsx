@@ -2,11 +2,10 @@ import { Box, InputLabel } from '@material-ui/core'
 import React from 'react'
 import { Option, Select } from '../Select'
 import { TextField } from '../TextField'
-import {useInputStyles} from "../style";
-import {BasicProps, useTheme} from "@smartb/archetypes-ui-components";
+import { useInputStyles } from '../style'
+import { BasicProps, useTheme } from '@smartb/archetypes-ui-themes'
 
 export interface InputFormProps extends BasicProps {
-
   /**
    * The label of the input
    */
@@ -100,7 +99,9 @@ export interface InputFormProps extends BasicProps {
   /**
    * The event called when the input is blured
    */
-  onBlur?: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onBlur?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void
 }
 
 export const InputForm = React.forwardRef((props: InputFormProps, ref) => {

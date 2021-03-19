@@ -5,7 +5,7 @@ import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
 import clsx from 'clsx'
-import { BasicProps, lowLevelStyles } from '../Types'
+import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
 const useStyles = lowLevelStyles({
   menu: {

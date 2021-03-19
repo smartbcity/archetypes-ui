@@ -9,9 +9,13 @@ import {
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '.'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

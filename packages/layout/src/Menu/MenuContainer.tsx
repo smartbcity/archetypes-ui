@@ -9,10 +9,7 @@ import {
 } from '@material-ui/core'
 import { Menu } from './MenuItem'
 import React, { Fragment, useCallback, useMemo } from 'react'
-import {
-  BasicProps,
-  MergeMuiElementProps
-} from '@smartb/archetypes-ui-components/src/Types'
+import { BasicProps, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 
 interface MenuContainerClasses {
   item?: ItemClasses

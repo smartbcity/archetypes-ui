@@ -8,7 +8,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { getDidS2 } from '@smartb/did-domain'
 
 export default {
-  title: 'Components/AutomateViewer',
+  title: 'S2/AutomateViewer',
   component: AruiAutomateViewer
 } as Meta
 

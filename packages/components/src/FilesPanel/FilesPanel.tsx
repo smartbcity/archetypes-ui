@@ -1,5 +1,5 @@
 import React from 'react'
-import { BasicProps } from '../Types'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 import { Box, makeStyles } from '@material-ui/core'
 import { FilePreview } from '../FilePreview'
 import { Folder } from './Folder'

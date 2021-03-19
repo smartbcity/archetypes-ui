@@ -10,7 +10,7 @@ import {
   ListItem,
   List
 } from '@material-ui/core'
-import { BasicProps, lowLevelStyles } from '../Types'
+import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

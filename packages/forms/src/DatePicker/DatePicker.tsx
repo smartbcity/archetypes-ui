@@ -1,9 +1,9 @@
 import { InputLabel, makeStyles } from '@material-ui/core'
 import { KeyboardDatePicker } from '@material-ui/pickers'
-import React  from 'react'
+import React from 'react'
 import { Calendar } from '../assets/icons'
-import { useInputStylesSimple } from "../style";
-import {BasicProps} from "@smartb/archetypes-ui-components";
+import { useInputStylesSimple } from '../style'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 
 const useStyles = makeStyles(() => ({
   input: {

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react'
 import ReactDropzone, { FileRejection, DropzoneProps } from 'react-dropzone'
 import { Tooltip, Paper, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 
 const useStyles = (width: number) =>
   lowLevelStyles({

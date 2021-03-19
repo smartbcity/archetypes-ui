@@ -8,9 +8,9 @@ import React from 'react'
 import InputBase from '@material-ui/core/InputBase'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { MenuProps } from '@material-ui/core'
-import {Option} from "../Select";
-import {useInputStylesSimple} from "../style";
-import {BasicProps} from "@smartb/archetypes-ui-components";
+import { Option } from '../Select'
+import { useInputStylesSimple } from '../style'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 
 const useStyles = makeStyles(() => ({
   helperText: {
@@ -51,7 +51,6 @@ const MenuPropsP: Partial<MenuProps> = {
 }
 
 export interface MultiSelectProps extends BasicProps {
-
   /**
    * The value displayed
    */

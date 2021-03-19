@@ -1,6 +1,6 @@
 import React from 'react'
 import { Arrow } from '../icons'
-import { lowLevelStyles } from '../Types'
+import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import { Button, ButtonProps } from './Button'
 
 const useStyles = lowLevelStyles({

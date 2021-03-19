@@ -1,12 +1,11 @@
-import {Theme, useTheme} from "@smartb/archetypes-ui-components";
-import {makeStyles} from "@material-ui/core";
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { makeStyles } from '@material-ui/core'
 
 import { Theme as MuiTheme } from '@material-ui/core/styles/createMuiTheme'
 
-
-const darkGrey = '#353945';
-const textFieldGrey = '#D1DCE7';
-const error = '#f44336';
+const darkGrey = '#353945'
+const textFieldGrey = '#D1DCE7'
+const error = '#f44336'
 
 export const useInputStylesSimple = (disabled: boolean) => {
   const theme = useTheme()
@@ -14,7 +13,7 @@ export const useInputStylesSimple = (disabled: boolean) => {
 }
 
 export const useInputStyles = (theme: Theme, disabled: boolean) => {
-  return makeStyles(({palette}: MuiTheme) => ({
+  return makeStyles(({ palette }: MuiTheme) => ({
     label: {
       marginBottom: '15px',
       fontSize: 16,
