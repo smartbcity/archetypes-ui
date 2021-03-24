@@ -4,29 +4,30 @@ import {
   ListItemIcon,
   ListItemText,
   ListItemProps,
-  ListProps
+  ListProps,
+  ListSubheader
 } from '@material-ui/core'
-import { MenuItem } from './MenuItem'
-import React, { useCallback } from 'react'
+import { Menu } from './MenuItem'
+import React, { Fragment, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps
 } from '@smartb/archetypes-ui-components/src/Types'
 
 interface MenuContainerClasses {
-  item?: string
+  item?: ItemClasses
   icon?: string
   text?: string
 }
 
 interface MenuContainerStyles {
-  item?: React.CSSProperties
+  item?: ItemStyles
   icon?: React.CSSProperties
   text?: React.CSSProperties
 }
 
 export interface MenuContainerBasicProps extends BasicProps {
-  menu: MenuItem[]
+  menu: Menu[]
   classes?: MenuContainerClasses
   styles?: MenuContainerStyles
 }
@@ -38,31 +39,32 @@ export type MenuContainerProps = MergeMuiElementProps<
 
 export const MenuContainer = (props: MenuContainerProps) => {
   const { menu, classes, styles, ...other } = props
-  return (
-    <List {...other}>
-      {menu.map((item) => (
-        <Item className={classes?.item} style={styles?.item} {...item} />
-      ))}
-    </List>
+  const uiMenu = useMemo(
+    () =>
+      menu.map((item) => <Item classes={classes} styles={styles} {...item} />),
+    [classes, styles, menu]
   )
+  return <List {...other}>{uiMenu}</List>
 }
 
 interface ItemClasses {
+  root?: string
   icon?: string
   text?: string
 }
 
 interface ItemStyles {
+  root?: React.CSSProperties
   icon?: React.CSSProperties
   text?: React.CSSProperties
 }
 
 interface ItemBasicProps extends BasicProps {
-  classes?: ItemClasses
-  styles?: ItemStyles
+  classes?: MenuContainerClasses
+  styles?: MenuContainerStyles
 }
 
-type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & MenuItem>
+type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & Menu>
 
 const Item = (props: ItemProps) => {
   const {
@@ -73,18 +75,27 @@ const Item = (props: ItemProps) => {
     onClick,
     componentProps,
     button,
+    items,
     component,
     classes,
     styles,
     ...other
   } = props
   const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
+  if (items !== undefined && items.length > 0)
+    return (
+      <Fragment>
+        <ListSubheader>{label}</ListSubheader>
+        <MenuContainer menu={items} />
+      </Fragment>
+    )
   return (
     <ListItem
       button
       component={component ? component : href ? 'a' : 'div'}
       onClick={onItemClick}
       href={href}
+      classN
       {...componentProps}
       {...other}
     >
