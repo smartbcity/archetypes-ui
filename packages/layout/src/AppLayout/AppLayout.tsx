@@ -192,6 +192,7 @@ export const AppLayout = (props: AppLayoutProps) => {
   return (
     <React.Fragment>
       <AppBarLayout
+        {...appBarLayoutProps}
         className={
           showAppBar
             ? clsx(
@@ -207,7 +208,6 @@ export const AppLayout = (props: AppLayoutProps) => {
         }
         onDrawerOpen={showDrawer ? onToggle : undefined}
         show={showAppBar}
-        {...appBarLayoutProps}
       >
         {appBarContent}
       </AppBarLayout>
@@ -215,12 +215,12 @@ export const AppLayout = (props: AppLayoutProps) => {
         <Drawer
           open={open}
           variant='persistent'
+          {...drawerProps}
           className={clsx(
             defaultClasses.drawer,
             !open && defaultClasses.drawerClosed,
             drawerProps?.className
           )}
-          {...drawerProps}
         >
           {drawerContent}
         </Drawer>

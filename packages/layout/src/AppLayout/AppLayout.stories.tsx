@@ -96,6 +96,9 @@ export const AppLayout = Template.bind({})
 AppLayout.args = {
   appBarContent: 'AppBar content',
   drawerContent: 'Drawer content',
+  drawerProps: {
+    className: 'test'
+  },
   styleProps: {
     appBarHeight: 70,
     detailDrawerWidth: 600,
