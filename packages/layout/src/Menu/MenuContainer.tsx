@@ -95,17 +95,18 @@ const Item = (props: ItemProps) => {
       component={component ? component : href ? 'a' : 'div'}
       onClick={onItemClick}
       href={href}
-      classN
+      className={classes?.item?.root}
+      style={styles?.item?.root}
       {...componentProps}
       {...other}
     >
-      <ListItemIcon className={classes?.icon} style={styles?.icon}>
+      <ListItemIcon className={classes?.item?.icon} style={styles?.item?.icon}>
         {icon}
       </ListItemIcon>
       <ListItemText
         primary={label}
-        className={classes?.text}
-        style={styles?.text}
+        className={classes?.item?.text}
+        style={styles?.item?.text}
       />
     </ListItem>
   )
