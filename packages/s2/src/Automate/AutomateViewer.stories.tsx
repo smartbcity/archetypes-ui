@@ -5,7 +5,6 @@ import {
 } from './AutomateViewer'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
-import { getDidS2 } from '@smartb/did-domain'
 
 export default {
   title: 'S2/AutomateViewer',
@@ -21,7 +20,24 @@ const Template: Story<AutomateViewerBasicProps> = (
 export const AutomateViewer = Template.bind({})
 
 AutomateViewer.args = {
-  automate: getDidS2()
+  transitions: [
+    {
+      label: 'transition 1',
+      from: 0,
+      to: 1
+    },
+    {
+      label: 'transition 2',
+      from: 1,
+      to: 1
+    },
+    {
+      label: 'transition 3',
+      from: 1,
+      to: 2
+    }
+  ],
+  style: { width: '100%', height: '500px' }
 }
 
 AutomateViewer.storyName = 'AutomateViewer'
