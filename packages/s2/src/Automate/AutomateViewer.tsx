@@ -83,7 +83,7 @@ export const AutomateViewer = (props: AutomateViewerProps) => {
       const from = transition.from
       const to = transition.to
       if (!selfRefSize[from]) selfRefSize[from] = 0
-      if (from === to) selfRefSize[from]++
+      if (from === to) selfRefSize[from] += 0.2
       nbNodes = Math.max(nbNodes, Math.max(to + 1))
       return {
         label: transition.label,
@@ -92,9 +92,9 @@ export const AutomateViewer = (props: AutomateViewerProps) => {
         to: to,
         arrows: 'to',
         selfReference: {
-          size: selfRefSize[from] * 20,
+          size: 40,
           angle: Math.PI / selfRefSize[from],
-          renderBehindTheNode: true
+          renderBehindTheNode: false
         }
       }
     })

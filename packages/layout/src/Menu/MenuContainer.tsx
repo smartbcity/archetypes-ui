@@ -26,15 +26,20 @@ const useStyles = (paddingLeft: number, theme: Theme) =>
       background: `${theme.primaryColor}26`
     },
     selectedTitle: {
-      color: theme.primaryColor
+      '& .MuiTypography-root': {
+        color: theme.primaryColor
+      }
     },
     itemText: {
       '& .MuiTypography-root': {
-        fontSize: `${17 - paddingLeft / 20}px`,
+        fontSize: `${17 - paddingLeft / 10}px`,
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         overflow: 'hidden'
       }
+    },
+    subList: {
+      pading: 0
     }
   })
 
@@ -54,6 +59,7 @@ export interface MenuContainerBasicProps extends BasicProps {
   menu: Menu[]
   classes?: MenuContainerClasses
   styles?: MenuContainerStyles
+  subMenuProps?: MenuContainerProps
   paddingLeft?: number
 }
 
@@ -63,7 +69,7 @@ export type MenuContainerProps = MergeMuiElementProps<
 >
 
 export const MenuContainer = (props: MenuContainerProps) => {
-  const { menu, classes, styles, paddingLeft, ...other } = props
+  const { menu, classes, styles, paddingLeft, subMenuProps, ...other } = props
   const uiMenu = useMemo(
     () =>
       menu.map((item) => (
@@ -71,10 +77,11 @@ export const MenuContainer = (props: MenuContainerProps) => {
           classes={classes}
           styles={styles}
           paddingLeft={paddingLeft}
+          subMenuProps={subMenuProps}
           {...item}
         />
       )),
-    [classes, styles, menu, paddingLeft]
+    [classes, styles, menu, paddingLeft, subMenuProps]
   )
   return <List {...other}>{uiMenu}</List>
 }
@@ -95,6 +102,7 @@ interface ItemBasicProps extends BasicProps {
   classes?: MenuContainerClasses
   styles?: MenuContainerStyles
   paddingLeft?: number
+  subMenuProps?: MenuContainerProps
 }
 
 type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & Menu>
@@ -114,6 +122,7 @@ const Item = (props: ItemProps) => {
     classes,
     styles,
     paddingLeft = 16,
+    subMenuProps,
     ...other
   } = props
   const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
@@ -147,7 +156,12 @@ const Item = (props: ItemProps) => {
             style={styles?.item?.text}
           />
         </ListItem>
-        <MenuContainer paddingLeft={paddingLeft + 15} menu={items} />
+        <MenuContainer
+          className={defaultClasses.subList}
+          paddingLeft={paddingLeft + 10}
+          menu={items}
+          {...subMenuProps}
+        />
       </Fragment>
     )
   return (

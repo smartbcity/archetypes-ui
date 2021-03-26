@@ -34,6 +34,11 @@ AutomateViewer.args = {
     {
       label: 'transition 3',
       from: 1,
+      to: 1
+    },
+    {
+      label: 'transition 4',
+      from: 1,
       to: 2
     }
   ],

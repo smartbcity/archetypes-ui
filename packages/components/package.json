@@ -38,7 +38,8 @@
     "react-data-table-component": "^6.9.7",
     "react-dropzone": "^11.0.3",
     "react-pdf": "^5.0.0",
-    "react-spinners": "^0.9.0"
+    "react-spinners": "^0.9.0",
+    "styled-components": "^5.2.1"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb"
 }
