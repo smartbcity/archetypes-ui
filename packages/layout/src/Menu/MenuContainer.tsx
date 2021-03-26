@@ -39,7 +39,7 @@ const useStyles = (paddingLeft: number, theme: Theme) =>
       }
     },
     subList: {
-      pading: 0
+      padding: '0px'
     }
   })
 
@@ -59,7 +59,7 @@ export interface MenuContainerBasicProps extends BasicProps {
   menu: Menu[]
   classes?: MenuContainerClasses
   styles?: MenuContainerStyles
-  subMenuProps?: MenuContainerProps
+  subMenuProps?: Partial<MenuContainerProps>
   paddingLeft?: number
 }
 
@@ -102,7 +102,7 @@ interface ItemBasicProps extends BasicProps {
   classes?: MenuContainerClasses
   styles?: MenuContainerStyles
   paddingLeft?: number
-  subMenuProps?: MenuContainerProps
+  subMenuProps?: Partial<MenuContainerProps>
 }
 
 type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & Menu>
@@ -157,10 +157,10 @@ const Item = (props: ItemProps) => {
           />
         </ListItem>
         <MenuContainer
-          className={defaultClasses.subList}
+          {...subMenuProps}
+          className={clsx(subMenuProps, defaultClasses.subList)}
           paddingLeft={paddingLeft + 10}
           menu={items}
-          {...subMenuProps}
         />
       </Fragment>
     )
