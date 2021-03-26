@@ -1,5 +1,5 @@
 import React from "react";
-import { Theme } from "../../packages/components/src/ThemeContextProvider";
+import { Theme } from "@smartb/archetypes-ui-themes";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
