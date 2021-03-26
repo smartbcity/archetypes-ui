@@ -3,7 +3,11 @@ import MuiAppBar from '@material-ui/core/AppBar'
 import { AppBarProps as MuiAppBarProps, Box, Toolbar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

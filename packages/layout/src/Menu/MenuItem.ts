@@ -8,6 +8,7 @@ export interface MenuItem<T = {}> {
   component?: React.ElementType<any>
   icon?: JSX.Element
   componentProps?: T
+  isSelected?: boolean
 }
 
 export interface Menu<T = {}> extends MenuItem<T> {

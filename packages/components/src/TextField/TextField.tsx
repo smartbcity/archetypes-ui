@@ -5,7 +5,11 @@ import {
   TextFieldProps as MuiTextFieldProps
 } from '@material-ui/core'
 
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 /**

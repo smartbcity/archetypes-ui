@@ -1,6 +1,10 @@
 import React from 'react'
-import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import {
+  BasicProps,
+  MergeReactElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

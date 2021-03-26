@@ -7,8 +7,8 @@ import {
   MuiStepperWrapperProps,
   MuiStepperWrapperLabel
 } from './MuiStepperWrapper'
-import { Theme, useTheme } from '@smartb/archetypes-ui-components'
-import { lowLevelStyles } from '../Types'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

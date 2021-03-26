@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent } from './arrow-left.svg'
-import { MergeReactElementProps } from '../types'
+import { MergeReactElementProps } from '@smartb/archetypes-ui-themes'
 
 interface ArrowProps {
   color?: string

@@ -1,8 +1,8 @@
 import { StepIconProps as MuiStepIconProps } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
-import { Theme, useTheme } from '@smartb/archetypes-ui-components'
-import { lowLevelStyles } from '../Types'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
 const useStepIconStyles = (theme: Theme) =>
   lowLevelStyles({

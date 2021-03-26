@@ -3,8 +3,7 @@ import React, { ChangeEvent } from 'react'
 import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import {BasicProps, Theme, useTheme} from '@smartb/archetypes-ui-components'
-
+import { BasicProps, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   makeStyles(() => ({
@@ -31,7 +30,6 @@ const useStyles = (theme: Theme) =>
   }))
 
 export interface CheckBoxProps extends BasicProps {
-
   /**
    * If true, the component is checked
    */
@@ -71,7 +69,6 @@ export interface CheckBoxProps extends BasicProps {
    * Style for the checked icon
    */
   checkedIconStyle?: React.CSSProperties
-
 }
 
 export const CheckBox = (props: CheckBoxProps) => {

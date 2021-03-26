@@ -3,7 +3,11 @@ import { Paper, useTheme, PaperProps } from '@material-ui/core'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import documentLogo from '../assets/docstampt-badge.png'
 import { logoType } from '../Panel'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

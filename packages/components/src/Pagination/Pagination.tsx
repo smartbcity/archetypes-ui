@@ -4,9 +4,13 @@ import {
   Pagination as MuiPagination,
   PaginationProps as MuiPaginationProps
 } from '@material-ui/lab'
-import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '../Types'
+import {
+  BasicProps,
+  lowLevelStyles,
+  MergeMuiElementProps
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

@@ -1,5 +1,11 @@
 {
-  "packages": ["packages/components", "packages/forms", "packages/layout"],
+  "packages": [
+    "packages/components",
+    "packages/forms",
+    "packages/layout",
+    "packages/s2",
+    "packages/themes"
+  ],
   "npmClient": "yarn",
   "tagVersionPrefix": "",
   "version": "independent"

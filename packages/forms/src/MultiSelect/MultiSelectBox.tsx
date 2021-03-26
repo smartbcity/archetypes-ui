@@ -2,8 +2,8 @@ import { Box, makeStyles, InputLabel } from '@material-ui/core'
 import React from 'react'
 import { Option } from '../Select'
 import { MultiSelect } from './MultiSelect'
-import {useInputStylesSimple} from "../style";
-import {BasicProps} from "@smartb/archetypes-ui-components";
+import { useInputStylesSimple } from '../style'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 
 const useStyles = makeStyles(() => ({
   text: {
@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 export interface MultiSelectBoxProps extends BasicProps {
-
   /**
    * List of options available in the option
    */
@@ -90,10 +89,7 @@ export const MultiSelectBox = (props: MultiSelectBoxProps) => {
   const classesLocal = useStyles()
   const classes = useInputStylesSimple(readonly)()
   return (
-    <Box
-      className={className}
-      style={style}
-    >
+    <Box className={className} style={style}>
       {label ? (
         <InputLabel htmlFor={id} className={classes.label}>
           {label}

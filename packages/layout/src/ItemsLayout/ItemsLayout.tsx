@@ -1,7 +1,11 @@
 import React from 'react'
 import { Menu } from '../Menu'
 import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
-import { MergeReactElementProps, BasicProps, lowLevelStyles } from '../Types'
+import {
+  MergeReactElementProps,
+  BasicProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

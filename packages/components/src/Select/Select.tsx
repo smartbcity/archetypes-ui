@@ -5,7 +5,11 @@ import {
   Select as MuiSelect,
   SelectProps as MuiSelectProps
 } from '@material-ui/core'
-import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
+import {
+  MergeMuiElementProps,
+  BasicProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent } from './calendar.svg'
-import { MergeReactElementProps } from '@smartb/archetypes-ui-components'
+import { MergeReactElementProps } from '@smartb/archetypes-ui-themes'
 
 interface CalendarProps {
   color?: string

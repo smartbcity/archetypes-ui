@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react'
 import { Typography } from '@material-ui/core'
-import { BasicProps, MergeReactElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeReactElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

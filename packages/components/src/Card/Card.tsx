@@ -2,9 +2,13 @@ import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import { logoType } from '../Panel'
 import { Box as AruiBox, BoxProps } from '../Box'
-import { BasicProps, MergeMuiElementProps, lowLevelStyles } from '../Types'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { Theme, useTheme } from '../ThemeContextProvider'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

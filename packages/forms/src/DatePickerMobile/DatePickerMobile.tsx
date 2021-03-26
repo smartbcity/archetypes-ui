@@ -1,7 +1,13 @@
 import React from 'react'
 import { InputLabel } from '@material-ui/core'
 import clsx from 'clsx'
-import {BasicProps, lowLevelStyles, MergeReactElementProps, Theme, useTheme} from "@smartb/archetypes-ui-components";
+import {
+  BasicProps,
+  lowLevelStyles,
+  MergeReactElementProps,
+  Theme,
+  useTheme
+} from '@smartb/archetypes-ui-themes'
 
 const useStyles = (theme: Theme) =>
   lowLevelStyles({

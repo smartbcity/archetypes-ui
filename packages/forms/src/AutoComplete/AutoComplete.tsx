@@ -1,7 +1,7 @@
 import { TextField, Chip, FormControl, makeStyles } from '@material-ui/core'
 import { Autocomplete as MuiAutocomplete } from '@material-ui/lab'
 import React from 'react'
-import { useTheme } from '@smartb/archetypes-ui-components'
+import { useTheme } from '@smartb/archetypes-ui-themes'
 import { useInputStyles } from '../style'
 
 const useStyles = makeStyles(() => ({

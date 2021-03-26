@@ -1,0 +1,40 @@
+{
+  "name": "@smartb/archetypes-ui-s2",
+  "repository": "https://gitlab.smartb.city/app/archetypes-ui.git",
+  "author": "Adrien Poupard <adrien@smartb.city>",
+  "license": "Apache-2.0",
+  "version": "0.1.16",
+  "description": "React components library",
+  "private": false,
+  "module": "dist/index.modern.js",
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@smartb/archetypes-ui-themes": "^0.1.16",
+    "vis-data": "^7.1.2",
+    "vis-network": "^9.0.0"
+  },
+  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb"
+}

@@ -1,15 +1,10 @@
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { Card } from "../../packages/components/src/Card";
-import { SBButton } from "@smartb/archetypes-ui-components/src";
-import { Panel } from "../../packages/components/src/Panel";
+import { SBButton, Panel, Card } from "../../packages/components/src";
 import { getShadows } from "./Theme";
 import ThemeGetter from "./ThemeGetter";
-import {
-  Theme,
-  useThemeContext,
-} from "@smartb/archetypes-ui-components/src/ThemeContextProvider";
+import { Theme, useThemeContext } from "@smartb/archetypes-ui-themes";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -66,10 +61,12 @@ const ThemeOverview = () => {
   const classes = useStyles();
   const themeContext = useThemeContext();
   const onColorChange = (props: keyof Theme, color: string) => {
+    console.log(color);
     themeContext.changeTheme({
       ...themeContext.theme,
       [props]: color,
     });
+    localStorage.setItem(props, color);
   };
 
   const onShadowChange = (index: number, values: string) => {
@@ -80,6 +77,7 @@ const ThemeOverview = () => {
       ...themeContext.theme,
       shadows: getShadows(stringShadow),
     });
+    localStorage.setItem("shadows", stringShadow);
   };
 
   return (

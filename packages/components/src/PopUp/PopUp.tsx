@@ -7,7 +7,11 @@ import {
   DialogProps
 } from '@material-ui/core'
 import { Button, Variant } from '../Buttons'
-import { MergeMuiElementProps, BasicProps, lowLevelStyles } from '../Types'
+import {
+  MergeMuiElementProps,
+  BasicProps,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles({

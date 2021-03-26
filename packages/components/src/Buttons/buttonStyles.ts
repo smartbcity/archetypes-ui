@@ -1,5 +1,5 @@
-import { Theme } from '..'
-import { lowLevelStyles } from '../Types'
+import { Theme } from '@smartb/archetypes-ui-themes'
+import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
 export const containedUseStyles = (theme: Theme) =>
   lowLevelStyles({
