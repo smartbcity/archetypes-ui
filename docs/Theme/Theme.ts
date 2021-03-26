@@ -36,10 +36,10 @@ export const getShadows = (shadow: string | null) => {
 };
 
 export const myTheme: Theme = {
-  primaryColor: "#fec519",
-  secondaryColor: "#edba27",
-  tertiaryColor: "#e0e0e0",
-  shadows: getShadows(localStorage.getItem("shadow")),
+  primaryColor: localStorage.getItem("primaryColor") ?? "#fec519",
+  secondaryColor: localStorage.getItem("secondaryColor") ?? "#edba27",
+  tertiaryColor: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
+  shadows: getShadows(localStorage.getItem("shadows")),
 };
 
 export default createMuiTheme({

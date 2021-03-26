@@ -8,7 +8,7 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@material-ui/lab'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
@@ -22,7 +22,7 @@ import { Arrow } from '../icons'
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     dot: {
-      background: theme.primaryColor,
+      background: theme.secondaryColor,
       position: 'relative',
       alignSelf: 'unset'
     },
@@ -57,7 +57,7 @@ const useStyles = (theme: Theme) =>
       background: theme.tertiaryColor
     },
     connectorProgress: {
-      background: theme.secondaryColor,
+      background: theme.primaryColor,
       width: '100%',
       height: '100%'
     },
@@ -99,7 +99,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     activeDot: {
-      border: `2px solid ${theme.secondaryColor}`,
+      border: `2px solid ${theme.primaryColor}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',
@@ -206,18 +206,9 @@ export const Timeline = (props: TimelineProps) => {
   const theme = useTheme()
   const defaultClasses = useStyles(theme)()
 
-  return (
-    <MuiTimeline
-      align={align}
-      className={clsx(
-        align === 'alternate' && defaultClasses.timelineAlternate,
-        align === 'right' && defaultClasses.timelineRight,
-        'AruiTimeLine-root',
-        className
-      )}
-      {...other}
-    >
-      {lines.map((line) => {
+  const linesUi = useMemo(
+    () =>
+      lines.map((line) => {
         let isPassed = false
         let isActive = false
         let timeLeft = undefined
@@ -236,6 +227,7 @@ export const Timeline = (props: TimelineProps) => {
         const isSelected = !!selectedCellId && selectedCellId === line.id
         return (
           <div
+            key={line.id}
             onClick={() => onSelectCell && !line.disabled && onSelectCell(line)}
             className={clsx(
               onSelectCell && !line.disabled && defaultClasses.selectableItem,
@@ -340,7 +332,29 @@ export const Timeline = (props: TimelineProps) => {
             </TimelineItem>
           </div>
         )
-      })}
+      }),
+    [
+      lines,
+      classes,
+      styles,
+      align,
+      selectedCellId,
+      passedTimeLine,
+      defaultClasses
+    ]
+  )
+
+  return (
+    <MuiTimeline
+      {...other}
+      className={clsx(
+        align === 'alternate' && defaultClasses.timelineAlternate,
+        align === 'right' && defaultClasses.timelineRight,
+        'AruiTimeLine-root',
+        className
+      )}
+    >
+      {linesUi}
     </MuiTimeline>
   )
 }
