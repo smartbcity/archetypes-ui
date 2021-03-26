@@ -14,23 +14,23 @@ export const ThemeContext = createContext<ThemeContextProps>({
 
 export interface ThemeContextProviderProps {
   children: React.ReactNode
-  theme: Partial<Theme>
+  theme?: Theme
   customMuiTheme?: Partial<MuiTheme>
 }
 
 export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
-  const { children, customMuiTheme } = props
-  const [theme, setTheme] = React.useState<Theme>({
-    ...defaultTheme,
+  const { children, customMuiTheme, theme } = props
+  const [localTheme, setLocalTheme] = React.useState<Theme>({
+    ...(theme ?? defaultTheme),
     ...props.theme
   })
   const setPartialTheme = useCallback((partialTheme: Partial<Theme>) => {
-    return setTheme({ ...theme, ...partialTheme })
+    setLocalTheme((oldLocalTheme) => ({ ...oldLocalTheme, ...partialTheme }))
   }, [])
-  const defaultMuiTheme = defaultMaterialUiTheme(theme, customMuiTheme)
+  const defaultMuiTheme = defaultMaterialUiTheme(localTheme, customMuiTheme)
   return (
     <ThemeContext.Provider
-      value={{ theme: theme, changeTheme: setPartialTheme }}
+      value={{ theme: localTheme, changeTheme: setPartialTheme }}
     >
       <ThemeProvider theme={defaultMuiTheme}>{children}</ThemeProvider>
     </ThemeContext.Provider>

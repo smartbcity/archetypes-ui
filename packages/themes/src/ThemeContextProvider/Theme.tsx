@@ -10,9 +10,9 @@ export interface Theme {
 
 export const defaultTheme: Theme = {
   name: 'default',
-  primaryColor: '#48d7a2',
-  secondaryColor: '#005ecc',
-  tertiaryColor: '#f2f6f9',
+  primaryColor: '#fec5198',
+  secondaryColor: '#edba27',
+  tertiaryColor: '#e0e0e0',
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
     '0px 3px 10px 0 rgba(0,0,0,0.1)',
