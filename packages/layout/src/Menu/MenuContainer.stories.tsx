@@ -5,7 +5,6 @@ import {
 } from './MenuContainer'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
-import defaultLogo from '../assets/impactcity-logo-2.png'
 
 export default {
   title: 'Layout/MenuContainer',
@@ -22,64 +21,31 @@ MenuContainer.args = {
     {
       key: 'key1',
       goto: () => {},
-      label: 'Section 1',
-      icon: (
-        <img
-          style={{ width: '60px', height: '60px' }}
-          src={defaultLogo}
-          alt='smart b'
-        />
-      )
+      label: 'Section 1'
     },
     {
       key: 'key2',
       goto: () => {},
       label: 'Section 2',
-      icon: (
-        <img
-          style={{ width: '60px', height: '60px' }}
-          src={defaultLogo}
-          alt='smart b'
-        />
-      ),
+      isSelected: true,
       items: [
         {
           key: 'key2-key3',
           goto: () => {},
           label: 'Section 3',
-          icon: (
-            <img
-              style={{ width: '60px', height: '60px' }}
-              src={defaultLogo}
-              alt='smart b'
-            />
-          )
+          isSelected: true
         },
         {
           key: 'key2-key4',
           goto: () => {},
-          label: 'Section 4',
-          icon: (
-            <img
-              style={{ width: '60px', height: '60px' }}
-              src={defaultLogo}
-              alt='smart b'
-            />
-          )
+          label: 'Section 4'
         }
       ]
     },
     {
       key: 'key5',
       goto: () => {},
-      label: 'Section 5',
-      icon: (
-        <img
-          style={{ width: '60px', height: '60px' }}
-          src={defaultLogo}
-          alt='smart b'
-        />
-      )
+      label: 'Section 5'
     }
   ]
 }
