@@ -1,0 +1,33 @@
+import React, { useMemo } from 'react'
+import { S2Automate, S2Transition } from './S2AutomateType'
+import { AutomateViewerProps, Transition, AutomateViewer } from '../Automate'
+
+export interface S2AutomateViewerProps extends AutomateViewerProps {
+  /**
+   * The automate that wil be displayed in the viewer
+   */
+  automate: S2Automate
+}
+
+export const S2AutomateViewer = (props: S2AutomateViewerProps) => {
+  const { automate, ...other } = props
+
+  const statesTransitions = [automate.init, ...automate.transitions]
+
+  const transitions: Transition[] = useMemo(
+    () =>
+      statesTransitions.map(
+        (stateTransition: S2Transition): Transition => ({
+          from: stateTransition.from.position,
+          to: stateTransition.to.position,
+          label:
+            stateTransition.role.toString() +
+            ': ' +
+            stateTransition.command.toString()
+        })
+      ),
+    [automate]
+  )
+
+  return <AutomateViewer {...other} transitions={transitions} />
+}
