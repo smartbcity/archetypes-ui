@@ -1,1 +1,1 @@
-export * from './codeHighlighter'
+export * from './CodeHighlighter'
