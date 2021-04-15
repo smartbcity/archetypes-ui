@@ -191,6 +191,7 @@ const Item = (props: ItemProps) => {
         primaryTypographyProps={{ color: 'inherit' }}
         primary={label}
         className={clsx(classes?.item?.text, defaultClasses.itemText)}
+        //on ajoute le style du text que si les objets le contenant éxiste
         style={styles?.item?.text}
       />
     </ListItem>

@@ -4,17 +4,17 @@
   "author": "Adrien Poupard <adrien@smartb.city>",
   "license": "Apache-2.0",
   "description": "React layout components library",
-  "version": "0.1.19",
+  "version": "0.1.26",
   "private": false,
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
   "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.es.js",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "rollup -c",
     "prepublish": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -30,8 +30,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@smartb/archetypes-ui-components": "^0.1.19",
-    "@smartb/archetypes-ui-themes": "^0.1.19",
+    "@smartb/archetypes-ui-components": "^0.1.26",
+    "@smartb/archetypes-ui-themes": "^0.1.26",
     "use-debounce": "^3.4.2"
   },
   "files": [
