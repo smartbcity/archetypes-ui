@@ -190,7 +190,7 @@ export const AppLayout = (props: AppLayoutProps) => {
   const defaultClasses = useStyles(theme)(styleProps)
 
   return (
-    <React.Fragment>
+    <>
       <AppBarLayout
         {...appBarLayoutProps}
         className={
@@ -242,6 +242,6 @@ export const AppLayout = (props: AppLayoutProps) => {
         />
         {children}
       </main>
-    </React.Fragment>
+    </>
   )
 }

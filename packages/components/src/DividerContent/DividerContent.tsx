@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Typography } from '@material-ui/core'
 import {
   BasicProps,
@@ -146,7 +146,7 @@ export const DividerContent = React.forwardRef(
         {children instanceof Array ? (
           children.map((child, index) =>
             index !== children.length - 1 ? (
-              <Fragment>
+              <>
                 <div
                   key={index}
                   className={clsx(
@@ -207,7 +207,7 @@ export const DividerContent = React.forwardRef(
                     style={styles?.dividerBar}
                   ></div>
                 </div>
-              </Fragment>
+              </>
             ) : (
               <div
                 key={index}

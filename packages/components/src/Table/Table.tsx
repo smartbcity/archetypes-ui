@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import DataTable, {
   IDataTableColumn,
   IDataTableStyles,
@@ -214,7 +214,7 @@ export const Table = <Row,>(props: TableProps<Row>) => {
   const classes = useStyles()
   const theme = useTheme()
   return (
-    <Fragment>
+    <>
       {isLoading ? (
         loadingComponent ?? <Typography>Loading...</Typography>
       ) : (
@@ -248,6 +248,6 @@ export const Table = <Row,>(props: TableProps<Row>) => {
           totalPage={totalPages}
         />
       ) : undefined}
-    </Fragment>
+    </>
   )
 }

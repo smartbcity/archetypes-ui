@@ -7,7 +7,7 @@ import {
   ListProps
 } from '@material-ui/core'
 import { Menu } from './MenuItem'
-import React, { Fragment, useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
@@ -130,7 +130,7 @@ const Item = (props: ItemProps) => {
   const defaultClasses = useStyles(paddingLeft, theme)()
   if (items !== undefined && items.length > 0)
     return (
-      <Fragment>
+      <>
         <ListItem
           style={styles?.item?.root}
           {...componentProps}
@@ -162,7 +162,7 @@ const Item = (props: ItemProps) => {
           paddingLeft={paddingLeft + 10}
           menu={items}
         />
-      </Fragment>
+      </>
     )
   return (
     <ListItem
