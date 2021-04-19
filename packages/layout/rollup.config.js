@@ -11,7 +11,9 @@ const packageJson = require("./package.json");
 export default {
     input: "src/index.ts",
     external: [
-        'fs'
+      'react',
+      'react-dom',
+      'react-proptypes'
     ],
     output: [
         {
@@ -22,12 +24,14 @@ export default {
         {
             file: packageJson.module,
             format: "esm",
-            sourcemap: true
+            sourcemap: true,
         }
     ],
     plugins: [
         peerDepsExternal(),
-        resolve(),
+        resolve({
+            browser: true
+          }),
         commonjs(),
         typescript(),
         image(),
