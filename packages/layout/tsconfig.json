@@ -1,4 +1,16 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"]
+  "declaration": true,
+  "declarationDir": "dist",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "exclude": [
+    "node_modules", 
+    "**/*.stories.tsx",
+    "dist"
+  ], 
+  "include" : [
+    "src/**/*"
+  ]
 }
