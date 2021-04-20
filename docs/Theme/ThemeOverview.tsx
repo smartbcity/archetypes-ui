@@ -61,11 +61,7 @@ const ThemeOverview = () => {
   const classes = useStyles();
   const themeContext = useThemeContext();
   const onColorChange = (props: keyof Theme, color: string) => {
-    console.log(color);
-    themeContext.changeTheme({
-      ...themeContext.theme,
-      [props]: color,
-    });
+    themeContext.changeTheme({ [props]: color });
     localStorage.setItem(props, color);
   };
 
@@ -74,7 +70,6 @@ const ThemeOverview = () => {
     newValues[index] = values;
     const stringShadow = `${values[0]}px ${values[1]}px ${values[2]}px ${values[3]}px rgba(${values[4]},${values[5]},${values[6]},${values[7]})`;
     themeContext.changeTheme({
-      ...themeContext.theme,
       shadows: getShadows(stringShadow),
     });
     localStorage.setItem("shadows", stringShadow);

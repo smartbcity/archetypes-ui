@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { Theme } from "@smartb/archetypes-ui-components";
+import { Theme } from "@smartb/archetypes-ui-Themes";
 
 const round = (value: number) => {
   return Math.round(value * 100) / 100;
@@ -35,20 +35,20 @@ export const getShadows = (shadow: string | null) => {
   return shadows;
 };
 
-export const myTheme: Theme = {
+export const getTheme = (): Theme => ({
   primaryColor: localStorage.getItem("primaryColor") ?? "#fec519",
   secondaryColor: localStorage.getItem("secondaryColor") ?? "#edba27",
   tertiaryColor: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
   shadows: getShadows(localStorage.getItem("shadows")),
-};
+});
 
 export default createMuiTheme({
   palette: {
     primary: {
-      main: myTheme.primaryColor,
+      main: getTheme().primaryColor,
     },
     secondary: {
-      main: myTheme.secondaryColor,
+      main: getTheme().secondaryColor,
     },
   },
 });

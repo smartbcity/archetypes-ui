@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeContextProvider } from "@smartb/archetypes-ui-themes";
-import { myTheme } from "../docs/Theme/Theme";
+import { getTheme } from "../docs/Theme/Theme";
 
 export const parameters = {
   options: {
@@ -18,7 +18,7 @@ export const parameters = {
 
 export const withThemeProvider = (Story) => {
   return (
-    <ThemeContextProvider theme={myTheme}>
+    <ThemeContextProvider theme={getTheme()}>
       <Story />
     </ThemeContextProvider>
   );
