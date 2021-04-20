@@ -3,7 +3,7 @@
   "repository": "https://gitlab.smartb.city/app/archetypes-ui.git",
   "author": "Adrien Poupard <adrien@smartb.city>",
   "license": "Apache-2.0",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "React components library",
   "private": false,
   "main": "dist/index.js",
@@ -30,12 +30,12 @@
     "@types/stringify-object": "^3.3.0"
   },
   "dependencies": {
-    "@smartb/archetypes-ui-themes": "^0.1.26",
-    "react-syntax-highlighter": "^15.4.3",
+    "@smartb/archetypes-ui-themes": "^0.1.27",
     "dedent": "^0.7.0",
     "react-data-table-component": "^6.9.7",
     "react-dropzone": "^11.0.3",
     "react-spinners": "^0.9.0",
+    "react-syntax-highlighter": "^15.4.3",
     "stringify-object": "^3.3.0",
     "styled-components": "^5.2.1"
   },

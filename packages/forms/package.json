@@ -3,7 +3,7 @@
   "repository": "https://gitlab.smartb.city/app/archetypes-ui.git",
   "author": "Adrien Poupard <adrien@smartb.city>",
   "license": "Apache-2.0",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "React forms library",
   "private": false,
   "main": "dist/index.js",
@@ -26,9 +26,9 @@
   ],
   "dependencies": {
     "@date-io/date-fns": "^2.10.8",
-    "@smartb/archetypes-ui-components": "^0.1.26",
-    "@smartb/archetypes-ui-themes": "^0.1.26",
     "@material-ui/pickers": "^3.3.10",
+    "@smartb/archetypes-ui-components": "^0.1.27",
+    "@smartb/archetypes-ui-themes": "^0.1.27",
     "date-fns": "^2.17.0"
   }
 }
