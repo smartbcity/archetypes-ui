@@ -30,10 +30,14 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   onClick?: (event: React.ChangeEvent<{}>) => void
   /**
    * Define if the button is disabled or not
+   *
+   * @default false
    */
   disabled?: boolean
   /**
    * The styles variations options
+   *
+   * @default 'contained'
    */
   variant?: Variant
   /**
@@ -47,17 +51,23 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * Change the button with preset style on icon to indicate an advertissement about the incoming action or the triggered one
    */
-  advertissement?: boolean
+  warning?: boolean
   /**
    * Change the button with preset style on icon to indicate a success about the incoming action or the triggered one
+   *
+   * @default false
    */
   success?: boolean
   /**
    * Change the button with preset style on icon to indicate a failure about the incoming action or the triggered one
+   *
+   * @default false
    */
   fail?: boolean
   /**
-   * Add the icon at the left of the children
+   * Add the icon at the left of the children4
+   *
+   * @default false
    */
   icon?: React.ReactNode
   /**
@@ -67,6 +77,8 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * By default if your **onClick** function is asynchronous the button will automatically make a loading icon appear and disable the button in order
    * to wait for the end of the action. But if you want to force that state you can set **isLoading** to `true`.
+   *
+   * @default false
    */
   isLoading?: boolean
   /**
@@ -96,7 +108,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
     href,
     success = false,
     fail = false,
-    advertissement = false,
+    warning = false,
     icon,
     noIcon,
     isLoading = false,
@@ -138,7 +150,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
           disabled && classes.disabled
         } AruiButton-root ${className} ${success ? classes.success : ''} ${
           fail ? classes.fail : ''
-        } ${advertissement ? classes.advertissement : classes.defaultColor}`}
+        } ${warning ? classes.advertissement : classes.defaultColor}`}
         onClick={(e: any) => !href && onClick && onClickMemoisied(e)}
         component={component}
         href={href}
@@ -156,7 +168,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
             <Check className={classes.icon} />
           ) : fail ? (
             <Close className={classes.icon} />
-          ) : advertissement ? (
+          ) : warning ? (
             <ReportProblemOutlined className={classes.icon} />
           ) : icon ? (
             icon
@@ -175,7 +187,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
         disabled && classes.disabled
       } AruiButton-root ${className} ${success ? classes.success : ''} ${
         fail ? classes.fail : ''
-      } ${advertissement ? classes.advertissement : classes.defaultColor}`}
+      } ${warning ? classes.advertissement : classes.defaultColor}`}
       onClick={(e) => !href && onClick && onClickMemoisied(e)}
       href={href}
       id={id}
@@ -191,7 +203,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
           <Check className={classes.icon} />
         ) : fail ? (
           <Close className={classes.icon} />
-        ) : advertissement ? (
+        ) : warning ? (
           <ReportProblemOutlined className={classes.icon} />
         ) : icon ? (
           icon
