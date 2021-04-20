@@ -10,11 +10,6 @@ const packageJson = require("./package.json");
 
 export default {
     input: "src/index.ts",
-    external: [
-      'react',
-      'react-dom',
-      'react-proptypes'
-    ],
     output: [
         {
             file: packageJson.main,
@@ -29,9 +24,7 @@ export default {
     ],
     plugins: [
         peerDepsExternal(),
-        resolve({
-            browser: true
-          }),
+        resolve(),
         commonjs(),
         typescript(),
         image(),

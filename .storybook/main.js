@@ -17,25 +17,7 @@ module.exports = {
       },
     },
     "@storybook/addon-controls",
-  ],
-  babel: async (options) => {
-    options.presets.splice(2,1, [
-      "@babel/preset-react",
-      {
-        "runtime": "classic" // defaults to classic
-      }
-    ])
-    console.log(options.presets)
-    console.log("---------------")
-    console.log(options.plugins)
-    options.plugins.push([
-      "@babel/plugin-transform-react-jsx",
-      {
-        "runtime": "classic" // defaults to classic
-      }
-    ])
-    return options;
-  },
+  ]
 };
 
 
