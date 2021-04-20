@@ -8,16 +8,22 @@ export interface S2Command<ID> {
   readonly id: ID
 }
 
+export interface S2Role {}
+export interface S2State {
+  readonly position: number
+  nodePosition(): number
+}
+
 export class S2InitTransition {
-  readonly to: number
-  readonly role: number
+  readonly to: S2State
+  readonly role: S2Role
   readonly command: any
 }
 
 export class S2Transition {
-  readonly from: number
-  readonly to: number
-  readonly role: number
+  readonly from: S2State
+  readonly to: S2State
+  readonly role: S2Role
   readonly command: string
 }
 

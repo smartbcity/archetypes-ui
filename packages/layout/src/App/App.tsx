@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Drawer, DrawerProps, Theme } from '@material-ui/core'
 import createStyles from '@material-ui/core/styles/createStyles'
 import clsx from 'clsx'
@@ -237,7 +237,7 @@ export const App = (props: AppProps) => {
   }, [])
 
   return (
-    <React.Fragment>
+    <>
       <AppBarLayout
         onDrawerOpen={onToggle}
         className={
@@ -257,7 +257,7 @@ export const App = (props: AppProps) => {
         {...appBarLayoutProps}
       >
         {showAppBar ? (
-          <Fragment>
+          <>
             <TitleContainer title={title} logo={logo} />
             <div
               className={clsx(defaultClasses.grow, 'AruiAppBar-flexFiller')}
@@ -267,7 +267,7 @@ export const App = (props: AppProps) => {
               toolsMenuProps.map((toolsMenuProps, index) => (
                 <ToolsMenu key={index} {...toolsMenuProps} />
               ))}
-          </Fragment>
+          </>
         ) : (
           <TitleContainer title={title} logo={logo} />
         )}
@@ -313,7 +313,7 @@ export const App = (props: AppProps) => {
         />
         {children}
       </main>
-    </React.Fragment>
+    </>
   )
 }
 

@@ -17,5 +17,7 @@ module.exports = {
       },
     },
     "@storybook/addon-controls",
-  ],
+  ]
 };
+
+
