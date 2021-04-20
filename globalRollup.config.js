@@ -6,15 +6,10 @@ import image from "@rollup/plugin-image";
 import json from "rollup-plugin-json";
 import svgr from "@svgr/rollup";
 
-const globalPackageJson = require("../../package.json");
-
 const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
-    globalPackageJson.dependencies || {}
-  )
-    .concat(Object.keys(globalPackageJson.peerDependencies || {}))
-    .concat(Object.keys(localPackageJson.dependencies || {}))
-    .concat(Object.keys(localPackageJson.peerDependencies || {}));
+    localPackageJson.dependencies || {}
+  ).concat(Object.keys(localPackageJson.peerDependencies || {}));
   return {
     external: externalsDependencies,
     output: [
