@@ -21,17 +21,11 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom"
   },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@lifeomic/react-vis-network": "^1.1.0",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57"
+    "@lifeomic/react-vis-network": "^1.1.0"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb"
 }

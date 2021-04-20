@@ -21,19 +21,14 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom"
   },
-  "peerDependencies": {
-    "react": "^16.13.1"
-  },
   "files": [
     "dist"
   ],
   "dependencies": {
     "@date-io/date-fns": "^2.10.8",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/pickers": "^3.2.10",
     "@smartb/archetypes-ui-components": "^0.1.26",
     "@smartb/archetypes-ui-themes": "^0.1.26",
+    "@material-ui/pickers": "^3.3.10",
     "date-fns": "^2.17.0"
   }
 }

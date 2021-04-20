@@ -21,20 +21,17 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom"
   },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "@smartb/archetypes-ui-themes": "^0.1.26",
+  "devDependencies": {
     "@types/dedent": "^0.7.0",
     "@types/react-dropzone": "^5.1.0",
-    "@types/stringify-object": "^3.3.0",
+    "@types/stringify-object": "^3.3.0"
+  },
+  "dependencies": {
+    "@smartb/archetypes-ui-themes": "^0.1.26",
+    "react-syntax-highlighter": "^15.4.3",
     "dedent": "^0.7.0",
     "react-data-table-component": "^6.9.7",
     "react-dropzone": "^11.0.3",
