@@ -9,7 +9,7 @@ export const containedUseStyles = (theme: Theme) =>
       fontSize: '0.85rem',
       borderRadius: '4px',
       textTransform: 'none',
-      boxShadow: theme.shadows[2],
+      boxShadow: theme.shadows[1],
       color: '#ffffff'
     },
     defaultColor: {
@@ -69,7 +69,7 @@ export const outlinedUseStyles = (theme: Theme) =>
       textTransform: 'none',
       backgroundColor: '#ffffff',
       borderRadius: '4px',
-      boxShadow: theme.shadows[2],
+      boxShadow: theme.shadows[1],
       '&:hover': {
         backgroundColor: `rgba(0, 0, 0, 0.04)`
       }

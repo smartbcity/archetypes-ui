@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Tooltip as AruiTooltip, TooltipBasicProps } from './Tooltip'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'

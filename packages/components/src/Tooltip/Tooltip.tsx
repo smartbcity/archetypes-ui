@@ -16,7 +16,8 @@ const useStyles = (theme: Theme) =>
     root: {
       background: theme.primaryColor,
       fontSize: '13px',
-      padding: '8px'
+      padding: '8px',
+      boxShadow: theme.shadows[1]
     },
     arrow: {
       color: theme.primaryColor,
@@ -24,7 +25,8 @@ const useStyles = (theme: Theme) =>
       height: '12px !important',
       marginTop: '-11px !important',
       '&::before': {
-        borderRadius: '2px'
+        borderRadius: '2px',
+        boxShadow: theme.shadows[1]
       }
     }
   })
@@ -40,8 +42,11 @@ export interface TooltipBasicProps extends BasicProps {
   helperText: string
   /**
    * Indicates wether the tooltip is open or not. If open is undefined the openning of the tooltip
-   * will be actionned by the hover on the given element. You can use the Material-ui `onClose` and `onOpen` props to control
-   * the tooltip openning manually.
+   * will be actionned by the hover on the given element.
+   *
+   * You can use the Material-ui `onClose` and `onOpen` props to controlthe tooltip openning manually.
+   *
+   * I don't know why but this prop is not working properly on **Storybook**
    */
   open?: boolean
 }
