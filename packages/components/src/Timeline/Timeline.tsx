@@ -163,6 +163,8 @@ export interface TimelineBasicProps extends BasicProps {
   lines: TimeLineCell[]
   /**
    * Indicates if the timeline takes place in the past
+   *
+   *  @default false
    */
   passedTimeLine?: boolean
   /**
@@ -173,6 +175,12 @@ export interface TimelineBasicProps extends BasicProps {
    * The event triggered when a cell is selected. If this event is provided the lines are considered selectable
    */
   onSelectCell?: (cell: TimeLineCell) => void
+  /**
+   * The alignement of the timeline
+   *
+   *  @default "alternate"
+   */
+  align?: 'left' | 'right' | 'alternate'
   /**
    * The classes applied to the different part of the component
    */
@@ -196,7 +204,7 @@ export const Timeline = (props: TimelineProps) => {
     lines,
     classes,
     styles,
-    align,
+    align = 'alternate',
     selectedCellId,
     onSelectCell,
     passedTimeLine = false,
