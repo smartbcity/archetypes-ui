@@ -10,6 +10,9 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
+/**
+ * @deprecated
+ */
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     headerContainer: {
@@ -69,6 +72,9 @@ interface CardStyles {
 
 export type LogoSize = 'medium' | 'small'
 
+/**
+ * @deprecated
+ */
 export interface CardBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the card

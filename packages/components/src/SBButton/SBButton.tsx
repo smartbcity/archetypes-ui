@@ -6,6 +6,9 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
+/**
+ * @deprecated
+ */
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     button: {
@@ -60,6 +63,9 @@ export interface SBButtonBasicProps extends BasicProps {
 
 export type SBButtonProps = MergeReactElementProps<'button', SBButtonBasicProps>
 
+/**
+ * @deprecated
+ */
 export const SBButton = React.forwardRef(
   (props: SBButtonProps, ref: React.Ref<HTMLButtonElement>) => {
     const {
