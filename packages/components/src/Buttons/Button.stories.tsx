@@ -127,6 +127,18 @@ const Template7: Story = () => (
   </Box>
 )
 
+const Template8: Story = () => {
+  type ComponentPropsType = React.ComponentPropsWithRef<'a'>
+  const componentProps: ComponentPropsType = {
+    href: '/?path=/docs/components-button--button-extend'
+  }
+  return (
+    <Button<ComponentPropsType> component={'a'} componentProps={componentProps}>
+      Link Button
+    </Button>
+  )
+}
+
 export const ButtonVariant = Template2.bind({})
 
 export const ButtonVariantSeverity = Template3.bind({})
@@ -139,9 +151,12 @@ export const NoIcon = Template6.bind({})
 
 export const preConfigured = Template7.bind({})
 
+export const buttonExtend = Template8.bind({})
+
 ButtonVariant.storyName = 'button variants'
 ButtonVariantSeverity.storyName = 'button variants severity'
 ButtonVariantDisabled.storyName = 'button variants disabled'
 CustomIcon.storyName = 'custom icon'
 NoIcon.storyName = 'no icon'
 preConfigured.storyName = 'pre-configured buttons'
+buttonExtend.storyName = 'extend a button with another component'
