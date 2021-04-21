@@ -45,8 +45,6 @@ export interface TooltipBasicProps extends BasicProps {
    * will be actionned by the hover on the given element.
    *
    * You can use the Material-ui `onClose` and `onOpen` props to controlthe tooltip openning manually.
-   *
-   * I don't know why but this prop is not working properly on **Storybook**
    */
   open?: boolean
 }

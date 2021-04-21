@@ -5,10 +5,29 @@ import {
 } from './DropPicture'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
+import { styles, classes } from './types'
 
 export default {
   title: 'Components/DropPicture',
-  component: AruiDropPicture
+  component: AruiDropPicture,
+  argTypes: {
+    classes: {
+      table: {
+        type: {
+          summary: 'DropPictureClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'DropPictureStyles',
+          detail: styles
+        }
+      }
+    }
+  }
 } as Meta
 
 const Template: Story<DropPictureBasicProps> = (
@@ -16,8 +35,5 @@ const Template: Story<DropPictureBasicProps> = (
 ) => <AruiDropPicture {...args}></AruiDropPicture>
 
 export const DropPicture = Template.bind({})
-DropPicture.args = {
-  onRemovePicture: () => {},
-  onPictureDroped: () => {}
-}
+
 DropPicture.storyName = 'DropPicture'
