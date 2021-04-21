@@ -13,8 +13,6 @@ import {
   textUseStyles
 } from './buttonStyles'
 
-export type Variant = 'contained' | 'outlined' | 'text'
-
 export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The class added to the root element of the component
@@ -39,7 +37,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
    *
    * @default 'contained'
    */
-  variant?: Variant
+  variant?: 'contained' | 'outlined' | 'text'
   /**
    * The inner components
    */
