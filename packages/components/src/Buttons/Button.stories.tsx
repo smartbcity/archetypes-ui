@@ -4,6 +4,9 @@ import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { Box } from '@material-ui/core'
 import { SwapHoriz } from '@material-ui/icons'
+import { EditButton } from './EditButton'
+import { DeleteButton } from './DeleteButton'
+import { BackButton } from './BackButton'
 
 export default {
   title: 'Components/Button',
@@ -116,6 +119,14 @@ const Template6: Story = () => (
   </AruiButton>
 )
 
+const Template7: Story = () => (
+  <Box display='flex' justifyContent='space-around'>
+    <BackButton>BackButton</BackButton>
+    <EditButton>EditButton</EditButton>
+    <DeleteButton>DeleteButton</DeleteButton>
+  </Box>
+)
+
 export const ButtonVariant = Template2.bind({})
 
 export const ButtonVariantSeverity = Template3.bind({})
@@ -126,7 +137,11 @@ export const CustomIcon = Template5.bind({})
 
 export const NoIcon = Template6.bind({})
 
+export const preConfigured = Template7.bind({})
+
 ButtonVariant.storyName = 'button variants'
 ButtonVariantSeverity.storyName = 'button variants severity'
+ButtonVariantDisabled.storyName = 'button variants disabled'
 CustomIcon.storyName = 'custom icon'
 NoIcon.storyName = 'no icon'
+preConfigured.storyName = 'pre-configured buttons'
