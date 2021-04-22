@@ -14,7 +14,7 @@ export {
   EditButton,
   ButtonProps
 } from './Buttons'
-export { PopUp, Action, PopUpProps } from './PopUp'
+export { PopUp, Action as PopUpAction, PopUpProps } from './PopUp'
 export { TextField, TextFieldProps } from './TextField'
 export { Select, SelectItem, SelectProps } from './Select'
 export { FilesPanel, Folder, FolderItem, FilesPanelProps } from './FilesPanel'
@@ -25,3 +25,4 @@ export { Loading, LoadingProps } from './Loading'
 export { Pagination, PaginationProps } from './Pagination'
 export { Table, TableProps, Column } from './Table'
 export { CodeHighlighter, CodeHighlighterProps } from './CodeHighlighter'
+export { Tooltip, TooltipProps } from './ToolTip'
