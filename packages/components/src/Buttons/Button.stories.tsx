@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button as AruiButton, ButtonBasicProps } from './Button'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
@@ -133,9 +133,29 @@ const Template8: Story = () => {
     href: '/?path=/docs/components-button--button-extend'
   }
   return (
-    <Button<ComponentPropsType> component={'a'} componentProps={componentProps}>
+    <AruiButton<ComponentPropsType>
+      component={'a'}
+      componentProps={componentProps}
+    >
       Link Button
-    </Button>
+    </AruiButton>
+  )
+}
+
+const Template9: Story = () => {
+  const [success, setSuccess] = useState(false)
+  const asyncFucntion = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('resolved')
+        setSuccess(true)
+      }, 2000)
+    })
+  }
+  return (
+    <AruiButton onClick={asyncFucntion} success={success}>
+      Asynchronous action
+    </AruiButton>
   )
 }
 
@@ -153,6 +173,8 @@ export const preConfigured = Template7.bind({})
 
 export const buttonExtend = Template8.bind({})
 
+export const asynchronousButton = Template9.bind({})
+
 ButtonVariant.storyName = 'button variants'
 ButtonVariantSeverity.storyName = 'button variants severity'
 ButtonVariantDisabled.storyName = 'button variants disabled'
@@ -160,3 +182,4 @@ CustomIcon.storyName = 'custom icon'
 NoIcon.storyName = 'no icon'
 preConfigured.storyName = 'pre-configured buttons'
 buttonExtend.storyName = 'extend a button with another component'
+asynchronousButton.storyName = 'call to an asynchronous action'
