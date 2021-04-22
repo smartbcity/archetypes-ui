@@ -5,16 +5,30 @@ import { BasicProps, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 
 interface LoadingClasses {
   iconContainer?: string
+  linearProgress?: string
 }
 
 interface LoadingStyles {
   iconContainer?: React.CSSProperties
+  linearProgress?: React.CSSProperties
 }
 
-interface LoadingBasicProps extends BasicProps {
+export interface LoadingBasicProps extends BasicProps {
+  /**
+   * If true the splash screen will take the size of the screen if not it will take the size of its parent
+   */
   fullPage?: boolean
+  /**
+   * The icon of the application that will displayed in the middle of the splash screen
+   */
   icon: React.ReactNode
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: LoadingClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: LoadingStyles
 }
 
@@ -36,9 +50,16 @@ export const Loading = (props: LoadingProps) => {
         display='flex'
         flexDirection='column'
         className={clsx(classes?.iconContainer, 'AruiLoading-iconContainer')}
+        style={styles?.iconContainer}
       >
         {icon}
-        <LinearProgress />
+        <LinearProgress
+          className={clsx(
+            classes?.linearProgress,
+            'AruiLoading-linearProgress'
+          )}
+          style={styles?.linearProgress}
+        />
       </Box>
     </Box>
   )
