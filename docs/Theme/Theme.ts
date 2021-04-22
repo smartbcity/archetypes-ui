@@ -48,7 +48,7 @@ export const getTheme = (): Theme => ({
   shadows: getShadows(localStorage.getItem("shadows")),
 });
 
-export default createMuiTheme({
+export const muiTheme = createMuiTheme({
   palette: {
     primary: {
       main: getTheme().primaryColor,
@@ -56,5 +56,8 @@ export default createMuiTheme({
     secondary: {
       main: getTheme().secondaryColor,
     },
+  },
+  typography: {
+    fontFamily: "'Montserrat', Arial",
   },
 });

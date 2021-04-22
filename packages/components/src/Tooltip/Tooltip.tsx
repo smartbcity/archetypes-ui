@@ -25,8 +25,7 @@ const useStyles = (theme: Theme) =>
       height: '12px !important',
       marginTop: '-11px !important',
       '&::before': {
-        borderRadius: '2px',
-        boxShadow: theme.shadows[1]
+        borderRadius: '2px'
       }
     }
   })
