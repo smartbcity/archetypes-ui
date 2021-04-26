@@ -119,15 +119,15 @@ const ConnectButton = () => {
   if (keycloak.authenticated) {
     return (
       <>
-      <Typography>The token you recieved from the authentication server:</Typography>
+      <Typography>The token you received from the authentication server:</Typography>
       <CodeHighlighter object={keycloak.tokenParsed} />
-      <Button onClick={() => keycloak.logout()}>Disconnect from coliactiv</Button>
+      <Button onClick={() => keycloak.logout()}>Disconnect from Smartb</Button>
       </>
     )
   }
   return (
     
-    <Button onClick={() => keycloak.login()}>Connect to coliactiv</Button>
+    <Button onClick={() => keycloak.login()}>Connect with Smartb</Button>
   )
 }
 
