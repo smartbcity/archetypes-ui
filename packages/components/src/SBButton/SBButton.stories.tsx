@@ -4,7 +4,7 @@ import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Components/SBButton',
+  title: 'Components/Deprecated/SBButton',
   component: AruiSBButton
 } as Meta
 

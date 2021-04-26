@@ -17,6 +17,9 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
+/**
+ * @deprecated
+ */
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     card: {
@@ -93,6 +96,9 @@ interface PanelStyles {
   footer?: React.CSSProperties
 }
 
+/**
+ * @deprecated
+ */
 export interface PanelBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the panel
@@ -126,6 +132,9 @@ export interface PanelBasicProps extends BasicProps {
 
 export type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
 
+/**
+ * @deprecated
+ */
 export const Panel = (props: PanelProps) => {
   const {
     header,

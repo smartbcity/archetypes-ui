@@ -8,6 +8,9 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
+/**
+ * @deprecated
+ */
 const useStyles = (theme: Theme) =>
   lowLevelStyles({
     container: {
@@ -113,6 +116,9 @@ export type DividerContentProps = MergeReactElementProps<
   DividerContentBasicProps
 >
 
+/**
+ * @deprecated
+ */
 export const DividerContent = React.forwardRef(
   (props: DividerContentProps, ref: React.Ref<HTMLDivElement>) => {
     const {

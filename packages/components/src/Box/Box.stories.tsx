@@ -4,7 +4,7 @@ import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Components/Box',
+  title: 'Components/Deprecated/Box',
   component: AruiBox
 } as Meta
 

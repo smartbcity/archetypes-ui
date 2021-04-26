@@ -1,6 +1,7 @@
 # Archetypes-ui libraries
 
-![](https://badgen.net/badge/React/16.0.0/purple)
+![](https://badgen.net/badge/React/16.13.1/purple)
+![](https://badgen.net/badge/@material-ui/4.11.3/green)
 [![](https://badgen.net/npm/v/@smartb/archetypes-ui-layout/latest)](https://www.npmjs.com/package/@smartb/archetypes-ui-components)
 ![](https://badgen.net/npm/types/tslib)
 
@@ -9,11 +10,17 @@
 ```bash
 npm install @smartb/archetypes-ui-components
 npm install @smartb/archetypes-ui-layout
+npm install @smartb/archetypes-ui-forms
+npm install @smartb/archetypes-ui-theme
+npm install @smartb/archetypes-ui-s2
 ```
 
 ```bash
 yarn add @smartb/archetypes-ui-components
 yarn add @smartb/archetypes-ui-layout
+yarn add @smartb/archetypes-ui-forms
+yarn add @smartb/archetypes-ui-theme
+yarn add @smartb/archetypes-ui-s2
 ```
 
 ## 🧰 The contents
@@ -22,7 +29,13 @@ Almost every components are based on [Material-ui](https://material-ui.com/).
 
 - @smartb/archetypes-ui-components regroups basic components to build an application like button, card, panel etc...
 
+- @smartb/archetypes-ui-forms regroups the components to build a complete form like text-fields, select etc...
+
 - @smartb/archetypes-ui-layout regroups complexe layouts to structure an application like nav-bar, steppers, tools-menu etc...
+
+- @smartb/archetypes-ui-theme regroups providers and hooks to use our theme and the material-ui theme in the application.
+
+- @smartb/archetypes-ui-s2 regroups components to work with Smartb's tools.
 
 ## 🌈 Override styles
 

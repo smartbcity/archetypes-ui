@@ -6,7 +6,7 @@ const round = (value: number) => {
 };
 
 export const getShadows = (shadow: string | null) => {
-  if (shadow === null) shadow = "0px 3px 10px 0 rgba(0,0,0,0.1)";
+  if (shadow === null) shadow = "0px 4px 8px 0 rgba(0,0,0,0.2)";
   const origin = shadow;
   shadow = shadow.replace(/px/g, "");
   let shadowTab = shadow.split(" ");
@@ -17,7 +17,13 @@ export const getShadows = (shadow: string | null) => {
   let opacity = Number(colorTab[colorTab.length - 1]);
   shadowTab.pop();
   let shadowNumbers = shadowTab.map((element) => Number(element));
-  const shadowMultipliers = shadowNumbers.map((element) => round(element / 4));
+  const shadowMultipliers = shadowNumbers.map((element, index) => {
+    if (index <= 1) {
+      return round(element / 4);
+    } else {
+      return round(element / 2);
+    }
+  });
   let shadows: string[] = [];
   shadows[0] = "0 0px 0px 0 rgba(0,0,0,0)";
   shadows[1] = origin;
@@ -25,7 +31,7 @@ export const getShadows = (shadow: string | null) => {
     shadowNumbers = shadowNumbers.map(
       (number, index) => number + shadowMultipliers[index]
     );
-    if (opacity < 0.98) opacity += 0.02;
+    if (opacity <= 0.99) opacity += 0.01;
     shadows[i] = `${round(shadowNumbers[0])}px ${round(
       shadowNumbers[1]
     )}px ${round(shadowNumbers[2])}px ${round(shadowNumbers[3])}px rgba(${
@@ -42,7 +48,7 @@ export const getTheme = (): Theme => ({
   shadows: getShadows(localStorage.getItem("shadows")),
 });
 
-export default createMuiTheme({
+export const muiTheme = createMuiTheme({
   palette: {
     primary: {
       main: getTheme().primaryColor,
@@ -50,5 +56,8 @@ export default createMuiTheme({
     secondary: {
       main: getTheme().secondaryColor,
     },
+  },
+  typography: {
+    fontFamily: "'Montserrat', Arial",
   },
 });

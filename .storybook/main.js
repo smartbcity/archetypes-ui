@@ -17,7 +17,21 @@ module.exports = {
       },
     },
     "@storybook/addon-controls",
-  ]
+  ],
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      savePropValueAsString: true,
+      propFilter: (prop) => {
+        if (!prop.parent) return false;
+        if (/node_modules/.test(prop.parent.fileName)) return false;
+        if (prop.parent.name.includes("Basic")) {
+          return true;
+        }
+        return true;
+      },
+    },
+  },
 };
-
-
