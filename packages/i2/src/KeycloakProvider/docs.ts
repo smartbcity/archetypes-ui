@@ -8,7 +8,7 @@ type StaticServices = {
   getToken: { returnType: CustomToken, paramsType: {withParse?: boolean}},
 }
 
-const staticServices: KeycloackUtils<StaticServices> = {
+const staticServices: KeycloackService<StaticServices> = {
   getToken: (keycloack, params) => {
     if (params?.withParse) {
       return {
@@ -32,7 +32,7 @@ const useExtendedAuth = (extension: string) => {
     getExToken: { returnType: string},
   }
 
-  const services: KeycloackUtils<StaticServices & DynamicServices> = useMemo(() => ({
+  const services: KeycloackService<StaticServices & DynamicServices> = useMemo(() => ({
     ...staticServices,
     getExToken: (keycloack) => {
       if (!keycloack.token) return extension
@@ -68,7 +68,7 @@ type StaticServices = {
   getRoles: { returnType: Roles[] | undefined},
 }
 
-const staticServices: KeycloakUtils<StaticServices, Roles> = {
+const staticServices: KeycloackService<StaticServices, Roles> = {
   getRoles: (keycloak) => {
     return keycloak.tokenParsed?.realm_access?.roles
   }

@@ -95,7 +95,7 @@ const useExtendedAuth = () => {
 }
 
 const ConnectButton = () => {
-  const { keycloak, service } = useExtendedAuth()
+  const { keycloak } = useExtendedAuth()
   if (keycloak.authenticated) {
     return (
       <>

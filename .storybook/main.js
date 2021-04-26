@@ -27,10 +27,10 @@ module.exports = {
       savePropValueAsString: true,
       propFilter: (prop) => {
         if (!prop.parent) return false;
-        if (/node_modules/.test(prop.parent.fileName)) return false;
         if (prop.parent.name.includes("Basic")) {
           return true;
         }
+        if (/node_modules/.test(prop.parent.fileName)) return false;
         return true;
       },
     },
