@@ -14,6 +14,7 @@ push-latest: push-storybook
 
 package-libs:
 	@yarn install
+	@yarn workspace @smartb/archetypes-ui-themes run build
 	@yarn workspaces run build
 
 push-libs:
