@@ -15,7 +15,7 @@ import {
   Description
 } from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '../CodeHighlighter'
-import {localUseAuth, staticUseAuth, keycloakConfig} from "./types"
+import {localUseAuth, staticUseAuth, keycloakConfig, informRoles} from "./types"
 
 export default {
   title: 'Components/KeycloakProvider',
@@ -43,6 +43,13 @@ export default {
               To dynamically extends the authService you can do it like so:
             </Description>
             <CodeHighlighter code={localUseAuth} />
+            <Description>
+              The authService contains already 2 functions. One for veifying if the current user has the wanted roles `isAuthorized` and another one to get the current user id `getUserId`.
+            </Description>
+            <Description>
+              You can inform the roles by giving a type to the useAuth hook. ⚠️ Your additionnal services should be inform of those roles as well:
+            </Description>
+            <CodeHighlighter code={informRoles} />
         </>
       )
     }
@@ -71,50 +78,24 @@ const Template: Story = () => {
   )
 }
 
-interface CustomToken {
-  token?: string,
-  tokenParsed?: Keycloak.KeycloakTokenParsed
-}
+type Roles = "admin" | "user"
 
 type StaticServices = {
-  getToken: { returnType: CustomToken, paramsType: {withParse?: boolean}},
+  getRoles: { returnType: Roles[] | undefined},
 }
 
-const staticServices: KeycloakUtils<StaticServices> = {
-  getToken: (keycloack, params) => {
-    if (params?.withParse) {
-      return {
-        token: keycloack.token,
-        tokenParsed: keycloack.tokenParsed
-      }
-    }
-    return {
-      token: keycloack.token
-    }
+const staticServices: KeycloakUtils<StaticServices, Roles> = {
+  getRoles: (keycloak) => {
+    return keycloak.tokenParsed?.realm_access?.roles
   }
 }
 
-const useExtendedAuth = (extension: string) => {
-
-  type DynamicServices = {
-    getExToken: { returnType: string},
-  }
-
-  const services: KeycloakUtils<StaticServices & DynamicServices> = useMemo(() => ({
-    ...staticServices,
-    getExToken: (keycloack) => {
-      if (!keycloack.token) return extension
-      return keycloack.token + extension
-    }
-  }), [extension])
-
-  return useAuth<StaticServices & DynamicServices>(services)
+const useExtendedAuth = () => {
+  return useAuth<StaticServices, Roles>(staticServices)
 }
-
-
 
 const ConnectButton = () => {
-  const { service, keycloak } = useExtendedAuth("extended")
+  const { service, keycloak } = useExtendedAuth()
 
   if (keycloak.authenticated) {
     return (
@@ -126,7 +107,6 @@ const ConnectButton = () => {
     )
   }
   return (
-    
     <Button onClick={() => keycloak.login()}>Connect with Smartb</Button>
   )
 }

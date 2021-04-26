@@ -61,3 +61,21 @@ interface KeycloakConfig {
 }
 `
 
+export const informRoles = `
+type Roles = "admin" | "user"
+
+type StaticServices = {
+  getRoles: { returnType: Roles[] | undefined},
+}
+
+const staticServices: KeycloakUtils<StaticServices, Roles> = {
+  getRoles: (keycloak) => {
+    return keycloak.tokenParsed?.realm_access?.roles
+  }
+}
+
+const useExtendedAuth = () => {
+  return useAuth<StaticServices, Roles>(staticServices)
+}
+`
+
