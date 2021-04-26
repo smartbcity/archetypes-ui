@@ -3,7 +3,7 @@ import { useCallback, useMemo } from "react";
 import { KeycloakInstance, KeycloakTokenParsed } from "keycloak-js";
 
 
-type AuthService<Additionnals extends AuthUtils = {}, Roles extends string = string> = {
+type AuthService<Additionnals extends AuthServiceAdditionnal = {}, Roles extends string = string> = {
     /**
    * get the variable userId from the token parsed
    * @return {string | undefined} return  the id or undefined if not authenticated
@@ -18,15 +18,16 @@ type AuthService<Additionnals extends AuthUtils = {}, Roles extends string = str
 } & Additionnals
 
 
-type KeycloakUtil<Roles extends string = string, T = undefined, R = any> = (keycloak: KeycloakWithRoles<Roles>, params?: T) => R
+type KeycloackInjector<Roles extends string = string, T = undefined, R = any> = (keycloak: KeycloakWithRoles<Roles>, params?: T) => R
 
-type AuthUtil<T = undefined, R = any> = (params?: T) => R
+type AuthFnc<T = undefined, R = any> = (params?: T) => R
 
-export type KeycloakUtils<T = {}, Roles extends string = string> = {
-  [K in keyof T]: KeycloakUtil<Roles, T[K] extends { paramsType: unknown } ? T[K]['paramsType'] : undefined, T[K] extends { returnType: unknown } ? T[K]['returnType'] : undefined>
+export type KeycloackService<T = {}, Roles extends string = string> = {
+  [K in keyof T]: KeycloackInjector<Roles, T[K] extends { paramsType: unknown } ? T[K]['paramsType'] : undefined, T[K] extends { returnType: unknown } ? T[K]['returnType'] : undefined>
 }
-export type AuthUtils<T = {}> = {
-  [K in keyof T]: AuthUtil<T[K] extends { paramsType: unknown } ? T[K]['paramsType'] : undefined, T[K] extends { returnType: unknown } ? T[K]['returnType'] : undefined>
+
+export type AuthServiceAdditionnal<T = {}> = {
+  [K in keyof T]: AuthFnc<T[K] extends { paramsType: unknown } ? T[K]['paramsType'] : undefined, T[K] extends { returnType: unknown } ? T[K]['returnType'] : undefined>
 }
 
 interface KeycloakTokenParsedWithRoles<Roles extends string = string> extends KeycloakTokenParsed {
@@ -40,7 +41,7 @@ interface KeycloakWithRoles<Roles extends string = string> extends KeycloakInsta
   hasRealmRole: (role: Roles) => boolean
 }
 
-interface Auth<Additionnals extends AuthUtils = {}, Roles extends string = string> {
+interface Auth<Additionnals extends AuthServiceAdditionnal = {}, Roles extends string = string> {
   service?: AuthService<Additionnals, Roles>,
   keycloak: KeycloakWithRoles<Roles>
 }
@@ -48,7 +49,7 @@ interface Auth<Additionnals extends AuthUtils = {}, Roles extends string = strin
 function useAuth<
   AdditionnalServices,
   Roles extends string = string
->(additionnalServices: KeycloakUtils<AdditionnalServices, Roles>): Auth<AuthUtils<AdditionnalServices>, Roles>;
+>(additionnalServices: KeycloackService<AdditionnalServices, Roles>): Auth<AuthServiceAdditionnal<AdditionnalServices>, Roles>;
 
 function useAuth<
   Roles extends string = string
@@ -58,8 +59,8 @@ function useAuth<
   AdditionnalServices = undefined,
   Roles extends string = string
 >(
-  additionnalServices?: KeycloakUtils<AdditionnalServices, Roles>
-): Auth<AuthUtils<AdditionnalServices>, Roles> {
+  additionnalServices?: KeycloackService<AdditionnalServices, Roles>
+): Auth<AuthServiceAdditionnal<AdditionnalServices>, Roles> {
   const { initialized, keycloak } = useKeycloak();
 
   const keycloakWithRoles: KeycloakWithRoles<Roles> = useMemo(() => keycloak as KeycloakWithRoles<Roles>, [keycloak])
@@ -93,10 +94,10 @@ function useAuth<
     isAuthorized: isAuthorized
   }), [isAuthorized, getUserId])
 
-  const additionnals: AuthUtils<AdditionnalServices> = useMemo(() => {
-    const object: AuthUtils<AdditionnalServices> = {} as AuthUtils<AdditionnalServices>
+  const additionnals: AuthServiceAdditionnal<AdditionnalServices> = useMemo(() => {
+    const object: AuthServiceAdditionnal<AdditionnalServices> = {} as AuthServiceAdditionnal<AdditionnalServices>
     for (var serviceName in additionnalServices) {
-      const fn: AuthUtil = (params) => additionnalServices[serviceName](keycloakWithRoles, params)
+      const fn: AuthFnc = (params) => additionnalServices[serviceName](keycloakWithRoles, params)
       object[serviceName.toString()] = fn
     }
     return object;
@@ -105,8 +106,8 @@ function useAuth<
   return { service: Object.assign(service, additionnals), keycloak: keycloakWithRoles };
 };
 
-
-export { useAuth };
+export {useAuth};
+export default useAuth;
 
 
 

@@ -4,7 +4,7 @@ import {
 } from './KeycloakProvider'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
-import { useAuth, KeycloakUtils } from "./Keycloak"
+import { useAuth, KeycloackService } from "./useAuth"
 import { Button } from '../../../components/src/Buttons/Button'
 import { Link, Typography } from '@material-ui/core'
 import {
@@ -15,7 +15,7 @@ import {
   Description
 } from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '../../../components/src/CodeHighlighter'
-import {localUseAuth, staticUseAuth, keycloakConfig, informRoles} from "./types"
+import {localUseAuth, staticUseAuth, keycloakConfig, informRoles} from "./docs"
 
 export default {
   title: 'I2/KeycloakProvider',
@@ -81,10 +81,10 @@ const Template: Story = () => {
 type Roles = "admin" | "user"
 
 type StaticServices = {
-  getRoles: { returnType: Roles[] | undefined},
+  getRoles: { returnType: Roles[] | undefined, paramsType: {test: boolean}},
 }
 
-const staticServices: KeycloakUtils<StaticServices, Roles> = {
+const staticServices: KeycloackService<StaticServices, Roles> = {
   getRoles: (keycloak) => {
     return keycloak.tokenParsed?.realm_access?.roles
   }
@@ -95,8 +95,7 @@ const useExtendedAuth = () => {
 }
 
 const ConnectButton = () => {
-  const { keycloak } = useExtendedAuth()
-
+  const { keycloak, service } = useExtendedAuth()
   if (keycloak.authenticated) {
     return (
       <>

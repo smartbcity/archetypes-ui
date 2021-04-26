@@ -1,1 +1,1 @@
-export {KeycloakProvider, AuthUtils, KeycloakProviderProps, KeycloakUtils, useAuth} from "./KeycloakProvider"
+export {KeycloakProvider, AuthServiceAdditionnal, KeycloakProviderProps, KeycloackService, useAuth} from "./KeycloakProvider"
