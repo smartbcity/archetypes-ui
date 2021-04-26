@@ -4,7 +4,7 @@ import {
 } from './KeycloakProvider'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
-import { useAuth, KeycloackUtils } from "./Keycloak"
+import { useAuth, KeycloakUtils } from "./Keycloak"
 import { Button } from '../Buttons/Button'
 import { Link, Typography } from '@material-ui/core'
 import {
@@ -80,7 +80,7 @@ type StaticServices = {
   getToken: { returnType: CustomToken, paramsType: {withParse?: boolean}},
 }
 
-const staticServices: KeycloackUtils<StaticServices> = {
+const staticServices: KeycloakUtils<StaticServices> = {
   getToken: (keycloack, params) => {
     if (params?.withParse) {
       return {
@@ -100,7 +100,7 @@ const useExtendedAuth = (extension: string) => {
     getExToken: { returnType: string},
   }
 
-  const services: KeycloackUtils<StaticServices & DynamicServices> = useMemo(() => ({
+  const services: KeycloakUtils<StaticServices & DynamicServices> = useMemo(() => ({
     ...staticServices,
     getExToken: (keycloack) => {
       if (!keycloack.token) return extension
