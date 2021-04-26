@@ -25,4 +25,3 @@ export { Loading, LoadingProps } from './Loading'
 export { Pagination, PaginationProps } from './Pagination'
 export { Table, TableProps, Column } from './Table'
 export { CodeHighlighter, CodeHighlighterProps } from './CodeHighlighter'
-export {KeycloakProvider, AuthUtils, KeycloakProviderProps, KeycloakUtils, useAuth} from "./KeycloakProvider"

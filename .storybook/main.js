@@ -5,6 +5,7 @@ module.exports = {
     "../packages/forms/src/**/*.stories.@(ts|tsx|mdx)",
     "../packages/layout/src/**/*.stories.@(ts|tsx|mdx)",
     "../packages/s2/src/**/*.stories.@(ts|tsx|mdx)",
+    "../packages/i2/src/**/*.stories.@(ts|tsx|mdx)",
   ],
   addons: [
     "@storybook/addon-links",

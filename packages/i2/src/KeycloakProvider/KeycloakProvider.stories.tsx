@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
   KeycloakProvider as AruiKeycloakProvider
 } from './KeycloakProvider'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { useAuth, KeycloakUtils } from "./Keycloak"
-import { Button } from '../Buttons/Button'
+import { Button } from '../../../components/src/Buttons/Button'
 import { Link, Typography } from '@material-ui/core'
 import {
   ArgsTable,
@@ -14,11 +14,11 @@ import {
   Primary,
   Description
 } from '@storybook/addon-docs/blocks'
-import { CodeHighlighter } from '../CodeHighlighter'
+import { CodeHighlighter } from '../../../components/src/CodeHighlighter'
 import {localUseAuth, staticUseAuth, keycloakConfig, informRoles} from "./types"
 
 export default {
-  title: 'Components/KeycloakProvider',
+  title: 'I2/KeycloakProvider',
   component: AruiKeycloakProvider,
   parameters: {
     docs: {
@@ -95,7 +95,7 @@ const useExtendedAuth = () => {
 }
 
 const ConnectButton = () => {
-  const { service, keycloak } = useExtendedAuth()
+  const { keycloak } = useExtendedAuth()
 
   if (keycloak.authenticated) {
     return (
