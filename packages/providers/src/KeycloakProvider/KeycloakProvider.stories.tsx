@@ -5,7 +5,7 @@ import {
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { useAuth, KeycloackService } from "./useAuth"
-import { Button } from '../../../components/src/Buttons/Button'
+import { Button } from '@smartb/archetypes-ui-components'
 import { Link, Typography } from '@material-ui/core'
 import {
   ArgsTable,
@@ -14,11 +14,11 @@ import {
   Primary,
   Description
 } from '@storybook/addon-docs/blocks'
-import { CodeHighlighter } from '../../../components/src/CodeHighlighter'
+import { CodeHighlighter } from '@smartb/archetypes-ui-components'
 import {localUseAuth, staticUseAuth, keycloakConfig, informRoles} from "./docs"
 
 export default {
-  title: 'I2/KeycloakProvider',
+  title: 'Providers/KeycloakProvider',
   component: AruiKeycloakProvider,
   parameters: {
     docs: {

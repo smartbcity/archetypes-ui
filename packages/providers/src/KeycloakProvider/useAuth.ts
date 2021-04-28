@@ -42,7 +42,7 @@ interface KeycloakWithRoles<Roles extends string = string> extends KeycloakInsta
 }
 
 interface Auth<Additionnals extends AuthServiceAdditionnal = {}, Roles extends string = string> {
-  service?: AuthService<Additionnals, Roles>,
+  service: AuthService<Additionnals, Roles>,
   keycloak: KeycloakWithRoles<Roles>
 }
 
@@ -61,13 +61,9 @@ function useAuth<
 >(
   additionnalServices?: KeycloackService<AdditionnalServices, Roles>
 ): Auth<AuthServiceAdditionnal<AdditionnalServices>, Roles> {
-  const { initialized, keycloak } = useKeycloak();
+  const { keycloak } = useKeycloak();
 
   const keycloakWithRoles: KeycloakWithRoles<Roles> = useMemo(() => keycloak as KeycloakWithRoles<Roles>, [keycloak])
-
-  if (!initialized) {
-    return { service: undefined, keycloak: keycloakWithRoles };
-  }
 
   const isAuthorized = useCallback(
     (roles: Roles[]): boolean => {
