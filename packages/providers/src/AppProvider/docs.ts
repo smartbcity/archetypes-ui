@@ -29,7 +29,8 @@ export const useExtendedI18n = () => {
 `
 
 export const redux = `
-const { store, history, reducer } = initRedux({myReducer: myReducerObject})
+const myReducers = {myReducer: myReducerObject}
+const { store, history, reducer } = initRedux<typeof myReducers>(myReducers)
 
 export type State = ReturnType<typeof reducer>;
 ...
