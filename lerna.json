@@ -3,6 +3,7 @@
     "packages/components",
     "packages/forms",
     "packages/layout",
+    "packages/providers",
     "packages/s2",
     "packages/themes"
   ],
