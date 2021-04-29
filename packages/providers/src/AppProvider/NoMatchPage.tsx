@@ -56,7 +56,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
     const {title = "Page not found", buttonLabel = "Go back home", classes, styles, className, style, id, ...other} = props
     const defaultClasses = useStyles()
     return (
-        <Box {...other} className={className} style={style} id={id} display="flex" width="100%" height="100%" flexDirection="column" justifyContent="center" alignItems="center">
+        <Box className={className} style={style} id={id} display="flex" width="100%" height="100%" flexDirection="column" justifyContent="center" alignItems="center" {...other}>
             <NotFoundIcon className={clsx(defaultClasses.notFoundIcon, classes?.notFoundIcon)} style={styles?.notFoundIcon} />
             <Typography variant="h3" className={clsx(defaultClasses.title, classes?.title)} style={styles?.title}>{title}</Typography>
             <Button<LinkProps> className={classes?.backButton} style={styles?.backButton} component={Link} componentProps={{ to: "/" }} variant="outlined">{buttonLabel}</Button>
