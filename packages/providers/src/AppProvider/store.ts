@@ -8,13 +8,13 @@ import { createBrowserHistory } from "history";
  * @param {Middleware<{}, any, any>[]}  middlewares - An array containing the possible middlewares you want to add to your store
  * @return {Store} Return the redux store instance
  */
-export const initRedux = <Reducers extends { [key: string]: Reducer<any, AnyAction> }>(reducers?: Reducers, middlewares?: Middleware<{}, any, any>[]) => {
+export const initRedux = <Reducers extends { [key: string]: Reducer<any, AnyAction>} = {}>(reducers?: Reducers, middlewares?: Middleware<{}, any, any>[]) => {
   middlewares = middlewares ?? []
   const history = createBrowserHistory();
 
   const reducersCombination: {
     router: Reducer<RouterState<unknown>, AnyAction>;
-  } & Reducers = Object.assign(reducers, { router: connectRouter(history) })
+  } & Reducers = Object.assign(reducers ?? {} as Reducers, { router: connectRouter(history) })
 
   const reducer = combineReducers<typeof reducersCombination>(reducersCombination);
 
