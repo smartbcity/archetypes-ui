@@ -16,7 +16,7 @@ interface RouterBasicProps {
     noMatchComponent?: JSX.Element
 }
 
-export type RouterProps = MergeMuiElementProps<RouterBasicProps, SwitchProps>
+export type RouterProps = MergeMuiElementProps<SwitchProps, RouterBasicProps>
 
 export const Router = (props: RouterProps) => {
     const { children, noMatchComponent, ...other } = props

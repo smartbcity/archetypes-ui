@@ -29,11 +29,15 @@ interface NoMatchPageStyles {
 
 export interface NoMatchPageBasicProps extends BasicProps {
     /**
-     * The classes applied to the different part of the component
+     * The title beneath the 404 logo
+     * 
+     * @default "Page not found"
      */
     title?: string
     /**
-     * The classes applied to the different part of the component
+     * The label inside the go back button
+     * 
+     * @default "Go back home"
      */
     buttonLabel?: string
     /**
@@ -46,16 +50,16 @@ export interface NoMatchPageBasicProps extends BasicProps {
     styles?: NoMatchPageStyles
 }
 
-export type NoMatchPageProps = MergeMuiElementProps<NoMatchPageBasicProps, BoxProps>
+export type NoMatchPageProps = MergeMuiElementProps<BoxProps, NoMatchPageBasicProps>
 
 export const NoMatchPage = (props: NoMatchPageProps) => {
-    const {title, buttonLabel, classes, styles, className, style, id, ...other} = props
+    const {title = "Page not found", buttonLabel = "Go back home", classes, styles, className, style, id, ...other} = props
     const defaultClasses = useStyles()
     return (
         <Box {...other} className={className} style={style} id={id} display="flex" width="100%" height="100%" flexDirection="column" justifyContent="center" alignItems="center">
             <NotFoundIcon className={clsx(defaultClasses.notFoundIcon, classes?.notFoundIcon)} style={styles?.notFoundIcon} />
-            <Typography variant="h3" className={clsx(defaultClasses.title, classes?.title)} style={styles?.title}>Page not found</Typography>
-            <Button<LinkProps> className={classes?.backButton} style={styles?.backButton} component={Link} componentProps={{ to: "/" }} variant="outlined">Go back home</Button>
+            <Typography variant="h3" className={clsx(defaultClasses.title, classes?.title)} style={styles?.title}>{title}</Typography>
+            <Button<LinkProps> className={classes?.backButton} style={styles?.backButton} component={Link} componentProps={{ to: "/" }} variant="outlined">{buttonLabel}</Button>
         </Box>
     );
 };

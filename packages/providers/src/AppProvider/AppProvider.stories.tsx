@@ -14,16 +14,15 @@ import {
   PRIMARY_STORY,
   Subtitle,
   Title,
-  Story as StoryComponent,
   Primary,
   Description
 } from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@smartb/archetypes-ui-components'
 import initRedux from "./store"
-import { Route } from 'react-router'
+import { Route, useHistory } from 'react-router'
 import { LinkProps, Link } from 'react-router-dom'
 import {i18next, usei18next, redux} from "./docs"
-import { push } from "connected-react-router";
+
 
 export default {
   title: 'Providers/AppProvider',
@@ -83,9 +82,11 @@ const Template: Story = () => {
   )
 }
 
+
 const Router = () => {
+  const history = useHistory();
   useEffect(() => {
-    push("/")
+      history.push("/")
   }, [])
   return (
     <AruiRouter>

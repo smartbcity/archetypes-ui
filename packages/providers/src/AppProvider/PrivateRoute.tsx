@@ -19,7 +19,7 @@ interface PrivateRouteBasicProps<Roles extends string = string> {
   unauthorizedComponent?: JSX.Element
 }
 
-export type PrivateRouteProps<Roles extends string = string> = MergeMuiElementProps<PrivateRouteBasicProps<Roles>, RouteProps>
+export type PrivateRouteProps<Roles extends string = string> = MergeMuiElementProps<RouteProps, PrivateRouteBasicProps<Roles>>
 
 export const PrivateRoute = <Roles extends string = string>(props: PrivateRouteProps<Roles>): JSX.Element => {
   const { roles, unauthorizedComponent, ...other } = props;
