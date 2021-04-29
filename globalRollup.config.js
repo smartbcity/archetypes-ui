@@ -1,4 +1,3 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
@@ -20,14 +19,21 @@ const getGlobal = (localPackageJson) => {
       },
       {
         file: localPackageJson.module,
-        format: "esm",
+        format: "es",
         sourcemap: true,
       },
     ],
     plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
+      resolve({
+        browser: true,
+        preferBuiltins: false,
+        extensions: ['.mjs', '.js', '.jsx', '.json', '.node']
+      }),
+      commonjs({
+        include: /\/node_modules\//,
+        esmExternals: false,
+        requireReturnsDefault: 'namespace',
+      }),
       typescript(),
       image(),
       json(),

@@ -11,8 +11,6 @@ import { NoMatchPage as AruiNoMatchPage } from "./NoMatchPage"
 import { Typography } from '@material-ui/core'
 import {
   ArgsTable,
-  PRIMARY_STORY,
-  Subtitle,
   Title,
   Primary,
   Description
