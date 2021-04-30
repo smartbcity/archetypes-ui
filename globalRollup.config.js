@@ -4,7 +4,7 @@ import typescript from "rollup-plugin-typescript2";
 import image from "@rollup/plugin-image";
 import json from "rollup-plugin-json";
 import svgr from "@svgr/rollup";
-import nodeGlobals from 'rollup-plugin-node-globals';
+import babel from 'rollup-plugin-babel';
 
 const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
@@ -12,10 +12,6 @@ const getGlobal = (localPackageJson) => {
   ).concat(Object.keys(localPackageJson.peerDependencies || {}));
   return {
     external: externalsDependencies,
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    },
     output: [
       {
         file: localPackageJson.main,
@@ -24,7 +20,7 @@ const getGlobal = (localPackageJson) => {
       },
       {
         file: localPackageJson.module,
-        format: "esm",
+        format: "es",
         sourcemap: true,
       },
     ],
@@ -40,7 +36,12 @@ const getGlobal = (localPackageJson) => {
         requireReturnsDefault: 'namespace',
         ignoreGlobal: true,
       }),
-      nodeGlobals(),
+      babel({
+        exclude: /node_modules/,
+        // We are using @babel/plugin-transform-runtime
+        runtimeHelpers: true,
+        babelrc: true
+      }),
       typescript(),
       image(),
       json(),
