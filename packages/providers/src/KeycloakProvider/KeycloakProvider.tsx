@@ -27,7 +27,6 @@ export interface KeycloakProviderProps {
 export const KeycloakProvider = (props: KeycloakProviderProps) => {
     const { config, initOptions, loadingComponent, children } = props
 
-    //@ts-ignore
     const init : KeycloakInitOptions = useMemo(() => ({
         checkLoginIframe: false,
         ...initOptions
