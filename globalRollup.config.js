@@ -4,7 +4,6 @@ import typescript from "rollup-plugin-typescript2";
 import image from "@rollup/plugin-image";
 import json from "rollup-plugin-json";
 import svgr from "@svgr/rollup";
-import babel from 'rollup-plugin-babel';
 
 const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
@@ -37,11 +36,6 @@ const getGlobal = (localPackageJson) => {
       }),
       commonjs({
         include: /\/node_modules\//,
-      }),
-      babel({
-        exclude: /\/node_modules\//,
-        // We are using @babel/plugin-transform-runtime
-        runtimeHelpers: true
       }),
       typescript(),
       image(),

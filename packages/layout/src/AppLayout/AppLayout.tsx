@@ -1,6 +1,6 @@
 import React from 'react'
 import { Drawer, Theme, DrawerProps } from '@material-ui/core'
-import createStyles from '@material-ui/core/styles/createStyles'
+import {createStyles} from '@material-ui/core'
 import clsx from 'clsx'
 import { StyleProps } from '../StyleProps'
 import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-themes'

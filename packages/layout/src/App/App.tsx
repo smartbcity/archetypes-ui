@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Drawer, DrawerProps, Theme } from '@material-ui/core'
-import createStyles from '@material-ui/core/styles/createStyles'
+import {createStyles} from '@material-ui/core'
 import clsx from 'clsx'
 import { StyleProps } from '../StyleProps'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
