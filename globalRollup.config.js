@@ -10,16 +10,22 @@ const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
     localPackageJson.dependencies || {}
   ).concat(Object.keys(localPackageJson.peerDependencies || {}));
+  const globals = {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  };
   return {
-    external: externalsDependencies,
+    external: [...externalsDependencies, "@material-ui/styles"],
     output: [
       {
         file: localPackageJson.main,
+        globals: globals,
         format: "cjs",
         sourcemap: true,
       },
       {
         file: localPackageJson.module,
+        globals: globals,
         format: "es",
         sourcemap: true,
       },
@@ -27,20 +33,15 @@ const getGlobal = (localPackageJson) => {
     plugins: [
       resolve({
         browser: true,
-        preferBuiltins: false,
         extensions: ['.mjs', '.js', '.jsx', '.json', '.node', '.tsx', '.ts']
       }),
       commonjs({
         include: /\/node_modules\//,
-        esmExternals: false,
-        requireReturnsDefault: 'namespace',
-        ignoreGlobal: true,
       }),
       babel({
-        exclude: /node_modules/,
+        exclude: /\/node_modules\//,
         // We are using @babel/plugin-transform-runtime
-        runtimeHelpers: true,
-        babelrc: true
+        runtimeHelpers: true
       }),
       typescript(),
       image(),
