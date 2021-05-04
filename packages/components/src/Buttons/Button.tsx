@@ -122,7 +122,7 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
       ? containedUseStyles(theme)()
       : variant === 'outlined'
       ? outlinedUseStyles(theme)()
-      : textUseStyles()
+      : textUseStyles(theme)()
   const forcedLoading = isLoading
   const [loading, setloading] = useState(false)
 

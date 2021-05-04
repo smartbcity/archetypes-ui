@@ -30,5 +30,5 @@ export type MergeReactElementProps<
   P extends object = {}
 > = Omit<React.ComponentPropsWithRef<T>, keyof P> & P
 
-export type MergeMuiElementProps<T, P extends object = {}> = Omit<T, keyof P> &
+export type MergeMuiElementProps<MuiElement, P extends object = {}> = Omit<MuiElement, keyof P> &
   P
