@@ -1,30 +1,46 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   FormControl,
   FormHelperText,
-  InputLabel,
-  Select as MuiSelect
+  InputBaseComponentProps,
+  Select as MuiSelect,
+  SelectProps as MuiSelectProps
 } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
 import { SelectIcon } from '../assets/icons'
-import { useInputStylesSimple } from '../style'
-import { BasicProps } from '@smartb/archetypes-ui-themes'
+import { useInputStyles } from '../style'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
+import clsx from 'clsx'
 
 export type Option = {
   value: string | number
   label: string | number
 }
 
-const useStyles = makeStyles(() => ({
+export interface SelectClasses {
+  label?: string
+  select?: string
+  input?: string
+  helperText?: string
+  selectIcon?: string
+  clearIcon?: string
+  option?: string
+}
+
+export interface SelectStyles {
+  label?: React.CSSProperties
+  select?: React.CSSProperties
+  input?: React.CSSProperties
+  helperText?: React.CSSProperties
+  selectIcon?: React.CSSProperties
+  clearIcon?: React.CSSProperties
+  option?: React.CSSProperties
+}
+
+const useStyles = lowLevelStyles()({
   root: {
     '& .MuiFilledInput-input': {
       margin: '0px 5px'
-    },
-    '& .MuiSelect-root': {
-      backgroundColor: 'white',
-      height: 48,
-      borderRadius: '5px'
     }
   },
   disabledStyle: {
@@ -40,10 +56,16 @@ const useStyles = makeStyles(() => ({
     marginTop: '-12px',
     cursor: 'pointer',
     color: 'rgba(0, 0, 0, 0.54)'
+  },
+  selectIcon: {
+    width: '20px',
+    height: '20px',
+    right: '10px',
+    top: 'calc(50% - 10px)'
   }
-}))
+})
 
-export interface SelectProps extends BasicProps {
+export interface SelectBasicProps extends BasicProps {
   /**
    * The value displayed
    */
@@ -53,17 +75,17 @@ export interface SelectProps extends BasicProps {
    * The event called when the value of the input change
    * @param value the new value
    */
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
 
   /**
-   * The label of the input
+   * The size of the input
    */
-  label?: string
+  size?: "large" | "medium" | "small"
 
   /**
    * List of options available in the option
    */
-  options: Option[]
+  options?: Option[]
 
   /**
    * The text to display as place holder
@@ -81,11 +103,6 @@ export interface SelectProps extends BasicProps {
   errorMessage?: string
 
   /**
-   * The classes applied to the base part of the component
-   */
-  baseClassName?: string
-
-  /**
    * The event called when the value of the input is removed
    */
   onRemoveValue?: () => void
@@ -94,111 +111,127 @@ export interface SelectProps extends BasicProps {
    * If true the autocomplete will be disabled
    */
   disabled?: boolean
-
   /**
-   * The event called when the input is clicked
+   * The classes applied to the different part of the component
    */
-  onClick?: (event: React.MouseEvent) => void
-
+  classes?: SelectClasses
   /**
-   * The event called when the input is blured
+   * The styles applied to the different part of the component
    */
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void
+  styles?: SelectStyles
 }
+
+export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
 export const Select = React.forwardRef((props: SelectProps, ref) => {
   const {
     value = '',
     onChange,
     label = '',
-    options,
+    options = [],
     className,
     placeHolder,
-    baseClassName = '',
     style,
     id,
     error = false,
     errorMessage = '',
     onRemoveValue,
     disabled = false,
-    onClick,
-    onBlur
+    classes,
+    styles,
+    size = "medium",
+    ...other
   } = props
 
-  const classes = useInputStylesSimple(disabled)()
+  const theme = useTheme()
+  const defaultClasses = useInputStyles(theme)
   const classesLocal = useStyles()
+
+  const onChangeMemoized = useCallback(
+    (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => onChange && onChange(e.target.value as string),
+    [onChange],
+  )
+
+  const selectIcon = useCallback(
+    (props) => (
+      <SelectIcon
+        {...props}
+        color='#98A5AE'
+        className={clsx(classes?.selectIcon, classesLocal.selectIcon, "AruiSelect-selectIcon", props.className)}
+        style={styles?.selectIcon}
+      />
+    ),
+    [],
+  )
+
+  const optionsMemoized = useMemo(() => {
+    return options.map((option, index) => (
+      <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} value={option.value} key={index}>
+        {option.label}
+      </option>
+    ))
+  }, [options, classes?.option, styles?.option])
+
+  const inputProp: InputBaseComponentProps = useMemo(() => {
+    return {
+      name: label,
+      className: clsx(classes?.input, "AruiSelect-select"),
+      style: {
+        ...styles?.input,
+        paddingRight: value !== '' && onRemoveValue ? '49px' : '26px',
+        textOverflow: 'ellipsis'
+      }
+    }
+  }, [label, onRemoveValue, value, classes?.input, styles?.input])
 
   return (
     <FormControl
       variant='filled'
-      className={`${className} ${classes.input}`}
+      className={clsx(
+        className,
+        defaultClasses.input,
+        size === "large" && defaultClasses.inputLarge,
+        size === "medium" && defaultClasses.inputMedium,
+        size === "small" && defaultClasses.inputSmall,
+        disabled && defaultClasses.inputDisabled,
+        error && defaultClasses.inputError,
+        "AruiSelect-root"
+      )}
       style={style}
       error={error}
     >
-      {label ? (
-        <InputLabel htmlFor={id} className={classes.label}>
-          {label}
-        </InputLabel>
-      ) : null}
       <MuiSelect
+        {...other}
         ref={ref}
-        onClick={onClick}
-        onBlur={onBlur}
-        className={`${classesLocal.root} ${
-          value === '' && placeHolder ? classesLocal.disabledStyle : ''
-        } ${baseClassName}`}
+        className={clsx(classesLocal.root, value === '' && placeHolder ? classesLocal.disabledStyle : '', classes?.select, "AruiSelect-select")}
         id={id}
         variant={'filled'}
         native
         value={value}
-        IconComponent={(props) => (
-          <SelectIcon
-            {...props}
-            color='#98A5AE'
-            style={{
-              width: '20px',
-              height: '20px',
-              right: '10px',
-              top: 'calc(50% - 10px)'
-            }}
-          />
-        )}
-        onChange={(
-          e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>
-        ) => onChange(e.target.value as string)}
-        inputProps={{
-          name: label,
-          style: {
-            paddingRight: value !== '' && onRemoveValue ? '49px' : '26px',
-            textOverflow: 'ellipsis'
-          }
-        }}
+        IconComponent={selectIcon}
+        onChange={onChangeMemoized}
+        inputProps={inputProp}
         style={{
+          ...styles?.select,
           color: '#98A5AE',
           fontWeight: 500
         }}
         disabled={disabled ? disabled : false}
       >
         {value === '' && placeHolder ? (
-          <option aria-label='Placeholder' value='' disabled>
+          <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} aria-label='Placeholder' value='' disabled>
             {placeHolder}
           </option>
         ) : (
-          value === '' && !placeHolder && <option aria-label='None' value='' />
+          value === '' && !placeHolder && <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} aria-label='None' value='' />
         )}
-        {options.map((option, index) => (
-          <option value={option.value} key={index}>
-            {option.label}
-          </option>
-        ))}
+        {optionsMemoized}
       </MuiSelect>
       {value !== '' && onRemoveValue && (
-        <Clear onClick={onRemoveValue} className={classesLocal.clear} />
+        <Clear onClick={onRemoveValue} className={clsx(classesLocal.clear, classes?.clearIcon, "AruiSelect-clearIcon")} style={styles?.clearIcon} />
       )}
       {errorMessage !== '' && error && (
-        <FormHelperText className={classes.helperText}>
+        <FormHelperText className={clsx(defaultClasses.helperText, classes?.helperText, "AruiSelect-helperText")} style={styles?.helperText}>
           {errorMessage}
         </FormHelperText>
       )}

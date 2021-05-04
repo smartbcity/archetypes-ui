@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {InputForm, InputFormProps} from './InputForm'
+import {InputForm, InputFormBasicProps} from './InputForm'
 import { Option } from '../Select'
 import {Meta} from "@storybook/react";
 import {Story} from "@storybook/react/types-6-0";
@@ -9,7 +9,7 @@ export default {
   component: InputForm,
 } as Meta;
 
-export const InputFormStory: Story<InputFormProps>  = () => {
+export const InputFormStory: Story<InputFormBasicProps>  = () => {
   const [value, setValue] = useState('')
 
   const options: Option[] = [
@@ -26,12 +26,14 @@ export const InputFormStory: Story<InputFormProps>  = () => {
     <>
     <InputForm
       label='Votre nom:'
+      onRemoveValue={() => setValue("")}
       value={value}
       inputType='textField'
-      selectOptions={options}
-      onChange={(value: String) => {
-        setValue(value as string)
+      onChange={(value: string) => {
+        setValue(value)
       }}
+      textFieldType="search"
+      onSearch={() => console.log("search")}
       id='test'
       placeHolder='ex Basile Savouret'
       style={{ width: '400px', margin: '50px' }}
@@ -40,22 +42,18 @@ export const InputFormStory: Story<InputFormProps>  = () => {
       label='Votre nom:'
       value={value}
       inputType='textField'
-      selectOptions={options}
       onChange={(value: String) => {
         setValue(value as string)
       }}
       id='test'
       placeHolder='ex Basile Savouret'
-      error={true}
-      errorMessage={'Champs obligatoire'}
       style={{ width: '400px', margin: '50px' }}
-      inputStyle={{ width: '250px' }}
+      validated
     />
     <InputForm
       label='Votre nom:'
       value={value || 'Read Only'}
       inputType='textField'
-      selectOptions={options}
       onChange={(value: String) => {
         setValue(value as string)
       }}
@@ -63,7 +61,6 @@ export const InputFormStory: Story<InputFormProps>  = () => {
       placeHolder='ex Basile Savouret'
       errorMessage={'Champs obligatoire'}
       style={{ width: '400px', margin: '50px' }}
-      inputStyle={{ width: '250px' }}
       readonly={true}
     />
 
@@ -71,23 +68,22 @@ export const InputFormStory: Story<InputFormProps>  = () => {
       label='Votre nom:'
       value={value}
       inputType='select'
-      selectOptions={options}
       onChange={(value: String) => {
         setValue(value as string)
       }}
+      options={options}
       id='test'
       placeHolder='ex Basile Savouret'
       style={{ width: '400px', margin: '50px' }}
-      inputStyle={{ width: '250px' }}
     />
     <InputForm
       label='Votre nom:'
       value={value}
       inputType='select'
-      selectOptions={options}
       onChange={(value: String) => {
         setValue(value as string)
       }}
+      options={options}
       id='test'
       placeHolder='ex Basile Savouret'
       error={true}
@@ -97,7 +93,6 @@ export const InputFormStory: Story<InputFormProps>  = () => {
       label='Votre nom:'
       value={'Read Only'}
       inputType='select'
-      selectOptions={options || 1}
       onChange={(value: String) => {
         setValue(value as string)
       }}

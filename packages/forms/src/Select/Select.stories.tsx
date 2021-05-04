@@ -1,39 +1,38 @@
 import React, {useState} from 'react'
-import {Select, Option} from './Select'
+import {Select, Option, SelectBasicProps} from './Select'
 import {Meta} from "@storybook/react";
 import {Story} from "@storybook/react/types-6-0";
-import {SelectProps} from "@material-ui/core";
 
 export default {
   title: 'Forms/Select',
   component: Select,
 } as Meta;
 
-export const SelectStory: Story<SelectProps> = () => {
-  const [value, setValue] = useState('')
-  const options: Option[] = [
-    {
-      value: 1,
-      label: 'test1'
-    },
-    {
-      value: 2,
-      label: 'test2'
-    }
-  ]
+export const SelectStory: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+
 
   return (
     <Select
-      label='test'
-      value={value}
-      options={options}
-      onChange={(value) => {
-        setValue(value as string)
-      }}
-      id='test'
+      options={[]}
+      {...args}
       style={{ width: 350 }}
     />
   )
+}
+
+const options: Option[] = [
+  {
+    value: 1,
+    label: 'test1'
+  },
+  {
+    value: 2,
+    label: 'test2'
+  }
+]
+
+SelectStory.args = {
+  options: options
 }
 
 SelectStory.storyName = "Select"
