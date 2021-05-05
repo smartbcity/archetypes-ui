@@ -10,7 +10,7 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   root: {
     zIndex: 1100
   },

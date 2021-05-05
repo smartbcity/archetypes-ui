@@ -4,7 +4,7 @@ import { AppBar, Tab, Tabs } from '@material-ui/core'
 import clsx from 'clsx'
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   appBar: {
     background: 'transparent',
     boxShadow: 'none !important'

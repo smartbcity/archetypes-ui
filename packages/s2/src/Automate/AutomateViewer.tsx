@@ -8,7 +8,7 @@ import {
 import clsx from 'clsx'
 import { useTheme } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   container: {
     width: '100%',
     height: '100%',

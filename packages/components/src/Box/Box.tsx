@@ -13,7 +13,7 @@ import clsx from 'clsx'
 /**
  * @deprecated
  */
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   card: {
     borderRadius: '5px',
     position: 'relative',

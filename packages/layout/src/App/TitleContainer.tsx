@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   drawerSpacer: {
     '& img': {
       marginTop: '5px',

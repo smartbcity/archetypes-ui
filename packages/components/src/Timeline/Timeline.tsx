@@ -19,8 +19,7 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import { Arrow } from '../icons'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     dot: {
       background: theme.secondaryColor,
       position: 'relative',
@@ -54,10 +53,10 @@ const useStyles = (theme: Theme) =>
       }
     },
     connector: {
-      background: theme.tertiaryColor
+      background: theme => theme.tertiaryColor
     },
     connectorProgress: {
-      background: theme.primaryColor,
+      background: theme => theme.primaryColor,
       width: '100%',
       height: '100%'
     },
@@ -99,7 +98,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     activeDot: {
-      border: `2px solid ${theme.primaryColor}`,
+      border: theme => `2px solid ${theme.primaryColor}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',
@@ -212,7 +211,7 @@ export const Timeline = (props: TimelineProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
 
   const linesUi = useMemo(
     () =>

@@ -3,7 +3,7 @@ import { Edit } from '../icons'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import { Button, ButtonProps } from './Button'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   icon: {
     width: '19px',
     height: '19px',

@@ -10,8 +10,7 @@ import {
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     transparent: {
       backgroundColor: '#ffffff',
       justifyContent: 'center'
@@ -28,9 +27,9 @@ const useStyles = (theme: Theme) =>
       }
     },
     button: {
-      backgroundColor: theme.secondaryColor,
+      backgroundColor: theme => theme.secondaryColor,
       '&:hover': {
-        backgroundColor: theme.secondaryColor
+        backgroundColor: theme => theme.secondaryColor
       }
     }
   })

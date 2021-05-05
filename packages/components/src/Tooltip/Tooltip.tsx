@@ -11,16 +11,15 @@ import {
   useTheme
 } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     root: {
-      background: theme.primaryColor,
+      background: theme => theme.primaryColor,
       fontSize: '13px',
       padding: '8px',
-      boxShadow: theme.shadows[1]
+      boxShadow: theme => theme.shadows[1]
     },
     arrow: {
-      color: theme.primaryColor,
+      color: theme => theme.primaryColor,
       width: '16px !important',
       height: '12px !important',
       marginTop: '-11px !important',
@@ -65,7 +64,7 @@ export const Tooltip = (props: TooltipProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
   return (
     <MuiTooltip
       id={id}

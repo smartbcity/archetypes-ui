@@ -7,7 +7,7 @@ import { TabsMenu } from '../TabsMenu'
 import clsx from 'clsx'
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   menu: {
     maxWidth: '300px',
     maxHeight: '500px'

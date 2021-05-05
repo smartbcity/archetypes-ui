@@ -9,10 +9,9 @@ import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 /**
  * @deprecated
  */
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     button: {
-      backgroundColor: theme.secondaryColor,
+      backgroundColor: theme => theme.secondaryColor,
       padding: '10px 30px',
       clipPath:
         'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',
@@ -79,7 +78,7 @@ export const SBButton = React.forwardRef(
       ...other
     } = props
     const theme = useTheme()
-    const classes = useStyles(theme)()
+    const classes = useStyles(theme)
     return (
       <button
         ref={ref}

@@ -17,22 +17,21 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = (paddingLeft: number, theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<{paddingLeft: number, theme: Theme}>()({
     item: {
-      paddingLeft: `${paddingLeft}px`
+      paddingLeft: ({paddingLeft}) => `${paddingLeft}px`
     },
     selectedItem: {
-      background: `${theme.primaryColor}26`
+      background: ({theme}) => `${theme.primaryColor}26`
     },
     selectedTitle: {
       '& .MuiTypography-root': {
-        color: theme.primaryColor
+        color: ({theme}) => theme.primaryColor
       }
     },
     itemText: {
       '& .MuiTypography-root': {
-        fontSize: `${17 - paddingLeft / 10}px`,
+        fontSize: ({paddingLeft}) => `${17 - paddingLeft / 10}px`,
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         overflow: 'hidden'
@@ -127,7 +126,11 @@ const Item = (props: ItemProps) => {
   } = props
   const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
   const theme = useTheme()
-  const defaultClasses = useStyles(paddingLeft, theme)()
+  const stylesObject = useMemo(() => ({
+    paddingLeft: paddingLeft,
+    theme: theme
+  }), [paddingLeft, theme])
+  const defaultClasses = useStyles(stylesObject)
   if (items !== undefined && items.length > 0)
     return (
       <>

@@ -6,7 +6,7 @@ import { Button } from '@smartb/archetypes-ui-components';
 import { Link, LinkProps } from 'react-router-dom';
 import clsx from 'clsx';
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
     notFoundIcon: {
         width: "400px"
     },

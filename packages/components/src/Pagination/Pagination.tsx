@@ -12,8 +12,7 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     pagination: {
       '& .MuiPaginationItem-page.Mui-selected': {
         backgroundColor: 'transparent',
@@ -24,7 +23,7 @@ const useStyles = (theme: Theme) =>
       },
       '& .MuiPaginationItem-page.Mui-selected:after': {
         width: '18px',
-        background: theme.secondaryColor
+        background: theme => theme.secondaryColor
       },
       '& .MuiPaginationItem-page:after': {
         content: "''",
@@ -88,7 +87,7 @@ export const Pagination = (props: PaginationProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
 
   const onChangePage = useCallback(
     (_: React.ChangeEvent<unknown>, page: number) => {

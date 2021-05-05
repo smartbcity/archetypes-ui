@@ -71,7 +71,7 @@ export interface TextFieldBasicProps extends BasicProps {
   styles?: TextFieldStyles
 }
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   formControl: {
     width: '100%',
     borderRadius: '21.6px',

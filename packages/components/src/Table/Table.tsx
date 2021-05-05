@@ -13,7 +13,7 @@ import {
 import { useTheme, Theme } from '@smartb/archetypes-ui-themes'
 import { Pagination } from '../Pagination'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   container: {
     '& .rdt_TableRow .rdt_TableCell:last-child': {
       paddingRight: '30px'
