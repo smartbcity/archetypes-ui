@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {CheckBox, CheckBoxProps} from './CheckBox'
+import {CheckBox, CheckBoxBasicProps} from './CheckBox'
 import { Meta } from '@storybook/react'
 import {Story} from "@storybook/react/types-6-0";
 
@@ -8,18 +8,17 @@ export default {
   component: CheckBox
 } as Meta
 
-export const CheckBoxStory: Story<CheckBoxProps> = () => {
-  const [check, setCheck] = useState<boolean>(true)
+export const CheckBoxStory: Story<CheckBoxBasicProps> = (args: CheckBoxBasicProps) => {
 
   return (
     <CheckBox
-      checked={check}
-      text='CA Checkbox'
-      onChange={() => {
-        setCheck(!check)
-      }}
+      {...args}
     />
   )
+}
+
+CheckBoxStory.args = {
+  label: 'CA Checkbox'
 }
 
 CheckBoxStory.storyName = "CheckBox"
