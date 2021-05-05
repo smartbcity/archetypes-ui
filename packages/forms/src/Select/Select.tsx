@@ -50,8 +50,8 @@ const useStyles = lowLevelStyles()({
   },
   disabledStyle: {
     '& .MuiSelect-root': {
-      color: "#676879",
-      fontSize: "15px",
+      color: "#676879B3",
+      fontSize: "14px",
     }
   },
   clear: {
@@ -73,12 +73,13 @@ const useStyles = lowLevelStyles()({
   },
   selectPaddingWithClear: {
     '& .MuiSelect-root': {
-      paddingRight: "50px"
+      paddingRight: "55px"
     }
   },
   selectPadding: {
     '& .MuiSelect-root': {
-      paddingRight: "25px"
+      paddingRight: "30px",
+      margin: "0px"
     }
   },
   menu: {

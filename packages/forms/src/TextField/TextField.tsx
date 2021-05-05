@@ -202,7 +202,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         }
       }
     } else {
-      if (iconPosition === 'start') {
+      if (inputIcon && iconPosition === 'start') {
         return {
           startAdornment: (
             <InputAdornment component='div' position='start'>

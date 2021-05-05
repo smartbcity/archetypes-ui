@@ -27,10 +27,12 @@ export interface InputFormBasicProps<T extends 'select' | 'textField' = 'textFie
   label?: string
   /**
    * The type of the input
+   * @default "textField"
    */
   inputType: 'select' | 'textField'
   /**
    * If true the autocomplete will be disabled
+   * @default false
    */
   readonly?: boolean
   /**
@@ -43,10 +45,16 @@ export interface InputFormBasicProps<T extends 'select' | 'textField' = 'textFie
   styles?: InputFormStyles
   /**
  * The classes applied to the different part of the input
+ * 
+ * The type will be equal to the classes type of the input selected:
+ * **See the reference below** ⬇️
  */
   inputClasses?: [T] extends ['select'] ? SelectClasses : TextFieldClasses
   /**
    * The styles applied to the different part of the input
+   * 
+   * The type will be equal to the classes type of the input selected:
+   * **See the reference below** ⬇️
    */
   inputStyles?: [T] extends ['select'] ? SelectStyles : TextFieldStyles
 }
@@ -63,7 +71,7 @@ interface InputFormComponent {
   ): JSX.Element;
 }
 
-export type InputFormProps = InputFormBasicProps & TextFieldProps & SelectProps & {
+export type InputFormProps = InputFormBasicProps & Omit<TextFieldProps, keyof InputFormBasicProps> & Omit<SelectProps, keyof InputFormBasicProps> & {
   inputClasses?: SelectClasses | TextFieldClasses
   inputStyles?: SelectStyles | TextFieldStyles
 }
@@ -71,7 +79,7 @@ export type InputFormProps = InputFormBasicProps & TextFieldProps & SelectProps 
 //@ts-ignore
 export const InputForm: InputFormComponent = React.forwardRef((props: Partial<InputFormProps>, ref) => {
   const {
-    inputType = "select",
+    inputType = "textField",
     readonly = false,
     className,
     style,

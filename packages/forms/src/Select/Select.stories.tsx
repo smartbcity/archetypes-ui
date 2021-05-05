@@ -12,7 +12,6 @@ export const SelectStory: Story<SelectBasicProps> = (args: SelectBasicProps) => 
 
   const [value, setvalue] = useState("")
   const [values, setvalues] = useState([])
-  console.log(value)
   return (
     <Select
       options={[]}

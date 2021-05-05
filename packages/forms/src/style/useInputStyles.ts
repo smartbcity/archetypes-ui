@@ -18,7 +18,6 @@ export const useInputStyles = lowLevelStyles<Theme>()({
       color: "#323338",
       textOverflow: 'ellipsis'
     },
-    width: '100%',
     "& .MuiFilledInput-adornedEnd": {
       paddingRight: "10px"
     },
@@ -106,16 +105,28 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   inputLarge: {
     '& .MuiInputBase-root': {
       minHeight: "48px" 
+    },
+    '& .MuiSelect-root': {
+      height: "48px",
+      lineHeight: "48px"
     }
   },
   inputMedium: {
     '& .MuiInputBase-root': {
       minHeight: "40px" 
+    },
+    '& .MuiSelect-root': {
+      height: "40px",
+      lineHeight: "40px"
     }
   },
   inputSmall: {
     '& .MuiInputBase-root': {
       minHeight: "32px"
+    },
+    '& .MuiSelect-root': {
+      height: "32px",
+      lineHeight: "32px"
     }
   },
   inputDisabled: {
