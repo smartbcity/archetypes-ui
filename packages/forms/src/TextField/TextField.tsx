@@ -15,6 +15,9 @@ const useStyles = lowLevelStyles()({
   root: {
     position: "relative"
   },
+  input: {
+    width: "100%"
+  },
   withIconStart: {
     '& .MuiInputBase-input': {
       paddingLeft: '0px !important',
@@ -58,27 +61,34 @@ export interface TextFieldStyles {
 export interface TextFieldBasicProps extends BasicProps {
   /**
    * The value displayed
+   * 
+   * @default ''
    */
   value?: string | number
 
   /**
    * The type of the input
+   * 
+   * @default 'text'
    */
   textFieldType?: 'number' | 'text' | 'email' | 'password' | 'search'
 
   /**
    * The size of the input
+   * 
+   * @default 'medium'
    */
   size?: "large" | "medium" | "small"
 
   /**
    * Define if the value of the input has been validated
+   * 
+   * @default false
    */
   validated?: boolean
 
   /**
    * The event called when the value of the input change
-   * @param value the new value
    */
   onChange?: (value: string) => void
 
@@ -89,6 +99,8 @@ export interface TextFieldBasicProps extends BasicProps {
 
   /**
    * Define if the value of the input is valid or not
+   * 
+   * @default false
    */
   error?: boolean
 
@@ -98,12 +110,14 @@ export interface TextFieldBasicProps extends BasicProps {
   errorMessage?: string
 
   /**
-   * The default value displayed
+   * The default value displayed. Usefull if the input is uncontrolled
    */
   defaultValue?: string | number
 
   /**
    * Define if the input is disabled or not
+   * 
+   * @default false
    */
   disabled?: boolean
 
@@ -115,10 +129,12 @@ export interface TextFieldBasicProps extends BasicProps {
   /**
    * The event called when the value of the input is removed
    */
-  onRemoveValue?: () => void
+  onRemove?: () => void
 
   /**
    * The position of the icon
+   * 
+   * @default 'start'
    */
   iconPosition?: 'start' | 'end'
 
@@ -154,7 +170,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
     value = '',
     disabled = false,
     inputIcon,
-    onRemoveValue,
+    onRemove,
     classes,
     styles,
     iconPosition = 'start',
@@ -229,7 +245,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
       ...inputAdornment,
       disableUnderline: true,
       onKeyUp: upHandler,
-      style: { ...styles?.input, paddingRight: (onRemoveValue || validated) && !inputAdornment.endAdornment ? '27px' : '' },
+      style: { ...styles?.input, paddingRight: (onRemove || validated) && !inputAdornment.endAdornment ? '27px' : '' },
       inputProps: {
         className: clsx(classes?.inputBase, "AruiTextfield-inputBase"),
         style: styles?.inputBase,
@@ -245,7 +261,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         "AruiTextfield-input"
       )
     }
-  }, [ref, inputIcon, iconPosition, styles?.input, styles?.inputBase, onRemoveValue, validated, classes?.inputBase, classes?.input, inputAdornment, upHandler])
+  }, [ref, inputIcon, iconPosition, styles?.input, styles?.inputBase, onRemove, validated, classes?.inputBase, classes?.input, inputAdornment, upHandler])
 
   const formHelperProps = useMemo(() => {
     return {
@@ -255,15 +271,15 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
   }, [classes?.helperText, styles?.helperText])
 
   const rightIcon = useMemo(() => {
-    if (value === "") return undefined
     if (validated) return (
       <Check className={clsx(defaultClasses.validated, classes?.validIcon, "AruiTextfield-validIcon")} style={{ ...styles?.validIcon, right: inputAdornment.endAdornment ? "32px" : "" }} />
     )
-    if (onRemoveValue || error) return (
-      <Clear onClick={onRemoveValue} className={clsx(defaultClasses.clear, error && defaultClasses.clearError, classes?.clearIcon, "AruiTextfield-clearIcon")} style={{ ...styles?.clearIcon, right: inputAdornment.endAdornment ? "32px" : "" }} />
+    if (value === "") return undefined
+    if (onRemove || error) return (
+      <Clear onClick={onRemove} className={clsx(defaultClasses.clear, error && defaultClasses.clearError, classes?.clearIcon, "AruiTextfield-clearIcon")} style={{ ...styles?.clearIcon, right: inputAdornment.endAdornment ? "32px" : "" }} />
     )
     return undefined
-  }, [value, onRemoveValue, classes, styles, inputAdornment.endAdornment, error])
+  }, [value, onRemove, classes, styles, inputAdornment.endAdornment, error])
 
   return (
     <div
@@ -280,13 +296,14 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         defaultValue={defaultValue}
         className={clsx(
           defaultClasses.input,
+          classesLocal.input,
           validated && defaultClasses.inputValidated,
           size === "large" && defaultClasses.inputLarge,
           size === "medium" && defaultClasses.inputMedium,
           size === "small" && defaultClasses.inputSmall,
           disabled && defaultClasses.inputDisabled,
           error && defaultClasses.inputError,
-          onRemoveValue && inputAdornment.endAdornment && textFieldType === "search" && defaultClasses.inputWithClear,
+          onRemove && inputAdornment.endAdornment && textFieldType === "search" && defaultClasses.inputWithClear,
           classes?.textfield,
           "AruiTextfield-Textfield"
         )}

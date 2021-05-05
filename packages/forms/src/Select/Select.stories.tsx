@@ -46,7 +46,7 @@ export const SelectStory: Story<SelectBasicProps> = (args: SelectBasicProps) => 
   )
 }
 
-export const SelectSizes: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+export const SelectSizes: Story<SelectBasicProps> = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -76,7 +76,7 @@ export const SelectSizes: Story<SelectBasicProps> = (args: SelectBasicProps) => 
   )
 }
 
-export const SelectStates: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+export const SelectStates: Story<SelectBasicProps> = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -99,7 +99,7 @@ export const SelectStates: Story<SelectBasicProps> = (args: SelectBasicProps) =>
   )
 }
 
-export const multipleSelect: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+export const MultipleSelect: Story<SelectBasicProps> = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -152,3 +152,5 @@ SelectStory.args = {
 
 SelectStory.storyName = "Select"
 SelectSizes.storyName = "All size of the select"
+SelectStates.storyName = "The select states"
+MultipleSelect.storyName = "Multiple select"

@@ -1,6 +1,5 @@
 import { lowLevelStyles, Theme } from '@smartb/archetypes-ui-themes'
 
-
 const darkGrey = '#323338'
 const textFieldGrey = '#C5C7D0'
 const disabledColor = "#E6E9EF"
@@ -95,6 +94,12 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     },
     '& .MuiInputBase-root:hover': {
       border: theme =>`1px solid ${theme.validColor}`,
+    },
+    '& .MuiInputBase-root.Mui-focused': {
+      border: theme => `1px solid ${theme.validColor}`,
+    },
+    '& .MuiInputBase-root:focus': {
+      border: theme => `1px solid ${theme.validColor}`,
     }
   },
   inputError: {

@@ -100,7 +100,7 @@ export const FormExample: Story<InputFormBasicProps> = () => {
         label="email:"
         value={form.email}
         onChange={(value) => setform({...form, email: value})}
-        onRemoveValue={() => setform({...form, email: ""})}
+        onRemove={() => setform({...form, email: ""})}
         id="FormExampleEmail"
         inputType="textField"
         textFieldType="email"
@@ -111,7 +111,7 @@ export const FormExample: Story<InputFormBasicProps> = () => {
       <InputForm
         value={form.password}
         onChange={(value) => setform({...form, password: value})}
-        onRemoveValue={() => setform({...form, password: ""})}
+        onRemove={() => setform({...form, password: ""})}
         label="password:"
         id="FormExamplePassword"
         inputType="textField"
