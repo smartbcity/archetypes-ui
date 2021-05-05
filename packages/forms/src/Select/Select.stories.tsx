@@ -1,11 +1,31 @@
-import React, {useState} from 'react'
-import {Select, Option, SelectBasicProps} from './Select'
-import {Meta} from "@storybook/react";
-import {Story} from "@storybook/react/types-6-0";
+import React, { useState } from 'react'
+import { Select, Option, SelectBasicProps } from './Select'
+import { Meta } from "@storybook/react";
+import { Story } from "@storybook/react/types-6-0";
+import { Box } from '@material-ui/core';
+import {SelectClasses, SelectStyles} from "./docs"
 
 export default {
   title: 'Forms/Select',
   component: Select,
+  argTypes: {
+    classes: {
+      table: {
+        type: {
+          summary: 'SelectClasses',
+          detail:SelectClasses
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'SelectStyles',
+          detail: SelectStyles
+        }
+      }
+    }
+  }
 } as Meta;
 
 export const SelectStory: Story<SelectBasicProps> = (args: SelectBasicProps) => {
@@ -16,13 +36,81 @@ export const SelectStory: Story<SelectBasicProps> = (args: SelectBasicProps) => 
     <Select
       options={[]}
       {...args}
-      value={args.multiple ? undefined: value}
-      values={args.multiple ? values: undefined}
+      value={args.multiple ? undefined : value}
+      values={args.multiple ? values : undefined}
       onChangeValue={(value) => setvalue(value)}
       onChangeValues={(values) => setvalues(values)}
-      onRemove={() => {setvalue(""); setvalues([])}}
+      onRemove={() => { setvalue(""); setvalues([]) }}
       style={{ width: 350 }}
     />
+  )
+}
+
+export const SelectSizes: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+
+  return (
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Select
+        placeholder="small"
+        id="smallSelect"
+        value=""
+        options={options}
+        size="small"
+        style={{ width: 350, margin: 20 }}
+      />
+      <Select
+        placeholder="medium"
+        id="mediumSelect"
+        options={options}
+        size="medium"
+        style={{ width: 350, margin: 20 }}
+      />
+      <Select
+        placeholder="large"
+        id="largeSelect"
+        options={options}
+        size="large"
+        style={{ width: 350, margin: 20 }}
+      />
+    </Box>
+  )
+}
+
+export const SelectStates: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+
+  return (
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Select
+        placeholder="select with error"
+        id="errorSelect"
+        options={options}
+        error
+        errorMessage="A custom error message"
+        style={{ width: 350, margin: 20 }}
+      />
+      <Select
+        placeholder="select disabled"
+        id="disabledSelect"
+        options={options}
+        disabled
+        style={{ width: 350, margin: 20 }}
+      />
+    </Box>
+  )
+}
+
+export const multipleSelect: Story<SelectBasicProps> = (args: SelectBasicProps) => {
+
+  return (
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Select
+        placeholder="multiple select"
+        id="multpileSelect"
+        multiple
+        options={options}
+        style={{ width: 350, margin: 20 }}
+      />
+    </Box>
   )
 }
 
@@ -59,7 +147,8 @@ const options: Option[] = [
 
 SelectStory.args = {
   options: options,
-  placeHolder: "Choose a name"
+  placeholder: "Choose a name"
 }
 
 SelectStory.storyName = "Select"
+SelectSizes.storyName = "All size of the select"

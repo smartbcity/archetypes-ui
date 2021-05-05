@@ -85,7 +85,7 @@ export interface TextFieldBasicProps extends BasicProps {
   /**
    * The text to display as place holder
    */
-  placeHolder?: string
+  placeholder?: string
 
   /**
    * Define if the value of the input is valid or not
@@ -147,7 +147,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
     label = '',
     id = '',
     onChange,
-    placeHolder = '',
+    placeholder = '',
     style,
     textFieldType = "text",
     defaultValue,
@@ -275,7 +275,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         id={id}
         value={defaultValue !== undefined ? null : value}
         onChange={onChangeMemoized}
-        placeholder={placeHolder}
+        placeholder={placeholder}
         type={textFieldType === "search" ? "text" : textFieldType}
         defaultValue={defaultValue}
         className={clsx(

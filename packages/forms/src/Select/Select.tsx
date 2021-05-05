@@ -66,7 +66,7 @@ const useStyles = lowLevelStyles()({
     width: '20px',
     height: '20px',
     right: '10px',
-    top: 'calc(50% - 10px)'
+    top: 'calc(50% - 9px)'
   },
   list: {
     padding: "0px"
@@ -83,23 +83,29 @@ const useStyles = lowLevelStyles()({
     }
   },
   menu: {
-    marginTop: "20px"
+    marginTop: "5px"
   }
 })
 
 export interface SelectBasicProps extends BasicProps {
   /**
    * The value selected
+   * 
+   * @default ''
    */
   value?: string | number
 
   /**
    * The values of selected. ⚠️ This prop is used only if `multiple` is true
+   * 
+   *  @default []
    */
   values?: (string | number)[]
 
   /**
    * If true the select will be able to handle multiple selections
+   * 
+   *  @default false
    */
   multiple?: boolean
 
@@ -115,26 +121,32 @@ export interface SelectBasicProps extends BasicProps {
 
   /**
    * The size of the input
+   * 
+   *  @default "medium"
    */
   size?: "large" | "medium" | "small"
 
   /**
    * List of options available in the option
+   * 
+   * @default []
    */
   options?: Option[]
 
   /**
    * The text to display as place holder
    */
-  placeHolder?: string
+  placeholder?: string
 
   /**
    * Define if the value of the input is valid or not
+   * 
+   * @default false
    */
   error?: boolean
 
   /**
-   * The message displayed when the input value is wrong
+   * The message displayed when `error` is true
    */
   errorMessage?: string
 
@@ -144,7 +156,9 @@ export interface SelectBasicProps extends BasicProps {
   onRemove?: () => void
 
   /**
-   * If true the autocomplete will be disabled
+   * If true the input will be disabled
+   * 
+   * @default false
    */
   disabled?: boolean
   /**
@@ -168,7 +182,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
     label = '',
     options = [],
     className,
-    placeHolder = "",
+    placeholder = "",
     style,
     id,
     error = false,
@@ -201,7 +215,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const renderValue = useCallback(
     (selected: string | string[]) => {
       if ((!Array.isArray(selected) && selected === "") || (Array.isArray(selected) && selected.length === 0)) {
-        return placeHolder
+        return placeholder
       }
       if (Array.isArray(selected) && selected.length > 0) {
         return selected.join(', ')
@@ -211,7 +225,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
       }
       return ""
     },
-    [placeHolder],
+    [placeholder],
   )
 
   const selectIcon = useCallback(
@@ -264,7 +278,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
         ref={ref}
         className={clsx(
           classesLocal.root,
-           value === '' && values.length <= 0 && placeHolder ? classesLocal.disabledStyle : '', 
+           value === '' && values.length <= 0 && placeholder ? classesLocal.disabledStyle : '', 
            classes?.select, 
            onRemove ? classesLocal.selectPaddingWithClear : classesLocal.selectPadding,
            "AruiSelect-select"

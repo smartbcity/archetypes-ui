@@ -100,6 +100,12 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   inputError: {
     '& .MuiInputBase-root:hover': {
       border: theme => `1px solid ${theme.errorColor}`
+    },
+    '& .MuiInputBase-root.Mui-focused': {
+      border: theme => `1px solid ${theme.errorColor}`,
+    },
+    '& .MuiInputBase-root:focus': {
+      border: theme => `1px solid ${theme.errorColor}`,
     }
   },
   inputLarge: {
@@ -145,7 +151,8 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   },
   helperText: {
     position: 'absolute',
-    marginTop: '60px'
+    top: '100%',
+    color: theme => `${theme.errorColor} !important`
   },
   clear: {
     position: 'absolute',

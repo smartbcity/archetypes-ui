@@ -34,13 +34,13 @@ export default {
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
-            <LinkTo kind='Form' story='Select'>
+            <LinkTo kind='Forms' story='Select'>
               Select
               </LinkTo>
           </Typography>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
-            <LinkTo kind='Form' story='TextField'>
+            <LinkTo kind='Forms' story='TextField'>
               TextField
               </LinkTo>
           </Typography>
@@ -104,7 +104,7 @@ export const FormExample: Story<InputFormBasicProps> = () => {
         id="FormExampleEmail"
         inputType="textField"
         textFieldType="email"
-        placeHolder="example@gmail.com"
+        placeholder="example@gmail.com"
         style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "20px" }}
         styles={{ label: { marginBottom: "0px" }, input: { width: "60%" } }}
       />
@@ -125,7 +125,7 @@ export const FormExample: Story<InputFormBasicProps> = () => {
         inputType="select"
         onChangeValue={(value) => setform({...form, gender: value})}
         options={[{ key: "male", label: "Male" }, { key: "female", label: "Female" }]}
-        placeHolder="chosse your gender"
+        placeholder="chosse your gender"
         style={{ width: "400px", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "20px" }}
         styles={{ label: { marginBottom: "0px" }, input: { width: "60%" } }}
       />
@@ -140,3 +140,4 @@ InputFormStory.args = {
 }
 
 InputFormStory.storyName = "InputForm"
+FormExample.storyName = "Form example"
