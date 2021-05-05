@@ -80,6 +80,8 @@ export interface CheckBoxStyles {
 export interface CheckBoxBasicProps extends BasicProps {
   /**
    * If true, the component is checked
+   * 
+   * @default false
    */
   checked?: boolean
 
@@ -90,6 +92,8 @@ export interface CheckBoxBasicProps extends BasicProps {
 
   /**
    * If true, the checkbox will be disabled
+   * 
+   * @default false
    */
   disabled?: boolean
 
