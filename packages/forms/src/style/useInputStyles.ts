@@ -14,7 +14,9 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   input: {
     '& .MuiSelect-root': {
       backgroundColor: 'white',
-      borderRadius: '5px'
+      borderRadius: '5px',
+      color: "#323338",
+      textOverflow: 'ellipsis'
     },
     width: '100%',
     "& .MuiFilledInput-adornedEnd": {
@@ -44,6 +46,11 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     '& .MuiInputBase-root:hover': {
       margin: `0px`,
       border:`1px solid ${darkGrey}`,
+      borderRadius: '4px'
+    },
+    '& .MuiInputBase-root:focus': {
+      margin: `0px`,
+      border: theme => `1px solid ${theme.secondaryColor}`,
       borderRadius: '4px'
     },
     '& .MuiInputBase-root.Mui-focused': {
@@ -99,30 +106,25 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   inputLarge: {
     '& .MuiInputBase-root': {
       minHeight: "48px" 
-    },
-    '& .MuiSelect-root': {
-      minHeight: "48px" 
-    },
+    }
   },
   inputMedium: {
     '& .MuiInputBase-root': {
       minHeight: "40px" 
-    },
-    '& .MuiSelect-root': {
-      minHeight: "40px" 
-    },
+    }
   },
   inputSmall: {
     '& .MuiInputBase-root': {
       minHeight: "32px"
-    },
-    '& .MuiSelect-root': {
-      minHeight: "32px" 
-    },
+    }
   },
   inputDisabled: {
     '& .MuiInputBase-root:hover': {
       border:`1px solid ${disabledColor}`,
+    },
+    '& .MuiSelect-root': {
+      backgroundColor: disabledColor,
+      color: "#676879"
     }
   },
   inputWithClear: {

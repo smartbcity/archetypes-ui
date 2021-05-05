@@ -3,6 +3,8 @@ import {
   FormControl,
   FormHelperText,
   InputBaseComponentProps,
+  ListItemText,
+  MenuItem,
   Select as MuiSelect,
   SelectProps as MuiSelectProps
 } from '@material-ui/core'
@@ -11,9 +13,10 @@ import { SelectIcon } from '../assets/icons'
 import { useInputStyles } from '../style'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
+import { CheckBox } from '../CheckBox'
 
 export type Option = {
-  value: string | number
+  key: string | number
   label: string | number
 }
 
@@ -25,6 +28,7 @@ export interface SelectClasses {
   selectIcon?: string
   clearIcon?: string
   option?: string
+  menu?: string
 }
 
 export interface SelectStyles {
@@ -35,6 +39,7 @@ export interface SelectStyles {
   selectIcon?: React.CSSProperties
   clearIcon?: React.CSSProperties
   option?: React.CSSProperties
+  menu?: React.CSSProperties
 }
 
 const useStyles = lowLevelStyles()({
@@ -45,8 +50,8 @@ const useStyles = lowLevelStyles()({
   },
   disabledStyle: {
     '& .MuiSelect-root': {
-      fontSize: '14px',
-      color: 'rgba(0, 0, 0, 0.35)'
+      color: "#676879",
+      fontSize: "15px",
     }
   },
   clear: {
@@ -62,20 +67,50 @@ const useStyles = lowLevelStyles()({
     height: '20px',
     right: '10px',
     top: 'calc(50% - 10px)'
+  },
+  list: {
+    padding: "0px"
+  },
+  selectPaddingWithClear: {
+    '& .MuiSelect-root': {
+      paddingRight: "50px"
+    }
+  },
+  selectPadding: {
+    '& .MuiSelect-root': {
+      paddingRight: "25px"
+    }
+  },
+  menu: {
+    marginTop: "20px"
   }
 })
 
 export interface SelectBasicProps extends BasicProps {
   /**
-   * The value displayed
+   * The value selected
    */
   value?: string | number
 
   /**
-   * The event called when the value of the input change
-   * @param value the new value
+   * The values of selected. ⚠️ This prop is used only if `multiple` is true
    */
-  onChange?: (value: string) => void
+  values?: (string | number)[]
+
+  /**
+   * If true the select will be able to handle multiple selections
+   */
+  multiple?: boolean
+
+  /**
+   * The event called when the value of the slect change
+   */
+  onChangeValue?: (value: string) => void
+
+  /**
+   * The event called when the values of the multiple select change
+   */
+  onChangeValues?: (values: string[]) => void
 
   /**
    * The size of the input
@@ -103,9 +138,9 @@ export interface SelectBasicProps extends BasicProps {
   errorMessage?: string
 
   /**
-   * The event called when the value of the input is removed
+   * The event called when the value or the values of the input are removed
    */
-  onRemoveValue?: () => void
+  onRemove?: () => void
 
   /**
    * If true the autocomplete will be disabled
@@ -126,20 +161,23 @@ export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 export const Select = React.forwardRef((props: SelectProps, ref) => {
   const {
     value = '',
-    onChange,
+    values = [],
+    onChangeValue,
+    onChangeValues,
     label = '',
     options = [],
     className,
-    placeHolder,
+    placeHolder = "",
     style,
     id,
     error = false,
     errorMessage = '',
-    onRemoveValue,
+    onRemove,
     disabled = false,
     classes,
     styles,
     size = "medium",
+    multiple = false,
     ...other
   } = props
 
@@ -148,8 +186,31 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const classesLocal = useStyles()
 
   const onChangeMemoized = useCallback(
-    (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => onChange && onChange(e.target.value as string),
-    [onChange],
+    (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
+      const eventValue = e.target.value
+      console.log(eventValue)
+      if (Array.isArray(eventValue)) {
+        onChangeValues && onChangeValues(eventValue as string[])
+      }
+      onChangeValue && onChangeValue(eventValue as string)
+    },
+    [onChangeValue, onChangeValues],
+  )
+
+  const renderValue = useCallback(
+    (selected: string | string[]) => {
+      if ((!Array.isArray(selected) && selected === "") || (Array.isArray(selected) && selected.length === 0)) {
+        return placeHolder
+      }
+      if (Array.isArray(selected) && selected.length > 0) {
+        return selected.join(', ')
+      }
+      if (!Array.isArray(selected)) {
+        return selected
+      }
+      return ""
+    },
+    [placeHolder],
   )
 
   const selectIcon = useCallback(
@@ -165,24 +226,21 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   )
 
   const optionsMemoized = useMemo(() => {
-    return options.map((option, index) => (
-      <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} value={option.value} key={index}>
-        {option.label}
-      </option>
+    return options.map((option) => (
+      <MenuItem className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} key={option.key} value={option.label}>
+        <CheckBox checked={values.indexOf(option.label) > -1 || value === option.label} />
+        <ListItemText primary={option.label as string} />
+      </MenuItem>
     ))
-  }, [options, classes?.option, styles?.option])
+  }, [options, values, value, classes?.option, styles?.option])
 
   const inputProp: InputBaseComponentProps = useMemo(() => {
     return {
       name: label,
       className: clsx(classes?.input, "AruiSelect-select"),
-      style: {
-        ...styles?.input,
-        paddingRight: value !== '' && onRemoveValue ? '49px' : '26px',
-        textOverflow: 'ellipsis'
-      }
+      style: styles?.input
     }
-  }, [label, onRemoveValue, value, classes?.input, styles?.input])
+  }, [label, onRemove, value, classes?.input, styles?.input])
 
   return (
     <FormControl
@@ -203,32 +261,47 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
       <MuiSelect
         {...other}
         ref={ref}
-        className={clsx(classesLocal.root, value === '' && placeHolder ? classesLocal.disabledStyle : '', classes?.select, "AruiSelect-select")}
+        className={clsx(
+          classesLocal.root,
+           value === '' && values.length <= 0 && placeHolder ? classesLocal.disabledStyle : '', 
+           classes?.select, 
+           onRemove ? classesLocal.selectPaddingWithClear : classesLocal.selectPadding,
+           "AruiSelect-select"
+           )}
         id={id}
         variant={'filled'}
-        native
-        value={value}
+        value={multiple ? values : value}
+        multiple={multiple}
         IconComponent={selectIcon}
         onChange={onChangeMemoized}
         inputProps={inputProp}
+        renderValue={renderValue}
+        displayEmpty
+        MenuProps={{
+          anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'center'
+          },
+          transformOrigin: {
+            vertical: 'top',
+            horizontal: 'center'
+          },
+          getContentAnchorEl: null,
+          classes:{list: classesLocal.list},
+          className:clsx(classesLocal.menu, classes?.menu, "AruiSelect-menu"),
+          style: styles?.menu
+        }}
         style={{
           ...styles?.select,
           color: '#98A5AE',
           fontWeight: 500
         }}
-        disabled={disabled ? disabled : false}
+        disabled={disabled}
       >
-        {value === '' && placeHolder ? (
-          <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} aria-label='Placeholder' value='' disabled>
-            {placeHolder}
-          </option>
-        ) : (
-          value === '' && !placeHolder && <option className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} aria-label='None' value='' />
-        )}
         {optionsMemoized}
       </MuiSelect>
-      {value !== '' && onRemoveValue && (
-        <Clear onClick={onRemoveValue} className={clsx(classesLocal.clear, classes?.clearIcon, "AruiSelect-clearIcon")} style={styles?.clearIcon} />
+      {(value !== '' || values.length > 0) && onRemove && !disabled && (
+        <Clear onClick={onRemove} className={clsx(classesLocal.clear, classes?.clearIcon, "AruiSelect-clearIcon")} style={styles?.clearIcon} />
       )}
       {errorMessage !== '' && error && (
         <FormHelperText className={clsx(defaultClasses.helperText, classes?.helperText, "AruiSelect-helperText")} style={styles?.helperText}>

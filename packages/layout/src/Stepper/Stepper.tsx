@@ -56,7 +56,7 @@ export const Stepper = (props: StepperProps) => {
     muiStepperWrapperLabel
   } = props
   const theme = useTheme()
-  const classes = useStyles(theme)()
+  const classes = useStyles(theme)
   const AruiStepConnector = StepConnector(theme)
   return (
     <div className='AruiStepper-root'>
