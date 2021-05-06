@@ -21,9 +21,9 @@ export const containedUseStyles = lowLevelStyles<Theme>()({
       }
     },
     success: {
-      background:  theme => theme.validColor,
+      background:  theme => theme.successColor,
       '&:hover': {
-        background: theme => theme.validColor
+        background: theme => theme.successColor
       },
       '&.Mui-disabled': {
         color: '#ffffff'
@@ -83,13 +83,13 @@ export const outlinedUseStyles = lowLevelStyles<Theme>()({
       }
     },
     success: {
-      border: theme => `1px solid ${theme.validColor}`,
-      color:  theme => theme.validColor,
+      border: theme => `1px solid ${theme.successColor}`,
+      color:  theme => theme.successColor,
       '& span': {
-        color:  theme => theme.validColor
+        color:  theme => theme.successColor
       },
       '&.Mui-disabled': {
-        color:  theme => theme.validColor
+        color:  theme => theme.successColor
       }
     },
     fail: {
@@ -146,12 +146,12 @@ export const textUseStyles = lowLevelStyles<Theme>()({
     }
   },
   success: {
-    color: theme => theme.validColor,
+    color: theme => theme.successColor,
     '& span': {
-      color: theme => theme.validColor
+      color: theme => theme.successColor
     },
     '&.Mui-disabled': {
-      color: theme => theme.validColor
+      color: theme => theme.successColor
     }
   },
   fail: {

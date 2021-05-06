@@ -90,16 +90,16 @@ export const useInputStyles = lowLevelStyles<Theme>()({
   },
   inputValidated: {
     '& .MuiInputBase-root': {
-      border: theme => `1px solid ${theme.validColor}`,
+      border: theme => `1px solid ${theme.successColor}`,
     },
     '& .MuiInputBase-root:hover': {
-      border: theme =>`1px solid ${theme.validColor}`,
+      border: theme =>`1px solid ${theme.successColor}`,
     },
     '& .MuiInputBase-root.Mui-focused': {
-      border: theme => `1px solid ${theme.validColor}`,
+      border: theme => `1px solid ${theme.successColor}`,
     },
     '& .MuiInputBase-root:focus': {
-      border: theme => `1px solid ${theme.validColor}`,
+      border: theme => `1px solid ${theme.successColor}`,
     }
   },
   inputError: {
@@ -175,6 +175,6 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     right: '10px',
     top: '50%',
     marginTop: '-12px',
-    color: theme => theme.validColor
+    color: theme => theme.successColor
   }
 })

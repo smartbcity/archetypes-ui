@@ -6,7 +6,7 @@ export interface Theme {
   secondaryColor: string
   tertiaryColor: string
   errorColor: string
-  validColor: string
+  successColor: string
   warningColor: string
   shadows: string[]
 }
@@ -17,7 +17,7 @@ export const defaultTheme: Theme = {
   secondaryColor: '#edba27',
   tertiaryColor: '#e0e0e0',
   errorColor: "#E44258",
-  validColor: "#00CA72",
+  successColor: "#00CA72",
   warningColor: "#FFB26B",
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
