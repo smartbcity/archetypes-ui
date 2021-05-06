@@ -21,8 +21,8 @@ interface ThemeColors {
 export const defaultTheme: Theme = {
   name: 'default',
   colors: { 
-    primary: '#fec5198',
-    secondary: '#edba27',
+    primary: '#EDBA27',
+    secondary: '#353945',
     tertiary: '#e0e0e0',
     error: "#E44258",
     success: "#00CA72",
