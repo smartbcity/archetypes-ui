@@ -16,8 +16,7 @@ import {
 /**
  * @deprecated
  */
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     root: {
       borderRadius: 20
     },
@@ -30,7 +29,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     icon: {
-      color: theme.primaryColor
+      color: theme => theme.colors.primary
     },
     iconSize: {
       width: '22px',
@@ -98,7 +97,7 @@ export const CheckBox = (props: CheckBoxProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const classes = useStyles(theme)()
+  const classes = useStyles(theme)
 
   return (
     <FormControlLabel

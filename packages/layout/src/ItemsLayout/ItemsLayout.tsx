@@ -8,7 +8,7 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   gridContainer: {
     display: 'flex',
     padding: '5px',

@@ -14,7 +14,7 @@ import {
 import clsx from 'clsx'
 import { Close } from '@material-ui/icons'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   paper: {
     borderRadius: '16px'
   },

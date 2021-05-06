@@ -1,204 +1,146 @@
 import { Box, InputLabel } from '@material-ui/core'
-import React from 'react'
-import { Option, Select } from '../Select'
-import { TextField } from '../TextField'
+import React, { useMemo } from 'react'
+import { Select, SelectBasicProps, SelectProps, SelectClasses, SelectStyles } from '../Select'
+import { TextField, TextFieldBasicProps, TextFieldProps, TextFieldClasses, TextFieldStyles } from '../TextField'
 import { useInputStyles } from '../style'
-import { BasicProps, useTheme } from '@smartb/archetypes-ui-themes'
+import { BasicProps,useTheme } from '@smartb/archetypes-ui-themes'
+import clsx from 'clsx'
 
-export interface InputFormProps extends BasicProps {
+type TextFieldBasic = Omit<TextFieldBasicProps, keyof SelectBasicProps | "disabled">
+
+type CommonBasic = Omit<TextFieldBasicProps, keyof TextFieldBasic | "disabled">
+
+interface InputFormClasses {
+  label?: string
+  input?: string
+}
+
+interface InputFormStyles {
+  label?: React.CSSProperties
+  input?: React.CSSProperties
+}
+
+export interface InputFormBasicProps<T extends 'select' | 'textField' = 'textField'> extends BasicProps, CommonBasic {
   /**
    * The label of the input
    */
   label?: string
-
   /**
    * The type of the input
+   * @default "textField"
    */
   inputType: 'select' | 'textField'
-
-  /**
-   * The type of the input contents
-   */
-  textFieldType?: 'number' | 'text' | 'email' | 'password'
-
-  /**
-   * List of option available in the option
-   */
-  selectOptions?: Option[]
-
-  /**
-   * The value displayed
-   */
-  value?: string | number
-
-  /**
-   * The default value displayed
-   */
-  defaultValue?: string | number
-  /**
-   * The event called when the value of the input change
-   * @param value the new value
-   */
-  onChange?: (value: string) => void
-
-  /**
-   * The classes applied to the input part of the component
-   */
-  inputClassName?: string
-
-  /**
-   * The classes applied to the base part of the component
-   */
-  baseClassName?: string
-
-  /**
-   * The styles applied to the input
-   */
-  inputStyle?: React.CSSProperties
-
-  /**
-   * The text to display as place holder
-   */
-  placeHolder?: string
-
   /**
    * If true the autocomplete will be disabled
+   * @default false
    */
   readonly?: boolean
-
   /**
-   * Define if the value of the input is valid or not
-   */
-  error?: boolean
-
+ * The classes applied to the different part of the component
+ */
+  classes?: InputFormClasses
   /**
-   * The message displayed when the input value is wrong
+   * The styles applied to the different part of the component
    */
-  errorMessage?: string
-
+  styles?: InputFormStyles
   /**
-   * The event called when the value of the input is removed
-   */
-  onRemoveValue?: () => void
-
+ * The classes applied to the different part of the input
+ * 
+ * The type will be equal to the classes type of the input selected:
+ * **See the reference below** ⬇️
+ */
+  inputClasses?: [T] extends ['select'] ? SelectClasses : TextFieldClasses
   /**
-   * The icon of the icon
+   * The styles applied to the different part of the input
+   * 
+   * The type will be equal to the classes type of the input selected:
+   * **See the reference below** ⬇️
    */
-  inputIcon?: React.ReactNode
-
-  /**
-   * The position of the icon
-   */
-  iconPosition?: 'start' | 'end'
-
-  /**
-   * The event called when the input is clicked
-   */
-  onClick?: (event: React.MouseEvent) => void
-
-  /**
-   * The event called when the input is blured
-   */
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void
+  inputStyles?: [T] extends ['select'] ? SelectStyles : TextFieldStyles
 }
 
-export const InputForm = React.forwardRef((props: InputFormProps, ref) => {
+type InputFormComponentProps<T extends 'select' | 'textField' = never, R extends Boolean = false> = InputFormBasicProps & ([T] extends ['select'] ? [R] extends [true] ? TextFieldProps : SelectProps : [T] extends ['textField'] ? TextFieldProps : {})
+
+interface InputFormComponent {
+  <T extends 'select' | 'textField', R extends Boolean = false>(
+    props: {
+      inputType: T
+      readonly?: R
+    } & InputFormComponentProps<T, R>,
+    ref: React.ForwardedRef<unknown>
+  ): JSX.Element;
+}
+
+export type InputFormProps = InputFormBasicProps & Omit<TextFieldProps, keyof InputFormBasicProps> & Omit<SelectProps, keyof InputFormBasicProps> & {
+  inputClasses?: SelectClasses | TextFieldClasses
+  inputStyles?: SelectStyles | TextFieldStyles
+}
+
+//@ts-ignore
+export const InputForm: InputFormComponent = React.forwardRef((props: Partial<InputFormProps>, ref) => {
   const {
-    inputType,
-    label,
-    onChange,
-    className,
-    inputClassName,
-    baseClassName,
-    inputStyle,
-    selectOptions = [],
-    style,
-    textFieldType = 'text',
-    value = '',
-    id,
-    placeHolder = '',
+    inputType = "textField",
     readonly = false,
-    error = false,
-    errorMessage = '',
-    defaultValue,
-    onRemoveValue,
-    onBlur,
-    inputIcon,
-    iconPosition,
-    onClick
+    className,
+    style,
+    label,
+    id,
+    classes,
+    styles,
+    inputClasses,
+    inputStyles,
+    ...other
   } = props
   const theme = useTheme()
-  const classes = useInputStyles(theme, readonly)()
+  const defaultClasses = useInputStyles(theme)
+
+  const labelUi = useMemo(() => {
+    return label ? (
+      <InputLabel htmlFor={id} className={clsx(defaultClasses.label, classes?.label)} style={styles?.label}>
+        {label}
+      </InputLabel>
+    ) : null;
+  }, [label, classes?.label, id, styles?.label])
+
+  const inputUi = useMemo(() => {
+    return readonly ? (
+      <TextField
+        {...other}
+        className={classes?.input}
+        style={styles?.input}
+        classes={inputClasses}
+        styles={inputStyles}
+        ref={ref}
+        id={id}
+        disabled={true}
+      />
+    ) : inputType === 'textField' ? (
+      <TextField
+        {...other}
+        className={classes?.input}
+        style={styles?.input}
+        classes={inputClasses}
+        styles={inputStyles}
+        ref={ref}
+        id={id}
+      />
+    ) : (
+      <Select
+        {...other}
+        className={classes?.input}
+        style={styles?.input}
+        classes={inputClasses}
+        styles={inputStyles}
+        ref={ref}
+        id={id}
+      />
+    )
+  }, [readonly, inputType, classes?.input, id, styles?.input, ref, Object.values({ ...other })])
+
   return (
     <Box className={className} style={style}>
-      {label ? (
-        <InputLabel htmlFor={id} className={classes.label}>
-          {label}
-        </InputLabel>
-      ) : null}
-      {readonly ? (
-        <TextField
-          ref={ref}
-          onClick={onClick}
-          id={id}
-          value={
-            inputType === 'select'
-              ? selectOptions.find((el) => el.value === value)?.label
-              : value
-          }
-          placeHolder={placeHolder}
-          textFieldType={textFieldType}
-          className={`${inputClassName}`}
-          defaultValue={defaultValue}
-          style={inputStyle}
-          disabled={true}
-          baseClassName={baseClassName}
-          inputIcon={inputIcon}
-          iconPosition={iconPosition}
-          onBlur={onBlur}
-        />
-      ) : inputType === 'textField' ? (
-        <TextField
-          ref={ref}
-          onClick={onClick}
-          id={id}
-          value={value}
-          onChange={(value: string) => onChange && onChange(value)}
-          placeHolder={placeHolder}
-          textFieldType={textFieldType}
-          className={`${inputClassName}`}
-          style={inputStyle}
-          error={error}
-          baseClassName={baseClassName}
-          defaultValue={defaultValue}
-          errorMessage={errorMessage}
-          inputIcon={inputIcon}
-          iconPosition={iconPosition}
-          onRemoveValue={onRemoveValue}
-          onBlur={onBlur}
-        />
-      ) : (
-        <Select
-          ref={ref}
-          onClick={onClick}
-          id={id}
-          value={value}
-          onChange={(value: string) => {
-            onChange && onChange(value)
-          }}
-          options={selectOptions}
-          className={inputClassName}
-          style={inputStyle}
-          placeHolder={placeHolder}
-          baseClassName={baseClassName}
-          error={error}
-          onRemoveValue={onRemoveValue}
-          errorMessage={error ? errorMessage : undefined}
-          onBlur={onBlur}
-        />
-      )}
+      {labelUi}
+      {inputUi}
     </Box>
   )
 })

@@ -10,8 +10,7 @@ import {
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     transparent: {
       backgroundColor: '#ffffff',
       justifyContent: 'center'
@@ -28,9 +27,9 @@ const useStyles = (theme: Theme) =>
       }
     },
     button: {
-      backgroundColor: theme.secondaryColor,
+      backgroundColor: theme => theme.colors.secondary,
       '&:hover': {
-        backgroundColor: theme.secondaryColor
+        backgroundColor: theme => theme.colors.secondary
       }
     }
   })
@@ -57,7 +56,7 @@ export const Stepper = (props: StepperProps) => {
     muiStepperWrapperLabel
   } = props
   const theme = useTheme()
-  const classes = useStyles(theme)()
+  const classes = useStyles(theme)
   const AruiStepConnector = StepConnector(theme)
   return (
     <div className='AruiStepper-root'>

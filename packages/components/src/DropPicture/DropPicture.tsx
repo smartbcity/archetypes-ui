@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { FileRejection, DropzoneProps, useDropzone } from 'react-dropzone'
 import { Paper, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
@@ -10,15 +10,14 @@ import {
 import { Tooltip } from '../Tooltip'
 import clsx from 'clsx'
 
-const useStyles = (width: number) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<{width: number}>()({
     root: {
-      width: `${width}px`,
+      width: ({width}) => `${width}px`,
       position: 'relative'
     },
     dropZone: {
-      width: `${width}px`,
-      height: `${width}px`,
+      width: ({width}) => `${width}px`,
+      height: ({width}) => `${width}px`,
       background: 'rgb(237, 237, 237)',
       border: 'dashed rgba(209,202,203,1) 2px',
       borderRadius: '5px',
@@ -33,7 +32,7 @@ const useStyles = (width: number) =>
       fontSize: '12px'
     },
     image: {
-      width: `${width}px`,
+      width: ({width}) => `${width}px`,
       borderRadius: '5px'
     },
     clear: {
@@ -47,7 +46,7 @@ const useStyles = (width: number) =>
       left: '50%'
     },
     container: {
-      width: `${width}px`,
+      width: ({width}) => `${width}px`,
       height: 'auto',
       position: 'relative',
       cursor: 'pointer',
@@ -186,7 +185,9 @@ export const DropPicture = (props: DropPictureProps) => {
     styles,
     ...other
   } = props
-  const defaultClasses = useStyles(width)()
+
+  const stylesWidth = useMemo(() => ({width: width}), [width])
+  const defaultClasses = useStyles(stylesWidth)
   const [logo, setLogo] = useState<string>(initialPicture)
 
   useEffect(() => {

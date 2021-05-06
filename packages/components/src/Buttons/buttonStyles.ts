@@ -1,48 +1,47 @@
 import { Theme } from '@smartb/archetypes-ui-themes'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-export const containedUseStyles = (theme: Theme) =>
-  lowLevelStyles({
+export const containedUseStyles = lowLevelStyles<Theme>()({
     root: {
       minWidth: '80px',
       padding: '7px 12px',
       fontSize: '0.85rem',
       borderRadius: '4px',
       textTransform: 'none',
-      boxShadow: theme.shadows[1],
+      boxShadow: theme => theme.shadows[1],
       color: '#ffffff'
     },
     defaultColor: {
-      background: theme.secondaryColor,
+      background: theme => theme.colors.primary,
       '&:hover': {
-        background: theme.secondaryColor
+        background: theme => theme.colors.primary
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     success: {
-      background: '#4caf50',
+      background:  theme => theme.colors.success,
       '&:hover': {
-        background: '#4caf50'
+        background: theme => theme.colors.success
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     fail: {
-      background: '#EC8A90',
+      background: theme => theme.colors.error,
       '&:hover': {
-        background: '#EC8A90'
+        background: theme => theme.colors.error
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     advertissement: {
-      background: '#FFB26B',
+      background: theme => theme.colors.warning,
       '&:hover': {
-        background: '#FFB26B'
+        background: theme => theme.colors.warning
       },
       '&.Mui-disabled': {
         color: '#ffffff'
@@ -60,8 +59,7 @@ export const containedUseStyles = (theme: Theme) =>
     }
   })
 
-export const outlinedUseStyles = (theme: Theme) =>
-  lowLevelStyles({
+export const outlinedUseStyles = lowLevelStyles<Theme>()({
     root: {
       minWidth: '80px',
       padding: '7px 12px',
@@ -69,53 +67,53 @@ export const outlinedUseStyles = (theme: Theme) =>
       textTransform: 'none',
       backgroundColor: '#ffffff',
       borderRadius: '4px',
-      boxShadow: theme.shadows[1],
+      boxShadow: theme => theme.shadows[1],
       '&:hover': {
         backgroundColor: `rgba(0, 0, 0, 0.04)`
       }
     },
     defaultColor: {
-      border: `1px solid ${theme.secondaryColor}`,
-      color: theme.secondaryColor,
+      border: theme => `1px solid ${theme.colors.primary}`,
+      color: theme => theme.colors.primary,
       '& span': {
-        color: theme.secondaryColor
+        color: theme => theme.colors.primary
       },
       '&.Mui-disabled': {
-        color: theme.secondaryColor
+        color: theme => theme.colors.primary
       }
     },
     success: {
-      border: '1px solid #4caf50',
-      color: '#4caf50',
+      border: theme => `1px solid ${theme.colors.success}`,
+      color:  theme => theme.colors.success,
       '& span': {
-        color: '#4caf50'
+        color:  theme => theme.colors.success
       },
       '&.Mui-disabled': {
-        color: '#4caf50'
+        color:  theme => theme.colors.success
       }
     },
     fail: {
-      border: '1px solid #EC8A90',
-      color: '#EC8A90',
+      border: theme => `1px solid ${theme.colors.error}`,
+      color: theme => theme.colors.error,
       '& span': {
-        color: '#EC8A90'
+        color: theme => theme.colors.error
       },
       '&.Mui-disabled': {
-        color: '#EC8A90'
+        color: theme => theme.colors.error
       }
     },
     advertissement: {
-      border: '1px solid #FFB26B',
-      color: '#FFB26B',
+      border: theme => `1px solid ${theme.colors.warning}`,
+      color: theme => theme.colors.warning,
       '& span': {
-        color: '#FFB26B'
+        color: theme => theme.colors.warning
       },
       '&.Mui-disabled': {
-        color: '#FFB26B'
+        color: theme => theme.colors.warning
       }
     },
     buttonProgress: {
-      color: theme.secondaryColor,
+      color: theme => theme.colors.primary,
       marginRight: 5
     },
     icon: {
@@ -126,7 +124,7 @@ export const outlinedUseStyles = (theme: Theme) =>
     }
   })
 
-export const textUseStyles = lowLevelStyles({
+export const textUseStyles = lowLevelStyles<Theme>()({
   root: {
     minWidth: '80px',
     padding: '7px 12px',
@@ -148,30 +146,30 @@ export const textUseStyles = lowLevelStyles({
     }
   },
   success: {
-    color: '#4caf50',
+    color: theme => theme.colors.success,
     '& span': {
-      color: '#4caf50'
+      color: theme => theme.colors.success
     },
     '&.Mui-disabled': {
-      color: '#4caf50'
+      color: theme => theme.colors.success
     }
   },
   fail: {
-    color: '#EC8A90',
+    color: theme => theme.colors.error,
     '& span': {
-      color: '#EC8A90'
+      color: theme => theme.colors.error
     },
     '&.Mui-disabled': {
-      color: '#EC8A90'
+      color: theme => theme.colors.error
     }
   },
   advertissement: {
-    color: '#FFB26B',
+    color: theme => theme.colors.warning,
     '& span': {
-      color: '#FFB26B'
+      color: theme => theme.colors.warning
     },
     '&.Mui-disabled': {
-      color: '#FFB26B'
+      color: theme => theme.colors.warning
     }
   },
   buttonProgress: {

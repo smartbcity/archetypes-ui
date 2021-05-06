@@ -13,8 +13,7 @@ import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 /**
  * @deprecated
  */
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     headerContainer: {
       width: 'calc(90% - 10px)',
       padding: '10px',
@@ -22,7 +21,7 @@ const useStyles = (theme: Theme) =>
       position: 'relative'
     },
     dividerBar: {
-      background: theme.primaryColor,
+      background: theme => theme.colors.primary,
       height: '2px',
       width: '30%',
       position: 'absolute',
@@ -140,8 +139,7 @@ export const Card = (props: CardProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
-
+  const defaultClasses = useStyles(theme)
   return (
     <AruiBox
       className={clsx('AruiCard-root', className)}

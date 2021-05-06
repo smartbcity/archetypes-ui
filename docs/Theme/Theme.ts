@@ -42,19 +42,25 @@ export const getShadows = (shadow: string | null) => {
 };
 
 export const getTheme = (): Theme => ({
-  primaryColor: localStorage.getItem("primaryColor") ?? "#fec519",
-  secondaryColor: localStorage.getItem("secondaryColor") ?? "#edba27",
-  tertiaryColor: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
+  colors: {
+    primary: localStorage.getItem("primaryColor") ?? "#fec519",
+    secondary: localStorage.getItem("secondaryColor") ?? "#edba27",
+    tertiary: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
+    error: "#E44258",
+    success: "#00CA72",
+    warning: "#FF9900",
+    info: "#3C78D8"
+  },
   shadows: getShadows(localStorage.getItem("shadows")),
 });
 
 export const muiTheme = createMuiTheme({
   palette: {
     primary: {
-      main: getTheme().primaryColor,
+      main: getTheme().colors.primary,
     },
     secondary: {
-      main: getTheme().secondaryColor,
+      main: getTheme().colors.secondary,
     },
   },
   typography: {

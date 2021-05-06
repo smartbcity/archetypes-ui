@@ -20,8 +20,7 @@ import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 /**
  * @deprecated
  */
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     card: {
       borderRadius: '10px'
     },
@@ -39,7 +38,7 @@ const useStyles = (theme: Theme) =>
       zIndex: 1
     },
     content: {
-      backgroundColor: theme.tertiaryColor,
+      backgroundColor: theme => theme.colors.tertiary,
       minHeight: '100px',
       position: 'relative',
       justifyContent: 'center',
@@ -150,7 +149,7 @@ export const Panel = (props: PanelProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
   return (
     <MuiCard
       className={clsx(defaultClasses.card, 'AruiPanel-root', className)}

@@ -19,15 +19,14 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import { Arrow } from '../icons'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     dot: {
-      background: theme.secondaryColor,
+      background: theme.colors.secondary,
       position: 'relative',
       alignSelf: 'unset'
     },
     dotPassed: {
-      background: theme.tertiaryColor,
+      background: theme.colors.tertiary,
       position: 'relative',
       alignSelf: 'unset'
     },
@@ -54,10 +53,10 @@ const useStyles = (theme: Theme) =>
       }
     },
     connector: {
-      background: theme.tertiaryColor
+      background: theme => theme.colors.tertiary
     },
     connectorProgress: {
-      background: theme.primaryColor,
+      background: theme => theme.colors.primary,
       width: '100%',
       height: '100%'
     },
@@ -99,7 +98,7 @@ const useStyles = (theme: Theme) =>
       }
     },
     activeDot: {
-      border: `2px solid ${theme.primaryColor}`,
+      border: theme => `2px solid ${theme.colors.primary}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',
@@ -212,7 +211,7 @@ export const Timeline = (props: TimelineProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
 
   const linesUi = useMemo(
     () =>
@@ -257,7 +256,7 @@ export const Timeline = (props: TimelineProps) => {
               style={styles?.item}
             >
               <Arrow
-                color={theme.primaryColor}
+                color={theme.colors.primary}
                 className={clsx(
                   defaultClasses.selectorIndicator,
                   'AruiTimeLine-selectorIndicator'

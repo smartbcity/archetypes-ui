@@ -13,7 +13,7 @@ import {
 import { useTheme, Theme } from '@smartb/archetypes-ui-themes'
 import { Pagination } from '../Pagination'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   container: {
     '& .rdt_TableRow .rdt_TableCell:last-child': {
       paddingRight: '30px'
@@ -61,7 +61,7 @@ const customStyles = (theme: Theme) => ({
       borderRadius: '5px',
       border: `2px solid transparent !important`,
       '&:hover': {
-        border: `2px solid ${theme.secondaryColor} !important`,
+        border: `2px solid ${theme.colors.secondary} !important`,
         backgroundColor: `#FFFFFF !important`,
         borderRadius: 5,
         outlineWidth: 'inherit !important'

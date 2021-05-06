@@ -3,7 +3,7 @@ import { Grid, Hidden } from '@material-ui/core'
 import clsx from 'clsx'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   img: {
     width: '100%',
     height: '100%',

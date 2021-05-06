@@ -13,7 +13,7 @@ import {
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   profile: {
     boxShadow: 'none !important',
     background: 'transparent',

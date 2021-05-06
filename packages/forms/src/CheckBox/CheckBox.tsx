@@ -1,47 +1,99 @@
 import React, { ChangeEvent } from 'react'
 
-import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
-import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import { BasicProps, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { Checkbox, FormControlLabel, CheckboxProps } from '@material-ui/core'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import clsx from 'clsx'
+import { CheckIcon, UnCheckIcon } from '../assets/icons'
 
-const useStyles = (theme: Theme) =>
-  makeStyles(() => ({
-    root: {
-      borderRadius: 20
+const useStyles = lowLevelStyles<Theme>()({
+  root: {
+    borderRadius: 20,
+    padding: '5px 10px'
+  },
+  container: {
+    marginLeft: '0px',
+    marginRight: '0px',
+    '& .MuiTypography-root': {
+      fontSize: '14px'
     },
-    container: {
-      marginLeft: '0px',
-      marginRight: '0px',
-      '& .MuiTypography-root': {
-        fontSize: '14px'
-      },
-      '& .MuiButtonBase-root:hover': {
-        background: 'transparent'
-      }
+    '& .MuiButtonBase-root:hover': {
+      background: 'transparent'
     },
-    icon: {
-      color: theme.primaryColor
+    "& .AruiCheckBox-unCheckIcon": {
+      stroke: "#C5C7D0",
+      fill: "none",
     },
-    iconSize: {
-      width: '22px',
-      height: '22px'
+    "&:hover .AruiCheckBox-unCheckIcon": {
+      stroke: "#323338",
+    },
+    "& .AruiCheckBox-checkIcon rect": {
+      fill: (theme: Theme) => theme.colors.primary + "B3"
+    },
+    "&:hover .AruiCheckBox-checkIcon rect": {
+      fill: (theme: Theme) => theme.colors.primary
+    },
+    "& .AruiCheckBox-checkIcon path": {
+      fill: "white"
     }
-  }))
+  },
+  containerDisabled: {
+    '& .MuiFormControlLabel-label.Mui-disabled': {
+      color: "unset",
+      opacity: 0.7
+    },
+    "& .AruiCheckBox-unCheckIcon": {
+      fill: "#E6E9EF",
+      stroke: "#E6E9EF",
+    },
+    "&:hover .AruiCheckBox-unCheckIcon": {
+      fill: "#E6E9EF",
+      stroke: "#E6E9EF",
+    },
+    "& .AruiCheckBox-checkIcon rect": {
+      fill: () => "#E6E9EF"
+    },
+    "&:hover .AruiCheckBox-checkIcon rect": {
+      fill: () => "#E6E9EF"
+    },
+    "& .AruiCheckBox-checkIcon path": {
+      fill: "#676879"
+    }
+  },
+  iconSize: {
+    width: '20px',
+    height: '20px',
+  }
+})
 
-export interface CheckBoxProps extends BasicProps {
+export interface CheckBoxClasses {
+  checkbox?: string
+  checkIcon?: string
+  unCheckIcon?: string
+}
+
+export interface CheckBoxStyles {
+  checkbox?: React.CSSProperties
+  checkIcon?: React.CSSProperties
+  unCheckIcon?: React.CSSProperties
+}
+
+export interface CheckBoxBasicProps extends BasicProps {
   /**
    * If true, the component is checked
+   * 
+   * @default false
    */
-  checked: boolean
+  checked?: boolean
 
   /**
-   * The content that will be displayed
+   * The label displayed at the right of the checkbox
    */
-  text?: string
+  label?: string
 
   /**
    * If true, the checkbox will be disabled
+   * 
+   * @default false
    */
   disabled?: boolean
 
@@ -49,71 +101,63 @@ export interface CheckBoxProps extends BasicProps {
    * Callback fired when the state is changed
    */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-
   /**
-   * The value of the component
+   * The classes applied to the different part of the component
    */
-  value?: string
-
+  classes?: CheckBoxClasses
   /**
-   * ClassName for the unchecked icon
+   * The styles applied to the different part of the component
    */
-  uncheckedIconClassName?: string
-
-  /**
-   * ClassName for the checked icon
-   */
-  checkedIconClassName?: string
-
-  /**
-   * Style for the checked icon
-   */
-  checkedIconStyle?: React.CSSProperties
+  styles?: CheckBoxStyles
 }
+
+export type CheckBoxProps = MergeMuiElementProps<CheckboxProps, CheckBoxBasicProps>
 
 export const CheckBox = (props: CheckBoxProps) => {
   const {
     checked = false,
-    text = '',
+    label = '',
     disabled = false,
     onChange,
-    value = '',
     className,
     style,
-    uncheckedIconClassName,
-    checkedIconClassName,
-    checkedIconStyle
+    id,
+    classes,
+    styles,
+    ...other
   } = props
   const theme = useTheme()
-  const classes = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
 
   return (
     <FormControlLabel
-      value={value}
-      className={`${classes.container} ${className}`}
+      className={clsx(defaultClasses.container, className, disabled && defaultClasses.containerDisabled, "AruiCheckBox-root")}
       style={style}
+      id={id}
       control={
         <Checkbox
+          {...other}
           checked={checked}
           disabled={disabled}
           onChange={onChange}
-          className={`${classes.root}`}
-          style={{ cursor: !onChange ? 'initial' : '' }}
+          className={clsx(defaultClasses.root, classes?.checkbox, "AruiCheckBox-checkbox")}
+          style={styles?.checkbox}
           disableRipple
           icon={
-            <CheckBoxOutlineBlankIcon
-              className={`${uncheckedIconClassName} ${classes.iconSize}`}
+            <UnCheckIcon
+              className={clsx(classes?.checkIcon, defaultClasses.iconSize, "AruiCheckBox-unCheckIcon")}
+              style={styles?.checkIcon}
             />
           }
           checkedIcon={
-            <CheckBoxIcon
-              className={`${classes.icon} ${classes.iconSize} ${checkedIconClassName}`}
-              style={checkedIconStyle}
+            <CheckIcon
+              className={clsx(defaultClasses.iconSize, classes?.unCheckIcon, "AruiCheckBox-checkIcon")}
+              style={styles?.unCheckIcon}
             />
           }
         />
       }
-      label={text}
+      label={label}
       labelPlacement='end'
     />
   )

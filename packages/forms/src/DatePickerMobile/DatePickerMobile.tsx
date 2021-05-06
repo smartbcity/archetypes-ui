@@ -9,15 +9,14 @@ import {
   useTheme
 } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStyles = lowLevelStyles<Theme>()({
     listLabel: {
       color: '#646464',
       fontWeight: 500,
       fontSize: '13px'
     },
     date: {
-      boxShadow: theme.shadows[2],
+      boxShadow: theme => theme.shadows[2],
       borderRadius: 25,
       position: 'relative',
       backgroundColor: '#fafafa',
@@ -87,7 +86,7 @@ export const DatePickerMobile = React.forwardRef(
       ...other
     } = props
     const theme = useTheme()
-    const defaultClasses = useStyles(theme)()
+    const defaultClasses = useStyles(theme)
     return (
       <div className={clsx(className, 'AruiDatePicker-root')} style={style}>
         {label && (

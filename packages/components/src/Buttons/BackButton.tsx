@@ -3,7 +3,7 @@ import { Arrow } from '../icons'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import { Button, ButtonProps } from './Button'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   arrow: {
     marginLeft: '-8px',
     marginRight: '8px',

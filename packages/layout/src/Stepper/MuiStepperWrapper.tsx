@@ -12,7 +12,7 @@ import { Paper, PaperProps } from '@material-ui/core'
 import clsx from 'clsx'
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles((theme: Theme) => ({
+const useStyles = lowLevelStyles()((theme: Theme) => ({
   root: {
     width: '90%',
     height: '90%',

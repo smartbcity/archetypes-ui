@@ -17,7 +17,7 @@ const useStyles = (customTheme: SBTheme) =>
     createStyles({
       appbar: (props: StyleProps) => ({
         height: `${props.appBarHeight}px`,
-        backgroundColor: customTheme.primaryColor,
+        backgroundColor: customTheme.colors.primary,
         boxShadow: customTheme.shadows[4],
         '& .MuiToolbar-root': {
           height: '100%'
