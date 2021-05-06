@@ -10,7 +10,7 @@ import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
 const useStyles = (customTheme: SBTheme) =>
   lowLevelStyles<Theme, StyleProps>((theme: Theme) =>
     createStyles({
-      appbar: (props) => ({
+      appbar: (props: StyleProps) => ({
         height: `${props.appBarHeight}px`,
         backgroundColor: customTheme.primaryColor,
         boxShadow: customTheme.shadows[4],

@@ -15,7 +15,7 @@ import { TitleContainer } from './TitleContainer'
 const useStyles = (customTheme: SBTheme) =>
   lowLevelStyles<Theme, StyleProps>((theme: Theme) =>
     createStyles({
-      appbar: (props) => ({
+      appbar: (props: StyleProps) => ({
         height: `${props.appBarHeight}px`,
         backgroundColor: customTheme.primaryColor,
         boxShadow: customTheme.shadows[4],
