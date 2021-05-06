@@ -4,10 +4,18 @@ import { Meta } from '@storybook/react'
 import {Story} from "@storybook/react/types-6-0";
 import {CheckBoxClasses, CheckBoxStyles} from './docs'
 import { Box } from '@material-ui/core';
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Forms/CheckBox',
   component: CheckBox,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=208%3A107',
+    },
+  },
   argTypes: {
     classes: {
       table: {

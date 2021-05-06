@@ -3,10 +3,18 @@ import { Tooltip as AruiTooltip, TooltipBasicProps } from './Tooltip'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { Typography } from '@material-ui/core'
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Components/Tooltip',
-  component: AruiTooltip
+  component: AruiTooltip,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=210%3A380',
+    },
+  }
 } as Meta
 
 const Template: Story<TooltipBasicProps> = (args: TooltipBasicProps) => {

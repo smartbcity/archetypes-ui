@@ -18,6 +18,7 @@ module.exports = {
       },
     },
     "@storybook/addon-controls",
+    "storybook-addon-designs"
   ],
   typescript: {
     reactDocgen: "react-docgen-typescript",

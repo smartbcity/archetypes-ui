@@ -5,8 +5,8 @@ import { Button, ButtonProps } from './Button'
 
 const useStyles = lowLevelStyles()({
   icon: {
-    width: '16px',
-    height: '16px',
+    width: '20px',
+    height: '20px',
     marginRight: '5px'
   }
 })
