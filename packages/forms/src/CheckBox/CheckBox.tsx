@@ -27,10 +27,10 @@ const useStyles = lowLevelStyles<Theme>()({
       stroke: "#323338",
     },
     "& .AruiCheckBox-checkIcon rect": {
-      fill: (theme: Theme) => theme.primaryColor + "B3"
+      fill: (theme: Theme) => theme.colors.primary + "B3"
     },
     "&:hover .AruiCheckBox-checkIcon rect": {
-      fill: (theme: Theme) => theme.primaryColor
+      fill: (theme: Theme) => theme.colors.primary
     },
     "& .AruiCheckBox-checkIcon path": {
       fill: "white"

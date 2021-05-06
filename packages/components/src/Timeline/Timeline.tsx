@@ -21,12 +21,12 @@ import { Arrow } from '../icons'
 
 const useStyles = lowLevelStyles<Theme>()({
     dot: {
-      background: theme.secondaryColor,
+      background: theme.colors.secondary,
       position: 'relative',
       alignSelf: 'unset'
     },
     dotPassed: {
-      background: theme.tertiaryColor,
+      background: theme.colors.tertiary,
       position: 'relative',
       alignSelf: 'unset'
     },
@@ -53,10 +53,10 @@ const useStyles = lowLevelStyles<Theme>()({
       }
     },
     connector: {
-      background: theme => theme.tertiaryColor
+      background: theme => theme.colors.tertiary
     },
     connectorProgress: {
-      background: theme => theme.primaryColor,
+      background: theme => theme.colors.primary,
       width: '100%',
       height: '100%'
     },
@@ -98,7 +98,7 @@ const useStyles = lowLevelStyles<Theme>()({
       }
     },
     activeDot: {
-      border: theme => `2px solid ${theme.primaryColor}`,
+      border: theme => `2px solid ${theme.colors.primary}`,
       position: 'absolute',
       width: 'calc(100% + 8px)',
       height: 'calc(100% + 8px)',
@@ -256,7 +256,7 @@ export const Timeline = (props: TimelineProps) => {
               style={styles?.item}
             >
               <Arrow
-                color={theme.primaryColor}
+                color={theme.colors.primary}
                 className={clsx(
                   defaultClasses.selectorIndicator,
                   'AruiTimeLine-selectorIndicator'

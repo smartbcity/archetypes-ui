@@ -27,9 +27,9 @@ const useStyles = lowLevelStyles<Theme>()({
       }
     },
     button: {
-      backgroundColor: theme => theme.secondaryColor,
+      backgroundColor: theme => theme.colors.secondary,
       '&:hover': {
-        backgroundColor: theme => theme.secondaryColor
+        backgroundColor: theme => theme.colors.secondary
       }
     }
   })

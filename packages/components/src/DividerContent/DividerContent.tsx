@@ -39,7 +39,7 @@ const useStyles = lowLevelStyles<Theme>()({
       marginBottom: '20px'
     },
     dividerBar: {
-      background: theme => theme.primaryColor,
+      background: theme => theme.colors.primary,
       width: '0.5px',
       height: '80%',
       position: 'absolute',

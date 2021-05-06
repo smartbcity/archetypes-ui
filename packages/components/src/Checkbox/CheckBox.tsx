@@ -29,7 +29,7 @@ const useStyles = lowLevelStyles<Theme>()({
       }
     },
     icon: {
-      color: theme => theme.primaryColor
+      color: theme => theme.colors.primary
     },
     iconSize: {
       width: '22px',

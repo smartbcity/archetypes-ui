@@ -22,11 +22,11 @@ const useStyles = lowLevelStyles<{paddingLeft: number, theme: Theme}>()({
       paddingLeft: ({paddingLeft}) => `${paddingLeft}px`
     },
     selectedItem: {
-      background: ({theme}) => `${theme.primaryColor}26`
+      background: ({theme}) => `${theme.colors.primary}26`
     },
     selectedTitle: {
       '& .MuiTypography-root': {
-        color: ({theme}) => theme.primaryColor
+        color: ({theme}) => theme.colors.primary
       }
     },
     itemText: {

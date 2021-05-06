@@ -21,7 +21,7 @@ const useStyles = lowLevelStyles<Theme>()({
       position: 'relative'
     },
     dividerBar: {
-      background: theme => theme.primaryColor,
+      background: theme => theme.colors.primary,
       height: '2px',
       width: '30%',
       position: 'absolute',

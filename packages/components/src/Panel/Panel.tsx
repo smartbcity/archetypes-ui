@@ -38,7 +38,7 @@ const useStyles = lowLevelStyles<Theme>()({
       zIndex: 1
     },
     content: {
-      backgroundColor: theme => theme.tertiaryColor,
+      backgroundColor: theme => theme.colors.tertiary,
       minHeight: '100px',
       position: 'relative',
       justifyContent: 'center',

@@ -12,36 +12,36 @@ export const containedUseStyles = lowLevelStyles<Theme>()({
       color: '#ffffff'
     },
     defaultColor: {
-      background: theme => theme.secondaryColor,
+      background: theme => theme.colors.primary,
       '&:hover': {
-        background: theme => theme.secondaryColor
+        background: theme => theme.colors.primary
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     success: {
-      background:  theme => theme.successColor,
+      background:  theme => theme.colors.success,
       '&:hover': {
-        background: theme => theme.successColor
+        background: theme => theme.colors.success
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     fail: {
-      background: theme => theme.errorColor,
+      background: theme => theme.colors.error,
       '&:hover': {
-        background: theme => theme.errorColor
+        background: theme => theme.colors.error
       },
       '&.Mui-disabled': {
         color: '#ffffff'
       }
     },
     advertissement: {
-      background: theme => theme.warningColor,
+      background: theme => theme.colors.warning,
       '&:hover': {
-        background: theme => theme.warningColor
+        background: theme => theme.colors.warning
       },
       '&.Mui-disabled': {
         color: '#ffffff'
@@ -73,47 +73,47 @@ export const outlinedUseStyles = lowLevelStyles<Theme>()({
       }
     },
     defaultColor: {
-      border: theme => `1px solid ${theme.secondaryColor}`,
-      color: theme => theme.secondaryColor,
+      border: theme => `1px solid ${theme.colors.primary}`,
+      color: theme => theme.colors.primary,
       '& span': {
-        color: theme => theme.secondaryColor
+        color: theme => theme.colors.primary
       },
       '&.Mui-disabled': {
-        color: theme => theme.secondaryColor
+        color: theme => theme.colors.primary
       }
     },
     success: {
-      border: theme => `1px solid ${theme.successColor}`,
-      color:  theme => theme.successColor,
+      border: theme => `1px solid ${theme.colors.success}`,
+      color:  theme => theme.colors.success,
       '& span': {
-        color:  theme => theme.successColor
+        color:  theme => theme.colors.success
       },
       '&.Mui-disabled': {
-        color:  theme => theme.successColor
+        color:  theme => theme.colors.success
       }
     },
     fail: {
-      border: theme => `1px solid ${theme.errorColor}`,
-      color: theme => theme.errorColor,
+      border: theme => `1px solid ${theme.colors.error}`,
+      color: theme => theme.colors.error,
       '& span': {
-        color: theme => theme.errorColor
+        color: theme => theme.colors.error
       },
       '&.Mui-disabled': {
-        color: theme => theme.errorColor
+        color: theme => theme.colors.error
       }
     },
     advertissement: {
-      border: theme => `1px solid ${theme.warningColor}`,
-      color: theme => theme.warningColor,
+      border: theme => `1px solid ${theme.colors.warning}`,
+      color: theme => theme.colors.warning,
       '& span': {
-        color: theme => theme.warningColor
+        color: theme => theme.colors.warning
       },
       '&.Mui-disabled': {
-        color: theme => theme.warningColor
+        color: theme => theme.colors.warning
       }
     },
     buttonProgress: {
-      color: theme => theme.secondaryColor,
+      color: theme => theme.colors.primary,
       marginRight: 5
     },
     icon: {
@@ -146,30 +146,30 @@ export const textUseStyles = lowLevelStyles<Theme>()({
     }
   },
   success: {
-    color: theme => theme.successColor,
+    color: theme => theme.colors.success,
     '& span': {
-      color: theme => theme.successColor
+      color: theme => theme.colors.success
     },
     '&.Mui-disabled': {
-      color: theme => theme.successColor
+      color: theme => theme.colors.success
     }
   },
   fail: {
-    color: theme => theme.errorColor,
+    color: theme => theme.colors.error,
     '& span': {
-      color: theme => theme.errorColor
+      color: theme => theme.colors.error
     },
     '&.Mui-disabled': {
-      color: theme => theme.errorColor
+      color: theme => theme.colors.error
     }
   },
   advertissement: {
-    color: theme => theme.warningColor,
+    color: theme => theme.colors.warning,
     '& span': {
-      color: theme => theme.warningColor
+      color: theme => theme.colors.warning
     },
     '&.Mui-disabled': {
-      color: theme => theme.warningColor
+      color: theme => theme.colors.warning
     }
   },
   buttonProgress: {

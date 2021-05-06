@@ -11,7 +11,7 @@ import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
  */
 const useStyles = lowLevelStyles<Theme>()({
     button: {
-      backgroundColor: theme => theme.secondaryColor,
+      backgroundColor: theme => theme.colors.secondary,
       padding: '10px 30px',
       clipPath:
         'polygon(7% 0, 100% 0, 100% 20%, 100% 80%, 93% 100%, 0 100%, 0 80%, 0 20%)',

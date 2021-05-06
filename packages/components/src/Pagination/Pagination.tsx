@@ -23,7 +23,7 @@ const useStyles = lowLevelStyles<Theme>()({
       },
       '& .MuiPaginationItem-page.Mui-selected:after': {
         width: '18px',
-        background: theme => theme.secondaryColor
+        background: theme => theme.colors.secondary
       },
       '& .MuiPaginationItem-page:after': {
         content: "''",

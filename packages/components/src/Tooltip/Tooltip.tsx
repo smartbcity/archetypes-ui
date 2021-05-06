@@ -13,13 +13,13 @@ import {
 
 const useStyles = lowLevelStyles<Theme>()({
     root: {
-      background: theme => theme.primaryColor,
+      background: theme => theme.colors.primary,
       fontSize: '13px',
       padding: '8px',
       boxShadow: theme => theme.shadows[1]
     },
     arrow: {
-      color: theme => theme.primaryColor,
+      color: theme => theme.colors.primary,
       width: '16px !important',
       height: '12px !important',
       marginTop: '-11px !important',

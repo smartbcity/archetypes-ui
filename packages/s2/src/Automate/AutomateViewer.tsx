@@ -104,15 +104,15 @@ export const AutomateViewer = (props: AutomateViewerProps) => {
         label: i.toLocaleString(),
         shape: 'circle',
         color: {
-          border: theme.secondaryColor,
-          background: theme.primaryColor + 'CC',
+          border: theme.colors.secondary,
+          background: theme.colors.primary + 'CC',
           highlight: {
-            border: theme.secondaryColor,
-            background: theme.primaryColor
+            border: theme.colors.secondary,
+            background: theme.colors.primary
           },
           hover: {
-            background: theme.primaryColor,
-            border: theme.secondaryColor
+            background: theme.colors.primary,
+            border: theme.colors.secondary
           }
         },
         borderWidth: 2,

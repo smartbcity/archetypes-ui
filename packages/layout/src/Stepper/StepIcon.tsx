@@ -6,7 +6,7 @@ import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
 const useStepIconStyles = lowLevelStyles<Theme>()({
     root: {
-      backgroundColor: theme => theme.tertiaryColor,
+      backgroundColor: theme => theme.colors.tertiary,
       zIndex: 1,
       color: '#fff',
       width: 40,
@@ -17,15 +17,15 @@ const useStepIconStyles = lowLevelStyles<Theme>()({
       alignItems: 'center'
     },
     active: {
-      backgroundColor: theme => theme.primaryColor,
-      boxShadow: theme => theme.primaryColor
+      backgroundColor: theme => theme.colors.primary,
+      boxShadow: theme => theme.colors.primary
     },
     completed: {
-      backgroundColor: theme => theme.primaryColor,
-      boxShadow: theme => theme.primaryColor
+      backgroundColor: theme => theme.colors.primary,
+      boxShadow: theme => theme.colors.primary
     },
     activeIcon: {
-      border: theme => '2px solid ' + theme.secondaryColor,
+      border: theme => '2px solid ' + theme.colors.secondary,
       padding: '3px',
       borderRadius: '50%'
     }
