@@ -5,10 +5,18 @@ import {Story} from "@storybook/react/types-6-0";
 import {TextFieldClasses, TextFieldStyles} from './docs'
 import { Box, Typography } from '@material-ui/core';
 import { CreditCard } from '@material-ui/icons';
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Forms/TextField',
   component: TextField,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=210%3A45',
+    },
+  },
   argTypes: {
     classes: {
       table: {

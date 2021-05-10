@@ -7,10 +7,18 @@ import { SwapHoriz } from '@material-ui/icons'
 import { EditButton } from './EditButton'
 import { DeleteButton } from './DeleteButton'
 import { BackButton } from './BackButton'
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Components/Button',
-  component: AruiButton
+  component: AruiButton,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=204%3A61',
+    },
+  }
 } as Meta
 
 const Template: Story<ButtonBasicProps> = (args: ButtonBasicProps) => (

@@ -11,10 +11,18 @@ import { styles, classes, Action } from './types'
 import { Box, Typography } from '@material-ui/core'
 import imageHolder from '../assets/imageHolder.jpg'
 import { Button } from '../Buttons'
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Components/PopUp',
   component: AruiPopUp,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=212%3A396',
+    },
+  },
   argTypes: {
     children: {
       control: null

@@ -21,12 +21,12 @@ import { Arrow } from '../icons'
 
 const useStyles = lowLevelStyles<Theme>()({
     dot: {
-      background: theme.colors.secondary,
+      background: theme => theme.colors.secondary,
       position: 'relative',
       alignSelf: 'unset'
     },
     dotPassed: {
-      background: theme.colors.tertiary,
+      background: theme => theme.colors.tertiary,
       position: 'relative',
       alignSelf: 'unset'
     },

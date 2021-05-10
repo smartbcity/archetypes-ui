@@ -4,10 +4,18 @@ import { Meta } from "@storybook/react";
 import { Story } from "@storybook/react/types-6-0";
 import { Box } from '@material-ui/core';
 import {SelectClasses, SelectStyles} from "./docs"
+import { withDesign } from 'storybook-addon-designs'
 
 export default {
   title: 'Forms/Select',
   component: Select,
+  decorators:[withDesign],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=418%3A26',
+    },
+  },
   argTypes: {
     classes: {
       table: {
