@@ -7,11 +7,5 @@ export {
   DatePickerMobile
 } from './DatePickerMobile'
 export { InputFormProps, InputForm } from './InputForm'
-export {
-  MultiSelectBoxProps,
-  MultiSelectProps,
-  MultiSelectBox,
-  MultiSelect
-} from './MultiSelect'
 export { Option, Select, SelectProps } from './Select'
 export { TextFieldProps, TextField } from './TextField'

@@ -2,8 +2,8 @@ import { InputLabel, makeStyles } from '@material-ui/core'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import React from 'react'
 import { Calendar } from '../assets/icons'
-import { useInputStylesSimple } from '../style'
-import { BasicProps } from '@smartb/archetypes-ui-themes'
+import { useInputStyles } from '../style'
+import { BasicProps, useTheme } from '@smartb/archetypes-ui-themes'
 
 const useStyles = makeStyles(() => ({
   input: {
@@ -92,7 +92,8 @@ export const DatePicker = (props: DatePickerProps) => {
     disableToolBar = true
   } = props
   const localClasses = useStyles()
-  const classes = useInputStylesSimple(disabled)()
+  const theme = useTheme()
+  const classes = useInputStyles(theme)
 
   return (
     <div className={`${className}`}>

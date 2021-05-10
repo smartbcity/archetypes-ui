@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Drawer, DrawerProps, Theme } from '@material-ui/core'
 import {createStyles} from '@material-ui/core'
 import clsx from 'clsx'
@@ -12,13 +12,12 @@ import { ToolsPanel } from '../ToolsPanel'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
 import { TitleContainer } from './TitleContainer'
 
-const useStyles = (customTheme: SBTheme) =>
-  lowLevelStyles<Theme, StyleProps>((theme: Theme) =>
+const useStyles = lowLevelStyles<{styleprops: StyleProps, theme: SBTheme}, Theme>()((theme: Theme) =>
     createStyles({
-      appbar: (props: StyleProps) => ({
-        height: `${props.appBarHeight}px`,
-        backgroundColor: customTheme.colors.primary,
-        boxShadow: customTheme.shadows[4],
+      appbar: (props) => ({
+        height: `${props.styleprops.appBarHeight}px`,
+        backgroundColor: props.theme.colors.primary,
+        boxShadow: props.theme.shadows[4],
         '& .MuiToolbar-root': {
           height: '100%'
         },
@@ -28,15 +27,15 @@ const useStyles = (customTheme: SBTheme) =>
         })
       }),
       appBarOpen: (props) => ({
-        width: `calc(100% - ${props.menuWidth}px)`,
-        marginLeft: `${props.menuWidth}px`,
+        width: `calc(100% - ${props.styleprops.menuWidth}px)`,
+        marginLeft: `${props.styleprops.menuWidth}px`,
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen
         })
       }),
       titleContainer: (props) => ({
-        height: `${props.appBarHeight}px`,
+        height: `${props.styleprops.appBarHeight}px`,
         paddingLeft: '10px',
         display: 'flex',
         alignItems: 'center',
@@ -50,18 +49,18 @@ const useStyles = (customTheme: SBTheme) =>
         })
       }),
       titleContainerOpen: (props) => ({
-        marginLeft: `${props.menuWidth}px`,
+        marginLeft: `${props.styleprops.menuWidth}px`,
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen
         })
       }),
       drawer: (props) => ({
-        width: `${props.menuWidth}px`,
+        width: `${props.styleprops.menuWidth}px`,
         '& .MuiDrawer-paper': {
           top: `0px`,
           zIndex: 1000,
-          width: `${props.menuWidth}px`,
+          width: `${props.styleprops.menuWidth}px`,
           background: 'white',
           height: `100vh`,
           overflowX: 'hidden',
@@ -73,7 +72,7 @@ const useStyles = (customTheme: SBTheme) =>
       }),
       drawerClosed: (props) => ({
         '& .MuiDrawer-paper': {
-          transform: `translateX(-${props.menuWidth}px)`,
+          transform: `translateX(-${props.styleprops.menuWidth}px)`,
           transition: theme.transitions.create('transform', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.leavingScreen
@@ -86,12 +85,12 @@ const useStyles = (customTheme: SBTheme) =>
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen
         }),
-        paddingTop: props.appBarHeight,
-        paddingLeft: props.menuWidth
+        paddingTop: props.styleprops.appBarHeight,
+        paddingLeft: props.styleprops.menuWidth
       }),
       mainShift: (props) => ({
         flexGrow: 1,
-        paddingTop: props.appBarHeight,
+        paddingTop: props.styleprops.appBarHeight,
         transition: theme.transitions.create('padding', {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen
@@ -219,7 +218,8 @@ export const App = (props: AppProps) => {
     onToggle
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)(styleProps)
+  const stylesDependencies = useMemo((): {styleprops: StyleProps, theme: SBTheme} => ({styleprops: styleProps, theme: theme}), [styleProps, theme])
+  const defaultClasses = useStyles(stylesDependencies)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [handleResize] = useDebouncedCallback(() => {
     const min = Math.min.apply(Math, [window.innerWidth, innerWidth])

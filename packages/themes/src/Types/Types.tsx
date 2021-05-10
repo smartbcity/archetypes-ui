@@ -26,6 +26,23 @@ export function lowLevelStyles<
   }
 } 
 
+export function midLevelStyles<
+  Props extends object = {},
+  Theme = MuiTheme,
+>() {
+  return function<ClassKey extends string = string>(styles: Styles<Theme, Props, ClassKey>) {
+    return makeStyles<Theme, Props, ClassKey>(styles, { index: -1 })
+  }
+} 
+export function highLevelStyles<
+  Props extends object = {},
+  Theme = MuiTheme,
+>() {
+  return function<ClassKey extends string = string>(styles: Styles<Theme, Props, ClassKey>) {
+    return makeStyles<Theme, Props, ClassKey>(styles, { index: 2 })
+  }
+} 
+
 export type MergeReactElementProps<
   T extends React.ElementType,
   P extends object = {}
