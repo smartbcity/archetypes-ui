@@ -9,6 +9,8 @@ export {
 export {
   BasicProps,
   lowLevelStyles,
+  highLevelStyles,
+  midLevelStyles,
   MergeMuiElementProps,
   MergeReactElementProps
 } from './Types'

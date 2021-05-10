@@ -31,7 +31,7 @@ export function midLevelStyles<
   Theme = MuiTheme,
 >() {
   return function<ClassKey extends string = string>(styles: Styles<Theme, Props, ClassKey>) {
-    return makeStyles<Theme, Props, ClassKey>(styles, { index: -1 })
+    return makeStyles<Theme, Props, ClassKey>(styles, { index: 1 })
   }
 } 
 export function highLevelStyles<
