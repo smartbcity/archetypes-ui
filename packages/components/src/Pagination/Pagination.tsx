@@ -6,47 +6,19 @@ import {
 } from '@material-ui/lab'
 import {
   BasicProps,
-  lowLevelStyles,
   MergeMuiElementProps
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
-
-const useStyles = lowLevelStyles<Theme>()({
-    pagination: {
-      '& .MuiPaginationItem-page.Mui-selected': {
-        backgroundColor: 'transparent',
-        fontWeight: 600
-      },
-      '& .MuiPaginationItem-page.Mui-selected:hover': {
-        backgroundColor: 'rgba(0, 0, 0, 0.04)'
-      },
-      '& .MuiPaginationItem-page.Mui-selected:after': {
-        width: '18px',
-        background: theme => theme.colors.secondary
-      },
-      '& .MuiPaginationItem-page:after': {
-        content: "''",
-        display: 'block',
-        marginTop: '20px',
-        position: 'absolute',
-        height: '0.5px',
-        width: '0',
-        background: 'transparent',
-        transition: '0.3s'
-      }
-    }
-  })
 
 interface PaginationClasses {
   pagination: string
 }
 
-interface Paginationstyles {
+interface PaginationStyles {
   pagination: React.CSSProperties
 }
 
-interface PaginationBasicProps extends BasicProps {
+export interface PaginationBasicProps extends BasicProps {
   /**
    * Thecurrent selected page
    */
@@ -66,7 +38,7 @@ interface PaginationBasicProps extends BasicProps {
   /**
    * The styles applied to the different part of the component
    */
-  styles?: Paginationstyles
+  styles?: PaginationStyles
 }
 
 export type PaginationProps = MergeMuiElementProps<
@@ -86,8 +58,6 @@ export const Pagination = (props: PaginationProps) => {
     classes,
     ...other
   } = props
-  const theme = useTheme()
-  const defaultClasses = useStyles(theme)
 
   const onChangePage = useCallback(
     (_: React.ChangeEvent<unknown>, page: number) => {
@@ -109,7 +79,6 @@ export const Pagination = (props: PaginationProps) => {
       <MuiPagination
         page={page}
         className={clsx(
-          defaultClasses.pagination,
           'AruiPagination-pagination',
           classes?.pagination
         )}
@@ -118,7 +87,9 @@ export const Pagination = (props: PaginationProps) => {
         onChange={onChangePage}
         shape='rounded'
         size='small'
+        color='secondary'
         siblingCount={0}
+        boundaryCount={1}
         {...other}
       />
     </Box>
