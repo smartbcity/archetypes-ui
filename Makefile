@@ -10,7 +10,7 @@ package: package-libs package-storybook
 
 push: push-storybook push-libs
 
-push-latest: push-storybook
+push-latest: push-latest-storybook
 
 package-libs:
 	@yarn install
