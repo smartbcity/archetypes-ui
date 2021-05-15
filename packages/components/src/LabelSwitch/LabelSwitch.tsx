@@ -73,6 +73,7 @@ export const LabelSwitch = (props: LabelSwitchProps) => {
     const defaultClasses = useStyles(theme)
 
     const handleChange = useCallback(
+        //@ts-ignore
         (event: React.ChangeEvent<{}>, newValue: string) => {
             onLabelChange && onLabelChange(newValue);
         },
