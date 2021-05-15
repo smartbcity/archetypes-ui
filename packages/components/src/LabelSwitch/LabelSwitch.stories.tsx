@@ -7,12 +7,7 @@ import {
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { withDesign } from 'storybook-addon-designs'
-import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import { styles, classes } from './docs'
-
-const useStyles = lowLevelStyles()({
-
-})
 
 export default {
   title: 'Components/LabelSwitch',

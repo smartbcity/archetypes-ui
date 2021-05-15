@@ -26,13 +26,13 @@ const useStyles = lowLevelStyles<Theme>()({
 })
 
 interface LabelSwitchClasses {
-    indicator: string
-    tab: string
+    indicator?: string
+    tab?: string
 }
 
 interface LabelSwitchStyles {
-    indicator: React.CSSProperties
-    tab: React.CSSProperties
+    indicator?: React.CSSProperties
+    tab?: React.CSSProperties
 }
 
 
