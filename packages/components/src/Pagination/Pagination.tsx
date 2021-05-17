@@ -11,11 +11,11 @@ import {
 import clsx from 'clsx'
 
 interface PaginationClasses {
-  pagination: string
+  pagination?: string
 }
 
 interface PaginationStyles {
-  pagination: React.CSSProperties
+  pagination?: React.CSSProperties
 }
 
 export interface PaginationBasicProps extends BasicProps {
