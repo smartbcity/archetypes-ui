@@ -29,5 +29,6 @@ export { Tooltip, TooltipProps } from './Tooltip'
 export { LabelSwitch, LabelSwitchProps, Label } from './LabelSwitch'
 export { Ticket, TicketProps } from './Ticket'
 export {StatusTag, StatusTagProps} from './StatusTag'
+export {CopyToClipboard, CopyToClipboardProps} from './CopyToClipboard'
 
 
