@@ -28,3 +28,6 @@ export { CodeHighlighter, CodeHighlighterProps } from './CodeHighlighter'
 export { Tooltip, TooltipProps } from './Tooltip'
 export { LabelSwitch, LabelSwitchProps, Label } from './LabelSwitch'
 export { Ticket, TicketProps } from './Ticket'
+export {StatusTag, StatusTagProps} from './StatusTag'
+
+
