@@ -45,7 +45,7 @@ export const StatusTag = (props: StatusTagProps) => {
   return (
     <Chip
       label={label}
-      className={clsx(classes.tagWidth, className)}
+      className={clsx(classes.tagWidth, className, 'AruiStatusTag-root')}
       {...other}
     />
   )

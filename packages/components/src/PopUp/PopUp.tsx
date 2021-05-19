@@ -42,7 +42,7 @@ const useStyles = lowLevelStyles()({
 export type Action = {
   label: React.ReactNode
   key: string
-} & Omit<ButtonProps, 'children' | 'style' | 'className'>
+} & Omit<ButtonProps, 'children' | 'style'>
 
 interface PopUpClasses {
   content?: string
@@ -105,13 +105,14 @@ export const PopUp = (props: PopUpProps) => {
   const actionsDisplay = useMemo(() => {
     if (actions.length === 0) return undefined
     return actions.map((action) => {
-      const { key, label, ...other } = action
+      const { key, label, className, ...other } = action
       return (
         <Button
           key={key}
           className={clsx(
             'AruiPopUp-button',
             classes?.button,
+            className,
             defaultClasses.button
           )}
           style={styles?.button}

@@ -14,7 +14,7 @@ export {
   EditButton,
   ButtonProps
 } from './Buttons'
-export { PopUp, Action as PopUpAction, PopUpProps } from './PopUp'
+export { PopUp, Action as PopUpAction, PopUpProps, ConfirmationPopUp, ConfirmationPopUpProps } from './PopUp'
 export { TextField, TextFieldProps } from './TextField'
 export { Select, SelectItem, SelectProps } from './Select'
 export { FilesPanel, Folder, FolderItem, FilesPanelProps } from './FilesPanel'
