@@ -70,7 +70,7 @@ const Template: Story = () => {
   return (
     <AruiKeycloakProvider
       config={{ clientId: "plateform-web", realm: "server", url: "https://colisactiv.smart-b.io/auth" }}
-      initOptions={{onLoad: "check-sso"}}
+      initOptions={{onLoad: "check-sso", }}
       loadingComponent={<Typography>Loading ...</Typography>}
     >
       <ConnectButton />

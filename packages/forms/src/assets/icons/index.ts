@@ -1,4 +1,3 @@
-export * from './Calendar'
 export * from './SelectIcon'
 export * from './SearchIcon'
 export * from './UnCheckIcon'

@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@react-keycloak/web": "^3.4.0",
+    "@react-keycloak/ssr": "^3.3.0",
     "@smartb/archetypes-ui-components": "^0.1.39",
     "clsx": "^1.1.1",
     "connected-react-router": "^6.9.1",
