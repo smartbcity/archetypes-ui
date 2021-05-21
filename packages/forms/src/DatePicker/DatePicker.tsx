@@ -1,77 +1,86 @@
-import { InputLabel, makeStyles } from '@material-ui/core'
-import { KeyboardDatePicker } from '@material-ui/pickers'
-import React from 'react'
-import { Calendar } from '../assets/icons'
+import { DatePicker as MuiDatePicker, DatePickerProps as MuiDatePickerProps, DatePickerView, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import React, { useCallback, useMemo } from 'react'
 import { useInputStyles } from '../style'
-import { BasicProps, useTheme } from '@smartb/archetypes-ui-themes'
+import { BasicProps, lowLevelStyles, useTheme } from '@smartb/archetypes-ui-themes'
+import { isMobile } from 'react-device-detect'
+import { TextField, TextFieldProps } from '../TextField'
+import DateFnsUtils from '@date-io/date-fns'
+import { format as formatFnc } from "date-fns"
+import * as dateFnsLocales from 'date-fns/locale'
+import clsx from 'clsx'
+import { Clear } from '@material-ui/icons'
 
-const useStyles = makeStyles(() => ({
-  input: {
-    '& .MuiInputBase-input': {
-      paddingLeft: 10,
-      color: '#98A5AE !important',
-      minHeight: 50,
-      padding: 0
-    }
-  },
-  noIcon: {
-    '& .MuiIconButton-root.Mui-disabled': {
-      display: 'none'
-    }
-  },
-  toolbar: {
-    '& .MuiPickersToolbar-toolbar': {}
+const useStyles = lowLevelStyles()({
+  root: {
+    position: "relative",
+    width: "fit-content"
   }
-}))
-
-export type ViewsFormat = 'year' | 'month' | 'date'
+})
 
 export interface DatePickerProps extends BasicProps {
   /**
    * The Date entered in the input
    */
-  value: Date | string | null
+  value?: Date
   /**
    * The event called when the value of the input changed
-   * @param date
    */
-  onChangeDate: (date: Date) => void
+  onChangeDate?: (date?: Date) => void
   /**
-   * The label of the input
+   * The event called when the value of the input is removed
    */
-  dateLabel?: string
+  onRemove?: () => void
   /**
-   * The min Date entered in the input
+   * The min Date that the user can choose
    */
   minDate?: Date
   /**
-   * The max Date entered in the input
+   * The max Date that the user can choose
    */
   maxDate?: Date
   /**
    * If true, the checkbox will be disabled
+   * 
+   * @default false
    */
   disabled?: boolean
-  views?: Array<ViewsFormat>
-  openTo?: ViewsFormat
-  notUseFormat?: boolean
   /**
-   * If true, the valued can be cleared
+   * The type of the date picker
+   * 
+   * @default 'date'
    */
-  clearable?: boolean
+  type?: 'month' | 'date'
   /**
    * Place Holder Message
+   * 
+   * @default ''
    */
   placeholder?: string
   /**
-   * If true, the toolbar will be disabled
+   * The locale language use in the date picker
+   * 
+   * @default 'fr'
    */
-  disableToolBar?: boolean
-}
-
-const applyTimezoneOffset = (date: Date): Date => {
-  const timestampWithOffset = date.getTime() + date.getTimezoneOffset() * 60000
-  return new Date(timestampWithOffset)
+  locale?: keyof typeof dateFnsLocales
+  /**
+   * The size of the input
+   * 
+   * @default 'medium'
+   */
+  size?: "large" | "medium" | "small"
+  /**
+   * By default the picker will be native when a mobile browser is detected. You can set this prop to `true` 
+   * to have the native picker appearing all the time or you can set it to `false` to always use the material-ui picker even on phone
+   */
+  native?: boolean
+  /**
+   * The props passed to the native datePicker
+   */
+  nativeDatePickerProps?: Partial<TextFieldProps>
+  /**
+   * The props passed to the material-ui datePicker
+   */
+  muiDatePickerProps?: Partial<MuiDatePickerProps>
 }
 
 export const DatePicker = (props: DatePickerProps) => {
@@ -79,69 +88,131 @@ export const DatePicker = (props: DatePickerProps) => {
     value,
     onChangeDate,
     className,
+    style,
     id,
-    dateLabel,
     minDate,
     maxDate,
     disabled = false,
-    views,
-    openTo,
-    notUseFormat,
-    clearable = false,
+    type = "date",
     placeholder = '',
-    disableToolBar = true
+    size = "medium",
+    locale = "fr",
+    native,
+    muiDatePickerProps,
+    nativeDatePickerProps,
+    onRemove
   } = props
-  const localClasses = useStyles()
   const theme = useTheme()
-  const classes = useInputStyles(theme)
+  const defaultClasses = useInputStyles(theme)
+  const classes = useStyles()
+
+  console.log(value)
+
+  const format = useMemo(() => {
+    if (locale === "fr") return "dd/MM/yyyy"
+    return "yyyy/MM/dd"
+  }, [locale])
+
+  const formatedNativeDates = useMemo(() => {
+    const formatType = type === "date" ? 'yyyy-MM-dd' : 'yyyy-MM'
+    return {
+      value: value ? formatFnc(value, formatType) : "",
+      minDate: minDate ? formatFnc(minDate, formatType) : "",
+      maxDate: maxDate ? formatFnc(maxDate, formatType) : "",
+    }
+  }, [value, type, minDate, maxDate])
+
+  const dateType: { views: DatePickerView[], openTo: DatePickerView } = useMemo(() => {
+    if (type === "date") return {
+      views: ['year', 'month', 'date'],
+      openTo: 'date'
+    }
+    return {
+      views: ['year', 'month'],
+      openTo: 'month'
+    }
+  }, [])
+
+  const onPCChange = useCallback(
+    (date: Date | null) => {
+      onChangeDate && onChangeDate(date ? new Date(date) : undefined)
+    },
+    [onChangeDate],
+  )
+
+  const onMobileChange = useCallback(
+    (value: string) => {
+      onChangeDate && onChangeDate(new Date(value))
+    },
+    [onChangeDate],
+  )
+
+  const rightIcon = useMemo(() => {
+    if (!value) return undefined
+    if (onRemove && !disabled) return (
+      <Clear onClick={onRemove} className={clsx(defaultClasses.clear, "AruiDatePicker-clearIcon")} />
+    )
+    return undefined
+  }, [value, onRemove, defaultClasses.clear, disabled])
+
+  if (native === true || (native !== false && isMobile)) return (
+    <TextField
+      //@ts-ignore
+      textFieldType={type}
+      className={clsx(className, "AruiDatePicker-root")}
+      style={style}
+      id={id}
+      value={formatedNativeDates.value}
+      onChange={onMobileChange}
+      placeholder={placeholder}
+      disabled={disabled}
+      onRemove={onRemove}
+      size={size}
+      InputProps={{
+        inputProps: {
+          min: formatedNativeDates.minDate,
+          max: formatedNativeDates.maxDate,
+        }
+      }}
+      {...nativeDatePickerProps}
+    />
+  )
 
   return (
-    <div className={`${className}`}>
-      {dateLabel ? (
-        <InputLabel htmlFor={id} className={classes.label}>
-          {dateLabel}
-        </InputLabel>
-      ) : null}
-      <KeyboardDatePicker
-        views={views ? views : ['year', 'month', 'date']}
-        openTo={openTo ? openTo : 'date'}
-        disableToolbar={disableToolBar}
-        clearable={clearable}
-        variant={clearable ? 'dialog' : 'inline'}
-        cancelLabel={''}
-        clearLabel='Vider'
-        okLabel='Valider'
-        format={notUseFormat ? undefined : 'dd/MM/yy'}
-        id={id}
-        minDate={minDate && applyTimezoneOffset(minDate)}
-        maxDate={maxDate && applyTimezoneOffset(maxDate)}
-        invalidDateMessage='Format de date non valide'
-        placeholder={placeholder}
-        className={
-          disabled
-            ? `${classes.input} ${localClasses.input} ${localClasses.noIcon} `
-            : `${classes.input} ${localClasses.input} `
-        }
-        InputProps={{
-          disableUnderline: true
-        }}
-        disabled={disabled ? disabled : false}
-        value={value}
-        onChange={onChangeDate}
-        KeyboardButtonProps={{
-          'aria-label': 'change date'
-        }}
-        keyboardIcon={
-          <Calendar
-            color='#98A5AE'
-            style={{
-              width: 15,
-              height: 15
-            }}
-          />
-        }
-        minDateMessage={''}
-      />
-    </div>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={dateFnsLocales[locale]}>
+      <div
+        className={clsx(classes.root, "AruiDatePicker-container")}
+      >
+        <MuiDatePicker
+          views={dateType.views}
+          openTo={dateType.openTo}
+          variant='inline'
+          format={format}
+          id={id}
+          minDate={minDate}
+          maxDate={maxDate}
+          placeholder={placeholder}
+          className={clsx(
+            className,
+            defaultClasses.input,
+            size === "large" && defaultClasses.inputLarge,
+            size === "medium" && defaultClasses.inputMedium,
+            size === "small" && defaultClasses.inputSmall,
+            disabled && defaultClasses.inputDisabled,
+            "AruiDatePicker-root"
+          )}
+          style={style}
+          InputProps={{
+            disableUnderline: true
+          }}
+          disabled={disabled}
+          value={value ? value : null}
+          onChange={onPCChange}
+          {...muiDatePickerProps}
+        />
+        {rightIcon}
+      </div>
+    </MuiPickersUtilsProvider>
   )
 }
+

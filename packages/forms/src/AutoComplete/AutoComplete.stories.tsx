@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import {AutoComplete, AutoCompleteProps} from './AutoComplete'
-import {makeStyles} from '@material-ui/core'
+import {AutoComplete as AruiAutoComplete, AutoCompleteBasicProps} from './AutoComplete'
 import {Meta} from "@storybook/react";
 import {Story} from "@storybook/react/types-6-0";
 
 export default {
   title: 'Forms/AutoComplete',
-  component: AutoComplete,
+  component: AruiAutoComplete,
 } as Meta;
 
 interface Book {
@@ -15,44 +14,35 @@ interface Book {
   id: string
 }
 
-const useStyles = makeStyles(() => ({
-  container: {
-    width: 'fit-content'
-  }
-}))
 const books: Book[] = [
   { title: 'SmartB Potter', author: 'JK Blockchain', id: 'b1' },
   { title: 'The Lord of the Bs', author: 'S.S.M. Tolkien', id: 'b2' },
   { title: 'Impact Wars', author: 'Carbon Lucas', id: 'b3' }
 ]
 
-export const AutoCompleteStory: Story<AutoCompleteProps<Book>> = () => {
-  const [book, setBooks] = useState<Book>({
-    title: '',
-    id: '',
-    author: ''
-  })
-  const classes = useStyles()
+export const AutoComplete: Story<AutoCompleteBasicProps<Book>> = (args: AutoCompleteBasicProps<Book>) => {
+  const [book, setBooks] = useState<Book[]>([])
 
   return (
-    <AutoComplete
-      options={books}
+    <AruiAutoComplete<Book>
       defaultValue={book}
-      id='test'
-      onSearch={() => {}}
-      onChangeSelectedElement={(book: Book) => {
-        setBooks(book)
+      onChangeSelectedElement={(book: Book | Book[]) => {
+        if(Array.isArray(book)) setBooks(book)
+        else setBooks([book])
       }}
-      label='Livre'
-      noOptionsText={"Rechercher un livre"}
-      getOptionLabel={(book) => book.title}
-      placeholder='testt'
-      className={classes.container}
       style={{
         width: 500
       }}
+      {...args}
     />
   )
 }
 
-AutoCompleteStory.storyName = 'AutoComplete'
+AutoComplete.args = {
+  options: books,
+  id: "test",
+  noOptionsText: "Rechercher un livre",
+  getOptionLabel: (book) => book.title
+}
+
+AutoComplete.storyName = 'AutoComplete'
