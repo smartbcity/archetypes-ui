@@ -241,7 +241,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const optionsMemoized = useMemo(() => {
     return options.map((option) => (
       <MenuItem className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} key={option.key} value={option.label}>
-        <CheckBox checked={values !== '' && (values.indexOf(option.label) > -1 || value === option.label)} />
+        <CheckBox checked={values.indexOf(option.label) > -1 || value === option.label} />
         <ListItemText primary={option.label as string} />
       </MenuItem>
     ))
