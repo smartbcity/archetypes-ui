@@ -2,7 +2,6 @@ import { Chip } from '@material-ui/core'
 import { Autocomplete as MuiAutocomplete, AutocompleteProps as MuiAutocompleteProps, AutocompleteGetTagProps, AutocompleteRenderInputParams } from '@material-ui/lab'
 import React, { useCallback } from 'react'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
-import { useInputStyles } from '../style'
 import { TextField, TextFieldProps } from '../TextField'
 
 const useStyles = lowLevelStyles()({
@@ -100,18 +99,14 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
 
   const renderInput = useCallback(
     (params: AutocompleteRenderInputParams) => {
-      //@ts-ignore
       params.InputProps.className = undefined
       return (
-      <TextField
-        {...params}
-        {...textFieldProps}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password', // disable autocomplete and autofill
-        }}
-      />
-    )},
+        <TextField
+          {...textFieldProps}
+          {...params}
+        />
+      )
+    },
     [textFieldProps],
   )
   return (
