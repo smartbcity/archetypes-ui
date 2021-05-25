@@ -90,11 +90,15 @@ const useStyles = lowLevelStyles()({
 export interface SelectBasicProps extends BasicProps {
   /**
    * The value selected
+   * 
+   * @default '''
    */
   value?: string | number
 
   /**
    * The values of selected. ⚠️ This prop is used only if `multiple` is true
+   * 
+   * @default []
    */
   values?: (string | number)[]
 
@@ -170,8 +174,8 @@ export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
 export const Select = React.forwardRef((props: SelectProps, ref) => {
   const {
-    value,
-    values,
+    value = '',
+    values = [],
     onChangeValue,
     onChangeValues,
     label = '',
@@ -198,7 +202,6 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const onChangeMemoized = useCallback(
     (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
       const eventValue = e.target.value
-      console.log(eventValue)
       if (Array.isArray(eventValue)) {
         onChangeValues && onChangeValues(eventValue as string[])
       }
@@ -238,7 +241,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const optionsMemoized = useMemo(() => {
     return options.map((option) => (
       <MenuItem className={clsx(classes?.option, "AruiSelect-option")} style={styles?.option} key={option.key} value={option.label}>
-        <CheckBox checked={values !== undefined && (values.indexOf(option.label) > -1 || value === option.label)} />
+        <CheckBox checked={values !== '' && (values.indexOf(option.label) > -1 || value === option.label)} />
         <ListItemText primary={option.label as string} />
       </MenuItem>
     ))
@@ -310,7 +313,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
       >
         {optionsMemoized}
       </MuiSelect>
-      {(values && (value !== '' || values.length > 0)) && onRemove && !disabled && (
+      {((value !== '' || values.length > 0)) && onRemove && !disabled && (
         <Clear onClick={onRemove} className={clsx(classesLocal.clear, classes?.clearIcon, "AruiSelect-clearIcon")} style={styles?.clearIcon} />
       )}
       {errorMessage !== '' && error && (

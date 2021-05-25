@@ -12,8 +12,10 @@ import { Clear } from '@material-ui/icons'
 
 const useStyles = lowLevelStyles()({
   root: {
-    position: "relative",
-    width: "fit-content"
+    position: "relative"
+  },
+  input: {
+    width: "100%"
   }
 })
 
@@ -106,8 +108,6 @@ export const DatePicker = (props: DatePickerProps) => {
   const defaultClasses = useInputStyles(theme)
   const classes = useStyles()
 
-  console.log(value)
-
   const format = useMemo(() => {
     if (locale === "fr") return "dd/MM/yyyy"
     return "yyyy/MM/dd"
@@ -159,7 +159,7 @@ export const DatePicker = (props: DatePickerProps) => {
     <TextField
       //@ts-ignore
       textFieldType={type}
-      className={clsx(className, "AruiDatePicker-root")}
+      className={clsx(className, "AruiDatePicker-datePicker")}
       style={style}
       id={id}
       value={formatedNativeDates.value}
@@ -181,7 +181,8 @@ export const DatePicker = (props: DatePickerProps) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={dateFnsLocales[locale]}>
       <div
-        className={clsx(classes.root, "AruiDatePicker-container")}
+        className={clsx(classes.root, className, "AruiDatePicker-root")}
+        style={style}
       >
         <MuiDatePicker
           views={dateType.views}
@@ -193,15 +194,14 @@ export const DatePicker = (props: DatePickerProps) => {
           maxDate={maxDate}
           placeholder={placeholder}
           className={clsx(
-            className,
             defaultClasses.input,
+            classes.input,
             size === "large" && defaultClasses.inputLarge,
             size === "medium" && defaultClasses.inputMedium,
             size === "small" && defaultClasses.inputSmall,
             disabled && defaultClasses.inputDisabled,
-            "AruiDatePicker-root"
+            "AruiDatePicker-datePicker"
           )}
-          style={style}
           InputProps={{
             disableUnderline: true
           }}
