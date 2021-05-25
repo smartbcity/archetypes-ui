@@ -6,6 +6,11 @@ import {Story} from "@storybook/react/types-6-0";
 export default {
   title: 'Forms/AutoComplete',
   component: AruiAutoComplete,
+  argTypes: {
+    options: {
+      control: null
+    }
+  }
 } as Meta;
 
 interface Book {
@@ -23,15 +28,9 @@ const books: Book[] = [
 ]
 
 export const AutoComplete: Story<AutoCompleteBasicProps<Book>> = (args: AutoCompleteBasicProps<Book>) => {
-  const [book, setBooks] = useState<Book[]>([])
 
   return (
     <AruiAutoComplete<Book>
-      defaultValue={book}
-      onChangeSelectedElement={(book: Book | Book[]) => {
-        if(Array.isArray(book)) setBooks(book)
-        else setBooks([book])
-      }}
       style={{
         width: 500
       }}
@@ -44,7 +43,8 @@ AutoComplete.args = {
   options: books,
   id: "test",
   noOptionsText: "Rechercher un livre",
-  getOptionLabel: (book) => book.title
+  getOptionLabel: (book) => book.title ?? "",
+  defaultValue: []
 }
 
 AutoComplete.storyName = 'AutoComplete'

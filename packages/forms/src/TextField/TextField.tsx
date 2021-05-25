@@ -252,7 +252,6 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
     )
     return undefined
   }, [value, onRemove, classes, styles, inputAdornment.endAdornment, error, disabled])
-  console.log(InputProps)
   return (
     <div
       className={clsx(className, classesLocal.root, "AruiTextfield-root")}

@@ -1,20 +1,15 @@
 import { Chip } from '@material-ui/core'
 import { Autocomplete as MuiAutocomplete, AutocompleteProps as MuiAutocompleteProps, AutocompleteGetTagProps, AutocompleteRenderInputParams } from '@material-ui/lab'
 import React, { useCallback } from 'react'
-import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 import { TextField, TextFieldProps } from '../TextField'
+import clsx from 'clsx'
 
 const useStyles = lowLevelStyles()({
-  padding: {
-    '& .MuiAutocomplete-inputRoot': {
-      paddingTop: 0,
-      paddingRight: '27px !important'
-    },
-    '& .MuiChip-root': {
-      backgroundColor: '#EBEBEC !important',
-      borderRadius: '5px !important',
-      border: 'none'
-    }
+  chip: {
+    backgroundColor: '#EBEBEC',
+    borderRadius: '5px',
+    border: 'none'
   }
 })
 
@@ -81,8 +76,7 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
     ...other
   } = props
 
-  const theme = useTheme()
-  const classesLocal = useStyles()
+  const defaultClasses = useStyles()
 
   const onChangeElementMemoized = useCallback(
     (_, newValue) => onChangeSelectedElement && onChangeSelectedElement(newValue || []),
@@ -92,14 +86,13 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
   const renderTags = useCallback(
     (value: T[], getTagProps: AutocompleteGetTagProps) =>
       value.map((option: T, index: number) => (
-        <Chip label={getOptionLabel(option)} {...getTagProps({ index })} />
+        <Chip classes={{root: clsx(defaultClasses.chip, "AruiAutoComplete-chip")}} label={getOptionLabel(option)} {...getTagProps({ index })} />
       )),
     [getOptionLabel],
   )
 
   const renderInput = useCallback(
     (params: AutocompleteRenderInputParams) => {
-      params.InputProps.className = undefined
       return (
         <TextField
           {...textFieldProps}
@@ -109,13 +102,15 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
     },
     [textFieldProps],
   )
+
   return (
     <MuiAutocomplete<T, boolean, undefined, undefined>
       id={id}
       filterSelectedOptions
+      limitTags={2}
       multiple={multiple}
       options={options}
-      className={className}
+      className={clsx(className, "AruiAutoComplete-root")}
       defaultValue={defaultValue}
       forcePopupIcon={false}
       getOptionLabel={getOptionLabel}

@@ -32,6 +32,7 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     },
     '& .MuiInputBase-root': {
       margin: `0px`,
+      paddingTop: "0px",
       border: `1px solid ${textFieldGrey}`,
       boxShadow: '0px 0px 0px 1px transparent',
       borderRadius: '4px',
