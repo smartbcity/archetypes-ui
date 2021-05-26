@@ -1,7 +1,7 @@
 import { Tab, Tabs, TabsProps } from '@material-ui/core'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import React, { useCallback, useMemo } from 'react'
+import React, { forwardRef, useCallback, useMemo } from 'react'
 
 const useStyles = lowLevelStyles<Theme>()({
     indicator: {
@@ -67,7 +67,7 @@ export interface LabelSwitchBasicProps extends BasicProps {
 
 export type LabelSwitchProps = MergeMuiElementProps<TabsProps, LabelSwitchBasicProps>
 
-export const LabelSwitch = (props: LabelSwitchProps) => {
+const LabelSwitchBase = (props: LabelSwitchProps, ref: React.ForwardedRef<HTMLButtonElement>) => {
     const { labels, onLabelChange, selectedLabelValue, className, style, id, classes, styles, ...other } = props
     const theme = useTheme()
     const defaultClasses = useStyles(theme)
@@ -85,8 +85,10 @@ export const LabelSwitch = (props: LabelSwitchProps) => {
     )), [labels, defaultClasses.tab, classes?.tab, styles?.tab])
 
     return (
-        <Tabs value={selectedLabelValue} classes={{ indicator: clsx(classes?.indicator, defaultClasses.indicator, 'AruiLabelSwitch-indicator')}} TabIndicatorProps={{style: styles?.indicator}} id={id} indicatorColor="primary" textColor="primary" className={clsx(className, defaultClasses.tabs, 'AruiLabelSwitch-root')} style={style} onChange={handleChange} {...other}>
+        <Tabs ref={ref} value={selectedLabelValue} classes={{ indicator: clsx(classes?.indicator, defaultClasses.indicator, 'AruiLabelSwitch-indicator')}} TabIndicatorProps={{style: styles?.indicator}} id={id} indicatorColor="primary" textColor="primary" className={clsx(className, defaultClasses.tabs, 'AruiLabelSwitch-root')} style={style} onChange={handleChange} {...other}>
             {tabs}
         </Tabs>
     )
 }
+
+export const LabelSwitch = forwardRef(LabelSwitchBase) as typeof LabelSwitchBase

@@ -8,7 +8,7 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@material-ui/lab'
-import React, { useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
@@ -20,108 +20,108 @@ import {
 import { Arrow } from '../icons'
 
 const useStyles = lowLevelStyles<Theme>()({
-    dot: {
-      background: theme => theme.colors.secondary,
-      position: 'relative',
-      alignSelf: 'unset'
+  dot: {
+    background: theme => theme.colors.secondary,
+    position: 'relative',
+    alignSelf: 'unset'
+  },
+  dotPassed: {
+    background: theme => theme.colors.tertiary,
+    position: 'relative',
+    alignSelf: 'unset'
+  },
+  separator: {
+    minWidth: '50px',
+    maxWidth: '50px'
+  },
+  item: {
+    transition: '0.3s'
+  },
+  selectableItem: {
+    cursor: 'pointer',
+    '&:hover .AruiTimeLine-selectorIndicator': {
+      display: 'block'
     },
-    dotPassed: {
-      background: theme => theme.colors.tertiary,
-      position: 'relative',
-      alignSelf: 'unset'
-    },
-    separator: {
-      minWidth: '50px',
-      maxWidth: '50px'
-    },
-    item: {
-      transition: '0.3s'
-    },
-    selectableItem: {
-      cursor: 'pointer',
-      '&:hover .AruiTimeLine-selectorIndicator': {
-        display: 'block'
-      },
-      '&:hover .AruiTimeLine-item': {
-        opacity: '1'
-      }
-    },
-    itemSelected: {
-      opacity: '1',
-      '& .AruiTimeLine-selectorIndicator': {
-        display: 'block'
-      }
-    },
-    connector: {
-      background: theme => theme.colors.tertiary
-    },
-    connectorProgress: {
-      background: theme => theme.colors.primary,
-      width: '100%',
-      height: '100%'
-    },
-    ItemDisabled: {
-      opacity: '0.5'
-    },
-    timeContainer: {
-      position: 'relative',
-      flex: '0.2',
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    timeContainerAlternate: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    flexSeparator: {
-      flex: 1
-    },
-    selectorIndicator: {
-      display: 'none',
-      width: '25px',
-      height: '25px',
-      strokeWidth: '1.5',
-      position: 'absolute',
-      left: '-10px',
-      top: '2px',
-      transform: 'rotate(180deg)'
-    },
-    timelineAlternate: {
-      '& .AruiTimeLine-item-ClickableContainer:nth-child(even) .AruiTimeLine-item': {
-        flexDirection: 'row-reverse'
-      }
-    },
-    timelineRight: {
-      '& .AruiTimeLine-item': {
-        flexDirection: 'row-reverse'
-      }
-    },
-    activeDot: {
-      border: theme => `2px solid ${theme.colors.primary}`,
-      position: 'absolute',
-      width: 'calc(100% + 8px)',
-      height: 'calc(100% + 8px)',
-      marginLeft: '-10px',
-      marginTop: '-10px',
-      borderRadius: '50%',
-      animation: '$flashing ease 2.5s infinite'
-    },
-    '@keyframes flashing': {
-      '0%': {
-        opacity: 0
-      },
-      '50%': {
-        opacity: 1
-      },
-      '80%': {
-        opacity: 1
-      },
-      '100%': {
-        opacity: 0
-      }
+    '&:hover .AruiTimeLine-item': {
+      opacity: '1'
     }
-  })
+  },
+  itemSelected: {
+    opacity: '1',
+    '& .AruiTimeLine-selectorIndicator': {
+      display: 'block'
+    }
+  },
+  connector: {
+    background: theme => theme.colors.tertiary
+  },
+  connectorProgress: {
+    background: theme => theme.colors.primary,
+    width: '100%',
+    height: '100%'
+  },
+  ItemDisabled: {
+    opacity: '0.5'
+  },
+  timeContainer: {
+    position: 'relative',
+    flex: '0.2',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  timeContainerAlternate: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  flexSeparator: {
+    flex: 1
+  },
+  selectorIndicator: {
+    display: 'none',
+    width: '25px',
+    height: '25px',
+    strokeWidth: '1.5',
+    position: 'absolute',
+    left: '-10px',
+    top: '2px',
+    transform: 'rotate(180deg)'
+  },
+  timelineAlternate: {
+    '& .AruiTimeLine-item-ClickableContainer:nth-child(even) .AruiTimeLine-item': {
+      flexDirection: 'row-reverse'
+    }
+  },
+  timelineRight: {
+    '& .AruiTimeLine-item': {
+      flexDirection: 'row-reverse'
+    }
+  },
+  activeDot: {
+    border: theme => `2px solid ${theme.colors.primary}`,
+    position: 'absolute',
+    width: 'calc(100% + 8px)',
+    height: 'calc(100% + 8px)',
+    marginLeft: '-10px',
+    marginTop: '-10px',
+    borderRadius: '50%',
+    animation: '$flashing ease 2.5s infinite'
+  },
+  '@keyframes flashing': {
+    '0%': {
+      opacity: 0
+    },
+    '50%': {
+      opacity: 1
+    },
+    '80%': {
+      opacity: 1
+    },
+    '100%': {
+      opacity: 0
+    }
+  }
+})
 
 export interface TimeLineCell {
   id: string
@@ -198,7 +198,7 @@ export type TimelineProps = MergeMuiElementProps<
 /**
  * A timeline
  */
-export const Timeline = (props: TimelineProps) => {
+const TimelineBase = (props: TimelineProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     lines,
     classes,
@@ -246,8 +246,8 @@ export const Timeline = (props: TimelineProps) => {
               className={clsx(
                 line.disabled && defaultClasses.ItemDisabled,
                 !!selectedCellId &&
-                  selectedCellId !== line.id &&
-                  defaultClasses.ItemDisabled,
+                selectedCellId !== line.id &&
+                defaultClasses.ItemDisabled,
                 isSelected && defaultClasses.itemSelected,
                 defaultClasses.item,
                 'AruiTimeLine-item',
@@ -353,6 +353,7 @@ export const Timeline = (props: TimelineProps) => {
 
   return (
     <MuiTimeline
+      ref={ref}
       {...other}
       className={clsx(
         align === 'alternate' && defaultClasses.timelineAlternate,
@@ -365,3 +366,6 @@ export const Timeline = (props: TimelineProps) => {
     </MuiTimeline>
   )
 }
+
+
+export const Timeline = forwardRef(TimelineBase) as typeof TimelineBase

@@ -1,7 +1,7 @@
 import { IconButton, IconButtonProps } from '@material-ui/core'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import React, { useCallback } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import { Clipboard } from '../icons'
 import { Tooltip } from '../Tooltip'
 
@@ -45,7 +45,7 @@ export interface CopyToClipboardBasicProps extends BasicProps {
 
 export type CopyToClipboardProps = MergeMuiElementProps<IconButtonProps, CopyToClipboardBasicProps>
 
-export const CopyToClipboard = (props: CopyToClipboardProps) => {
+const CopyToClipboardBase = (props: CopyToClipboardProps, ref: React.ForwardedRef<HTMLButtonElement>) => {
     const { value, helperText = "copy to clipboard", className, classes, styles, ...other } = props
     const defaultClasses = useStyles()
     const onCopy = useCallback(
@@ -54,9 +54,11 @@ export const CopyToClipboard = (props: CopyToClipboardProps) => {
     )
     return (
         <Tooltip className={clsx(classes?.tooltip, 'AruiCopyToClipboard-tooltip' )} style={styles?.tooltip} helperText={helperText}>
-            <IconButton {...other} className={clsx(className, 'AruiCopyToClipboard-root')} onClick={onCopy}>
+            <IconButton {...other} ref={ref} className={clsx(className, 'AruiCopyToClipboard-root')} onClick={onCopy}>
                 <Clipboard className={clsx(defaultClasses.clipboardIcon, classes?.clipBoardIcon, 'AruiCopyToClipboard-clipBoardIcon' )} style={styles?.clipBoardIcon} />
             </IconButton>
         </Tooltip>
     )
 }
+
+export const CopyToClipboard = forwardRef(CopyToClipboardBase) as typeof CopyToClipboardBase

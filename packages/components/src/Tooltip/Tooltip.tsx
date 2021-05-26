@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {
   Tooltip as MuiTooltip,
   TooltipProps as MuiTooltipProps
@@ -12,22 +12,22 @@ import {
 } from '@smartb/archetypes-ui-themes'
 
 const useStyles = lowLevelStyles<Theme>()({
-    root: {
-      background: theme => theme.colors.primary,
-      fontSize: '13px',
-      padding: '8px',
-      boxShadow: theme => theme.shadows[1]
-    },
-    arrow: {
-      color: theme => theme.colors.primary,
-      width: '16px !important',
-      height: '12px !important',
-      marginTop: '-11px !important',
-      '&::before': {
-        borderRadius: '2px'
-      }
+  root: {
+    background: theme => theme.colors.primary,
+    fontSize: '13px',
+    padding: '8px',
+    boxShadow: theme => theme.shadows[1]
+  },
+  arrow: {
+    color: theme => theme.colors.primary,
+    width: '16px !important',
+    height: '12px !important',
+    marginTop: '-11px !important',
+    '&::before': {
+      borderRadius: '2px'
     }
-  })
+  }
+})
 
 export interface TooltipBasicProps extends BasicProps {
   /**
@@ -52,7 +52,7 @@ export type TooltipProps = MergeMuiElementProps<
   TooltipBasicProps
 >
 
-export const Tooltip = (props: TooltipProps) => {
+const TooltipBase = (props: TooltipProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     children,
     helperText,
@@ -67,6 +67,7 @@ export const Tooltip = (props: TooltipProps) => {
   const defaultClasses = useStyles(theme)
   return (
     <MuiTooltip
+      ref={ref}
       id={id}
       className={className}
       style={style}
@@ -85,3 +86,5 @@ export const Tooltip = (props: TooltipProps) => {
     </MuiTooltip>
   )
 }
+
+export const Tooltip = forwardRef(TooltipBase) as typeof TooltipBase

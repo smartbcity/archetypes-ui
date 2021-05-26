@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { forwardRef, useCallback, useState } from 'react'
 import { Menu, IconButton, IconButtonProps } from '@material-ui/core'
-import {MoreHoriz} from '@material-ui/icons'
+import { MoreHoriz } from '@material-ui/icons'
 import { MenuItem, MenuContainer, MenuContainerProps } from '@smartb/archetypes-ui-layout'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
@@ -49,7 +49,7 @@ export interface MoreOptionsBasicProps<T = {}> extends BasicProps {
 
 export type MoreOptionsProps<T> = MergeMuiElementProps<IconButtonProps, MoreOptionsBasicProps<T>>
 
-export const MoreOptions = <T extends object = {}>(props: MoreOptionsProps<T>) => {
+const MoreOptionsBase = <T extends object = {}>(props: MoreOptionsProps<T>, ref: React.ForwardedRef<HTMLButtonElement>) => {
   const { options, menuContainerProps, className, classes, styles, ...other } = props
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const defaultClasses = useStyles()
@@ -71,6 +71,7 @@ export const MoreOptions = <T extends object = {}>(props: MoreOptionsProps<T>) =
   return (
     <>
       <IconButton
+        ref={ref}
         aria-label='more'
         aria-controls='long-menu'
         aria-haspopup='true'
@@ -94,8 +95,10 @@ export const MoreOptions = <T extends object = {}>(props: MoreOptionsProps<T>) =
         className={clsx(classes?.menu, 'AruiMoreOptions-menu')}
         style={styles?.menu}
       >
-        <MenuContainer menu={options} {...menuContainerProps} classes={{item: {root: defaultClasses.listItem}}} />
+        <MenuContainer menu={options} {...menuContainerProps} classes={{ item: { root: defaultClasses.listItem } }} />
       </Menu>
     </>
   )
 }
+
+export const MoreOptions = forwardRef(MoreOptionsBase) as typeof MoreOptionsBase

@@ -1,6 +1,6 @@
 import { Chip } from '@material-ui/core'
 import { Autocomplete as MuiAutocomplete, AutocompleteProps as MuiAutocompleteProps, AutocompleteGetTagProps, AutocompleteRenderInputParams } from '@material-ui/lab'
-import React, { useCallback } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 import { TextField, TextFieldProps } from '../TextField'
 import clsx from 'clsx'
@@ -59,7 +59,7 @@ export interface AutoCompleteBasicProps<T> extends BasicProps {
 
 export type AutoCompleteProps<T> = MergeMuiElementProps<Omit<MuiAutocompleteProps<T, undefined, undefined, undefined>, "renderInput">, AutoCompleteBasicProps<T>>
 
-export function AutoComplete<T>(props: AutoCompleteProps<T>) {
+const AutoCompleteBase = function <T>(props: AutoCompleteProps<T>, ref: React.ForwardedRef<HTMLElement>) {
   const {
     className,
     style,
@@ -106,6 +106,7 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
   return (
     <MuiAutocomplete<T, boolean, undefined, undefined>
       id={id}
+      ref={ref}
       filterSelectedOptions
       limitTags={2}
       multiple={multiple}
@@ -124,3 +125,5 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
     />
   )
 }
+
+export const AutoComplete = forwardRef(AutoCompleteBase) as typeof AutoCompleteBase

@@ -1,5 +1,5 @@
 import { DatePicker as MuiDatePicker, DatePickerProps as MuiDatePickerProps, DatePickerView, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import React, { useCallback, useMemo } from 'react'
+import React, { forwardRef, useCallback, useMemo } from 'react'
 import { useInputStyles } from '../style'
 import { BasicProps, lowLevelStyles, useTheme } from '@smartb/archetypes-ui-themes'
 import { isMobile } from 'react-device-detect'
@@ -85,7 +85,7 @@ export interface DatePickerProps extends BasicProps {
   muiDatePickerProps?: Partial<MuiDatePickerProps>
 }
 
-export const DatePicker = (props: DatePickerProps) => {
+const DatePickerBase = (props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     value,
     onChangeDate,
@@ -159,6 +159,7 @@ export const DatePicker = (props: DatePickerProps) => {
     <TextField
       //@ts-ignore
       textFieldType={type}
+      ref={ref}
       className={clsx(className, "AruiDatePicker-datePicker")}
       style={style}
       id={id}
@@ -203,7 +204,8 @@ export const DatePicker = (props: DatePickerProps) => {
             "AruiDatePicker-datePicker"
           )}
           InputProps={{
-            disableUnderline: true
+            disableUnderline: true,
+            ref: ref
           }}
           disabled={disabled}
           value={value ? value : null}
@@ -216,3 +218,4 @@ export const DatePicker = (props: DatePickerProps) => {
   )
 }
 
+export const DatePicker = forwardRef(DatePickerBase) as typeof DatePickerBase

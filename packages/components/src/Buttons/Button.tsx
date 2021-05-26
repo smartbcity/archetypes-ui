@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
@@ -96,7 +96,9 @@ export type ButtonProps<T = {}> = MergeMuiElementProps<
   ButtonBasicProps<T>
 >
 
-export const Button = function <T = {}>(props: ButtonProps<T>) {
+type refType<T> = T extends [{}] ? React.ForwardedRef<HTMLElement> : React.ForwardedRef<T>
+
+export const ButtonBase = function <T = {}>(props: ButtonProps<T>, ref: refType<T>) {
   const {
     children,
     onClick,
@@ -121,8 +123,8 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
     variant === 'contained'
       ? containedUseStyles(theme)
       : variant === 'outlined'
-      ? outlinedUseStyles(theme)
-      : textUseStyles(theme)
+        ? outlinedUseStyles(theme)
+        : textUseStyles(theme)
   const forcedLoading = isLoading
   const [loading, setloading] = useState(false)
 
@@ -144,13 +146,12 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
   if (component)
     return (
       <MuiButton<typeof component>
+        ref={ref}
         style={style}
         disabled={loading || disabled || forcedLoading}
-        className={`${classes.root} ${
-          disabled && classes.disabled
-        } AruiButton-root ${className} ${success ? classes.success : ''} ${
-          fail ? classes.fail : ''
-        } ${warning ? classes.advertissement : classes.defaultColor}`}
+        className={`${classes.root} ${disabled && classes.disabled
+          } AruiButton-root ${className} ${success ? classes.success : ''} ${fail ? classes.fail : ''
+          } ${warning ? classes.advertissement : classes.defaultColor}`}
         onClick={(e: any) => !href && onClick && onClickMemoisied(e)}
         component={component}
         href={href}
@@ -180,14 +181,14 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
     )
 
   return (
+    //@ts-ignore
     <MuiButton
+      ref={ref}
       style={style}
       disabled={loading || disabled || forcedLoading}
-      className={`${classes.root} ${
-        disabled && classes.disabled
-      } AruiButton-root ${className} ${success ? classes.success : ''} ${
-        fail ? classes.fail : ''
-      } ${warning ? classes.advertissement : classes.defaultColor}`}
+      className={`${classes.root} ${disabled && classes.disabled
+        } AruiButton-root ${className} ${success ? classes.success : ''} ${fail ? classes.fail : ''
+        } ${warning ? classes.advertissement : classes.defaultColor}`}
       onClick={(e) => !href && onClick && onClickMemoisied(e)}
       href={href}
       id={id}
@@ -214,3 +215,5 @@ export const Button = function <T = {}>(props: ButtonProps<T>) {
     </MuiButton>
   )
 }
+
+export const Button = forwardRef(ButtonBase) as typeof ButtonBase

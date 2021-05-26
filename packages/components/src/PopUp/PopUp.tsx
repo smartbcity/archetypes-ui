@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import {
   Dialog,
   DialogActions,
@@ -87,7 +87,7 @@ export interface PopUpBasicProps extends BasicProps {
 
 export type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-export const PopUp = (props: PopUpProps) => {
+const PopUpBase = (props: PopUpProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     open,
     onClose,
@@ -126,6 +126,7 @@ export const PopUp = (props: PopUpProps) => {
 
   return (
     <Dialog
+      ref={ref}
       open={open}
       onClose={onClose}
       style={style}
@@ -171,3 +172,5 @@ export const PopUp = (props: PopUpProps) => {
     </Dialog>
   )
 }
+
+export const PopUp = forwardRef(PopUpBase) as typeof PopUpBase

@@ -1,7 +1,7 @@
 import { Chip, ChipProps } from '@material-ui/core'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import React, { useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 
 const useStyles = lowLevelStyles<{ color: string }>()({
   tagWidth: {
@@ -34,7 +34,7 @@ export interface StatusTagBasicProps extends BasicProps {
 
 export type StatusTagProps = MergeMuiElementProps<ChipProps, StatusTagBasicProps>
 
-export const StatusTag = (props: StatusTagProps) => {
+export const StatusTagBase = (props: StatusTagProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const { label, variant = 'info', customColor, className, ...other } = props
   const theme = useTheme()
   const color = useMemo(() => {
@@ -44,9 +44,12 @@ export const StatusTag = (props: StatusTagProps) => {
   const classes = useStyles(color)
   return (
     <Chip
+      ref={ref}
       label={label}
       className={clsx(classes.tagWidth, className, 'AruiStatusTag-root')}
       {...other}
     />
   )
 }
+
+export const StatusTag = forwardRef(StatusTagBase) as typeof StatusTagBase

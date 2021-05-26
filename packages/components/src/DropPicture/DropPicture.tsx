@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, forwardRef } from 'react'
 import { FileRejection, DropzoneProps, useDropzone } from 'react-dropzone'
 import { Paper, Typography } from '@material-ui/core'
 import { Clear, AddPhotoAlternate } from '@material-ui/icons'
@@ -10,68 +10,68 @@ import {
 import { Tooltip } from '../Tooltip'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles<{width: number}>()({
-    root: {
-      width: ({width}) => `${width}px`,
-      position: 'relative'
-    },
-    dropZone: {
-      width: ({width}) => `${width}px`,
-      height: ({width}) => `${width}px`,
-      background: 'rgb(237, 237, 237)',
-      border: 'dashed rgba(209,202,203,1) 2px',
-      borderRadius: '5px',
-      position: 'relative',
-      cursor: 'pointer',
-      '&:focus': {
-        outline: 'none'
-      }
-    },
-    error: {
-      color: '#bd1313',
-      fontSize: '12px'
-    },
-    image: {
-      width: ({width}) => `${width}px`,
-      borderRadius: '5px'
-    },
-    clear: {
-      color: '#757575',
-      width: '40px',
-      height: '40px',
-      display: 'none',
-      position: 'absolute',
-      transform: 'translate(-50%,-50%)',
-      top: '50%',
-      left: '50%'
-    },
-    container: {
-      width: ({width}) => `${width}px`,
-      height: 'auto',
-      position: 'relative',
-      cursor: 'pointer',
-      '&:hover img': {
-        opacity: '0.4'
-      },
-      '&:hover svg': {
-        display: 'block'
-      }
-    },
-    add: {
-      color: 'rgba(209,202,203,1)',
-      width: '70px',
-      height: '70px',
-      position: 'absolute',
-      transform: 'translate(-50%,-50%)',
-      top: '50%',
-      left: '50%'
-    },
-    hidder: {
-      position: 'fixed',
-      top: 0,
-      left: 0
+const useStyles = lowLevelStyles<{ width: number }>()({
+  root: {
+    width: ({ width }) => `${width}px`,
+    position: 'relative'
+  },
+  dropZone: {
+    width: ({ width }) => `${width}px`,
+    height: ({ width }) => `${width}px`,
+    background: 'rgb(237, 237, 237)',
+    border: 'dashed rgba(209,202,203,1) 2px',
+    borderRadius: '5px',
+    position: 'relative',
+    cursor: 'pointer',
+    '&:focus': {
+      outline: 'none'
     }
-  })
+  },
+  error: {
+    color: '#bd1313',
+    fontSize: '12px'
+  },
+  image: {
+    width: ({ width }) => `${width}px`,
+    borderRadius: '5px'
+  },
+  clear: {
+    color: '#757575',
+    width: '40px',
+    height: '40px',
+    display: 'none',
+    position: 'absolute',
+    transform: 'translate(-50%,-50%)',
+    top: '50%',
+    left: '50%'
+  },
+  container: {
+    width: ({ width }) => `${width}px`,
+    height: 'auto',
+    position: 'relative',
+    cursor: 'pointer',
+    '&:hover img': {
+      opacity: '0.4'
+    },
+    '&:hover svg': {
+      display: 'block'
+    }
+  },
+  add: {
+    color: 'rgba(209,202,203,1)',
+    width: '70px',
+    height: '70px',
+    position: 'absolute',
+    transform: 'translate(-50%,-50%)',
+    top: '50%',
+    left: '50%'
+  },
+  hidder: {
+    position: 'fixed',
+    top: 0,
+    left: 0
+  }
+})
 
 interface DropPictureClasses {
   image?: string
@@ -165,7 +165,7 @@ export type DropPictureProps = MergeMuiElementProps<
   DropPictureBasicProps
 >
 
-export const DropPicture = (props: DropPictureProps) => {
+const DropPictureBase = (props: DropPictureProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     onPictureDroped,
     onRemovePicture,
@@ -186,7 +186,7 @@ export const DropPicture = (props: DropPictureProps) => {
     ...other
   } = props
 
-  const stylesWidth = useMemo(() => ({width: width}), [width])
+  const stylesWidth = useMemo(() => ({ width: width }), [width])
   const defaultClasses = useStyles(stylesWidth)
   const [logo, setLogo] = useState<string>(initialPicture)
 
@@ -242,6 +242,7 @@ export const DropPicture = (props: DropPictureProps) => {
   if (logo === '')
     return (
       <div
+        ref={ref}
         className={clsx(defaultClasses.root, className)}
         style={style}
         id={id}
@@ -283,6 +284,7 @@ export const DropPicture = (props: DropPictureProps) => {
       style={styles?.tooltip}
     >
       <div
+        ref={ref}
         className={clsx(defaultClasses.container, className)}
         style={style}
         id={id}
@@ -303,3 +305,5 @@ export const DropPicture = (props: DropPictureProps) => {
     </Tooltip>
   )
 }
+
+export const DropPicture = forwardRef(DropPictureBase) as typeof DropPictureBase
