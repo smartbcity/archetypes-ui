@@ -172,7 +172,7 @@ export interface SelectBasicProps extends BasicProps {
 
 export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = React.forwardRef((props: SelectProps, ref) => {
+export const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     value = '',
     values = [],

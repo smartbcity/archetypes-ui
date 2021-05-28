@@ -148,9 +148,9 @@ export interface TextFieldBasicProps extends BasicProps {
   styles?: TextFieldStyles
 }
 
-export type TextFieldProps = MergeMuiElementProps<MuiTextFieldProps, TextFieldBasicProps>
+export type TextFieldProps = MergeMuiElementProps<Omit<MuiTextFieldProps, "ref">, TextFieldBasicProps>
 
-export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
+export const TextField = React.forwardRef((props: TextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     className,
     error = false,
@@ -178,7 +178,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
   const theme = useTheme()
   const defaultClasses = useInputStyles(theme)
   const classesLocal = useStyles()
-  
+
   const onChangeMemoized = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange && onChange(e.target.value),
     [onChange],
@@ -259,6 +259,7 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
     >
       <MuiTextField
         {...other}
+        ref={ref}
         id={id}
         value={value}
         onChange={onChangeMemoized}
@@ -285,7 +286,6 @@ export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
         helperText={error ? errorMessage : ''}
         color='primary'
         InputProps={{
-          ref: ref,
           ...inputAdornment,
           disableUnderline: true,
           onKeyUp: upHandler,
