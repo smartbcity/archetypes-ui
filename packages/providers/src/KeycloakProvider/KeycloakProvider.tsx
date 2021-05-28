@@ -8,9 +8,9 @@ export interface KeycloakProviderProps {
      */
     children?: React.ReactNode
     /**
-     * The keycloack connection configuration
+     * The keycloack connection configuration or a string url to a json containing the keycloak config
      */
-    config: KeycloakConfig
+    config: KeycloakConfig | string
     /**
      * The keycloack options
      * **See the reference below** ⬇️
