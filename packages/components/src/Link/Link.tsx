@@ -11,6 +11,7 @@ const useStyles = lowLevelStyles()({
   link: {
     textDecoration: 'none',
     borderBottom: '1px black solid',
+    opacity: '0.9',
     '&:hover': {
       textDecoration: 'none'
     }

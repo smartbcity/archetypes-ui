@@ -43,3 +43,4 @@ export {
   MarkdownHighlighterProps
 } from './MarkdownHighlighter'
 export { Link, LinkProps } from './Link'
+export { ProgressIndicator, ProgressIndicatorProps } from './ProgressIndicator'
