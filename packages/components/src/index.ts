@@ -42,3 +42,4 @@ export {
   MarkdownHighlighter,
   MarkdownHighlighterProps
 } from './MarkdownHighlighter'
+export { Link, LinkProps } from './Link'

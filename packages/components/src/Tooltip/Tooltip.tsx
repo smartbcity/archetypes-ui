@@ -10,16 +10,17 @@ import {
   Theme,
   useTheme
 } from '@smartb/archetypes-ui-themes'
+import clsx from 'clsx'
 
 const useStyles = lowLevelStyles<Theme>()({
   root: {
-    background: theme => theme.colors.primary,
+    background: (theme) => theme.colors.primary,
     fontSize: '13px',
     padding: '8px',
-    boxShadow: theme => theme.shadows[1]
+    boxShadow: (theme) => theme.shadows[1]
   },
   arrow: {
-    color: theme => theme.colors.primary,
+    color: (theme) => theme.colors.primary,
     width: '16px !important',
     height: '12px !important',
     marginTop: '-11px !important',
@@ -52,7 +53,10 @@ export type TooltipProps = MergeMuiElementProps<
   TooltipBasicProps
 >
 
-const TooltipBase = (props: TooltipProps, ref: React.ForwardedRef<HTMLElement>) => {
+const TooltipBase = (
+  props: TooltipProps,
+  ref: React.ForwardedRef<HTMLElement>
+) => {
   const {
     children,
     helperText,
@@ -69,7 +73,7 @@ const TooltipBase = (props: TooltipProps, ref: React.ForwardedRef<HTMLElement>) 
     <MuiTooltip
       ref={ref}
       id={id}
-      className={className}
+      className={clsx(className, 'AruiTooltip-root')}
       style={style}
       arrow
       classes={{
