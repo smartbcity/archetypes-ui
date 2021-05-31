@@ -13,6 +13,10 @@ const useStyles = lowLevelStyles()({
       backgroundColor: 'unset',
       padding: '0',
       marginBottom: '8px'
+    },
+    '& img': {
+      width: '100%',
+      maxWidth: '300px'
     }
   }
 })
@@ -25,7 +29,7 @@ export interface MarkdownHighlighterProps {
   /**
    * The className applied to the root element
    */
-  className: string
+  className?: string
 }
 
 const components = {

@@ -25,8 +25,12 @@ MarkdownHighlighter.args = {
   - \`3\`
   `
 }
-MarkdownHighlighter.storyName = 'CodeHighlighter'
 
-export const MarkdownHighlighterFromFile: Story<MarkdownHighlighterProps> = (
-  args: MarkdownHighlighterProps
-) => <AruiMarkdownHighlighter markdown={md} />
+MarkdownHighlighter.storyName = 'MarkdownHighlighter'
+
+export const MarkdownHighlighterFromFile: Story = () => (
+  //import md from './example.md'
+  <AruiMarkdownHighlighter markdown={md} />
+)
+
+MarkdownHighlighterFromFile.storyName = 'MarkdownHighlighterFromFile'

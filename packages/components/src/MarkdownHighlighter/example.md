@@ -74,36 +74,31 @@ You should probably combine it with
   👆 Use the toggle above to add the plugin.
 </blockquote>
 
-## Components
+## Tables
 
-You can pass components to change things:
+| Option | Description                                                               |
+| ------ | ------------------------------------------------------------------------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default.    |
+| ext    | extension to be used for dest files.                                      |
 
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Markdown from 'react-markdown'
-import MyFancyRule from './components/my-fancy-rule.js'
+Right aligned columns
 
-ReactDOM.render(
-  <Markdown
-    components={{
-      // Use h2s instead of h1s
-      h1: 'h2',
-      // Use a component instead of hrs
-      hr: ({ node, ...props }) => <MyFancyRule {...props} />
-    }}
-  >
-    # Your markdown here
-  </Markdown>,
-  document.querySelector('#content')
-)
-```
+| Option |                                                               Description |
+| -----: | ------------------------------------------------------------------------: |
+|   data | path to data files to supply the data that will be passed into templates. |
+| engine |    engine to be used for processing templates. Handlebars is the default. |
+|    ext |                                      extension to be used for dest files. |
 
-## More info?
+## Images
 
-Much more info is available in the
-[readme on GitHub](https://github.com/remarkjs/react-markdown)!
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg 'The Stormtroopocat')
 
----
+Like links, Images also have a footnote style syntax
 
-A component by [Espen Hovlandsdal](https://espen.codes/)
+![Alt text][id]
+
+With a reference later in the document defining the URL location:
+
+[id]: https://octodex.github.com/images/dojocat.jpg 'The Dojocat'
