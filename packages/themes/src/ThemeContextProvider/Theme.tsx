@@ -2,32 +2,30 @@ import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core'
 
 export interface Theme {
   name?: string
-  colors: ThemeColors;
+  colors: ThemeColors
   shadows: string[]
 }
 
-interface ThemeColors {
-  primary: string,
-  secondary: string,
-  tertiary: string,
-  error: string,
-  success: string,
-  warning: string,
+export interface ThemeColors {
+  primary: string
+  secondary: string
+  tertiary: string
+  error: string
+  success: string
+  warning: string
   info: string
 }
 
-
-
 export const defaultTheme: Theme = {
   name: 'default',
-  colors: { 
+  colors: {
     primary: '#EDBA27',
     secondary: '#353945',
     tertiary: '#e0e0e0',
-    error: "#E44258",
-    success: "#00CA72",
-    warning: "#FF9900",
-    info: "#3C78D8"
+    error: '#E44258',
+    success: '#00CA72',
+    warning: '#FF9900',
+    info: '#3C78D8'
   },
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',

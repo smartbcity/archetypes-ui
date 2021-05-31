@@ -1,5 +1,6 @@
 export {
   Theme,
+  ThemeColors,
   ThemeContextProvider,
   ThemeContextProviderProps,
   ThemeContext,
