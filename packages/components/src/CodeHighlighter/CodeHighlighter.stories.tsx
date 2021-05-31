@@ -32,11 +32,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<CodeHighlighterProps> = (args: CodeHighlighterProps) => (
-  <AruiCodeHighlighter {...args} />
-)
-
-export const CodeHighlighter = Template.bind({})
+export const CodeHighlighter: Story<CodeHighlighterProps> = (
+  args: CodeHighlighterProps
+) => <AruiCodeHighlighter {...args} />
 
 CodeHighlighter.args = {
   code: `function(arg: String) {
@@ -47,7 +45,7 @@ CodeHighlighter.args = {
 }
 CodeHighlighter.storyName = 'CodeHighlighter'
 
-const Template2: Story = () => (
+export const objectHiglighter: Story = () => (
   <AruiCodeHighlighter
     object={{
       name: 'test',
@@ -62,7 +60,5 @@ const Template2: Story = () => (
     }}
   />
 )
-
-export const objectHiglighter = Template2.bind({})
 
 objectHiglighter.storyName = 'object highlighter'

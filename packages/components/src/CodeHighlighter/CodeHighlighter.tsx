@@ -14,7 +14,6 @@ import {
 } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import stringifyObject from 'stringify-object'
 import { useMemo } from 'react'
-import dedent from 'dedent'
 
 export type darkStyles =
   | 'atomOneDark'
@@ -45,11 +44,6 @@ export interface CodeHighlighterProps extends SyntaxHighlighterProps {
    */
   object?: Object
   /**
-   * If true, the code passed in the prop `code` will be indented properly
-   * @default false
-   */
-  indentCode?: boolean
-  /**
    * the language of the code
    * @default "typescript"
    */
@@ -62,14 +56,7 @@ export interface CodeHighlighterProps extends SyntaxHighlighterProps {
 }
 
 export const CodeHighlighter = (props: CodeHighlighterProps) => {
-  const {
-    code,
-    children,
-    indentCode = false,
-    object,
-    style = 'atomOneDark',
-    ...other
-  } = props
+  const { code, children, object, style = 'atomOneDark', ...other } = props
   const formatedObject = useMemo(() => {
     if (!object) return
     return stringifyObject(object, {
@@ -78,19 +65,11 @@ export const CodeHighlighter = (props: CodeHighlighterProps) => {
     })
   }, [object])
 
-  const indentedCode = useMemo(() => {
-    if (!code) return
-    if (indentCode) {
-      return dedent(code)
-    }
-    return
-  }, [code, indentCode])
-
   const selectedStyle = useMemo(() => highlightStyleMap.get(style), [style])
 
   return (
     <SyntaxHighlighter language='typescript' {...other} style={selectedStyle}>
-      {indentedCode ?? code ?? formatedObject ?? children}
+      {code ?? formatedObject ?? children}
     </SyntaxHighlighter>
   )
 }
