@@ -37,7 +37,7 @@ export { Ticket, TicketProps } from './Ticket'
 export { StatusTag, StatusTagProps } from './StatusTag'
 export { CopyToClipboard, CopyToClipboardProps } from './CopyToClipboard'
 export { MoreOptions, MoreOptionsProps } from './MoreOptions'
-export { Popper, PopperProps } from './Popper'
+export { Popper, PopperProps } from './Popover'
 export {
   MarkdownHighlighter,
   MarkdownHighlighterProps
