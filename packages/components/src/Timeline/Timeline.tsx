@@ -17,16 +17,16 @@ import {
   lowLevelStyles,
   BasicProps
 } from '@smartb/archetypes-ui-themes'
-import { Arrow } from '../icons'
+import { FilledArrow } from '../icons'
 
 const useStyles = lowLevelStyles<Theme>()({
   dot: {
-    background: theme => theme.colors.secondary,
+    background: (theme) => theme.colors.secondary,
     position: 'relative',
     alignSelf: 'unset'
   },
   dotPassed: {
-    background: theme => theme.colors.tertiary,
+    background: (theme) => theme.colors.tertiary,
     position: 'relative',
     alignSelf: 'unset'
   },
@@ -53,10 +53,10 @@ const useStyles = lowLevelStyles<Theme>()({
     }
   },
   connector: {
-    background: theme => theme.colors.tertiary
+    background: (theme) => theme.colors.tertiary
   },
   connectorProgress: {
-    background: theme => theme.colors.primary,
+    background: (theme) => theme.colors.primary,
     width: '100%',
     height: '100%'
   },
@@ -84,12 +84,14 @@ const useStyles = lowLevelStyles<Theme>()({
     strokeWidth: '1.5',
     position: 'absolute',
     left: '-10px',
-    top: '2px',
-    transform: 'rotate(180deg)'
+    top: '2px'
   },
   timelineAlternate: {
     '& .AruiTimeLine-item-ClickableContainer:nth-child(even) .AruiTimeLine-item': {
       flexDirection: 'row-reverse'
+    },
+    '& .AruiTimeLine-item-ClickableContainer:nth-child(even) .AruiTimeLine-timeContainer': {
+      alignItems: 'end'
     }
   },
   timelineRight: {
@@ -98,7 +100,7 @@ const useStyles = lowLevelStyles<Theme>()({
     }
   },
   activeDot: {
-    border: theme => `2px solid ${theme.colors.primary}`,
+    border: (theme) => `2px solid ${theme.colors.primary}`,
     position: 'absolute',
     width: 'calc(100% + 8px)',
     height: 'calc(100% + 8px)',
@@ -198,7 +200,10 @@ export type TimelineProps = MergeMuiElementProps<
 /**
  * A timeline
  */
-const TimelineBase = (props: TimelineProps, ref: React.ForwardedRef<HTMLElement>) => {
+const TimelineBase = (
+  props: TimelineProps,
+  ref: React.ForwardedRef<HTMLElement>
+) => {
   const {
     lines,
     classes,
@@ -246,8 +251,8 @@ const TimelineBase = (props: TimelineProps, ref: React.ForwardedRef<HTMLElement>
               className={clsx(
                 line.disabled && defaultClasses.ItemDisabled,
                 !!selectedCellId &&
-                selectedCellId !== line.id &&
-                defaultClasses.ItemDisabled,
+                  selectedCellId !== line.id &&
+                  defaultClasses.ItemDisabled,
                 isSelected && defaultClasses.itemSelected,
                 defaultClasses.item,
                 'AruiTimeLine-item',
@@ -255,7 +260,7 @@ const TimelineBase = (props: TimelineProps, ref: React.ForwardedRef<HTMLElement>
               )}
               style={styles?.item}
             >
-              <Arrow
+              <FilledArrow
                 color={theme.colors.primary}
                 className={clsx(
                   defaultClasses.selectorIndicator,
@@ -366,6 +371,5 @@ const TimelineBase = (props: TimelineProps, ref: React.ForwardedRef<HTMLElement>
     </MuiTimeline>
   )
 }
-
 
 export const Timeline = forwardRef(TimelineBase) as typeof TimelineBase

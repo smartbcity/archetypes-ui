@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Timeline as AruiTimeline, TimelineBasicProps } from './Timeline'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
@@ -110,7 +110,16 @@ const lines = [
 ]
 
 const Template: Story<TimelineBasicProps> = (args: TimelineBasicProps) => {
-  return <AruiTimeline {...args}></AruiTimeline>
+  const [cell, setcell] = useState(undefined)
+  return (
+    <AruiTimeline
+      selectedCellId={cell}
+      onSelectCell={(newcell) =>
+        newcell.id === cell ? setcell(undefined) : setcell(newcell.id)
+      }
+      {...args}
+    ></AruiTimeline>
+  )
 }
 
 const Template2: Story = () => {
