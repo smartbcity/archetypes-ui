@@ -74,6 +74,10 @@ You should probably combine it with
   👆 Use the toggle above to add the plugin.
 </blockquote>
 
+<mark color="red">
+  higlighting a text
+</mark color="red">
+
 ## Tables
 
 | Option | Description                                                               |

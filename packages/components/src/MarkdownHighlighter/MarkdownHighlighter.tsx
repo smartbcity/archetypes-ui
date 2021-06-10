@@ -34,7 +34,7 @@ export interface MarkdownHighlighterProps {
 
 const components = {
   //@ts-ignore
-  code({ node, inline, className, children, ...props }) {
+  code: ({ node, inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     return !inline && match ? (
       <CodeHighlighter
@@ -44,6 +44,12 @@ const components = {
       />
     ) : (
       <code className={className} {...props} children={children} />
+    )
+  },
+  mark: (object: any) => {
+    console.log(object)
+    return (
+      <mark style={{ backgroundColor: object.color }}>{object.children}</mark>
     )
   }
 }
