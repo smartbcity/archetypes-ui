@@ -52,6 +52,12 @@ export interface NoMatchPageBasicProps extends BasicProps {
    */
   buttonLabel?: string
   /**
+   * If true the go back button will be removed
+   *
+   * @default false
+   */
+  noGoBack?: boolean
+  /**
    * The classes applied to the different part of the component
    */
   classes?: NoMatchPageClasses
@@ -70,6 +76,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
   const {
     title = 'Page not found',
     buttonLabel = 'Go back home',
+    noGoBack = false,
     classes,
     styles,
     className,
@@ -102,15 +109,17 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
       >
         {title}
       </Typography>
-      <Button<LinkProps>
-        className={classes?.backButton}
-        style={styles?.backButton}
-        component={Link}
-        componentProps={{ to: '/' }}
-        variant='outlined'
-      >
-        {buttonLabel}
-      </Button>
+      {!noGoBack && (
+        <Button<LinkProps>
+          className={classes?.backButton}
+          style={styles?.backButton}
+          component={Link}
+          componentProps={{ to: '/' }}
+          variant='outlined'
+        >
+          {buttonLabel}
+        </Button>
+      )}
     </Box>
   )
 }

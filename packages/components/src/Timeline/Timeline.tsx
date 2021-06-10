@@ -83,7 +83,7 @@ const useStyles = lowLevelStyles<Theme>()({
     height: '25px',
     strokeWidth: '1.5',
     position: 'absolute',
-    left: '-10px',
+    left: '-15px',
     top: '2px'
   },
   timelineAlternate: {
