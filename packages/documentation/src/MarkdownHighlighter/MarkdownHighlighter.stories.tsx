@@ -9,7 +9,7 @@ import { Story } from '@storybook/react/types-6-0'
 import md from '!raw-loader!./example.md'
 
 export default {
-  title: 'Components/MarkdownHighlighter',
+  title: 'Documentation/MarkdownHighlighter',
   component: AruiMarkdownHighlighter
 } as Meta
 

@@ -19,7 +19,7 @@ export type lightStyles =
 `
 
 export default {
-  title: 'Components/CodeHighlighter',
+  title: 'Documentation/CodeHighlighter',
   component: AruiCodeHighlighter,
   argTypes: {
     style: {
