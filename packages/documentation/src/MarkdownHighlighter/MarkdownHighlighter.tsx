@@ -9,8 +9,10 @@ import raw from 'rehype-raw'
 
 const useStyles = lowLevelStyles()({
   markdown: {
-    fontSize: '15px',
-    lineHeight: '1.4',
+    fontSize: '14px',
+    lineHeight: '22px',
+    fontFamily:
+      '"Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif',
     '& pre': {
       backgroundColor: 'unset',
       padding: '0',
@@ -25,7 +27,11 @@ const useStyles = lowLevelStyles()({
     },
     '& h1, & h2, & h3, & h4, & h5, & h6': {
       marginTop: '20px',
-      marginBottom: '13px'
+      marginBottom: '13px',
+      fontWeight: 700
+    },
+    '& h1': {
+      fontWeight: 800
     },
     '& hr': {
       height: '.15em',
@@ -45,6 +51,14 @@ const useStyles = lowLevelStyles()({
     },
     '& blockquote': {
       margin: '10px 0'
+    },
+    '& code': {
+      margin: '0 2px',
+      padding: '3px 5px',
+      borderRadius: '3px',
+      border: '1px solid #EEEEEE',
+      color: 'rgba(51,51,51,0.9)',
+      backgroundColor: '#F8F8F8'
     }
   }
 })

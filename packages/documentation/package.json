@@ -3,7 +3,7 @@
   "version": "0.1.43",
   "description": "Components for documentation",
   "author": "SmartB",
-  "license": "",
+  "license": "Apache-2.0",
   "repository": "SmartB/documentation",
   "private": false,
   "main": "dist/index.js",

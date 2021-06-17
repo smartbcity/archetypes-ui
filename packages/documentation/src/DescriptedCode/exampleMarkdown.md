@@ -1,4 +1,4 @@
-### An example of the component
+## An example of the component
 
 <article>
 

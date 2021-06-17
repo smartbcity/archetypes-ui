@@ -3,3 +3,4 @@ export {
   MarkdownHighlighter,
   MarkdownHighlighterProps
 } from './MarkdownHighlighter'
+export { DescriptedCode, DescriptedCodeProps } from './DescriptedCode'
