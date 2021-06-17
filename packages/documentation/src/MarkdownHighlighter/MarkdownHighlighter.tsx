@@ -9,6 +9,8 @@ import raw from 'rehype-raw'
 
 const useStyles = lowLevelStyles()({
   markdown: {
+    fontSize: '15px',
+    lineHeight: '1.4',
     '& pre': {
       backgroundColor: 'unset',
       padding: '0',
@@ -17,6 +19,32 @@ const useStyles = lowLevelStyles()({
     '& img': {
       width: '100%',
       maxWidth: '300px'
+    },
+    '& p': {
+      marginBottom: '10px'
+    },
+    '& h1, & h2, & h3, & h4, & h5, & h6': {
+      marginTop: '20px',
+      marginBottom: '13px'
+    },
+    '& hr': {
+      height: '.15em',
+      margin: '15px 0',
+      background: '#b7c0c9',
+      borderRadius: '20px'
+    },
+    '& article': {
+      padding: '15px 0',
+      borderBottom: 'solid 1px #b7c0c9'
+    },
+    '& article p:last-of-type': {
+      margin: 0
+    },
+    '& article:last-of-type': {
+      borderBottom: 'none'
+    },
+    '& blockquote': {
+      margin: '10px 0'
     }
   }
 })

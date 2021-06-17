@@ -14,11 +14,25 @@
 - Lets you define your own components (to render `MyHeading` instead of `h1`)
 - Has a lot of plugins
 
-## Table of contents
+## Article tag
 
-Here is an example of a plugin in action
-([`remark-toc`](https://github.com/remarkjs/remark-toc)).
-This section is replaced by an actual table of contents.
+<article>
+
+Here is an example of a article tag
+
+</article>
+
+<article>
+
+Here is a second
+
+</article>
+
+<article>
+
+Here is a third
+
+</article>
 
 ## Syntax highlighting
 

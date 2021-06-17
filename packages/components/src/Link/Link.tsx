@@ -9,11 +9,10 @@ import clsx from 'clsx'
 
 const useStyles = lowLevelStyles()({
   link: {
-    textDecoration: 'none',
-    borderBottom: '1px black solid',
     opacity: '0.9',
+    textDecoration: 'underline',
     '&:hover': {
-      textDecoration: 'none'
+      textDecoration: 'underline'
     }
   },
   disabled: {
@@ -54,14 +53,8 @@ export const LinkBase = <T extends object = {}>(
   props: LinkProps<T>,
   ref: React.ForwardedRef<HTMLElement>
 ) => {
-  const {
-    href,
-    className,
-    component,
-    componentProps,
-    disabled,
-    ...other
-  } = props
+  const { href, className, component, componentProps, disabled, ...other } =
+    props
   const classes = useStyles()
   if (component)
     return (

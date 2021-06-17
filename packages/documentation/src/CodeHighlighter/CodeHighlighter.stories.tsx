@@ -41,7 +41,7 @@ CodeHighlighter.args = {
     console.log(arg)
   }`,
   language: 'typescript',
-  indentCode: true
+  title: 'Example'
 }
 CodeHighlighter.storyName = 'CodeHighlighter'
 
