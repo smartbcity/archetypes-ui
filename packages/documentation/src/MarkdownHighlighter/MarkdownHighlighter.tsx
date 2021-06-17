@@ -89,7 +89,6 @@ const components = {
     )
   },
   mark: (object: any) => {
-    console.log(object)
     return (
       <mark style={{ backgroundColor: object.color }}>{object.children}</mark>
     )

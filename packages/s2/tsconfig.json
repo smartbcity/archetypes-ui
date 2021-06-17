@@ -1,14 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "exclude": [
-    "node_modules", 
-    "**/*.stories.tsx",
-    "dist"
-  ], 
-  "include" : [
-    "src/**/*"
-  ]
+  "exclude": ["node_modules", "**/*.stories.tsx", "dist"],
+  "include": ["src/**/*"]
 }

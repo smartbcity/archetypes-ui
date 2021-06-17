@@ -4,7 +4,6 @@
   "description": "Components for documentation",
   "author": "SmartB",
   "license": "Apache-2.0",
-  "repository": "SmartB/documentation",
   "private": false,
   "main": "dist/index.js",
   "source": "src/index.ts",
@@ -21,6 +20,9 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
     "@smartb/archetypes-ui-themes": "^0.1.39",
@@ -36,8 +38,5 @@
     "rehype-raw": "^5.1.0",
     "rehype-sanitize": "^4.0.0",
     "remark-gfm": "^1.0.0"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
