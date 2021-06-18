@@ -1,56 +1,21 @@
 import { Box } from '@material-ui/core'
-import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
+import { BasicProps } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import React from 'react'
-import { CodeHighlighter, CodeHighlighterProps } from '../CodeHighlighter'
-import {
-  MarkdownHighlighter,
-  MarkdownHighlighterProps
-} from '../MarkdownHighlighter'
-
-const useStyles = lowLevelStyles()({
-  codeContainer: {
-    '& pre': {
-      maxHeight: '500px'
-    }
-  }
-})
 
 export interface DescriptedCodeProps extends BasicProps {
   /**
-   * The description placed in the right container. It will be ignored if `markdownDescription` is provided
+   * The description placed in the right container
    */
-  description?: React.ReactNode
-  /**
-   * The markdown displyed in the right container
-   */
-  markdownDescription?: string
+  rightElement?: React.ReactNode
   /**
    * The code placed in the right sticky container
    */
-  code?: string
-  /**
-   * The props of the codeHighlighter component
-   */
-  codeHighlighterProps?: Partial<CodeHighlighterProps>
-  /**
-   * The props of the markdownHighlighter component used if `markdownDescription` is provided
-   */
-  markdownHighlighterProps?: Partial<MarkdownHighlighterProps>
+  leftElement?: React.ReactNode
 }
 
 export const DescriptedCode = (props: DescriptedCodeProps) => {
-  const {
-    code,
-    codeHighlighterProps,
-    description,
-    markdownDescription,
-    markdownHighlighterProps,
-    className,
-    style,
-    id
-  } = props
-  const classes = useStyles()
+  const { leftElement, rightElement, className, style, id } = props
   return (
     <Box
       className={clsx(className, 'AruiDescriptedCode-root')}
@@ -66,14 +31,7 @@ export const DescriptedCode = (props: DescriptedCodeProps) => {
         padding='0px 10px'
         boxSizing='border-box'
       >
-        {markdownDescription ? (
-          <MarkdownHighlighter
-            markdown={markdownDescription}
-            {...markdownHighlighterProps}
-          />
-        ) : (
-          description
-        )}
+        {leftElement}
       </Box>
       <Box
         className={'AruiDescriptedCode-rightContainer'}
@@ -85,14 +43,7 @@ export const DescriptedCode = (props: DescriptedCodeProps) => {
         top='0'
         alignSelf='flex-start'
       >
-        <CodeHighlighter
-          code={code}
-          {...codeHighlighterProps}
-          className={clsx(
-            classes.codeContainer,
-            codeHighlighterProps?.className
-          )}
-        />
+        {rightElement}
       </Box>
     </Box>
   )

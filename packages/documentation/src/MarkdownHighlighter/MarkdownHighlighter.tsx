@@ -57,7 +57,6 @@ const useStyles = lowLevelStyles()({
       padding: '3px 5px',
       borderRadius: '3px',
       border: '1px solid #EEEEEE',
-      color: 'rgba(51,51,51,0.9)',
       backgroundColor: '#F8F8F8'
     }
   }
