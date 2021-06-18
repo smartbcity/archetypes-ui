@@ -9,6 +9,7 @@
 
 ```bash
 npm install @smartb/archetypes-ui-components
+npm install @smartb/archetypes-ui-documentation
 npm install @smartb/archetypes-ui-layout
 npm install @smartb/archetypes-ui-forms
 npm install @smartb/archetypes-ui-theme
@@ -17,6 +18,7 @@ npm install @smartb/archetypes-ui-s2
 
 ```bash
 yarn add @smartb/archetypes-ui-components
+yarn add @smartb/archetypes-ui-documentation
 yarn add @smartb/archetypes-ui-layout
 yarn add @smartb/archetypes-ui-forms
 yarn add @smartb/archetypes-ui-theme
