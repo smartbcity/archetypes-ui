@@ -10,8 +10,8 @@ const getGlobal = (localPackageJson) => {
     localPackageJson.dependencies || {}
   ).concat(Object.keys(localPackageJson.peerDependencies || {}));
   const globals = {
-    react: 'React',
-    'react-dom': 'ReactDOM'
+    react: "React",
+    "react-dom": "ReactDOM",
   };
   return {
     external: [...externalsDependencies, "@material-ui/styles"],
@@ -32,12 +32,23 @@ const getGlobal = (localPackageJson) => {
     plugins: [
       resolve({
         browser: true,
-        extensions: ['.mjs', '.js', '.jsx', '.json', '.node', '.tsx', '.ts']
+        extensions: [".mjs", ".js", ".jsx", ".json", ".node", ".tsx", ".ts"],
       }),
       commonjs({
         include: /\/node_modules\//,
       }),
-      typescript(),
+      typescript({
+        exclude: [
+          "@smartb/archetypes-ui-layout",
+          "@smartb/archetypes-ui-themes",
+          "@smartb/archetypes-ui-themes",
+          "@smartb/archetypes-ui-s2",
+          "@smartb/archetypes-ui-providers",
+          "@smartb/archetypes-ui-forms",
+          "@smartb/archetypes-ui-documentation",
+          "@smartb/archetypes-ui-components",
+        ],
+      }),
       image(),
       json(),
       svgr(),

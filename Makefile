@@ -14,13 +14,7 @@ push-latest: push-latest-storybook
 
 package-libs:
 	@yarn install
-	@yarn workspace @smartb/archetypes-ui-themes run build
-	@yarn workspace @smartb/archetypes-ui-forms run build
-	@yarn workspace @smartb/archetypes-ui-components run build
-	@yarn workspace @smartb/archetypes-ui-documentation run build
-	@yarn workspace @smartb/archetypes-ui-layout run build
-	@yarn workspace @smartb/archetypes-ui-providers run build
-	@yarn workspace @smartb/archetypes-ui-s2 run build
+	@yarn workspaces run build
 
 
 push-libs:
