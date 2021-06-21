@@ -37,18 +37,7 @@ const getGlobal = (localPackageJson) => {
       commonjs({
         include: /\/node_modules\//,
       }),
-      typescript({
-        exclude: [
-          "@smartb/archetypes-ui-layout",
-          "@smartb/archetypes-ui-themes",
-          "@smartb/archetypes-ui-themes",
-          "@smartb/archetypes-ui-s2",
-          "@smartb/archetypes-ui-providers",
-          "@smartb/archetypes-ui-forms",
-          "@smartb/archetypes-ui-documentation",
-          "@smartb/archetypes-ui-components",
-        ],
-      }),
+      typescript(),
       image(),
       json(),
       svgr(),
