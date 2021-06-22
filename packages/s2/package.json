@@ -26,7 +26,6 @@
   ],
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
-    "@smartb/archetypes-ui-themes": "^0.1.39",
     "@types/react": "^16.9.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -37,6 +36,7 @@
   "dependencies": {
     "clsx": "^1.1.1",
     "mermaid": "^8.9.2",
+    "@smartb/archetypes-ui-themes": "^0.1.45",
     "vis-data": "^7.1.2",
     "vis-network": "^9.0.0"
   },

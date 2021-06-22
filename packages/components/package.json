@@ -30,13 +30,13 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
-    "@smartb/archetypes-ui-themes": "^0.1.45",
     "@types/react": "^16.9.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
+    "@smartb/archetypes-ui-themes": "^0.1.45",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@smartb/archetypes-ui-forms": "^0.1.45",
     "clsx": "^1.1.1",

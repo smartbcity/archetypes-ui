@@ -1,117 +1,123 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Drawer, DrawerProps, Theme } from '@material-ui/core'
-import {createStyles} from '@material-ui/core'
+import { createStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { StyleProps } from '../StyleProps'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
 import { useDebouncedCallback } from 'use-debounce'
-import { Theme as SBTheme, useTheme } from '@smartb/archetypes-ui-themes'
-import { MenuContainer, MenuItem } from '../Menu'
-import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
+import {
+  Theme as SBTheme,
+  useTheme,
+  lowLevelStyles
+} from '@smartb/archetypes-ui-themes'
+import { Menu, MenuItem } from '@smartb/archetypes-ui-components'
 import { ToolsPanel } from '../ToolsPanel'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
 import { TitleContainer } from './TitleContainer'
 
-const useStyles = lowLevelStyles<{styleprops: StyleProps, theme: SBTheme}, Theme>()((theme: Theme) =>
-    createStyles({
-      appbar: (props) => ({
-        height: `${props.styleprops.appBarHeight}px`,
-        backgroundColor: props.theme.colors.primary,
-        boxShadow: props.theme.shadows[4],
-        '& .MuiToolbar-root': {
-          height: '100%'
-        },
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen
-        })
-      }),
-      appBarOpen: (props) => ({
-        width: `calc(100% - ${props.styleprops.menuWidth}px)`,
-        marginLeft: `${props.styleprops.menuWidth}px`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen
-        })
-      }),
-      titleContainer: (props) => ({
-        height: `${props.styleprops.appBarHeight}px`,
-        paddingLeft: '10px',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'fixed',
-        marginLeft: `0px`,
-        top: '0px',
-        left: '0px',
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen
-        })
-      }),
-      titleContainerOpen: (props) => ({
-        marginLeft: `${props.styleprops.menuWidth}px`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen
-        })
-      }),
-      drawer: (props) => ({
-        width: `${props.styleprops.menuWidth}px`,
-        '& .MuiDrawer-paper': {
-          top: `0px`,
-          zIndex: 1000,
-          width: `${props.styleprops.menuWidth}px`,
-          background: 'white',
-          height: `100vh`,
-          overflowX: 'hidden',
-          transition: theme.transitions.create('transform', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen
-          })
-        }
-      }),
-      drawerClosed: (props) => ({
-        '& .MuiDrawer-paper': {
-          transform: `translateX(-${props.styleprops.menuWidth}px)`,
-          transition: theme.transitions.create('transform', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.leavingScreen
-          })
-        }
-      }),
-      main: (props) => ({
-        flexGrow: 1,
-        transition: theme.transitions.create('padding', {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen
-        }),
-        paddingTop: props.styleprops.appBarHeight,
-        paddingLeft: props.styleprops.menuWidth
-      }),
-      mainShift: (props) => ({
-        flexGrow: 1,
-        paddingTop: props.styleprops.appBarHeight,
-        transition: theme.transitions.create('padding', {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen
-        }),
-        paddingLeft: 0
-      }),
-      hidder: {
-        opacity: '0.5',
-        position: 'fixed',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: 'black',
-        top: '0',
-        left: '0',
-        zIndex: 5
+const useStyles = lowLevelStyles<
+  { styleprops: StyleProps; theme: SBTheme },
+  Theme
+>()((theme: Theme) =>
+  createStyles({
+    appbar: (props) => ({
+      height: `${props.styleprops.appBarHeight}px`,
+      backgroundColor: props.theme.colors.primary,
+      boxShadow: props.theme.shadows[4],
+      '& .MuiToolbar-root': {
+        height: '100%'
       },
-      grow: {
-        flexGrow: 1
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      })
+    }),
+    appBarOpen: (props) => ({
+      width: `calc(100% - ${props.styleprops.menuWidth}px)`,
+      marginLeft: `${props.styleprops.menuWidth}px`,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    }),
+    titleContainer: (props) => ({
+      height: `${props.styleprops.appBarHeight}px`,
+      paddingLeft: '10px',
+      display: 'flex',
+      alignItems: 'center',
+      position: 'fixed',
+      marginLeft: `0px`,
+      top: '0px',
+      left: '0px',
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      })
+    }),
+    titleContainerOpen: (props) => ({
+      marginLeft: `${props.styleprops.menuWidth}px`,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    }),
+    drawer: (props) => ({
+      width: `${props.styleprops.menuWidth}px`,
+      '& .MuiDrawer-paper': {
+        top: `0px`,
+        zIndex: 1000,
+        width: `${props.styleprops.menuWidth}px`,
+        background: 'white',
+        height: `100vh`,
+        overflowX: 'hidden',
+        transition: theme.transitions.create('transform', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen
+        })
       }
-    })
-  )
+    }),
+    drawerClosed: (props) => ({
+      '& .MuiDrawer-paper': {
+        transform: `translateX(-${props.styleprops.menuWidth}px)`,
+        transition: theme.transitions.create('transform', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.leavingScreen
+        })
+      }
+    }),
+    main: (props) => ({
+      flexGrow: 1,
+      transition: theme.transitions.create('padding', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      }),
+      paddingTop: props.styleprops.appBarHeight,
+      paddingLeft: props.styleprops.menuWidth
+    }),
+    mainShift: (props) => ({
+      flexGrow: 1,
+      paddingTop: props.styleprops.appBarHeight,
+      transition: theme.transitions.create('padding', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      }),
+      paddingLeft: 0
+    }),
+    hidder: {
+      opacity: '0.5',
+      position: 'fixed',
+      height: '100vh',
+      width: '100vw',
+      backgroundColor: 'black',
+      top: '0',
+      left: '0',
+      zIndex: 5
+    },
+    grow: {
+      flexGrow: 1
+    }
+  })
+)
 
 interface AppClasses {
   main?: string
@@ -218,7 +224,13 @@ export const App = (props: AppProps) => {
     onToggle
   } = props
   const theme = useTheme()
-  const stylesDependencies = useMemo((): {styleprops: StyleProps, theme: SBTheme} => ({styleprops: styleProps, theme: theme}), [styleProps, theme])
+  const stylesDependencies = useMemo(
+    (): { styleprops: StyleProps; theme: SBTheme } => ({
+      styleprops: styleProps,
+      theme: theme
+    }),
+    [styleProps, theme]
+  )
   const defaultClasses = useStyles(stylesDependencies)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [handleResize] = useDebouncedCallback(() => {
@@ -283,7 +295,7 @@ export const App = (props: AppProps) => {
           )}
           {...drawerProps}
         >
-          {menu && <MenuContainer menu={menu} />}
+          {menu && <Menu menu={menu} />}
           {drawerContent}
           {(window.innerWidth <= 600 || !showAppBar) && navBarContent}
           {(window.innerWidth <= 600 || !showAppBar) &&
