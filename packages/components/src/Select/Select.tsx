@@ -12,7 +12,7 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   title: {
     margin: '8px 16px'
   },

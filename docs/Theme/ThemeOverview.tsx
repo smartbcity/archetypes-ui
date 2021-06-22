@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { SBButton, Panel, Card } from "../../packages/components/src";
 import { getShadows } from "./Theme";
 import ThemeGetter from "./ThemeGetter";
-import { Theme, useThemeContext } from "@smartb/archetypes-ui-themes";
+import { ThemeColors, useThemeContext } from "@smartb/archetypes-ui-themes";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -60,13 +60,9 @@ const useStyles = makeStyles(() =>
 const ThemeOverview = () => {
   const classes = useStyles();
   const themeContext = useThemeContext();
-  const onColorChange = (props: keyof Theme, color: string) => {
-    console.log(color);
-    themeContext.changeTheme({
-      ...themeContext.theme,
-      [props]: color,
-    });
-    localStorage.setItem(props, color);
+  const onColorChange = (props: keyof ThemeColors, color: string) => {
+    themeContext.changeTheme({ [props]: color });
+    localStorage.setItem(props as string, color);
   };
 
   const onShadowChange = (index: number, values: string) => {
@@ -74,7 +70,6 @@ const ThemeOverview = () => {
     newValues[index] = values;
     const stringShadow = `${values[0]}px ${values[1]}px ${values[2]}px ${values[3]}px rgba(${values[4]},${values[5]},${values[6]},${values[7]})`;
     themeContext.changeTheme({
-      ...themeContext.theme,
       shadows: getShadows(stringShadow),
     });
     localStorage.setItem("shadows", stringShadow);
@@ -183,10 +178,8 @@ const ThemeOverview = () => {
             primaryColor:{" "}
             <input
               type="text"
-              onChange={(event) =>
-                onColorChange("primaryColor", event.target.value)
-              }
-              value={themeContext.theme.primaryColor}
+              onChange={(event) => onColorChange("primary", event.target.value)}
+              value={themeContext.theme.colors.primary}
             />
           </div>
         </div>
@@ -206,9 +199,9 @@ const ThemeOverview = () => {
             <input
               type="text"
               onChange={(event) =>
-                onColorChange("secondaryColor", event.target.value)
+                onColorChange("secondary", event.target.value)
               }
-              value={themeContext.theme.secondaryColor}
+              value={themeContext.theme.colors.secondary}
             />
           </div>
         </div>
@@ -223,9 +216,9 @@ const ThemeOverview = () => {
             <input
               type="text"
               onChange={(event) =>
-                onColorChange("tertiaryColor", event.target.value)
+                onColorChange("tertiary", event.target.value)
               }
-              value={themeContext.theme.tertiaryColor}
+              value={themeContext.theme.colors.tertiary}
             />
           </div>
         </div>

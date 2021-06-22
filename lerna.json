@@ -1,8 +1,10 @@
 {
   "packages": [
     "packages/components",
+    "packages/documentation",
     "packages/forms",
     "packages/layout",
+    "packages/providers",
     "packages/s2",
     "packages/themes"
   ],

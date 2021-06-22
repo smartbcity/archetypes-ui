@@ -1,12 +1,12 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { Theme } from "@smartb/archetypes-ui-components";
+import { Theme } from "@smartb/archetypes-ui-Themes";
 
 const round = (value: number) => {
   return Math.round(value * 100) / 100;
 };
 
 export const getShadows = (shadow: string | null) => {
-  if (shadow === null) shadow = "0px 3px 10px 0 rgba(0,0,0,0.1)";
+  if (shadow === null) shadow = "0px 4px 8px 0 rgba(0,0,0,0.2)";
   const origin = shadow;
   shadow = shadow.replace(/px/g, "");
   let shadowTab = shadow.split(" ");
@@ -17,7 +17,13 @@ export const getShadows = (shadow: string | null) => {
   let opacity = Number(colorTab[colorTab.length - 1]);
   shadowTab.pop();
   let shadowNumbers = shadowTab.map((element) => Number(element));
-  const shadowMultipliers = shadowNumbers.map((element) => round(element / 4));
+  const shadowMultipliers = shadowNumbers.map((element, index) => {
+    if (index <= 1) {
+      return round(element / 4);
+    } else {
+      return round(element / 2);
+    }
+  });
   let shadows: string[] = [];
   shadows[0] = "0 0px 0px 0 rgba(0,0,0,0)";
   shadows[1] = origin;
@@ -25,7 +31,7 @@ export const getShadows = (shadow: string | null) => {
     shadowNumbers = shadowNumbers.map(
       (number, index) => number + shadowMultipliers[index]
     );
-    if (opacity < 0.98) opacity += 0.02;
+    if (opacity <= 0.99) opacity += 0.01;
     shadows[i] = `${round(shadowNumbers[0])}px ${round(
       shadowNumbers[1]
     )}px ${round(shadowNumbers[2])}px ${round(shadowNumbers[3])}px rgba(${
@@ -35,20 +41,29 @@ export const getShadows = (shadow: string | null) => {
   return shadows;
 };
 
-export const myTheme: Theme = {
-  primaryColor: localStorage.getItem("primaryColor") ?? "#fec519",
-  secondaryColor: localStorage.getItem("secondaryColor") ?? "#edba27",
-  tertiaryColor: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
+export const getTheme = (): Theme => ({
+  colors: {
+    primary: localStorage.getItem("primaryColor") ?? "#EDBA27",
+    secondary: localStorage.getItem("secondaryColor") ?? "#353945",
+    tertiary: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
+    error: localStorage.getItem("errorColor") ?? "#E44258",
+    success: localStorage.getItem("successColor") ?? "#00CA72",
+    warning: localStorage.getItem("warningColor") ?? "#FF9900",
+    info: localStorage.getItem("infoColor") ?? "#3C78D8",
+  },
   shadows: getShadows(localStorage.getItem("shadows")),
-};
+});
 
-export default createMuiTheme({
+export const muiTheme = createMuiTheme({
   palette: {
     primary: {
-      main: myTheme.primaryColor,
+      main: getTheme().colors.primary,
     },
     secondary: {
-      main: myTheme.secondaryColor,
+      main: getTheme().colors.secondary,
     },
+  },
+  typography: {
+    fontFamily: "'Montserrat', Arial",
   },
 });

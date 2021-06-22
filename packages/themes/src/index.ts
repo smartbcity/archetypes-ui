@@ -1,5 +1,6 @@
 export {
   Theme,
+  ThemeColors,
   ThemeContextProvider,
   ThemeContextProviderProps,
   ThemeContext,
@@ -9,6 +10,8 @@ export {
 export {
   BasicProps,
   lowLevelStyles,
+  highLevelStyles,
+  midLevelStyles,
   MergeMuiElementProps,
   MergeReactElementProps
 } from './Types'

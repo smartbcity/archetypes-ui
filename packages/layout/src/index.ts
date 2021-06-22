@@ -1,6 +1,5 @@
 export { AppBarLayout, AppBarLayoutProps } from './AppBarLayout'
 export { AppLayout, AppLayoutProps } from './AppLayout'
-export { Menu, MenuItem, MenuContainer, MenuContainerProps } from './Menu'
 export { ToolsMenu, ToolsMenuProps } from './ToolsMenu'
 export { App, AppProps } from './App'
 export { StyleProps } from './StyleProps'

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Menu as SBMenu } from '../Menu'
-import { IconButton, Menu } from '@material-ui/core'
+import { MenuItems } from '@smartb/archetypes-ui-components'
+import { IconButton, Menu as MuiMenu } from '@material-ui/core'
 import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
 import clsx from 'clsx'
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   menu: {
     maxWidth: '300px',
     maxHeight: '500px'
@@ -54,7 +54,7 @@ export interface ToolsMenuProps extends BasicProps {
   /**
    * Menu contains all the items that will be displayed in the profile
    */
-  menu: SBMenu
+  menu: MenuItems
   /**
    * The organization of the items
    */
@@ -124,7 +124,7 @@ export const ToolsMenu = (props: ToolsMenuProps) => {
       >
         {menu.icon}
       </IconButton>
-      <Menu
+      <MuiMenu
         className={clsx('AruiToolsMenu-menu', classes?.menu)}
         style={styles?.menu}
         classes={{
@@ -184,7 +184,7 @@ export const ToolsMenu = (props: ToolsMenuProps) => {
             )}
           </div>
         )}
-      </Menu>
+      </MuiMenu>
     </div>
   )
 }

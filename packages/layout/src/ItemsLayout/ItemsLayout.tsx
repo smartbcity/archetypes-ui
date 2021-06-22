@@ -1,6 +1,11 @@
 import React from 'react'
-import { Menu } from '../Menu'
-import { MenuItem, Typography, ListItemIcon, Grid } from '@material-ui/core'
+import { MenuItems } from '@smartb/archetypes-ui-components'
+import {
+  MenuItem as MuiMenuItem,
+  Typography,
+  ListItemIcon,
+  Grid
+} from '@material-ui/core'
 import {
   MergeReactElementProps,
   BasicProps,
@@ -8,7 +13,7 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   gridContainer: {
     display: 'flex',
     padding: '5px',
@@ -69,9 +74,9 @@ interface ItemsLayoutStyles {
 
 export interface ItemsLayoutBasicProps extends BasicProps {
   /**
-   * Menu contains all the items that will be displayed in the profile
+   * MenuItems contains all the items that will be displayed in the profile
    */
-  menu: Menu
+  menu: MenuItems
   /**
    * The organization of the items
    */
@@ -116,7 +121,7 @@ export const ItemsLayout = React.forwardRef(
         >
           {menu.items &&
             menu.items.map((it) => (
-              <MenuItem
+              <MuiMenuItem
                 button
                 component={it.href ? 'a' : 'div'}
                 onClick={() => it.goto && !it.href && it.goto()}
@@ -135,7 +140,7 @@ export const ItemsLayout = React.forwardRef(
                   </ListItemIcon>
                 )}
                 <Typography variant='subtitle2'>{it.label}</Typography>
-              </MenuItem>
+              </MuiMenuItem>
             ))}
         </div>
       )

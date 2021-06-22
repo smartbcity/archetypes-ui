@@ -11,9 +11,15 @@ const ThemeGetter = (props: ThemeGetterProps) => {
   const { myTheme } = props;
   const themeString = `const defaultTheme = {
     name: "${myTheme.name}",
-    primaryColor: "${myTheme.primaryColor}",
-    secondaryColor: "${myTheme.secondaryColor}",
-    tertiaryColor: "${myTheme.tertiaryColor}",
+    colors: { 
+      primary: "${myTheme.colors.primary}",
+      secondary: "${myTheme.colors.secondary}",
+      tertiary: "${myTheme.colors.tertiary}",
+      error: "${myTheme.colors.error}",
+      success: "${myTheme.colors.success}",
+      warning: "${myTheme.colors.warning}",,
+      info: "${myTheme.colors.info}",
+    }
     shadows: ["${myTheme.shadows[0]}",
     "${myTheme.shadows[1]}",
     "${myTheme.shadows[2]}",

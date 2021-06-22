@@ -8,7 +8,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
 
 export default {
-  title: 'Components/DividerContent',
+  title: 'Components/Deprecated/DividerContent',
   component: AruiDividerContent,
   argTypes: {
     children: {

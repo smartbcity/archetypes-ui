@@ -10,8 +10,10 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+/**
+ * @deprecated
+ */
+const useStyles = lowLevelStyles<Theme>()({
     headerContainer: {
       width: 'calc(90% - 10px)',
       padding: '10px',
@@ -19,7 +21,7 @@ const useStyles = (theme: Theme) =>
       position: 'relative'
     },
     dividerBar: {
-      background: theme.primaryColor,
+      background: theme => theme.colors.primary,
       height: '2px',
       width: '30%',
       position: 'absolute',
@@ -69,6 +71,9 @@ interface CardStyles {
 
 export type LogoSize = 'medium' | 'small'
 
+/**
+ * @deprecated
+ */
 export interface CardBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the card
@@ -134,8 +139,7 @@ export const Card = (props: CardProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
-
+  const defaultClasses = useStyles(theme)
   return (
     <AruiBox
       className={clsx('AruiCard-root', className)}

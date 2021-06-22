@@ -1,47 +1,61 @@
-import React from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import {
   Dialog,
-  DialogTitle,
   DialogActions,
   DialogContent,
   DialogProps
 } from '@material-ui/core'
-import { Button, Variant } from '../Buttons'
+import { Button, ButtonProps } from '../Buttons'
 import {
   MergeMuiElementProps,
   BasicProps,
   lowLevelStyles
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
+import { Close } from '@material-ui/icons'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
+  paper: {
+    borderRadius: '16px'
+  },
   actionsContainer: {
-    justifyContent: 'space-around'
+    padding: '20px',
+    paddingTop: '0px'
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    cursor: 'pointer',
+    width: 20,
+    height: 20,
+    color: '#676879'
+  },
+  content: {
+    padding: '40px'
   },
   button: {
-    borderRadius: '5px',
-    padding: '5px 6px'
+    margin: '5px'
   }
 })
 
 export type Action = {
-  label: string
-  handler: (event: React.ChangeEvent<{}>) => void
-  variant?: Variant
-}
+  label: React.ReactNode
+  key: string
+} & Omit<ButtonProps, 'children' | 'style'>
 
 interface PopUpClasses {
-  title?: string
   content?: string
   actions?: string
   button?: string
+  closeIcon?: string
 }
 
 interface PopUpStyles {
-  title?: React.CSSProperties
   content?: React.CSSProperties
   actions?: React.CSSProperties
   button?: React.CSSProperties
+  closeIcon?: React.CSSProperties
 }
 
 export interface PopUpBasicProps extends BasicProps {
@@ -50,22 +64,13 @@ export interface PopUpBasicProps extends BasicProps {
    */
   open: boolean
   /**
-   * The event called when we click away from the pop-up
-   * @param event
+   * The event called when the user request to close the pop-up
    */
   onClose: (event: React.ChangeEvent<{}>) => void
   /**
    * The list of the actions that will be displayed at the bottom f the pop-up
    */
   actions?: Action[]
-  /**
-   * The content that will be displayed in the footer
-   */
-  footer?: React.ReactNode
-  /**
-   * The title thart will be displayed at the top of the pop-up
-   */
-  title?: string
   /**
    * The content that will be displayed in the body of the pop-up
    */
@@ -82,75 +87,90 @@ export interface PopUpBasicProps extends BasicProps {
 
 export type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-export const PopUp = (props: PopUpProps) => {
+const PopUpBase = (props: PopUpProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     open,
     onClose,
-    actions,
-    title,
+    actions = [],
     children,
     style,
     className,
     id,
     classes,
     styles,
-    footer,
     ...other
   } = props
   const defaultClasses = useStyles()
+
+  const actionsDisplay = useMemo(() => {
+    if (actions.length === 0) return undefined
+    return actions.map((action) => {
+      const { key, label, className, ...other } = action
+      return (
+        <Button
+          key={key}
+          className={clsx(
+            'AruiPopUp-button',
+            classes?.button,
+            className,
+            defaultClasses.button
+          )}
+          style={styles?.button}
+          {...other}
+        >
+          {label}
+        </Button>
+      )
+    })
+  }, [actions, classes?.button, styles?.button])
+
   return (
     <Dialog
+      ref={ref}
       open={open}
       onClose={onClose}
       style={style}
       id={id}
-      PaperProps={{ elevation: 12 }}
+      PaperProps={{
+        elevation: 12,
+        className: defaultClasses.paper
+      }}
       className={clsx(className, 'AruiPopUp-root')}
       {...other}
     >
-      {!!title && (
-        <DialogTitle
-          className={clsx(classes?.title, 'AruiPopUp-content')}
-          style={styles?.title}
-        >
-          {title}
-        </DialogTitle>
-      )}
+      <Close
+        className={clsx(
+          classes?.closeIcon,
+          'AruiPopUp-closeIcon',
+          defaultClasses.closeIcon
+        )}
+        style={styles?.closeIcon}
+        onClick={onClose}
+      />
       <DialogContent
-        className={clsx(classes?.content, 'AruiPopUp-content')}
+        className={clsx(
+          classes?.content,
+          'AruiPopUp-content',
+          defaultClasses.content
+        )}
         style={styles?.content}
       >
-        {children ? children : ''}
+        {children}
       </DialogContent>
-      {footer ? (
-        footer
-      ) : (
+      {actionsDisplay !== undefined && (
         <DialogActions
           className={clsx(
-            defaultClasses.actionsContainer,
             'AruiPopUp-actions',
-            classes?.actions
+            classes?.actions,
+            defaultClasses.actionsContainer
           )}
           style={styles?.actions}
         >
-          {actions &&
-            actions.map((action, index) => (
-              <Button
-                key={index}
-                variant={action.variant ? action.variant : 'contained'}
-                className={clsx(
-                  defaultClasses.button,
-                  'AruiPopUp-button',
-                  classes?.button
-                )}
-                style={styles?.button}
-                onClick={action.handler}
-              >
-                {action.label}
-              </Button>
-            ))}
+          {actionsDisplay}
         </DialogActions>
       )}
     </Dialog>
   )
 }
+
+export const PopUp = forwardRef(PopUpBase) as typeof PopUpBase

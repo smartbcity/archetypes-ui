@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Typography } from '@material-ui/core'
 import {
   BasicProps,
@@ -8,8 +8,10 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+/**
+ * @deprecated
+ */
+const useStyles = lowLevelStyles<Theme>()({
     container: {
       display: 'flex',
       justifyContent: 'center',
@@ -37,7 +39,7 @@ const useStyles = (theme: Theme) =>
       marginBottom: '20px'
     },
     dividerBar: {
-      background: theme.primaryColor,
+      background: theme => theme.colors.primary,
       width: '0.5px',
       height: '80%',
       position: 'absolute',
@@ -113,6 +115,9 @@ export type DividerContentProps = MergeReactElementProps<
   DividerContentBasicProps
 >
 
+/**
+ * @deprecated
+ */
 export const DividerContent = React.forwardRef(
   (props: DividerContentProps, ref: React.Ref<HTMLDivElement>) => {
     const {
@@ -127,7 +132,7 @@ export const DividerContent = React.forwardRef(
       ...other
     } = props
     const theme = useTheme()
-    const defaultClasses = useStyles(theme)()
+    const defaultClasses = useStyles(theme)
     return (
       <div
         ref={ref}
@@ -146,7 +151,7 @@ export const DividerContent = React.forwardRef(
         {children instanceof Array ? (
           children.map((child, index) =>
             index !== children.length - 1 ? (
-              <Fragment>
+              <>
                 <div
                   key={index}
                   className={clsx(
@@ -207,7 +212,7 @@ export const DividerContent = React.forwardRef(
                     style={styles?.dividerBar}
                   ></div>
                 </div>
-              </Fragment>
+              </>
             ) : (
               <div
                 key={index}

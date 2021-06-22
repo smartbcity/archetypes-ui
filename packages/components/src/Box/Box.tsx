@@ -10,7 +10,10 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+/**
+ * @deprecated
+ */
+const useStyles = lowLevelStyles()({
   card: {
     borderRadius: '5px',
     position: 'relative',
@@ -83,6 +86,9 @@ const useStyles = lowLevelStyles({
 
 export type LogoSize = 'medium' | 'small'
 
+/**
+ * @deprecated
+ */
 export interface BoxBasicProps extends BasicProps {
   /**
    * The content that will be displayed in the body of the card

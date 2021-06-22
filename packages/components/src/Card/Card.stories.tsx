@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0'
 import { styles, classes } from './types'
 
 export default {
-  title: 'Components/Card',
+  title: 'Components/Deprecated/Card',
   component: AruiCard,
   argTypes: {
     children: {

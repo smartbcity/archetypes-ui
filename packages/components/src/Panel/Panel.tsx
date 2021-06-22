@@ -17,8 +17,10 @@ import {
 import clsx from 'clsx'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 
-const useStyles = (theme: Theme) =>
-  lowLevelStyles({
+/**
+ * @deprecated
+ */
+const useStyles = lowLevelStyles<Theme>()({
     card: {
       borderRadius: '10px'
     },
@@ -36,7 +38,7 @@ const useStyles = (theme: Theme) =>
       zIndex: 1
     },
     content: {
-      backgroundColor: theme.tertiaryColor,
+      backgroundColor: theme => theme.colors.tertiary,
       minHeight: '100px',
       position: 'relative',
       justifyContent: 'center',
@@ -93,6 +95,9 @@ interface PanelStyles {
   footer?: React.CSSProperties
 }
 
+/**
+ * @deprecated
+ */
 export interface PanelBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the header of the panel
@@ -126,6 +131,9 @@ export interface PanelBasicProps extends BasicProps {
 
 export type PanelProps = MergeMuiElementProps<CardProps, PanelBasicProps>
 
+/**
+ * @deprecated
+ */
 export const Panel = (props: PanelProps) => {
   const {
     header,
@@ -141,7 +149,7 @@ export const Panel = (props: PanelProps) => {
     ...other
   } = props
   const theme = useTheme()
-  const defaultClasses = useStyles(theme)()
+  const defaultClasses = useStyles(theme)
   return (
     <MuiCard
       className={clsx(defaultClasses.card, 'AruiPanel-root', className)}

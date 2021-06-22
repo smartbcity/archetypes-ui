@@ -1,13 +1,12 @@
 import { StepIconProps as MuiStepIconProps } from '@material-ui/core'
 import clsx from 'clsx'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import { lowLevelStyles } from '@smartb/archetypes-ui-themes'
 
-const useStepIconStyles = (theme: Theme) =>
-  lowLevelStyles({
+const useStepIconStyles = lowLevelStyles<Theme>()({
     root: {
-      backgroundColor: theme.tertiaryColor,
+      backgroundColor: theme => theme.colors.tertiary,
       zIndex: 1,
       color: '#fff',
       width: 40,
@@ -18,15 +17,15 @@ const useStepIconStyles = (theme: Theme) =>
       alignItems: 'center'
     },
     active: {
-      backgroundColor: theme.primaryColor,
-      boxShadow: theme.primaryColor
+      backgroundColor: theme => theme.colors.primary,
+      boxShadow: theme => theme.colors.primary
     },
     completed: {
-      backgroundColor: theme.primaryColor,
-      boxShadow: theme.primaryColor
+      backgroundColor: theme => theme.colors.primary,
+      boxShadow: theme => theme.colors.primary
     },
     activeIcon: {
-      border: '2px solid ' + theme.secondaryColor,
+      border: theme => '2px solid ' + theme.colors.secondary,
       padding: '3px',
       borderRadius: '50%'
     }
@@ -34,7 +33,7 @@ const useStepIconStyles = (theme: Theme) =>
 
 export const StepIcon = (props: MuiStepIconProps) => {
   const theme = useTheme()
-  const classes = useStepIconStyles(theme)()
+  const classes = useStepIconStyles(theme)
   const { active, completed, icon } = props
   return (
     <div className={clsx({ [classes.activeIcon]: active })}>
@@ -51,5 +50,5 @@ export const StepIcon = (props: MuiStepIconProps) => {
 }
 
 export const StepEmptyIcon = () => {
-  return <Fragment></Fragment>
+  return <></>
 }

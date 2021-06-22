@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as SBMenu } from '../Menu'
+import { MenuItems } from '@smartb/archetypes-ui-components'
 import { ExpandMore } from '@material-ui/icons'
 import {
   ExpansionPanel,
@@ -13,7 +13,7 @@ import {
 import { BasicProps, lowLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   profile: {
     boxShadow: 'none !important',
     background: 'transparent',
@@ -51,7 +51,7 @@ export interface ToolsPanelProps extends BasicProps {
   /**
    * The menu that contains all the items that will be displayed in the panel
    */
-  menu: SBMenu
+  menu: MenuItems
 }
 
 export const ToolsPanel = (props: ToolsPanelProps) => {

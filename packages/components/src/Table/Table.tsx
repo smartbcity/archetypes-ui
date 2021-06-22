@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import DataTable, {
   IDataTableColumn,
   IDataTableStyles,
@@ -13,7 +13,7 @@ import {
 import { useTheme, Theme } from '@smartb/archetypes-ui-themes'
 import { Pagination } from '../Pagination'
 
-const useStyles = lowLevelStyles({
+const useStyles = lowLevelStyles()({
   container: {
     '& .rdt_TableRow .rdt_TableCell:last-child': {
       paddingRight: '30px'
@@ -61,7 +61,7 @@ const customStyles = (theme: Theme) => ({
       borderRadius: '5px',
       border: `2px solid transparent !important`,
       '&:hover': {
-        border: `2px solid ${theme.secondaryColor} !important`,
+        border: `2px solid ${theme.colors.secondary} !important`,
         backgroundColor: `#FFFFFF !important`,
         borderRadius: 5,
         outlineWidth: 'inherit !important'
@@ -214,7 +214,7 @@ export const Table = <Row,>(props: TableProps<Row>) => {
   const classes = useStyles()
   const theme = useTheme()
   return (
-    <Fragment>
+    <>
       {isLoading ? (
         loadingComponent ?? <Typography>Loading...</Typography>
       ) : (
@@ -237,6 +237,7 @@ export const Table = <Row,>(props: TableProps<Row>) => {
           expandableRows={expandableRows}
           expandableRowsComponent={ExpandableComponents}
           expandOnRowClicked={expandOnRowClicked}
+          responsive
           {...other}
         />
       )}
@@ -248,6 +249,6 @@ export const Table = <Row,>(props: TableProps<Row>) => {
           totalPage={totalPages}
         />
       ) : undefined}
-    </Fragment>
+    </>
   )
 }

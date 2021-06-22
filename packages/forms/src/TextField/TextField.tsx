@@ -1,120 +1,22 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   InputAdornment,
-  InputLabel,
-  makeStyles,
-  TextField as MuiTextField
+  TextField as MuiTextField,
+  TextFieldProps as MuiTextFieldProps,
 } from '@material-ui/core'
-import { Clear } from '@material-ui/icons'
-import { useInputStylesSimple } from '../style'
-import { BasicProps } from '@smartb/archetypes-ui-themes'
+import { Check, Clear } from '@material-ui/icons'
+import { useInputStyles } from '../style'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps, useTheme } from '@smartb/archetypes-ui-themes'
+import clsx from 'clsx'
+import { SearchIcon } from '../assets/icons'
 
-export interface TextFieldProps extends BasicProps {
-  /**
-   * The id of the text field displayed
-   */
-  id?: string
-
-  /**
-   * The value displayed
-   */
-  value?: string | number
-
-  /**
-   * The type of the input
-   */
-  textFieldType?: 'number' | 'text' | 'email' | 'password'
-
-  /**
-   * The event called when the value of the input change
-   * @param value the new value
-   */
-  onChange?: (value: string) => void
-
-  /**
-   * The text to display as place holder
-   */
-  placeHolder?: string
-
-  /**
-   * Define if the value of the input is valid or not
-   */
-  error?: boolean
-
-  /**
-   * The message displayed when the input value is wrong
-   */
-  errorMessage?: string
-
-  /**
-   * The default value displayed
-   */
-  defaultValue?: string | number
-
-  /**
-   * The classes applied to the different part of the component
-   */
-  className?: string
-
-  /**
-   * The label of the input
-   */
-  label?: string
-
-  /**
-   * Define if the input is disabled or not
-   */
-  disabled?: boolean
-
-  /**
-   * The styles applied to the different part of the component
-   */
-  style?: React.CSSProperties
-
-  /**
-   * The classes applied to the textField part of the component
-   */
-  textFieldClassName?: string
-
-  /**
-   * The classes applied to the base part of the component
-   */
-  baseClassName?: string
-
-  /**
-   * The styles applied to the text of the component
-   */
-  helperTextStyle?: React.CSSProperties
-
-  /**
-   * The icon of the icon
-   */
-  inputIcon?: React.ReactNode
-
-  /**
-   * The event called when the value of the input is removed
-   */
-  onRemoveValue?: () => void
-
-  /**
-   * The position of the icon
-   */
-  iconPosition?: 'start' | 'end'
-
-  /**
-   * The event called when the input is clicked
-   */
-  onClick?: (event: React.MouseEvent) => void
-
-  /**
-   * The event called when the input is blured
-   */
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void
-}
-
-const useStyles = makeStyles(() => ({
+const useStyles = lowLevelStyles()({
+  root: {
+    position: "relative"
+  },
+  input: {
+    width: "100%"
+  },
   withIconStart: {
     '& .MuiInputBase-input': {
       paddingLeft: '0px !important',
@@ -125,92 +27,283 @@ const useStyles = makeStyles(() => ({
     '& .MuiInputBase-input': {
       paddingLeft: '5px !important'
     }
+  },
+  searchIcon: {
+    width: "20px",
+    height: "20px",
+    cursor: "pointer"
   }
-}))
+})
 
-export const TextField = React.forwardRef((props: TextFieldProps, ref) => {
+export interface TextFieldClasses {
+  label?: string
+  textfield?: string
+  input?: string
+  helperText?: string
+  clearIcon?: string
+  validIcon?: string
+  searchIcon?: string
+}
+
+export interface TextFieldStyles {
+  label?: React.CSSProperties
+  textfield?: React.CSSProperties
+  input?: React.CSSProperties
+  helperText?: React.CSSProperties
+  clearIcon?: React.CSSProperties
+  validIcon?: React.CSSProperties
+  searchIcon?: React.CSSProperties
+}
+
+export interface TextFieldBasicProps extends BasicProps {
+  /**
+   * The value displayed
+   */
+  value?: string | number
+
+  /**
+   * The type of the input
+   * 
+   * @default 'text'
+   */
+  textFieldType?: 'number' | 'text' | 'email' | 'password' | 'search'
+
+  /**
+   * The size of the input
+   * 
+   * @default 'medium'
+   */
+  size?: "large" | "medium" | "small"
+
+  /**
+   * Define if the value of the input has been validated
+   * 
+   * @default false
+   */
+  validated?: boolean
+
+  /**
+   * The event called when the value of the input change
+   */
+  onChange?: (value: string) => void
+
+  /**
+   * The text to display as place holder
+   */
+  placeholder?: string
+
+  /**
+   * Define if the value of the input is valid or not
+   * 
+   * @default false
+   */
+  error?: boolean
+
+  /**
+   * The message displayed when the input value is wrong
+   */
+  errorMessage?: string
+
+  /**
+   * The default value displayed. Usefull if the input is uncontrolled
+   */
+  defaultValue?: string | number
+
+  /**
+   * Define if the input is disabled or not
+   * 
+   * @default false
+   */
+  disabled?: boolean
+
+  /**
+   * The icon of the icon
+   */
+  inputIcon?: React.ReactNode
+
+  /**
+   * The event called when the value of the input is removed
+   */
+  onRemove?: () => void
+
+  /**
+   * The position of the icon
+   * 
+   * @default 'start'
+   */
+  iconPosition?: 'start' | 'end'
+
+  /**
+   * The event called when a search request is send when the `textFieldType` is equal to 'search'
+   */
+  onSearch?: () => void
+
+  /**
+  * The classes applied to the different part of the component
+  */
+  classes?: TextFieldClasses
+  /**
+   * The styles applied to the different part of the component
+   */
+  styles?: TextFieldStyles
+}
+
+export type TextFieldProps = MergeMuiElementProps<Omit<MuiTextFieldProps, "ref">, TextFieldBasicProps>
+
+export const TextField = React.forwardRef((props: TextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     className,
     error = false,
     errorMessage = '',
     label = '',
-    textFieldClassName,
-    helperTextStyle,
     id = '',
     onChange,
-    placeHolder = '',
+    placeholder = '',
     style,
-    textFieldType,
-    baseClassName = '',
+    textFieldType = "text",
     defaultValue,
-    value = '',
+    value,
     disabled = false,
     inputIcon,
-    onRemoveValue,
+    onRemove,
+    classes,
+    styles,
     iconPosition = 'start',
-    onClick,
-    onBlur
+    size = "medium",
+    validated = false,
+    onSearch,
+    InputProps,
+    ...other
   } = props
-  const classes = useInputStylesSimple(disabled)()
+  const theme = useTheme()
+  const defaultClasses = useInputStyles(theme)
   const classesLocal = useStyles()
+
+  const onChangeMemoized = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange && onChange(e.target.value),
+    [onChange],
+  )
+
+  const upHandler = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (event.key === 'Enter') {
+        event.currentTarget.blur()
+        onSearch && onSearch()
+      }
+    },
+    [onSearch],
+  )
+
+  const inputAdornment = useMemo(() => {
+    if (textFieldType === "search") {
+      if (iconPosition === 'start') {
+        return {
+          startAdornment: (
+            <InputAdornment component='div' position='start'>
+              <SearchIcon color="#323338" onClick={onSearch} className={clsx(classesLocal.searchIcon, classes?.searchIcon, "AruiTextfield-searchIcon")} style={styles?.searchIcon} />
+            </InputAdornment>
+          )
+        }
+      } else {
+        return {
+          endAdornment: (
+            <InputAdornment component='div' position='end'>
+              <SearchIcon color="#323338" onClick={onSearch} className={clsx(classesLocal.searchIcon, classes?.searchIcon, "AruiTextfield-searchIcon")} style={styles?.searchIcon} />
+            </InputAdornment>
+          )
+        }
+      }
+    } else {
+      if (inputIcon && iconPosition === 'start') {
+        return {
+          startAdornment: (
+            <InputAdornment component='div' position='start'>
+              {inputIcon}
+            </InputAdornment>
+          )
+        }
+      } else if (inputIcon) {
+        return {
+          endAdornment: (
+            <InputAdornment component='div' position='end'>
+              {inputIcon}
+            </InputAdornment>
+          )
+        }
+      }
+      return {}
+    }
+  }, [textFieldType, inputIcon, iconPosition, classes?.searchIcon, styles?.searchIcon, onSearch])
+
+  const formHelperProps = useMemo(() => {
+    return {
+      className: clsx(defaultClasses.helperText, classes?.helperText, "AruiTextfield-helperText"),
+      style: styles?.helperText
+    }
+  }, [classes?.helperText, styles?.helperText])
+
+  const rightIcon = useMemo(() => {
+    if (validated) return (
+      <Check className={clsx(defaultClasses.validated, classes?.validIcon, "AruiTextfield-validIcon")} style={{ ...styles?.validIcon, right: inputAdornment.endAdornment ? "32px" : "" }} />
+    )
+    if (!value || value === "") return undefined
+    if ((onRemove || error) && !disabled) return (
+      <Clear onClick={onRemove} className={clsx(defaultClasses.clear, error && defaultClasses.clearError, classes?.clearIcon, "AruiTextfield-clearIcon")} style={{ ...styles?.clearIcon, right: inputAdornment.endAdornment ? "32px" : "" }} />
+    )
+    return undefined
+  }, [value, onRemove, classes, styles, inputAdornment.endAdornment, error, disabled])
   return (
     <div
-      className={`${className}`}
-      style={{ width: '100%', position: 'relative', ...style }}
+      className={clsx(className, classesLocal.root, "AruiTextfield-root")}
+      style={style}
     >
-      {label ? (
-        <InputLabel htmlFor={id} className={classes.label}>
-          {label}
-        </InputLabel>
-      ) : null}
       <MuiTextField
+        {...other}
+        ref={ref}
         id={id}
-        value={defaultValue != undefined ? null : value}
-        onChange={(e) => onChange && onChange(e.target.value)}
-        onBlur={onBlur}
-        onClick={onClick}
-        placeholder={placeHolder}
-        type={textFieldType}
+        value={value}
+        onChange={onChangeMemoized}
+        placeholder={placeholder}
+        type={textFieldType === "search" ? "text" : textFieldType}
         defaultValue={defaultValue}
-        className={`${textFieldClassName} ${classes.input} Colisactiv-TextFieldInput`}
+        className={clsx(
+          defaultClasses.input,
+          classesLocal.input,
+          validated && defaultClasses.inputValidated,
+          size === "large" && defaultClasses.inputLarge,
+          size === "medium" && defaultClasses.inputMedium,
+          size === "small" && defaultClasses.inputSmall,
+          disabled && defaultClasses.inputDisabled,
+          error && defaultClasses.inputError,
+          onRemove && inputAdornment.endAdornment && textFieldType === "search" && defaultClasses.inputWithClear,
+          classes?.textfield,
+          "AruiTextfield-Textfield"
+        )}
+        style={styles?.label}
         variant='filled'
         error={error}
         disabled={disabled}
         helperText={error ? errorMessage : ''}
-        color={'primary'}
+        color='primary'
         InputProps={{
-          ref: ref,
-          startAdornment: !!inputIcon && iconPosition === 'start' && (
-            <InputAdornment component='div' position='start'>
-              {inputIcon}
-            </InputAdornment>
-          ),
-          endAdornment: !!inputIcon && iconPosition === 'end' && (
-            <InputAdornment component='div' position='end'>
-              {inputIcon}
-            </InputAdornment>
-          ),
+          ...inputAdornment,
           disableUnderline: true,
-          style: { paddingRight: onRemoveValue ? '22px' : '' },
-          inputProps: {
-            className: baseClassName,
-            min: 0
-          },
-          className:
+          onKeyUp: upHandler,
+          style: { ...styles?.input, paddingRight: (onRemove || validated) && value && value !== "" && !inputAdornment.endAdornment ? '27px' : '' },
+          className: clsx(
             inputIcon && iconPosition === 'start'
               ? classesLocal.withIconStart
               : inputIcon && iconPosition === 'end'
-              ? classesLocal.withIconEnd
-              : ''
+                ? classesLocal.withIconEnd
+                : '',
+            classes?.input,
+            "AruiTextfield-input",
+          ),
+          ...InputProps
         }}
-        FormHelperTextProps={{
-          className: classes.helperText,
-          style: helperTextStyle
-        }}
+        FormHelperTextProps={formHelperProps}
       />
-      {value !== '' && onRemoveValue && (
-        <Clear onClick={onRemoveValue} className={classes.clear} />
-      )}
+      {rightIcon}
     </div>
   )
 })
