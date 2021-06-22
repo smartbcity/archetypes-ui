@@ -6,7 +6,7 @@ import {
   ListItemProps,
   ListProps
 } from '@material-ui/core'
-import { Menu } from './MenuItem'
+import { MenuItems } from './MenuItem'
 import React, { useCallback, useMemo } from 'react'
 import {
   BasicProps,
@@ -17,57 +17,54 @@ import {
 } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
-const useStyles = lowLevelStyles<{paddingLeft: number, theme: Theme}>()({
-    item: {
-      paddingLeft: ({paddingLeft}) => `${paddingLeft}px`
-    },
-    selectedItem: {
-      background: ({theme}) => `${theme.colors.primary}26`
-    },
-    selectedTitle: {
-      '& .MuiTypography-root': {
-        color: ({theme}) => theme.colors.primary
-      }
-    },
-    itemText: {
-      '& .MuiTypography-root': {
-        fontSize: ({paddingLeft}) => `${17 - paddingLeft / 10}px`,
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden'
-      }
-    },
-    subList: {
-      padding: '0px'
+const useStyles = lowLevelStyles<{ paddingLeft: number; theme: Theme }>()({
+  item: {
+    paddingLeft: ({ paddingLeft }) => `${paddingLeft}px`
+  },
+  selectedItem: {
+    background: ({ theme }) => `${theme.colors.primary}26`
+  },
+  selectedTitle: {
+    '& .MuiTypography-root': {
+      color: ({ theme }) => theme.colors.primary
     }
-  })
+  },
+  itemText: {
+    '& .MuiTypography-root': {
+      fontSize: ({ paddingLeft }) => `${17 - paddingLeft / 10}px`,
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden'
+    }
+  },
+  subList: {
+    padding: '0px'
+  }
+})
 
-interface MenuContainerClasses {
+interface MenuClasses {
   item?: ItemClasses
   icon?: string
   text?: string
 }
 
-interface MenuContainerStyles {
+interface MenuStyles {
   item?: ItemStyles
   icon?: React.CSSProperties
   text?: React.CSSProperties
 }
 
-export interface MenuContainerBasicProps extends BasicProps {
-  menu: Menu[]
-  classes?: MenuContainerClasses
-  styles?: MenuContainerStyles
-  subMenuProps?: Partial<MenuContainerProps>
+export interface MenuBasicProps extends BasicProps {
+  menu: MenuItems[]
+  classes?: MenuClasses
+  styles?: MenuStyles
+  subMenuProps?: Partial<MenuProps>
   paddingLeft?: number
 }
 
-export type MenuContainerProps = MergeMuiElementProps<
-  ListProps,
-  MenuContainerBasicProps
->
+export type MenuProps = MergeMuiElementProps<ListProps, MenuBasicProps>
 
-export const MenuContainer = (props: MenuContainerProps) => {
+export const Menu = (props: MenuProps) => {
   const { menu, classes, styles, paddingLeft, subMenuProps, ...other } = props
   const uiMenu = useMemo(
     () =>
@@ -98,13 +95,13 @@ interface ItemStyles {
 }
 
 interface ItemBasicProps extends BasicProps {
-  classes?: MenuContainerClasses
-  styles?: MenuContainerStyles
+  classes?: MenuClasses
+  styles?: MenuStyles
   paddingLeft?: number
-  subMenuProps?: Partial<MenuContainerProps>
+  subMenuProps?: Partial<MenuProps>
 }
 
-type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & Menu>
+type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & MenuItems>
 
 const Item = (props: ItemProps) => {
   const {
@@ -126,10 +123,13 @@ const Item = (props: ItemProps) => {
   } = props
   const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
   const theme = useTheme()
-  const stylesObject = useMemo(() => ({
-    paddingLeft: paddingLeft,
-    theme: theme
-  }), [paddingLeft, theme])
+  const stylesObject = useMemo(
+    () => ({
+      paddingLeft: paddingLeft,
+      theme: theme
+    }),
+    [paddingLeft, theme]
+  )
   const defaultClasses = useStyles(stylesObject)
   if (items !== undefined && items.length > 0)
     return (
@@ -159,7 +159,7 @@ const Item = (props: ItemProps) => {
             style={styles?.item?.text}
           />
         </ListItem>
-        <MenuContainer
+        <Menu
           {...subMenuProps}
           className={clsx(subMenuProps, defaultClasses.subList)}
           paddingLeft={paddingLeft + 10}

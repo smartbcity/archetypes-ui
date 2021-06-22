@@ -11,6 +11,6 @@ export interface MenuItem<T = {}> {
   isSelected?: boolean
 }
 
-export interface Menu<T = {}> extends MenuItem<T> {
-  items?: Menu<T>[]
+export interface MenuItems<T = {}> extends MenuItem<T> {
+  items?: MenuItems<T>[]
 }

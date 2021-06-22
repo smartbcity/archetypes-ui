@@ -1,22 +1,19 @@
 import React from 'react'
-import {
-  MenuContainerBasicProps,
-  MenuContainer as AruiMenuContainer
-} from './MenuContainer'
+import { MenuBasicProps, Menu as AruiMenu } from './Menu'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Layout/MenuContainer',
-  component: AruiMenuContainer
+  title: 'Layout/Menu',
+  component: AruiMenu
 } as Meta
 
-const Template: Story<MenuContainerBasicProps> = (
-  args: MenuContainerBasicProps
-) => <AruiMenuContainer {...args} />
+const Template: Story<MenuBasicProps> = (args: MenuBasicProps) => (
+  <AruiMenu {...args} />
+)
 
-export const MenuContainer = Template.bind({})
-MenuContainer.args = {
+export const Menu = Template.bind({})
+Menu.args = {
   menu: [
     {
       key: 'key1',
@@ -50,4 +47,4 @@ MenuContainer.args = {
   ]
 }
 
-MenuContainer.storyName = 'MenuContainer'
+Menu.storyName = 'Menu'

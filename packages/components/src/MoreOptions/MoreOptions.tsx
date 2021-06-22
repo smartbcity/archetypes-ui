@@ -1,20 +1,24 @@
 import React, { forwardRef, useCallback, useState } from 'react'
-import { Menu, IconButton, IconButtonProps } from '@material-ui/core'
+import { Menu as MuiMenu, IconButton, IconButtonProps } from '@material-ui/core'
 import { MoreHoriz } from '@material-ui/icons'
-import { MenuItem, MenuContainer, MenuContainerProps } from '@smartb/archetypes-ui-layout'
-import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
+import { MenuItem, Menu, MenuProps } from '../Menu'
+import {
+  BasicProps,
+  lowLevelStyles,
+  MergeMuiElementProps
+} from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = lowLevelStyles()({
   menu: {
     maxWidth: '300px',
-    maxHeight: "250px",
+    maxHeight: '250px',
     '& ul': {
       padding: '0'
     }
   },
   listItem: {
-    padding: "3px 16px"
+    padding: '3px 16px'
   }
 })
 
@@ -36,7 +40,7 @@ export interface MoreOptionsBasicProps<T = {}> extends BasicProps {
   /**
    * The props of the menu container used to contain the list of options
    */
-  menuContainerProps?: Omit<MenuContainerProps, "menu">
+  menuContainerProps?: Omit<MenuProps, 'menu'>
   /**
    * The classes applied to the different part of the component
    */
@@ -47,26 +51,27 @@ export interface MoreOptionsBasicProps<T = {}> extends BasicProps {
   styles?: MoreOptionsStyles
 }
 
-export type MoreOptionsProps<T> = MergeMuiElementProps<IconButtonProps, MoreOptionsBasicProps<T>>
+export type MoreOptionsProps<T> = MergeMuiElementProps<
+  IconButtonProps,
+  MoreOptionsBasicProps<T>
+>
 
-const MoreOptionsBase = <T extends object = {}>(props: MoreOptionsProps<T>, ref: React.ForwardedRef<HTMLButtonElement>) => {
-  const { options, menuContainerProps, className, classes, styles, ...other } = props
+const MoreOptionsBase = <T extends object = {}>(
+  props: MoreOptionsProps<T>,
+  ref: React.ForwardedRef<HTMLButtonElement>
+) => {
+  const { options, menuContainerProps, className, classes, styles, ...other } =
+    props
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const defaultClasses = useStyles()
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    },
-    [],
-  )
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }, [])
 
-  const close = useCallback(
-    () => {
-      setAnchorEl(null)
-    },
-    [],
-  )
+  const close = useCallback(() => {
+    setAnchorEl(null)
+  }, [])
 
   return (
     <>
@@ -80,11 +85,14 @@ const MoreOptionsBase = <T extends object = {}>(props: MoreOptionsProps<T>, ref:
         {...other}
       >
         <MoreHoriz
-          className={clsx(classes?.moreOptionsIcon, 'AruiMoreOptions-moreOptionsIcon')}
+          className={clsx(
+            classes?.moreOptionsIcon,
+            'AruiMoreOptions-moreOptionsIcon'
+          )}
           style={styles?.moreOptionsIcon}
         />
       </IconButton>
-      <Menu
+      <MuiMenu
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -95,8 +103,12 @@ const MoreOptionsBase = <T extends object = {}>(props: MoreOptionsProps<T>, ref:
         className={clsx(classes?.menu, 'AruiMoreOptions-menu')}
         style={styles?.menu}
       >
-        <MenuContainer menu={options} {...menuContainerProps} classes={{ item: { root: defaultClasses.listItem } }} />
-      </Menu>
+        <Menu
+          menu={options}
+          {...menuContainerProps}
+          classes={{ item: { root: defaultClasses.listItem } }}
+        />
+      </MuiMenu>
     </>
   )
 }
