@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/react'
 import React, { useState } from 'react'
-import {TextField, TextFieldProps} from './TextField'
-import {Story} from "@storybook/react/types-6-0";
-import {TextFieldClasses, TextFieldStyles} from './docs'
+import { TextField, TextFieldProps } from './TextField'
+import { Story } from "@storybook/react/types-6-0";
+import { TextFieldClasses, TextFieldStyles } from './docs'
 import { Box, Typography } from '@material-ui/core';
 import { CreditCard } from '@material-ui/icons';
 import { withDesign } from 'storybook-addon-designs'
@@ -10,7 +10,7 @@ import { withDesign } from 'storybook-addon-designs'
 export default {
   title: 'Forms/TextField',
   component: TextField,
-  decorators:[withDesign],
+  decorators: [withDesign],
   parameters: {
     design: {
       type: 'figma',
@@ -38,6 +38,7 @@ export default {
 } as Meta
 
 export const TextFieldStory: Story<TextFieldProps> = (args: TextFieldProps) => {
+
   return (
     <TextField
       {...args}
@@ -46,7 +47,6 @@ export const TextFieldStory: Story<TextFieldProps> = (args: TextFieldProps) => {
 }
 
 export const TextFieldSizes: Story<TextFieldProps> = () => {
-
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <TextField
@@ -125,7 +125,7 @@ export const CustomIcon: Story<TextFieldProps> = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <TextField
-        inputIcon={<CreditCard/>}
+        inputIcon={<CreditCard />}
         id="creditTextField"
         placeholder="Add your credit card informations"
         style={{ width: 350, margin: 20 }}

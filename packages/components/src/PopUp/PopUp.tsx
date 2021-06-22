@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import {
   Dialog,
   DialogActions,
@@ -42,7 +42,7 @@ const useStyles = lowLevelStyles()({
 export type Action = {
   label: React.ReactNode
   key: string
-} & Omit<ButtonProps, 'children' | 'style' | 'className'>
+} & Omit<ButtonProps, 'children' | 'style'>
 
 interface PopUpClasses {
   content?: string
@@ -87,7 +87,7 @@ export interface PopUpBasicProps extends BasicProps {
 
 export type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-export const PopUp = (props: PopUpProps) => {
+const PopUpBase = (props: PopUpProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     open,
     onClose,
@@ -105,13 +105,14 @@ export const PopUp = (props: PopUpProps) => {
   const actionsDisplay = useMemo(() => {
     if (actions.length === 0) return undefined
     return actions.map((action) => {
-      const { key, label, ...other } = action
+      const { key, label, className, ...other } = action
       return (
         <Button
           key={key}
           className={clsx(
             'AruiPopUp-button',
             classes?.button,
+            className,
             defaultClasses.button
           )}
           style={styles?.button}
@@ -125,6 +126,7 @@ export const PopUp = (props: PopUpProps) => {
 
   return (
     <Dialog
+      ref={ref}
       open={open}
       onClose={onClose}
       style={style}
@@ -170,3 +172,5 @@ export const PopUp = (props: PopUpProps) => {
     </Dialog>
   )
 }
+
+export const PopUp = forwardRef(PopUpBase) as typeof PopUpBase

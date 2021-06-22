@@ -1,36 +1,19 @@
-import { TextField, Chip, FormControl, makeStyles } from '@material-ui/core'
-import { Autocomplete as MuiAutocomplete } from '@material-ui/lab'
-import React from 'react'
-import { useTheme } from '@smartb/archetypes-ui-themes'
-import { useInputStyles } from '../style'
+import { Chip } from '@material-ui/core'
+import { Autocomplete as MuiAutocomplete, AutocompleteProps as MuiAutocompleteProps, AutocompleteGetTagProps, AutocompleteRenderInputParams } from '@material-ui/lab'
+import React, { forwardRef, useCallback } from 'react'
+import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
+import { TextField, TextFieldProps } from '../TextField'
+import clsx from 'clsx'
 
-const useStyles = makeStyles(() => ({
-  padding: {
-    '& .MuiAutocomplete-inputRoot': {
-      paddingTop: 0,
-      paddingRight: '27px !important'
-    },
-    '& .MuiChip-root': {
-      backgroundColor: '#EBEBEC !important',
-      borderRadius: '5px !important',
-      border: 'none'
-    }
+const useStyles = lowLevelStyles()({
+  chip: {
+    backgroundColor: '#EBEBEC',
+    borderRadius: '5px',
+    border: 'none'
   }
-}))
+})
 
-export interface AutoCompleteProps<T> {
-  /**
-   * The id of the root component
-   */
-  id: string
-  /**
-   * The className of the root component
-   */
-  className?: string
-  /**
-   * The style of the root component
-   */
-  style?: React.CSSProperties
+export interface AutoCompleteBasicProps<T> extends BasicProps {
   /**
    * If true, the menu will support multiple selections.
    */
@@ -43,11 +26,7 @@ export interface AutoCompleteProps<T> {
    * The event called when selected element change.
    * @param value the new selected elements
    */
-  onChangeSelectedElement: (value: T | T[]) => void
-  /**
-   * The label of the field.
-   */
-  label: string
+  onChangeSelectedElement?: (value: T | T[]) => void
   /**
    * The default element value.
    */
@@ -56,39 +35,31 @@ export interface AutoCompleteProps<T> {
    * The event called when search value change.
    * @param value
    */
-  onSearch: (value: string) => void
+  onSearch?: (value: string) => void
   /**
    * Message displayed when select has no options
    */
-  noOptionsText: string
-  /**
-   * CLass name for text field
-   */
-  textFieldClassName?: string
+  noOptionsText?: string
   /**
    * this props name need to be changed
    * @param option
    */
   getOptionLabel: (option: T) => string
   /**
-   * If true the autocomplete will be disabled
+   * If true the input will be disabled
+   * 
+   * @default false
    */
-  readonly?: boolean
+  disabled?: boolean
   /**
-   * Display autocomplete with error fields
-   */
-  error?: boolean
-  /**
-   * Error message to display
-   */
-  errorMessage?: string
-  /**
-   * Place Holder Message
-   */
-  placeholder?: string
+  * If props given to the textField in the autoComplete
+  */
+  textFieldProps?: TextFieldProps
 }
 
-export function AutoComplete<T>(props: AutoCompleteProps<T>) {
+export type AutoCompleteProps<T> = MergeMuiElementProps<Omit<MuiAutocompleteProps<T, undefined, undefined, undefined>, "renderInput">, AutoCompleteBasicProps<T>>
+
+const AutoCompleteBase = function <T>(props: AutoCompleteProps<T>, ref: React.ForwardedRef<HTMLElement>) {
   const {
     className,
     style,
@@ -96,64 +67,63 @@ export function AutoComplete<T>(props: AutoCompleteProps<T>) {
     id,
     options,
     onChangeSelectedElement,
-    label,
     defaultValue = null,
     onSearch,
     noOptionsText,
-    textFieldClassName,
     getOptionLabel,
-    readonly = false,
-    error = false,
-    errorMessage = '',
-    placeholder
+    textFieldProps,
+    disabled,
+    ...other
   } = props
 
-  const theme = useTheme()
-  const classes = useInputStyles(theme, readonly)()
-  const classesLocal = useStyles()
+  const defaultClasses = useStyles()
+
+  const onChangeElementMemoized = useCallback(
+    (_, newValue) => onChangeSelectedElement && onChangeSelectedElement(newValue || []),
+    [onChangeSelectedElement]
+  )
+
+  const renderTags = useCallback(
+    (value: T[], getTagProps: AutocompleteGetTagProps) =>
+      value.map((option: T, index: number) => (
+        <Chip classes={{root: clsx(defaultClasses.chip, "AruiAutoComplete-chip")}} label={getOptionLabel(option)} {...getTagProps({ index })} />
+      )),
+    [getOptionLabel],
+  )
+
+  const renderInput = useCallback(
+    (params: AutocompleteRenderInputParams) => {
+      return (
+        <TextField
+          {...textFieldProps}
+          {...params}
+        />
+      )
+    },
+    [textFieldProps],
+  )
 
   return (
-    <FormControl variant='filled' style={style}>
-      {label ? <div className={classes.label}>{label}</div> : null}
-      <MuiAutocomplete
-        id={id}
-        filterSelectedOptions
-        multiple={multiple}
-        options={options}
-        className={className}
-        value={defaultValue}
-        defaultValue={defaultValue}
-        forcePopupIcon={false}
-        getOptionLabel={getOptionLabel}
-        style={{ ...style }}
-        disabled={readonly !== undefined ? readonly : false}
-        noOptionsText={noOptionsText}
-        onChange={(_, newValue) => {
-          onChangeSelectedElement(newValue || [])
-        }}
-        renderTags={(value: T[], getTagProps) =>
-          value.map((option: T, index: number) => (
-            <Chip label={getOptionLabel(option)} {...getTagProps({ index })} />
-          ))
-        }
-        renderInput={(params) => (
-          <TextField
-            error={error}
-            style={{
-              marginTop: '-3px !important',
-              height: 'auto'
-            }}
-            placeholder={placeholder ? placeholder : ''}
-            helperText={error ? errorMessage : ''}
-            {...params}
-            variant={'filled'}
-            className={`${classesLocal.padding} ${textFieldClassName} ${classes.input}`}
-            onChange={(value) => {
-              onSearch(value.target.value)
-            }}
-          />
-        )}
-      />
-    </FormControl>
+    <MuiAutocomplete<T, boolean, undefined, undefined>
+      id={id}
+      ref={ref}
+      filterSelectedOptions
+      limitTags={2}
+      multiple={multiple}
+      options={options}
+      className={clsx(className, "AruiAutoComplete-root")}
+      defaultValue={defaultValue}
+      forcePopupIcon={false}
+      getOptionLabel={getOptionLabel}
+      style={style}
+      disabled={disabled}
+      noOptionsText={noOptionsText}
+      onChange={onChangeElementMemoized}
+      renderTags={renderTags}
+      renderInput={renderInput}
+      {...other}
+    />
   )
 }
+
+export const AutoComplete = forwardRef(AutoCompleteBase) as typeof AutoCompleteBase

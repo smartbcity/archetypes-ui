@@ -10,6 +10,12 @@ import { styles, classes } from './types'
 export default {
   title: 'Components/DropPicture',
   component: AruiDropPicture,
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=713%3A0',
+    },
+  },
   argTypes: {
     classes: {
       table: {

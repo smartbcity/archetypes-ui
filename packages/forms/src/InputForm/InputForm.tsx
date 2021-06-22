@@ -67,7 +67,7 @@ interface InputFormComponent {
       inputType: T
       readonly?: R
     } & InputFormComponentProps<T, R>,
-    ref: React.ForwardedRef<unknown>
+    ref: React.ForwardedRef<HTMLDivElement>
   ): JSX.Element;
 }
 
@@ -77,7 +77,7 @@ export type InputFormProps = InputFormBasicProps & Omit<TextFieldProps, keyof In
 }
 
 //@ts-ignore
-export const InputForm: InputFormComponent = React.forwardRef((props: Partial<InputFormProps>, ref) => {
+export const InputForm: InputFormComponent = React.forwardRef((props: Partial<InputFormProps>, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     inputType = "textField",
     readonly = false,

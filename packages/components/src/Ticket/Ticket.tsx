@@ -1,7 +1,7 @@
 import { Box, Paper, PaperProps, Typography } from '@material-ui/core'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 const useStyles = lowLevelStyles()({
     root: {
@@ -91,11 +91,12 @@ export interface TicketBasicProps extends BasicProps {
 
 export type TicketProps = MergeMuiElementProps<PaperProps, TicketBasicProps>
 
-export const Ticket = (props: TicketProps) => {
+const TicketBase = (props: TicketProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     const { title, content, icon, variant = "normal", className, style, id, reversed = false, classes, styles, longText = false, ...other } = props
     const defaultClasses = useStyles()
     return (
         <Paper
+            ref={ref}
             id={id}
             style={style}
             className={clsx(className, defaultClasses.root, variant !== "normal" && defaultClasses.composedRoot, longText && defaultClasses.rootLongText, "AruiTicket-root")}
@@ -122,4 +123,6 @@ export const Ticket = (props: TicketProps) => {
         </Paper>
     )
 }
+
+export const Ticket = forwardRef(TicketBase) as typeof TicketBase
 

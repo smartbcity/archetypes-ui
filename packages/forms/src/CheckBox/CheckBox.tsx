@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, forwardRef } from 'react'
 
 import { Checkbox, FormControlLabel, CheckboxProps } from '@material-ui/core'
 import { BasicProps, lowLevelStyles, MergeMuiElementProps, Theme, useTheme } from '@smartb/archetypes-ui-themes'
@@ -113,7 +113,7 @@ export interface CheckBoxBasicProps extends BasicProps {
 
 export type CheckBoxProps = MergeMuiElementProps<CheckboxProps, CheckBoxBasicProps>
 
-export const CheckBox = (props: CheckBoxProps) => {
+const CheckBoxBase = (props: CheckBoxProps, ref: React.ForwardedRef<HTMLElement>) => {
   const {
     checked = false,
     label = '',
@@ -131,6 +131,7 @@ export const CheckBox = (props: CheckBoxProps) => {
 
   return (
     <FormControlLabel
+      ref={ref}
       className={clsx(defaultClasses.container, className, disabled && defaultClasses.containerDisabled, "AruiCheckBox-root")}
       style={style}
       id={id}
@@ -162,3 +163,5 @@ export const CheckBox = (props: CheckBoxProps) => {
     />
   )
 }
+
+export const CheckBox = forwardRef(CheckBoxBase) as typeof CheckBoxBase

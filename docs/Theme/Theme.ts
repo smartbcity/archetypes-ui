@@ -46,10 +46,10 @@ export const getTheme = (): Theme => ({
     primary: localStorage.getItem("primaryColor") ?? "#EDBA27",
     secondary: localStorage.getItem("secondaryColor") ?? "#353945",
     tertiary: localStorage.getItem("tertiaryColor") ?? "#e0e0e0",
-    error: "#E44258",
-    success: "#00CA72", 
-    warning: "#FF9900",
-    info: "#3C78D8"
+    error: localStorage.getItem("errorColor") ?? "#E44258",
+    success: localStorage.getItem("successColor") ?? "#00CA72",
+    warning: localStorage.getItem("warningColor") ?? "#FF9900",
+    info: localStorage.getItem("infoColor") ?? "#3C78D8",
   },
   shadows: getShadows(localStorage.getItem("shadows")),
 });

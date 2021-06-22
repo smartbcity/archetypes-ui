@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { SBButton, Panel, Card } from "../../packages/components/src";
 import { getShadows } from "./Theme";
 import ThemeGetter from "./ThemeGetter";
-import { Theme, useThemeContext } from "@smartb/archetypes-ui-themes";
+import { ThemeColors, useThemeContext } from "@smartb/archetypes-ui-themes";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -60,9 +60,9 @@ const useStyles = makeStyles(() =>
 const ThemeOverview = () => {
   const classes = useStyles();
   const themeContext = useThemeContext();
-  const onColorChange = (props: keyof Theme, color: string) => {
+  const onColorChange = (props: keyof ThemeColors, color: string) => {
     themeContext.changeTheme({ [props]: color });
-    localStorage.setItem(props, color);
+    localStorage.setItem(props as string, color);
   };
 
   const onShadowChange = (index: number, values: string) => {
@@ -178,10 +178,8 @@ const ThemeOverview = () => {
             primaryColor:{" "}
             <input
               type="text"
-              onChange={(event) =>
-                onColorChange("primaryColor", event.target.value)
-              }
-              value={themeContext.theme.primaryColor}
+              onChange={(event) => onColorChange("primary", event.target.value)}
+              value={themeContext.theme.colors.primary}
             />
           </div>
         </div>
@@ -201,9 +199,9 @@ const ThemeOverview = () => {
             <input
               type="text"
               onChange={(event) =>
-                onColorChange("secondaryColor", event.target.value)
+                onColorChange("secondary", event.target.value)
               }
-              value={themeContext.theme.secondaryColor}
+              value={themeContext.theme.colors.secondary}
             />
           </div>
         </div>
@@ -218,9 +216,9 @@ const ThemeOverview = () => {
             <input
               type="text"
               onChange={(event) =>
-                onColorChange("tertiaryColor", event.target.value)
+                onColorChange("tertiary", event.target.value)
               }
-              value={themeContext.theme.tertiaryColor}
+              value={themeContext.theme.colors.tertiary}
             />
           </div>
         </div>

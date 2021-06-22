@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
-import {AutoComplete, AutoCompleteProps} from './AutoComplete'
-import {makeStyles} from '@material-ui/core'
+import {AutoComplete as AruiAutoComplete, AutoCompleteBasicProps} from './AutoComplete'
 import {Meta} from "@storybook/react";
 import {Story} from "@storybook/react/types-6-0";
 
 export default {
   title: 'Forms/AutoComplete',
-  component: AutoComplete,
+  component: AruiAutoComplete,
+  argTypes: {
+    options: {
+      control: null
+    }
+  }
 } as Meta;
 
 interface Book {
@@ -15,44 +19,32 @@ interface Book {
   id: string
 }
 
-const useStyles = makeStyles(() => ({
-  container: {
-    width: 'fit-content'
-  }
-}))
 const books: Book[] = [
   { title: 'SmartB Potter', author: 'JK Blockchain', id: 'b1' },
   { title: 'The Lord of the Bs', author: 'S.S.M. Tolkien', id: 'b2' },
-  { title: 'Impact Wars', author: 'Carbon Lucas', id: 'b3' }
+  { title: 'Impact Wars', author: 'Carbon Lucas', id: 'b3' },
+  { title: 'Blockchainator', author: 'A strange guy', id: 'b4' },
+  { title: 'Impactosorus', author: 'Greg beatcoyn', id: 'b5' }
 ]
 
-export const AutoCompleteStory: Story<AutoCompleteProps<Book>> = () => {
-  const [book, setBooks] = useState<Book>({
-    title: '',
-    id: '',
-    author: ''
-  })
-  const classes = useStyles()
+export const AutoComplete: Story<AutoCompleteBasicProps<Book>> = (args: AutoCompleteBasicProps<Book>) => {
 
   return (
-    <AutoComplete
-      options={books}
-      defaultValue={book}
-      id='test'
-      onSearch={() => {}}
-      onChangeSelectedElement={(book: Book) => {
-        setBooks(book)
-      }}
-      label='Livre'
-      noOptionsText={"Rechercher un livre"}
-      getOptionLabel={(book) => book.title}
-      placeholder='testt'
-      className={classes.container}
+    <AruiAutoComplete<Book>
       style={{
         width: 500
       }}
+      {...args}
     />
   )
 }
 
-AutoCompleteStory.storyName = 'AutoComplete'
+AutoComplete.args = {
+  options: books,
+  id: "test",
+  noOptionsText: "Rechercher un livre",
+  getOptionLabel: (book) => book.title ?? "",
+  defaultValue: []
+}
+
+AutoComplete.storyName = 'AutoComplete'

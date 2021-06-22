@@ -91,14 +91,14 @@ export interface SelectBasicProps extends BasicProps {
   /**
    * The value selected
    * 
-   * @default ''
+   * @default '''
    */
   value?: string | number
 
   /**
    * The values of selected. ⚠️ This prop is used only if `multiple` is true
    * 
-   *  @default []
+   * @default []
    */
   values?: (string | number)[]
 
@@ -154,7 +154,6 @@ export interface SelectBasicProps extends BasicProps {
    * The event called when the value or the values of the input are removed
    */
   onRemove?: () => void
-
   /**
    * If true the input will be disabled
    * 
@@ -173,7 +172,7 @@ export interface SelectBasicProps extends BasicProps {
 
 export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = React.forwardRef((props: SelectProps, ref) => {
+export const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     value = '',
     values = [],
@@ -203,7 +202,6 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
   const onChangeMemoized = useCallback(
     (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
       const eventValue = e.target.value
-      console.log(eventValue)
       if (Array.isArray(eventValue)) {
         onChangeValues && onChangeValues(eventValue as string[])
       }
@@ -278,7 +276,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
         ref={ref}
         className={clsx(
           classesLocal.root,
-           value === '' && values.length <= 0 && placeholder ? classesLocal.disabledStyle : '', 
+            values && value === '' && values.length <= 0 && placeholder ? classesLocal.disabledStyle : '', 
            classes?.select, 
            onRemove ? classesLocal.selectPaddingWithClear : classesLocal.selectPadding,
            "AruiSelect-select"
@@ -315,7 +313,7 @@ export const Select = React.forwardRef((props: SelectProps, ref) => {
       >
         {optionsMemoized}
       </MuiSelect>
-      {(value !== '' || values.length > 0) && onRemove && !disabled && (
+      {((value !== '' || values.length > 0)) && onRemove && !disabled && (
         <Clear onClick={onRemove} className={clsx(classesLocal.clear, classes?.clearIcon, "AruiSelect-clearIcon")} style={styles?.clearIcon} />
       )}
       {errorMessage !== '' && error && (

@@ -45,13 +45,13 @@ const useStyles = makeStyles(() =>
   })
 )
 
-interface ColorProps {
+export interface ColorProps {
   colors: string[]
   image?: string
   children?: React.ReactNode
 }
 
-const Color = (props: ColorProps) => {
+export const Color = (props: ColorProps) => {
   const { colors, image, children } = props
   const classes = useStyles()
   return (

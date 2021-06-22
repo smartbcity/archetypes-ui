@@ -9,17 +9,21 @@
 
 ```bash
 npm install @smartb/archetypes-ui-components
+npm install @smartb/archetypes-ui-documentation
 npm install @smartb/archetypes-ui-layout
 npm install @smartb/archetypes-ui-forms
-npm install @smartb/archetypes-ui-theme
+npm install @smartb/archetypes-ui-providers
+npm install @smartb/archetypes-ui-themes
 npm install @smartb/archetypes-ui-s2
 ```
 
 ```bash
 yarn add @smartb/archetypes-ui-components
+yarn add @smartb/archetypes-ui-documentation
 yarn add @smartb/archetypes-ui-layout
 yarn add @smartb/archetypes-ui-forms
-yarn add @smartb/archetypes-ui-theme
+yarn add @smartb/archetypes-ui-themes
+yarn add @smartb/archetypes-ui-providers
 yarn add @smartb/archetypes-ui-s2
 ```
 
@@ -29,11 +33,15 @@ Almost every components are based on [Material-ui](https://material-ui.com/).
 
 - @smartb/archetypes-ui-components regroups basic components to build an application like button, card, panel etc...
 
+- @smartb/archetypes-ui-documentation regroups the components to document code.
+
 - @smartb/archetypes-ui-forms regroups the components to build a complete form like text-fields, select etc...
 
 - @smartb/archetypes-ui-layout regroups complexe layouts to structure an application like nav-bar, steppers, tools-menu etc...
 
-- @smartb/archetypes-ui-theme regroups providers and hooks to use our theme and the material-ui theme in the application.
+- @smartb/archetypes-ui-providers regroups provider to make a standard modern react app like i18n, redux etc...
+
+- @smartb/archetypes-ui-themes regroups providers and hooks to use our theme and the material-ui theme in the application.
 
 - @smartb/archetypes-ui-s2 regroups components to work with Smartb's tools.
 

@@ -4,9 +4,19 @@ import {
   PopUpBasicProps,
   Action as PopUpAction
 } from './PopUp'
+import {
+  ConfirmationPopUp as AruiConfirmationPopUp,
+  ConfirmationPopUpBasicProps
+} from './ConfirmationPopUp'
 import { Meta } from '@storybook/react'
 import { Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
+import {
+  ArgsTable,
+  Title,
+  Primary,
+  Stories
+} from '@storybook/addon-docs/blocks'
 import { styles, classes, Action } from './types'
 import { Box, Typography } from '@material-ui/core'
 import imageHolder from '../assets/imageHolder.jpg'
@@ -17,44 +27,27 @@ export default {
   title: 'Components/PopUp',
   component: AruiPopUp,
   decorators:[withDesign],
+  subcomponents: {ConfirmationPopUp: AruiConfirmationPopUp },
   parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Title>PopUp</Title>
+          <Primary />
+          <ArgsTable  components={{AruiPopUp: AruiPopUp}}  />
+          <Stories />
+          <ArgsTable  components={{ConfirmationPopUp: AruiConfirmationPopUp }} />
+        </>
+      )
+    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/4Nl4422AUGHNVClZOHzPg8/SmartB-UI-kit?node-id=212%3A396',
     },
-  },
-  argTypes: {
-    children: {
-      control: null
-    },
-    actions: {
-      table: {
-        type: {
-          summary: 'Action[]',
-          detail: Action
-        }
-      }
-    },
-    classes: {
-      table: {
-        type: {
-          summary: 'PopUpClasses',
-          detail: classes
-        }
-      }
-    },
-    styles: {
-      table: {
-        type: {
-          summary: 'PopUpStyles',
-          detail: styles
-        }
-      }
-    }
   }
 } as Meta
 
-const Template: Story<PopUpBasicProps> = (args: PopUpBasicProps) => {
+export const PopUp: Story<PopUpBasicProps> = (args: PopUpBasicProps) => {
   const [open, setOpen] = useState(false)
   return (
     <>
@@ -64,7 +57,7 @@ const Template: Story<PopUpBasicProps> = (args: PopUpBasicProps) => {
   )
 }
 
-const Template2: Story = () => {
+export const alternativePopUp: Story = () => {
   const [open, setOpen] = useState(false)
   const actions: PopUpAction[] = [
     {
@@ -111,9 +104,16 @@ const Template2: Story = () => {
   )
 }
 
-export const PopUp = Template.bind({})
+export const ConfirmationPopUp: Story<ConfirmationPopUpBasicProps> = (args: ConfirmationPopUpBasicProps) => {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setOpen(!open)}>Open the popup</Button>
+      <AruiConfirmationPopUp {...args} open={open} onClose={() => setOpen(!open)} />
+    </>
+  )
+}
 
-export const alternativePopUp = Template2.bind({})
 PopUp.args = {
   children: (
     <>
@@ -141,6 +141,42 @@ PopUp.args = {
   ]
 }
 
+PopUp.argTypes = {
+  children: {
+    control: null
+  },
+  actions: {
+    table: {
+      type: {
+        summary: 'Action[]',
+        detail: Action
+      }
+    }
+  },
+  classes: {
+    table: {
+      type: {
+        summary: 'PopUpClasses',
+        detail: classes
+      }
+    }
+  },
+  styles: {
+    table: {
+      type: {
+        summary: 'PopUpStyles',
+        detail: styles
+      }
+    }
+  }
+}
+
+ConfirmationPopUp.args = {
+  strongConfirmation: true
+}
+
 PopUp.storyName = 'PopUp'
 
 alternativePopUp.storyName = 'An alternative popup'
+
+ConfirmationPopUp.storyName = 'ConfirmationPopUp'

@@ -237,6 +237,7 @@ export const Table = <Row,>(props: TableProps<Row>) => {
           expandableRows={expandableRows}
           expandableRowsComponent={ExpandableComponents}
           expandOnRowClicked={expandOnRowClicked}
+          responsive
           {...other}
         />
       )}

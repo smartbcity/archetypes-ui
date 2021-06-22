@@ -10,8 +10,8 @@ const getGlobal = (localPackageJson) => {
     localPackageJson.dependencies || {}
   ).concat(Object.keys(localPackageJson.peerDependencies || {}));
   const globals = {
-    react: 'React',
-    'react-dom': 'ReactDOM'
+    react: "React",
+    "react-dom": "ReactDOM",
   };
   return {
     external: [...externalsDependencies, "@material-ui/styles"],
@@ -32,7 +32,7 @@ const getGlobal = (localPackageJson) => {
     plugins: [
       resolve({
         browser: true,
-        extensions: ['.mjs', '.js', '.jsx', '.json', '.node', '.tsx', '.ts']
+        extensions: [".mjs", ".js", ".jsx", ".json", ".node", ".tsx", ".ts"],
       }),
       commonjs({
         include: /\/node_modules\//,

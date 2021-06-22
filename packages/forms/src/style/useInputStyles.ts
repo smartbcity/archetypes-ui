@@ -11,6 +11,9 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     color: `${darkGrey}`
   },
   input: {
+    '& .MuiInputBase-input': {
+      padding: "6px 7px"
+    },
     '& .MuiSelect-root': {
       backgroundColor: 'white',
       borderRadius: '5px',
@@ -29,6 +32,7 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     },
     '& .MuiInputBase-root': {
       margin: `0px`,
+      paddingTop: "0px",
       border: `1px solid ${textFieldGrey}`,
       boxShadow: '0px 0px 0px 1px transparent',
       borderRadius: '4px',
@@ -141,6 +145,10 @@ export const useInputStyles = lowLevelStyles<Theme>()({
     }
   },
   inputDisabled: {
+    '& .MuiInputBase-root': {
+      border:`1px solid ${disabledColor}`,
+      background: disabledColor,
+    },
     '& .MuiInputBase-root:hover': {
       border:`1px solid ${disabledColor}`,
     },
